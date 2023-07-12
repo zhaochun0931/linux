@@ -6,3 +6,16 @@ timedatectl set-timezone America/New_York
 
 
 date
+
+
+# cat /etc/timezone
+America/New_York
+# 
+# ls -al /etc/timezone
+-rw-r--r-- 1 root root 17 Jul 11 22:14 /etc/timezone
+# 
+# ls -al /etc/localtime
+lrwxrwxrwx 1 root root 36 Jul 11 22:14 /etc/localtime -> /usr/share/zoneinfo/America/New_York
+#
+#
+
