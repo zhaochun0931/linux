@@ -1,0 +1,8 @@
+# check and set the timezone
+
+timedatectl
+timedatectl list-timezones
+timedatectl set-timezone America/New_York
+
+
+date
