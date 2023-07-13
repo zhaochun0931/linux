@@ -8,3 +8,18 @@ openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.crt
 # generate server key
 
 
+openssl genrsa -out mydomain.key 2048
+
+openssl req -new -sha256 -key mydomain.key \
+-subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=www.xiaoming.com" \
+-reqexts SAN \
+-config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:www.xiaoming.com")) \
+-out mydomain.csr
+
+
+
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days 120 \
+-in mydomain.csr \
+-CA rootCA.crt -CAkey rootCA.key -CAcreateserial \
+-out mydomain.crt -sha256
+
