@@ -24,3 +24,6 @@ openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days
 -CA rootCA.crt -CAkey rootCA.key -CAcreateserial \
 -out mydomain.crt -sha256
 
+# export to pfx
+
+openssl pkcs12 -export -in rootCA.crt -inkey rootCA.key -out rootCA.pfx
