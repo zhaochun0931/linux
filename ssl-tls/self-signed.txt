@@ -1,0 +1,28 @@
+
+
+First, we'll create a private key. A private key helps to enable encryption, and is the most important component of our certificate.
+openssl genrsa -out domain.key 2048
+
+
+If we want our certificate signed, we need a certificate signing request (CSR). Let's create a CSR (domain.csr) from our existing private key:
+openssl req -key domain.key -new -out domain.csr
+
+An important field is Common Name, which should be the exact Fully Qualified Domain Name (FQDN) of our domain. A challenge password and An optional company name can be left empty.
+
+
+
+
+
+
+
+
+
+
+We can also create both the private key and CSR with a single command:
+openssl req -new -newkey rsa:2048 -sha3-256 -days 365 -nodes -x509 -keyout gf.key -out gf.crt
+
+
+
+
+openssl x509 -in server.crt -text -noout
+
