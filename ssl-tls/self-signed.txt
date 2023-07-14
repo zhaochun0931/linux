@@ -19,6 +19,17 @@ An important field is Common Name, which should be the exact Fully Qualified D
 
 
 We can also create both the private key and CSR with a single command:
+openssl req -newkey rsa:2048 -nodes -keyout domain.key -out domain.csr
+
+
+
+
+
+
+Creating a Self-Signed Certificate, A self-signed certificate is a certificate that's signed with its own private key. It can be used to encrypt data just as well as CA-signed certificates, but our users will be shown a warning that says the certificate isn't trusted.
+
+
+
 openssl req -new -newkey rsa:2048 -sha3-256 -days 365 -nodes -x509 -keyout gf.key -out gf.crt
 
 
