@@ -8,3 +8,21 @@ If the checksum of the downloaded file is the same as that of the original file,
 
 Hashing is a one-way process. The hashed result cannot be reversed to expose the original data. 
 The checksum is a string of output that is a set size. Technically, that means that hashing is not encryption because encryption is intended to be reversed (decrypted).
+
+
+In Linux, you're likely to interact with one of two hashing methods:
+
+MD5
+SHA256
+
+
+Message Digest versus Secure Hash Algorithm
+What's the difference between the message digest and secure hash algorithms? The difference is in the mathematics involved, but the two accomplish similar goals. Sysadmins might prefer one over the other, but for most purposes, they function similarly. 
+
+# sha256sum demo.txt
+5a0408884fc5f58d95ced5559c0f5d12514dccf0e51c398d621fefae4d41e2ea  demo.txt
+#
+#
+# md5sum demo.txt
+c4f6b57577d11b3517dd1576ba5036ff  demo.txt
+#
