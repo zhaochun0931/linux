@@ -4,3 +4,15 @@ openssl genpkey -algorithm RSA -out key.pem
 
 # extrace a public key from the private key
 openssl pkey -in key.pem -pubout -out pub.pem
+
+
+
+
+
+openssl enc -list
+
+# encrpytion
+openssl enc -e -aes-128-cbc -pbkdf2 -in demo.txt -out demo.txt.enc
+
+# decryption
+openssl enc -d -aes-128-cbc -pbkdf2 -in demo.txt.enc -out xxx
