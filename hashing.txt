@@ -1,5 +1,7 @@
 What is hashing?
-Cryptography uses hashing to confirm that a file is unchanged. The simple explanation is that the same hashing method is used on a file at each end of an Internet download. The file is hashed on the web server by the web administrator, and the hash result is published. 
+
+Cryptography uses hashing to confirm that a file is unchanged. The simple explanation is that the same hashing method is used on a file at each end of an Internet download. 
+The file is hashed on the web server by the web administrator, and the hash result is published. 
 
 A user downloads the file and applies the same hash method. The hash results, or checksums, are compared. 
 If the checksum of the downloaded file is the same as that of the original file, then the two files are identical, and there have been no unexpected changes due to file corruption, man-in-the-middle attacks, etc.
