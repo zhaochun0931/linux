@@ -26,11 +26,30 @@ openssl req -newkey rsa:2048 -nodes -keyout domain.key -out domain.csr
 
 
 
-Creating a Self-Signed Certificate, A self-signed certificate is a certificate that's signed with its own private key. It can be used to encrypt data just as well as CA-signed certificates, but our users will be shown a warning that says the certificate isn't trusted.
+# Creating a Self-Signed Certificate, A self-signed certificate is a certificate that's signed with its own private key. It can be used to encrypt data just as well as CA-signed certificates, but our users will be shown a warning that says the certificate isn't trusted.
+
+Let's create a self-signed certificate (domain.crt) with our existing private key and CSR:
+openssl x509 -signkey domain.key -in domain.csr -req -days 365 -out domain.crt
 
 
 
-openssl req -new -newkey rsa:2048 -sha3-256 -days 365 -nodes -x509 -keyout gf.key -out gf.crt
+
+
+We can create a self-signed certificate with just a private key:
+openssl req -key domain.key -new -x509 -days 365 -out domain.crt
+
+This command will create a temporary CSR. We still have the CSR information prompt, of course.
+
+
+
+
+
+
+
+
+We can even create a private key and a self-signed certificate with just a single command:
+openssl req -newkey rsa:2048 -keyout domain.key -nodes -x509 -days 365 -out domain.crt
+openssl req -newkey rsa:2048 -sha3-256 -keyout domain.key -nodes -x509 -days 365 -out domain.crt
 
 
 
