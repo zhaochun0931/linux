@@ -1,0 +1,8 @@
+# Ubuntu
+
+/etc/lsb-release
+/etc/os-release
+
+
+
+ip a
