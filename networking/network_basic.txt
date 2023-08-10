@@ -5,4 +5,10 @@
 
 
 
+
+
+lsb_release -a
+
+
 ip a
+
