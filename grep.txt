@@ -5,10 +5,13 @@ grep '^xxx' file
 
 
 # Show line number while displaying the output using grep -n : To show the line number of file with the line matched. 
-
+grep -n 'xxx' file
 grep -n xxx file
 
 
 # Case insensitive search : The -i option enables to search for a string case insensitively in the given file. It matches the words like “xxx”, “XXx”, “xxX”. 
+grep -i 'xxx' file
 
-grep -i xxx file
+
+# Inverting the pattern match : You can display the lines that are not matched with the specified search string pattern using the -v option. 
+grep -v 'xxx' file
