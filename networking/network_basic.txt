@@ -12,3 +12,16 @@ lsb_release -a
 
 ip a
 
+
+
+
+
+
+
+
+
+
+# download the file
+
+wget xxx
+curl -O xxx
