@@ -24,4 +24,6 @@ ip a
 # download the file
 
 wget xxx
+wget xxx -O newfilename
+
 curl -O xxx
