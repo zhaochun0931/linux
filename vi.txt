@@ -1,0 +1,4 @@
+
+# replace the , with new line in the current line
+
+: s/,/\r/g
