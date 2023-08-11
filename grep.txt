@@ -1,0 +1,14 @@
+# Matching the lines that start with a string : The ^ regular expression pattern specifies the start of a line. 
+This can be used in grep to match the lines which start with the given string or pattern. 
+
+grep '^xxx' file
+
+
+# Show line number while displaying the output using grep -n : To show the line number of file with the line matched. 
+
+grep -n xxx file
+
+
+# Case insensitive search : The -i option enables to search for a string case insensitively in the given file. It matches the words like “xxx”, “XXx”, “xxX”. 
+
+grep -i xxx file
