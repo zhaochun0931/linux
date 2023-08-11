@@ -26,3 +26,29 @@ grep -v 'xxx' file
 grep -R xxx 
 grep -R xxx /
 
+
+# Print n specific lines from a file:  
+# -A prints the searched line and n lines after the result, 
+# -B prints the searched line and n lines before the result, and 
+# -C prints the searched line and n lines after and before the result. 
+grep -A 2 xxx file
+grep -B 2 xxx file
+grep -C 2 xxx file
+
+grep -A2 xxx file
+
+
+
+# Displaying only the matched pattern : By default, grep displays the entire line which has the matched string. 
+# We can make the grep to display only the matched string by using the -o option. 
+grep -o xxx file
+
+
+# Displaying the count of number of matches : We can find the number of lines that matches the given string/pattern 
+grep -c xxx file
+
+
+# Display the file names that matches the pattern : We can just display the files that contains the given string/pattern. 
+grep -l xxx *
+
+
