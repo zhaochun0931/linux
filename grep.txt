@@ -20,3 +20,9 @@ grep -n xxx file
 
 # Inverting the pattern match : You can display the lines that are not matched with the specified search string pattern using the -v option. 
 grep -v 'xxx' file
+
+
+# Search recursively for a pattern in the directory: -R prints the searched pattern in the given directory recursively in all the files.
+grep -R xxx 
+grep -R xxx /
+
