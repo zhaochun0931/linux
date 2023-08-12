@@ -1,3 +1,13 @@
+# highlight the matched result
+export GREP_OPTIONS='--color=always'
+
+
+
+
+
+
+
+
 # Case insensitive search : The -i option enables to search for a string case insensitively in the given file. It matches the words like “xxx”, “XXx”, “xxX”. 
 grep -i 'xxx' file
 
