@@ -32,3 +32,9 @@ This command mounts the ext2 file system residing on the partition /dev/hdb1 as 
 
 When you’re done accessing a file system, you can unmount it by issuing a command such as
 umount /dev/hdb1
+
+or
+
+umount /mnt/data
+
+
