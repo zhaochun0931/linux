@@ -28,3 +28,7 @@ tar zxvf tarfile.tgz
 mount –t ext2 /dev/hdb1 /mnt/data
 
 This command mounts the ext2 file system residing on the partition /dev/hdb1 as the directory /mnt/data, which exist before the command is issued.
+
+
+When you’re done accessing a file system, you can unmount it by issuing a command such as
+umount /dev/hdb1
