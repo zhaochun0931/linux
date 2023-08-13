@@ -1,0 +1,7 @@
+The /etc/passwd file defines Linux user accounts.
+
+Each line contains several fields, delimited by colons.
+
+root:x:0:0:root:/root:/bin/bash
+
+
