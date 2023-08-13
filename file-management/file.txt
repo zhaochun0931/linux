@@ -7,9 +7,18 @@ tar cvf tarfile.tar filex filey dirz
 This command backs up the files filex and filey and the directory dirz, storing the backup in the file tarfile.tar
 
 
-
-
 To restore the backup, issue a command such as:
 tar xvf tarfile.tar
 
 
+
+
+
+
+
+You can compress the backup file to reduce the amount of disk space required to store it. To specify compression when creating a backup, issue a
+command such as:
+tar zcvf tarfile.tgz filex filey dirz
+
+where the z denotes compression. If a backup file is compressed, the z option must be used when restoring the files:
+tar zxvf tarfile.tgz
