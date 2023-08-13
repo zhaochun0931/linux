@@ -1,0 +1,15 @@
+Backing Up and Restoring Files
+
+The most popular backup and restore command is tar. To back up a file or directory by using tar:
+
+tar cvf tarfile.tar filex filey dirz
+
+This command backs up the files filex and filey and the directory dirz, storing the backup in the file tarfile.tar
+
+
+
+
+To restore the backup, issue a command such as:
+tar xvf tarfile.tar
+
+
