@@ -1,6 +1,12 @@
 # highlight the matched result
 export GREP_OPTIONS='--color=always'
 
+or
+
+grep --color=always 'xxx' file
+
+
+
 
 
 
