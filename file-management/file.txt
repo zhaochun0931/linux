@@ -1,6 +1,4 @@
-Backing Up and Restoring Files
-
-The most popular backup and restore command is tar. To back up a file or directory by using tar:
+# Backing Up and Restoring Files, The most popular backup and restore command is tar. To back up a file or directory by using tar:
 
 tar cvf tarfile.tar filex filey dirz
 
@@ -22,3 +20,11 @@ tar zcvf tarfile.tgz filex filey dirz
 
 where the z denotes compression. If a backup file is compressed, the z option must be used when restoring the files:
 tar zxvf tarfile.tgz
+
+
+
+# Mounting and Unmounting File Systems, You must mount a file system before you can access the files it contains.
+
+mount –t ext2 /dev/hdb1 /mnt/data
+
+This command mounts the ext2 file system residing on the partition /dev/hdb1 as the directory /mnt/data, which exist before the command is issued.
