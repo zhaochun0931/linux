@@ -34,5 +34,9 @@ dc: example
 
 
 
+ldapsearch -H ldap://localhost -x
+ldapsearch -H ldap://10.0.0.5 -x
+
+
 
 
