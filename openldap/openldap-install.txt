@@ -16,6 +16,14 @@ BASE    dc=example,dc=com
 URI     ldap://ldap.example.com ldap://ldap-provider.example.com:666
 
 
+/etc/hosts
+10.0.0.5 ldap.example.com
+
+
+
+
+
+
 
 
 
