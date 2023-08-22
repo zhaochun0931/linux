@@ -1,7 +1,7 @@
 #install openladap
 
 apt update
-apt install slapd ldap-utils
+apt install slapd ldap-utils -y
 dpkg-reconfigure slapd
 
 
