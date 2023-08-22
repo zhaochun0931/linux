@@ -12,3 +12,27 @@ dpkg-reconfigure slapd
 
 /etc/ldap/ldap.conf
 
+BASE    dc=example,dc=com
+URI     ldap://ldap.example.com ldap://ldap-provider.example.com:666
+
+
+
+
+
+ldapsearch -Q -LLL -Y EXTERNAL -H ldapi:///
+
+# ldapsearch -Q -LLL -Y EXTERNAL -H ldapi:///
+dn: dc=example,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: test
+dc: example
+
+#
+
+
+
+
+
+
