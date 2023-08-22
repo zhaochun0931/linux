@@ -1,0 +1,11 @@
+dn: uid=demo,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: demo
+sn: Wiz
+userPassword: {SSHA}G50Ug1/Ro0G/yso5q7D0U0sCTL05W/7f
+loginShell: /bin/bash
+uidNumber: 1000
+gidNumber: 1000
+homeDirectory: /home/demo
