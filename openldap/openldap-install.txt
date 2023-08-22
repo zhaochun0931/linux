@@ -54,6 +54,9 @@ ldapsearch -H ldap://10.0.0.5 -x
 ldapadd -x -D cn=admin,dc=example,dc=com -W -f group.ldif
 
 
+# password hash
+slappasswd
+
 
 # add user
 ldapadd -x -D cn=admin,dc=example,dc=com -W -f user.ldif
