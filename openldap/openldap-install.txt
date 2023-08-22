@@ -65,5 +65,8 @@ ldapadd -x -D cn=admin,dc=example,dc=com -W -f user.ldif
 # test openldap
 
 ldapsearch -x -b "DC=example,DC=com"
+ldapsearch -x -b "uid=demo,ou=people,dc=example,dc=com"
+
+
 
 
