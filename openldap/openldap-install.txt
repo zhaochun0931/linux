@@ -1,8 +1,14 @@
 #install openladap
 
 apt update
+
 apt install slapd ldap-utils -y
+
+# DNS domain name: example.com
+
 dpkg-reconfigure slapd
 
 
+
+/etc/ldap/ldap.conf
 
