@@ -70,4 +70,10 @@ ldapsearch -x -b "uid=demo,ou=people,dc=example,dc=com"
 
 
 
+# verify with password
+
+ldapsearch -x -b "dc=example,dc=com" -H ldap://localhost -D "cn=admin,dc=example,dc=com" -W 
+ldapsearch -x -b "dc=example,dc=com" -H ldap://localhost -D "uid=demo,ou=people,dc=example,dc=com" -W 
+
+
 
