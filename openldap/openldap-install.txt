@@ -50,3 +50,9 @@ ldapsearch -H ldap://10.0.0.5 -x
 
 
 
+# add group
+ldapadd -x -D cn=admin,dc=example,dc=com -W -f  group.ldif
+
+
+
+
