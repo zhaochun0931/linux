@@ -26,14 +26,10 @@ URI     ldap://ldap.example.com ldap://ldap-provider.example.com:666
 # ss -ltnp
 State                   Recv-Q                   Send-Q                                     Local Address:Port                                      Peer Address:Port                  Process
 LISTEN                  0                        2048                                             0.0.0.0:389                                            0.0.0.0:*                      users:(("slapd",pid=11657,fd=8))
-
-LISTEN                  0                        4096                                       127.0.0.53%lo:53                                             0.0.0.0:*                      users:(("systemd-resolve",pid=546,fd=14))
 LISTEN                  0                        128                                              0.0.0.0:22                                             0.0.0.0:*                      users:(("sshd",pid=772,fd=3))
-LISTEN                  0                        4096                                           127.0.0.1:35927                                          0.0.0.0:*                      users:(("crio",pid=678,fd=11))
 LISTEN                  0                        2048                                                [::]:389                                               [::]:*                      users:(("slapd",pid=11657,fd=9))
-
 LISTEN                  0                        128                                                 [::]:22                                                [::]:*                      users:(("sshd",pid=772,fd=4))
-root@gemfire-b1:~#
+#
 
 
 
