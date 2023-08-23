@@ -26,21 +26,12 @@ URI     ldap://ldap.example.com ldap://ldap-provider.example.com:666
 # ss -ltnp
 State                   Recv-Q                   Send-Q                                     Local Address:Port                                      Peer Address:Port                  Process
 LISTEN                  0                        2048                                             0.0.0.0:389                                            0.0.0.0:*                      users:(("slapd",pid=11657,fd=8))
-LISTEN                  0                        4096                                           127.0.0.1:10248                                          0.0.0.0:*                      users:(("kubelet",pid=896,fd=19))
-LISTEN                  0                        4096                                           127.0.0.1:10249                                          0.0.0.0:*                      users:(("kube-proxy",pid=1665,fd=8))
-LISTEN                  0                        4096                                           127.0.0.1:2379                                           0.0.0.0:*                      users:(("etcd",pid=1244,fd=9))
-LISTEN                  0                        4096                                            10.0.0.5:2379                                           0.0.0.0:*                      users:(("etcd",pid=1244,fd=8))
-LISTEN                  0                        4096                                            10.0.0.5:2380                                           0.0.0.0:*                      users:(("etcd",pid=1244,fd=7))
-LISTEN                  0                        4096                                           127.0.0.1:2381                                           0.0.0.0:*                      users:(("etcd",pid=1244,fd=14))
-LISTEN                  0                        4096                                           127.0.0.1:10257                                          0.0.0.0:*                      users:(("kube-controller",pid=1231,fd=3))
-LISTEN                  0                        4096                                           127.0.0.1:10259                                          0.0.0.0:*                      users:(("kube-scheduler",pid=1233,fd=3))
+
 LISTEN                  0                        4096                                       127.0.0.53%lo:53                                             0.0.0.0:*                      users:(("systemd-resolve",pid=546,fd=14))
 LISTEN                  0                        128                                              0.0.0.0:22                                             0.0.0.0:*                      users:(("sshd",pid=772,fd=3))
 LISTEN                  0                        4096                                           127.0.0.1:35927                                          0.0.0.0:*                      users:(("crio",pid=678,fd=11))
 LISTEN                  0                        2048                                                [::]:389                                               [::]:*                      users:(("slapd",pid=11657,fd=9))
-LISTEN                  0                        4096                                                   *:10250                                                *:*                      users:(("kubelet",pid=896,fd=14))
-LISTEN                  0                        4096                                                   *:6443                                                 *:*                      users:(("kube-apiserver",pid=1250,fd=3))
-LISTEN                  0                        4096                                                   *:10256                                                *:*                      users:(("kube-proxy",pid=1665,fd=10))
+
 LISTEN                  0                        128                                                 [::]:22                                                [::]:*                      users:(("sshd",pid=772,fd=4))
 root@gemfire-b1:~#
 
