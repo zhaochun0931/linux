@@ -7,3 +7,6 @@ lsof -iTCP -nP
 lsof -iTCP -nP  -sTCP:LISTEN
 
 lsof -iTCP:8080 -nP  -sTCP:LISTEN
+
+
+lsof -i:8080
