@@ -2,7 +2,6 @@ lsof -i -nP
 
 
 lsof -iUDP -nP
-
 lsof -iTCP -nP
 
-
+lsof -iTCP -nP  -sTCP:LISTEN
