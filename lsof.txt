@@ -1,3 +1,8 @@
 lsof -i -nP
 
 
+lsof -iUDP -nP
+
+lsof -iTCP -nP
+
+
