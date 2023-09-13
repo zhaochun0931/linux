@@ -7,3 +7,26 @@ cd apache-tomcat-10.1.13/bin
 ./startup.sh
 
 http://localhost:8080/
+
+
+
+
+
+/root/apache-tomcat-9.0.68/conf/tomcat-users.xml
+
+<role rolename="manager-gui"/>
+  <user username="admin" password="password>" roles="manager-gui"/>
+  <role rolename="admin-gui" />
+<user username="admin" password="password" roles="manager-gui,admin-gui" />
+
+
+
+
+
+
+/root/apache-tomcat-9.0.68/webapps/manager/META-INF/context.xml
+
+remove below line:
+
+  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
