@@ -2,7 +2,7 @@
 
 tar -xzvf apache-tomcat-10.1.13.tar.gz
 
-cd apache-tomcat-10.1.13
+cd apache-tomcat-10.1.13/bin
 
 ./startup.sh
 
