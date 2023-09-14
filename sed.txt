@@ -1,0 +1,6 @@
+# replace the uppper case to lower case
+echo XXXyyy | sed 's/[A-Z]/\L&/g'
+
+
+# replace the lower case to upper case
+echo XXXyyy | sed 's/[a-z]/\U&/g'
