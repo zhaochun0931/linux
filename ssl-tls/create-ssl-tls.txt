@@ -1,12 +1,10 @@
 # generate rootCA
-
 openssl genrsa -out rootCA.key 4096
-
 openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=www.rootCA.com"
 
 
-# generate server key
 
+# generate server key
 openssl genrsa -out mydomain.key 2048
 
 openssl req -new -sha256 -key mydomain.key \
@@ -23,8 +21,13 @@ openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days
 -CA rootCA.crt -CAkey rootCA.key -CAcreateserial \
 -out mydomain.crt -sha256
 
-# export to pfx
 
+
+
+
+
+
+# export to pfx
 openssl pkcs12 -export -in rootCA.crt -inkey rootCA.key -out rootCA.pfx
 
 
@@ -32,14 +35,10 @@ openssl pkcs12 -export -in rootCA.crt -inkey rootCA.key -out rootCA.pfx
 
 
 # add the entry for the www.xiaoming.com in the /etc/hosts or windows hosts files
-
 1.1.1.1 www.xiaoming.com
 
 
-# visit https://www.xiaoming.com from the browser
-
-
-Successfully.
+# successfully visit https://www.xiaoming.com from the browser
 
 
 openssl x509 -in mydomain.crt -text -noout
