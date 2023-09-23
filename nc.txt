@@ -1,1 +1,3 @@
+nc -v localhost 80
+
 nc -v -z localhost 80
