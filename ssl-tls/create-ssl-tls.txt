@@ -41,7 +41,13 @@ openssl pkcs12 -export -in rootCA.crt -inkey rootCA.key -out rootCA.pfx
 # successfully visit https://www.xiaoming.com from the browser
 
 
+
+
 openssl x509 -in mydomain.crt -text -noout
+
+
+openssl verify -CAfile rootCA.crt mydomain.crt
+
 
 
 
