@@ -53,5 +53,11 @@ openssl verify -CAfile rootCA.crt mydomain.crt
 
 
 
+# how to verify the certificate
+
+openssl s_server -cert mydomain.crt -key mydomain.key -accept 8443
+
+openssl s_client -connect localhost:8443 -CAfile rootCA.crt
+
 
 
