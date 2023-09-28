@@ -11,15 +11,13 @@ An important field is Common Name, which should be the exact Fully Qualified D
 
 
 
-
-
-
-
-
-
-
 We can also create both the private key and CSR with a single command:
 openssl req -newkey rsa:2048 -nodes -keyout domain.key -out domain.csr
+
+
+
+
+
 
 
 
@@ -36,10 +34,16 @@ openssl x509 -signkey domain.key -in domain.csr -req -days 365 -out domain.crt
 
 
 
+
+
+
 We can create a self-signed certificate with just a private key:
 openssl req -key domain.key -new -x509 -days 365 -out domain.crt
 
 This command will create a temporary CSR. We still have the CSR information prompt, of course.
+
+
+
 
 
 
