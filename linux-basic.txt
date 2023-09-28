@@ -19,3 +19,11 @@ lrwxrwxrwx 1 root root 36 Jul 11 22:14 /etc/localtime -> /usr/share/zoneinfo/Ame
 #
 #
 
+
+
+
+# compare the difference bewtween two files
+diff -y file1 file2
+diff --color=auto -y file1 file2
+
+
