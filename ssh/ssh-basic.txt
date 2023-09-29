@@ -18,3 +18,8 @@ Hashing
 
 
 
+
+
+
+Hashing algorithms used to produce hashes in SSH are Message Authentication Code (MAC) and Hashed Message Authentication Code (HMAC)
+
