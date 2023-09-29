@@ -1,0 +1,5 @@
+SSH consists of three distinct layers:
+
+The transport layer
+The authentication layer
+The connection layer
