@@ -1,4 +1,4 @@
-# generate rootCA
+# generate ca
 openssl genrsa -out ca.key 4096
 openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=www.ca.com"
 
@@ -14,7 +14,7 @@ openssl req -new -sha256 -key mydomain.key \
 -out mydomain.csr
 
 
-# sign with the rootCA
+# sign with the ca
 
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days 120 \
 -in mydomain.csr \
