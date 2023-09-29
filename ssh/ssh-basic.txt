@@ -8,3 +8,13 @@ The connection layer
 
 
 The two most common SSH user authentication methods used are passwords and SSH keys.
+
+
+
+SSH uses three data encryption types during the communication between the machines. These are:
+Symmetric encryption
+Asymmetric encryption
+Hashing
+
+
+
