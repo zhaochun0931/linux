@@ -3,3 +3,8 @@ SSH consists of three distinct layers:
 The transport layer
 The authentication layer
 The connection layer
+
+
+
+
+The two most common SSH user authentication methods used are passwords and SSH keys.
