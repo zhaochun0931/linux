@@ -1,6 +1,6 @@
 # generate rootCA
-openssl genrsa -out rootCA.key 4096
-openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=www.rootCA.com"
+openssl genrsa -out ca.key 4096
+openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=www.ca.com"
 
 
 
@@ -18,7 +18,7 @@ openssl req -new -sha256 -key mydomain.key \
 
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days 120 \
 -in mydomain.csr \
--CA rootCA.crt -CAkey rootCA.key -CAcreateserial \
+-CA ca.crt -CAkey ca.key -CAcreateserial \
 -out mydomain.crt -sha256
 
 
@@ -27,8 +27,16 @@ openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days
 
 
 
+
+
+
+
+
+
+
+
 # export to pfx
-openssl pkcs12 -export -in rootCA.crt -inkey rootCA.key -out rootCA.pfx
+openssl pkcs12 -export -in rootCA.crt -inkey ca.key -out ca.pfx
 
 
 # add the pfx to the trusted root certification authorities
@@ -46,7 +54,7 @@ openssl pkcs12 -export -in rootCA.crt -inkey rootCA.key -out rootCA.pfx
 openssl x509 -in mydomain.crt -text -noout
 
 
-openssl verify -CAfile rootCA.crt mydomain.crt
+openssl verify -CAfile ca.crt mydomain.crt
 
 
 
@@ -57,7 +65,7 @@ openssl verify -CAfile rootCA.crt mydomain.crt
 
 openssl s_server -cert mydomain.crt -key mydomain.key -accept 8443
 
-openssl s_client -connect localhost:8443 -CAfile rootCA.crt
+openssl s_client -connect localhost:8443 -CAfile ca.crt
 
 
 
