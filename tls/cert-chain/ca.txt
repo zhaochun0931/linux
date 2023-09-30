@@ -19,3 +19,14 @@ touch intermediateCA/index.txt
 openssl genrsa -out rootCA/private/ca.key
 
 openssl req -config openssl_root.cnf -key rootCA/private/ca.key -new -x509 -days 365 -sha256 -extensions v3_ca -out rootCA/certs/ca.crt -subj "/C=US/ST=California/L=San Francisco/O=Example Corp/OU=IT Department/CN=Root CA"
+
+
+
+
+
+
+
+
+openssl genrsa -out intermediateCA/private/intermediate.key
+
+openssl req -config openssl_intermediate.cnf -key intermediateCA/private/intermediate.key -new -sha256 -out intermediateCA/certs/intermediate.csr -subj "/C=US/ST=California/L=San Francisco/O=Example Corp/OU=IT Department/CN=Intermediate CA"
