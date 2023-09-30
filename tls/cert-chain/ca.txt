@@ -71,4 +71,5 @@ openssl req -config openssl_intermediate.cnf -key intermediateCA/private/www.exa
 openssl ca -config openssl_intermediate.cnf -extensions server_cert -days 375 -notext -md sha256 -in intermediateCA/csr/www.example.com.csr.pem -out intermediateCA/certs/www.example.com.cert.pem
 
 
+openssl x509 -noout -text -in intermediateCA/certs/www.example.com.cert.pem
 
