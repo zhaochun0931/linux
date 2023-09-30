@@ -2,7 +2,6 @@
 openssl enc -list
 
 
-# method 1
 # encrypt and decrypt with cipher
 
 # encrpytion
@@ -18,7 +17,7 @@ openssl enc -d -aes-128-cbc -pbkdf2 -in demo.txt.enc -out xxx
 
 
 
-# method 2
+
 # encrypt and decrypt with public key and private key
 
 # generate a private key
