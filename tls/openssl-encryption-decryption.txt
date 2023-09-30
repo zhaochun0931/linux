@@ -2,7 +2,7 @@
 openssl enc -list
 
 
-# encrypt and decrypt with cipher
+# encrypt and decrypt with the same cipher
 
 # encrpytion
 openssl enc -e -aes-128-cbc -pbkdf2 -in demo.txt -out demo.txt.enc
