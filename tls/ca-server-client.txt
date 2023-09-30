@@ -31,9 +31,10 @@ openssl x509 -noout -text -in server.crt
 
 # set up a Nginx with server.crt and server.key
 
+# add below line to /etc/hosts
+127.0.0.1 server
 
 
 curl --key client.key  --cert client.crt --cacert ca.crt  https://server:443 -v
-curl --key client.key  --cert client.crt --cacert ca.crt  https://localhost:443 -v
 
   
