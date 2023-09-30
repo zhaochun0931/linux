@@ -4,3 +4,22 @@ All TLS handshakes make use of asymmetric cryptography (the public and private k
 
 1. Client hello: The client sends a client hello message with the protocol version, the client random, and a list of cipher suites.
 
+2. Server hello: The server replies with its SSL certificate, its selected cipher suite, and the server random. In contrast to the RSA handshake described above, in this message the server also includes the following (step 3):
+
+3. Server's digital signature: The server computes a digital signature of all the messages up to this point.
+
+4. Digital signature confirmed: The client verifies the server's digital signature, confirming that the server is who it says it is.
+
+5. Client DH parameter: The client sends its DH parameter to the server.
+
+6. Client and server calculate the premaster secret: Instead of the client generating the premaster secret and sending it to the server, as in an RSA handshake, the client and server use the DH parameters they exchanged to calculate a matching premaster secret separately.
+
+7. Session keys created: Now, the client and server calculate session keys from the premaster secret, client random, and server random, just like in an RSA handshake.
+
+8. Client is ready: Same as an RSA handshake.
+
+9. Server is ready
+
+10. Secure symmetric encryption achieved
+
+DH parameter: DH stands for Diffie-Hellman. The Diffie-Hellman algorithm uses exponential calculations to arrive at the same premaster secret. The server and client each provide a parameter for the calculation, and when combined they result in a different calculation on each side, with results that are equal.
