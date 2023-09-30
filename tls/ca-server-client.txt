@@ -37,4 +37,6 @@ openssl x509 -noout -text -in server.crt
 
 curl --key client.key  --cert client.crt --cacert ca.crt  https://server:443 -v
 
-  
+
+
+
