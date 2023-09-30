@@ -40,3 +40,11 @@ curl --key client.key  --cert client.crt --cacert ca.crt  https://server:443 -v
 
 
 
+
+
+# SAN extension
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -out server.crt -CAcreateserial -sha256 -extfile server_san.cnf
+
+curl --key client.key  --cert client.crt --cacert ca.crt  https://127.0.0.1:443 -v
+
+
