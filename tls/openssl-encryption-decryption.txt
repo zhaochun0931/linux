@@ -27,8 +27,17 @@ openssl genpkey -algorithm RSA -out private.key
 openssl pkey -in key.pem -pubout -out public.key
 
 
+
+openssl genrsa -out demo.key
+openssl rsa -pubout -in demo.key -out demo.pub
+
+
+
+
+
+
 # encrypt with the public key
-openssl pkeyutl -encrypt -in demo.txt -out demo.txt.enc -pubin -inkey private.key
+openssl pkeyutl -encrypt -in demo.txt -out demo.txt.enc -pubin -inkey demo.pub
 
 # decrypt with the private key
-openssl pkeyutl -decrypt -inkey public.key -in demo.txt.enc -out test.out.txt
+openssl pkeyutl -decrypt -inkey demo.key -in demo.txt.enc -out test.out.txt
