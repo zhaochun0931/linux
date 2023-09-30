@@ -20,3 +20,11 @@ The RSA key exchange algorithm, while now considered not secure, was used in ver
 8. Server is ready: The server sends a "finished" message encrypted with a session key.
 
 9. Secure symmetric encryption achieved: The handshake is completed, and communication continues using the session keys.
+
+
+
+
+
+
+
+
