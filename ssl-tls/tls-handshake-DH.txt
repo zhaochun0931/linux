@@ -1,0 +1,6 @@
+All TLS handshakes make use of asymmetric cryptography (the public and private key), but not all will use the private key in the process of generating session keys. For instance, an ephemeral Diffie-Hellman handshake proceeds as follows
+
+
+
+1. Client hello: The client sends a client hello message with the protocol version, the client random, and a list of cipher suites.
+
