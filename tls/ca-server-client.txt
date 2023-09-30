@@ -29,7 +29,6 @@ openssl req -noout -text -in server.csr
 openssl x509 -noout -text -in server.crt
 
 
-
 # set up a Nginx with server.crt and server.key
 
 
