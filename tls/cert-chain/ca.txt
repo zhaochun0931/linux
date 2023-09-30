@@ -15,7 +15,7 @@ touch rootCA/index.txt
 touch intermediateCA/index.txt
 
 
-
+# ca
 openssl genrsa -out rootCA/private/ca.key.pem
 
 openssl req -config openssl_root.cnf -key rootCA/private/ca.key.pem -new -x509 -days 365 -sha256 -extensions v3_ca -out rootCA/certs/ca.cert.pem -subj "/C=US/ST=California/L=San Francisco/O=Example Corp/OU=IT Department/CN=Root CA"
@@ -26,11 +26,13 @@ openssl req -config openssl_root.cnf -key rootCA/private/ca.key.pem -new -x509 -
 
 
 
-
+# intermediate
 openssl genrsa -out intermediateCA/private/intermediate.key.pem
 
 openssl req -config openssl_intermediate.cnf -key intermediateCA/private/intermediate.key.pem -new -sha256 -out intermediateCA/certs/intermediate.csr.pem -subj "/C=US/ST=California/L=San Francisco/O=Example Corp/OU=IT Department/CN=Intermediate CA"
 
+
+# sign the intermediate with ca
 openssl ca -config openssl_root.cnf -extensions v3_intermediate_ca -days 3650 -notext -md sha256 -in intermediateCA/certs/intermediate.csr.pem -out intermediateCA/certs/intermediate.cert.pem
 
 
@@ -45,3 +47,9 @@ openssl verify -CAfile rootCA/certs/ca.cert.pem intermediateCA/certs/intermediat
 
 
 
+
+# bundle the certificate chain
+cat intermediateCA/certs/intermediate.cert.pem rootCA/certs/ca.cert.pem > intermediateCA/certs/ca-chain.cert.pem
+
+
+openssl verify -CAfile intermediateCA/certs/ca-chain.cert.pem intermediateCA/certs/intermediate.cert.pem
