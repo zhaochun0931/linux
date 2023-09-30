@@ -5,3 +5,17 @@ mkdir -p intermediateCA/{certs,crl,newcerts,private,csr}
 
 echo 1000 > rootCA/serial
 echo 1000 > intermediateCA/serial
+
+
+echo 0100 > rootCA/crlnumber 
+echo 0100 > intermediateCA/crlnumber
+
+
+touch rootCA/index.txt
+touch intermediateCA/index.txt
+
+
+
+openssl genrsa -out rootCA/private/ca.key
+
+openssl req -config openssl_root.cnf -key rootCA/private/ca.key -new -x509 -days 365 -sha256 -extensions v3_ca -out rootCA/certs/ca.crt -subj "/C=US/ST=California/L=San Francisco/O=Example Corp/OU=IT Department/CN=Root CA"
