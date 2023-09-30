@@ -1,7 +1,7 @@
 
 
-mkdir -p rootCA/{certs,crl,newcerts,private,csr}
-mkdir -p intermediateCA/{certs,crl,newcerts,private,csr}
+mkdir -p ~/rootCA/{certs,crl,newcerts,private,csr}
+mkdir -p ~/intermediateCA/{certs,crl,newcerts,private,csr}
 
 echo 1000 > rootCA/serial
 echo 1000 > intermediateCA/serial
