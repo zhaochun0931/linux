@@ -53,3 +53,16 @@ cat intermediateCA/certs/intermediate.cert.pem rootCA/certs/ca.cert.pem > interm
 
 
 openssl verify -CAfile intermediateCA/certs/ca-chain.cert.pem intermediateCA/certs/intermediate.cert.pem
+
+
+
+
+
+
+# server
+
+openssl genpkey -algorithm RSA -out intermediateCA/private/www.example.com.key.pem
+
+openssl req -config ~/myCA/openssl_intermediate.cnf -key ~/myCA/intermediateCA/private/www.example.com.key.pem -new -sha256 -out ~/myCA/intermediateCA/csr/www.example.com.csr.pem
+
+
