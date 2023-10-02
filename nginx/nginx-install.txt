@@ -6,3 +6,7 @@ apt install nginx
 nginx -v
 nginx -V
 
+
+
+nginx -s reload
+
