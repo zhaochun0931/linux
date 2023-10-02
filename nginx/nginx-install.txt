@@ -1,4 +1,6 @@
-apt install nginx
+apt update
+apt install nginx -y
+
 
 
 
