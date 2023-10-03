@@ -1,0 +1,11 @@
+mkdir -p /var/www/xxx/html
+mkdir -p /var/www/yyy/html
+
+
+echo hello xxx > /var/www/xxx/html/index.html
+echo hello yyy > /var/www/yyy/html/index.html
+
+
+
+
+
