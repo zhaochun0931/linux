@@ -7,9 +7,64 @@ echo hello yyy > /var/www/yyy/html/index.html
 
 
 
-
-cp /etc/nginx/sites-available/default /etc/nginx/sites-available/xxx
-cp /etc/nginx/sites-available/default /etc/nginx/sites-available/yyy
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
 
 
+
+/etc/nginx/sites-available/default
+
+
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+	server_name _;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+	location /xxx {
+	}
+}
+
+server {
+        listen 80;
+        root /var/www/xxx/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name xxx;
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+
+server {
+        listen 80 ;
+        root /var/www/yyy/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name yyy;
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+
+
+/etc/hosts
+127.0.0.1 xxx
+127.0.0.1 yyy
+
+
+
+#curl localhost
+hello
+#
+
+
+
+#curl xxx
+hello xxx
+#
+
+#curl yyy
+hello yyy
+#
