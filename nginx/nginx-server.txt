@@ -8,4 +8,8 @@ echo hello yyy > /var/www/yyy/html/index.html
 
 
 
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/xxx
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/yyy
+
+
 
