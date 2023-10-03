@@ -1,0 +1,26 @@
+nginx.conf
+
+
+    server {
+        listen       80;
+        server_name  localhost;
+
+
+
+        location / {
+            root   html;
+proxy_pass http://localhost:7070/pulse;
+rewrite ^/(.*)  https://www.baidu.com permanent;
+            index  index.html index.htm;
+        }
+
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+
+
+    }
+
