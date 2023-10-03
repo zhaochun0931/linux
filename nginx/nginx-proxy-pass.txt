@@ -1,3 +1,24 @@
+/etc/nginx/nginx.conf
+
+http {
+
+upstream xxx-backend{
+	server localhost:8080;
+}
+
+
+}
+
+
+
+
+
+
+
+/etc/nginx/sites-available/default
+
+
+
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
@@ -10,7 +31,8 @@ server {
 	server_name _;
 
 	location / {
-		proxy_pass http://localhost:8080;
+		proxy_pass http://xxx-backend;
+
 		try_files $uri $uri/ =404;
 	}
 
