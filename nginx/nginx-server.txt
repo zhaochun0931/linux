@@ -49,6 +49,20 @@ server {
 }
 
 
+
+
+
+
+
+
+nginx -s reload
+
+
+
+
+
+
+
 /etc/hosts
 127.0.0.1 xxx
 127.0.0.1 yyy
