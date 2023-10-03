@@ -7,3 +7,7 @@ nginx -V
 
 nginx -s reload
 
+
+
+
+/etc/nginx/sites-available/default
