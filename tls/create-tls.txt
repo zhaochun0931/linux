@@ -5,13 +5,13 @@ openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "
 
 
 # generate server key
-openssl genrsa -out mydomain.key 2048
+openssl genrsa -out tls.key 2048
 
-openssl req -new -sha256 -key mydomain.key \
+openssl req -new -sha256 -key tls.key \
 -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=www.xiaoming.com" \
 -reqexts SAN \
 -config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:www.xiaoming.com")) \
--out mydomain.csr
+-out tls.csr
 
 
 # sign with the ca
