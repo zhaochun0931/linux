@@ -1,0 +1,16 @@
+wget https://www.openssl.org/source/openssl-3.0.11.tar.gz
+
+tar zxvf openssl-3.0.1.tar.gz
+
+cd openssl-3.0.11
+
+./config
+
+make
+
+make install
+
+ldconfig /usr/local/lib64/
+
+openssl version
+
