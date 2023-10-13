@@ -22,6 +22,9 @@ openssl version
 
 ldconfig -p
 
+ldconfig -v
+
+
 sudo ln -s /usr/lib/x86_64-linux-gnu/libssl3.so /usr/lib/x86_64-linux-gnu/libssl.so.3
 
 
