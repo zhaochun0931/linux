@@ -5,6 +5,9 @@ timedatectl list-timezones
 timedatectl set-timezone America/New_York
 
 
+
+ulimit -a
+
 date
 
 
