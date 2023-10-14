@@ -119,3 +119,20 @@ Number  Start   End     Size    File system  Name  Flags
  1      116MB   32.2GB  32.1GB  ext4
 
 #
+
+
+
+gdisk /dev/sda
+
+# gdisk /dev/sda
+GPT fdisk (gdisk) version 1.0.3
+
+Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: present
+
+Found valid GPT with protective MBR; using GPT.
+
+Command (? for help)
