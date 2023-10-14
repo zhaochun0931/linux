@@ -83,4 +83,9 @@ openssl s_client -connect localhost:8443
 
 
 
+openssl ciphers -s -tls1_3
+openssl s_client -connect localhost:10334 -tls1_3
+
+
+
 
