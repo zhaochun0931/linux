@@ -5,3 +5,17 @@ uname -r
 ls -l /lib/modules/$(uname -r)/kernel/fs/
 
 
+# df -T
+Filesystem     Type     1K-blocks    Used Available Use% Mounted on
+udev           devtmpfs   4049664       0   4049664   0% /dev
+tmpfs          tmpfs       813708    1036    812672   1% /run
+/dev/sdb1      ext4      30298176 9877756  20404036  33% /
+tmpfs          tmpfs      4068524       0   4068524   0% /dev/shm
+tmpfs          tmpfs         5120       0      5120   0% /run/lock
+tmpfs          tmpfs      4068524       0   4068524   0% /sys/fs/cgroup
+/dev/loop0     squashfs    108416  108416         0 100% /snap/core/16202
+/dev/loop1     squashfs      9856    9856         0 100% /snap/canonical-livepatch/246
+/dev/sdb15     vfat        106858    5341    101518   5% /boot/efi
+/dev/sda1      ext4      16401276      28  15546108   1% /mnt
+tmpfs          tmpfs       813704       0    813704   0% /run/user/1000
+#
