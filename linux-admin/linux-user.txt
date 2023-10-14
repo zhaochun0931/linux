@@ -8,6 +8,9 @@
 
 useradd
 
+groupadd
+
+
 passwd
 
 usermod
