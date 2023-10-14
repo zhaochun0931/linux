@@ -166,3 +166,8 @@ dd if=/dev/zero of=/tmp/file1 bs=1M count=100
 # ls -alh /tmp/file1
 -rw-r--r-- 1 root root 100M Oct 14 07:43 /tmp/file1
 #
+
+
+
+
+swap partition
