@@ -1,4 +1,11 @@
+System V
+
 /sbin/init
 
 
+systemd
+
+systemctl
+
+systemctl list-units --all
 
