@@ -17,6 +17,8 @@ usermod
 
 userdel
 
+groupdel
+
 
 
 /etc/default/useradd
