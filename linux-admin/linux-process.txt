@@ -1,0 +1,41 @@
+ps -ef
+
+top
+
+ps -l
+
+# ps -l
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+4 S     0  2086  2074  0  80   0 - 17076 poll_s pts/0    00:00:00 sudo
+4 S     0  2088  2086  0  80   0 -  5814 wait   pts/0    00:00:00 bash
+4 R     0 27462  2088  0  80   0 -  7337 -      pts/0    00:00:00 ps
+#
+
+
+ps aux
+
+kill -l
+
+free -h
+
+uname -a
+
+
+uptime
+
+
+netstat
+
+vmstat
+
+
+
+/proc/*
+
+
+fuser
+
+lsof
+
+pidof bash
+
