@@ -19,3 +19,11 @@ tmpfs          tmpfs      4068524       0   4068524   0% /sys/fs/cgroup
 /dev/sda1      ext4      16401276      28  15546108   1% /mnt
 tmpfs          tmpfs       813704       0    813704   0% /run/user/1000
 #
+
+
+df -a
+
+df -h
+
+
+/dev/shm
