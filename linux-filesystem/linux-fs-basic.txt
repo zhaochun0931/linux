@@ -1,0 +1,7 @@
+cat /proc/filesystems
+
+uname -r
+
+ls -l /lib/modules/$(uname -r)/kernel/fs/
+
+
