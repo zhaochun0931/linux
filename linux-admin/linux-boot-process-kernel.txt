@@ -10,3 +10,9 @@ For this reason it is written into read-only, permanent memory and is always ava
 Once loaded, the BIOS tests the system, looks for and checks peripherals, and then locates a valid device with which to boot the system.
 
 In most cases, the order of the drives searched while booting is controlled with a setting in the BIOS, and it looks on the master IDE device on the primary IDE bus. The BIOS then loads into memory whatever program is residing in the first sector of this device, called the Master Boot Record or MBR. The MBR is only 512 bytes in size and contains machine code instructions for booting the machine, called a boot loader, along with the partition table. Once the BIOS finds and loads the boot loader program into memory, it yields control of the boot process to it.
+
+
+
+
+lsmod
+
