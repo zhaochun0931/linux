@@ -1,0 +1,11 @@
+lspci
+
+dmidecode
+
+
+
+apt install sysstat
+
+iostat
+
+
