@@ -27,3 +27,95 @@ df -h
 
 
 /dev/shm
+
+
+
+fdisk -l
+
+# fdisk -l
+Disk /dev/loop0: 105.8 MiB, 110960640 bytes, 216720 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/loop1: 9.6 MiB, 10051584 bytes, 19632 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/sda: 30 GiB, 32213303296 bytes, 62916608 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
+Disk identifier: A2CFD0BA-7706-4608-9E03-8DDAD61EADE8
+
+Device      Start      End  Sectors  Size Type
+/dev/sda1  227328 62916574 62689247 29.9G Linux filesystem
+/dev/sda14   2048    10239     8192    4M BIOS boot
+/dev/sda15  10240   227327   217088  106M EFI System
+
+Partition table entries are not in disk order.
+
+
+Disk /dev/sdb: 16 GiB, 17179869184 bytes, 33554432 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: dos
+Disk identifier: 0x70174262
+
+Device     Boot Start      End  Sectors Size Id Type
+/dev/sdb1        2048 33552383 33550336  16G  7 HPFS/NTFS/exFAT
+#
+
+
+
+lsblk
+
+# lsblk
+NAME    MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+loop0     7:0    0 105.8M  1 loop /snap/core/16202
+loop1     7:1    0   9.6M  1 loop /snap/canonical-livepatch/246
+sda       8:0    0    30G  0 disk
+├─sda1    8:1    0  29.9G  0 part /
+├─sda14   8:14   0     4M  0 part
+└─sda15   8:15   0   106M  0 part /boot/efi
+sdb       8:16   0    16G  0 disk
+└─sdb1    8:17   0    16G  0 part /mnt
+#
+
+
+
+
+
+blkid
+
+# blkid
+/dev/sda1: LABEL="cloudimg-rootfs" UUID="763b7170-8230-4958-9852-220a496a5f54" TYPE="ext4" PARTUUID="48df5fec-cd63-400c-896a-ef3edd4c372a"
+/dev/sda15: LABEL="UEFI" UUID="B91A-50BB" TYPE="vfat" PARTUUID="b742121c-15fc-4d0c-a539-ad4c9659765f"
+/dev/sdb1: UUID="5efc93cf-c4aa-422a-99f3-996a942b6cf8" TYPE="ext4" PARTUUID="70174262-01"
+/dev/loop0: TYPE="squashfs"
+/dev/loop1: TYPE="squashfs"
+/dev/sda14: PARTUUID="025eac51-6576-483d-8793-c63236d8a62c"
+#
+
+
+
+parted /dev/sda print
+
+ parted /dev/sda print
+Model: Msft Virtual Disk (scsi)
+Disk /dev/sda: 32.2GB
+Sector size (logical/physical): 512B/4096B
+Partition Table: gpt
+Disk Flags:
+
+Number  Start   End     Size    File system  Name  Flags
+14      1049kB  5243kB  4194kB                     bios_grub
+15      5243kB  116MB   111MB   fat32              boot, esp
+ 1      116MB   32.2GB  32.1GB  ext4
+
+#
