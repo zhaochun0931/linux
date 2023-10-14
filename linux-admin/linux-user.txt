@@ -1,0 +1,15 @@
+/etc/passwd
+
+/etc/group
+
+/etc/shadow
+
+
+
+useradd
+
+passwd
+
+usermod
+
+userdel
