@@ -136,3 +136,11 @@ Partition table scan:
 Found valid GPT with protective MBR; using GPT.
 
 Command (? for help)
+
+
+
+
+
+partprobe
+
+
