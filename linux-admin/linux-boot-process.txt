@@ -1,0 +1,12 @@
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/installation_guide/s1-boot-init-shutdown-process
+
+
+When an x86 computer is booted, the processor looks at the end of system memory for the Basic Input/Output System or BIOS program and runs it. 
+The BIOS controls not only the first step of the boot process, but also provides the lowest level interface to peripheral devices.
+For this reason it is written into read-only, permanent memory and is always available for use.
+
+
+
+Once loaded, the BIOS tests the system, looks for and checks peripherals, and then locates a valid device with which to boot the system.
+
+In most cases, the order of the drives searched while booting is controlled with a setting in the BIOS, and it looks on the master IDE device on the primary IDE bus. The BIOS then loads into memory whatever program is residing in the first sector of this device, called the Master Boot Record or MBR. The MBR is only 512 bytes in size and contains machine code instructions for booting the machine, called a boot loader, along with the partition table. Once the BIOS finds and loads the boot loader program into memory, it yields control of the boot process to it.
