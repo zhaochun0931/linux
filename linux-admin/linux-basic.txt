@@ -30,3 +30,19 @@ diff -y file1 file2
 diff --color=auto -y file1 file2
 
 
+
+
+eval
+
+# eval echo hello; date
+hello
+Mon Oct 16 11:15:22 UTC 2023
+#
+
+
+exec
+it will exit the current shell after running the "exec" command
+# exec date
+Mon Oct 16 11:17:43 UTC 2023
+$
+
