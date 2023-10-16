@@ -1,6 +1,6 @@
 
 
-STDIN refers to the standard input stream; usually, input from the keyboard. STDIN has a filehandle of 0 (zero).
+STDIN refers to the standard input stream; usually, input from the keyboard. STDIN has a filehandle of 0 (zero)
 
 The < operator is used to pass input from a file or I/O device data to a command.
 
@@ -11,14 +11,32 @@ The < operator is used to pass input from a file or I/O device data to a command
 
 
 
+STDOUT, the standard output stream. All output from this stream is typically sent to our terminal window. The filehandle for STDOUT is 1
+
+The > operator is used to direct output from a command to a source; usually a file. By default, a single > will:
+
+Create a new file if it doesn’t already exist
+Overwrite any pre-existing data in the file if the file already exists
 
 
-stdout
-1 
-> >>
+While > overwrites data, the >> operator preserves data by appending to an existing file
+
+
+
 
 
 stderr
 2 
 2> 2>>
+
+
+
+
+With the | (pipe) operator, we can chain many commands together by passing the output from one through as input to the next.
+
+
+
+The >& operator is a special operator that is used for directing output from one stream to another. We can use it to pipe the output of STDERR to STDOUT:
+
+
 
