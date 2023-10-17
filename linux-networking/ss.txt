@@ -1,0 +1,53 @@
+A port in Linux is a virtual concept that helps in accessing different services within a network. It is a 16-bit integer ranging from 0 to 65535 with no physical existence. 
+A port, when combined with an IP address, results in a socket address that is used to establish a connection between the client and the server.
+
+
+A port that is actively accepting connections is called an open port. The connection thus established is used to access the service associated with that port.
+
+A port can be occupied by a single service/process at a time.
+
+
+
+ss (Socket Statistics) 
+
+apt install -y iproute2
+
+ss -tnlp
+
+Here we have used four options to get the desired output:
+
+t: display TCP sockets
+n: display the numeric port number
+l: display listening sockets
+p: Display the process using the socket
+
+
+
+
+
+
+
+apt install net-tools
+netstat -antlup
+
+
+
+
+Everything is a file in Linux. lsof (List of Open Files) is a utility that lists all the open files in Linux. lsof command reads the data from kernel’s proc file system.
+
+apt install lsof
+
+lsof -i -P -sTCP:LISTEN
+lsof -P -i:80
+
+
+
+
+
+nmap (Network Mapper) is an open-source network scanner tool that is widely used by cybersecurity experts and system administrators. 
+This tool can be used for various purposes including OS detection, port scanning, network auditing, etc.
+
+apt install nmap
+nmap google.com
+
+
