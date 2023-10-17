@@ -1,0 +1,29 @@
+A socket in Linux is a bidirectional communication pipe. Unlike standard FIFOs or pipes, work with sockets is done using the sockets interface as opposed to the file interface.
+
+
+
+nc -U /tmp/demo.sock -l
+
+The -U parameter tells netcat to use a Unix Socket file, which we have specified. 
+The -l parameter tells it to act as the server-side and listen on the specified socket for incoming connections.
+
+
+# lsof /tmp/demo.sock
+COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF     NODE NAME
+nc      14524 root    3u  unix 0x0000000000000000      0t0 18049442 /tmp/demo.sock type=STREAM
+#
+
+We have some good info on the process that is using /tmp/demo.sock here, including the command, PID, and user. 
+We see a field called FD. When Linux processes need to perform I/O operations, they do so by reading or writing to file descriptors. 
+Common examples are stdin, stdout, and stderr, which map to the file descriptors 0, 1, and 2, respectively.
+
+
+
+
+
+
+
+
+
+
+
