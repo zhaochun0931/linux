@@ -26,6 +26,12 @@ p: Display the process using the socket
 
 
 
+apt install -y netcat
+nc -vz localhost 5672
+
+
+
+
 
 apt install net-tools
 netstat -antlup
