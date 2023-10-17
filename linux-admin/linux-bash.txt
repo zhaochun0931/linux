@@ -1,3 +1,19 @@
+ctrl + e
+go to the end of the line
+
+ctrl + a
+go to the beginning of the line
+
+ctrl + l
+clear the screen
+
+ctrl + u
+delete the current cursor to the beginging of the line
+
+ctrl + k
+delete the current cursor to the end of the line
+
+
 /etc/profile
 
 
