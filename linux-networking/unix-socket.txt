@@ -2,6 +2,13 @@ A socket in Linux is a bidirectional communication pipe. Unlike standard FIFOs o
 
 
 
+
+
+
+
+SOCK_STREAM
+
+
 nc -U /tmp/demo.sock -l
 
 The -U parameter tells netcat to use a Unix Socket file, which we have specified. 
@@ -16,6 +23,55 @@ nc      14524 root    3u  unix 0x0000000000000000      0t0 18049442 /tmp/demo.so
 We have some good info on the process that is using /tmp/demo.sock here, including the command, PID, and user. 
 We see a field called FD. When Linux processes need to perform I/O operations, they do so by reading or writing to file descriptors. 
 Common examples are stdin, stdout, and stderr, which map to the file descriptors 0, 1, and 2, respectively.
+
+
+
+
+Both Network and Unix Sockets have several socket types. They share two main types, SOCK_STREAM and SOCK_DGRAM.
+
+Network Sockets using SOCK_STREAM will use TCP, while those using SOCK_DGRAM will use UDP. Since UDP is unreliable by definition, any process that requires reliable data transfer over a network socket should use a network socket of type SOCK_STREAM. However, when it comes to Unix Sockets, both types are reliable.
+
+The difference between the two types for Unix Sockets is that the SOCK_DGRAM type preserves message boundaries but is connectionless. In contrast, the SOCK_STREAM type does not preserve message boundaries but is connection-oriented.
+
+Since Linux 2.6.4, there is another type of Unix Socket called SOCK_SEQPACKET that both preserves message boundaries and is connection-oriented.
+
+
+
+
+
+
+
+
+
+
+
+
+
+SOCK_DGRAM
+
+
+nc -U /tmp/demo.sock -l -u
+
+This extra parameter tells netcat we want a Unix Socket of type SOCK_DGRAM.
+
+# lsof /tmp/demo.sock
+COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF     NODE NAME
+nc      15165 root    3u  unix 0x0000000000000000      0t0 18073859 /tmp/demo.sock type=DGRAM
+#
+
+
+We can fire up a netcat client in another terminal
+nc -U /tmp/demo.sock -u
+
+If we don’t add the -u parameter, we’ll get an error telling us that the protocol is the wrong type for the server socket.
+
+We can provide input to the terminal, and when we press enter, we can see it on the other side. As sockets are bidirectional, both sides can send and receive.
+
+
+Now, we’ll kill the server-side. The client stays up, and we can continue typing away and ‘sending’ data. We don’t have any indication that the server-side is down – that’s because a SOCK_DGRAM Unix Socket is connectionless.
+
+Now, if we stop the client as well and remove the -u parameter to start the netcat server and client with a Unix Socket of type SOCK_STREAM, we can perform the same test, and we’ll see that when the server-side closes the connection, our client-side notices and it is also closed.
+
 
 
 
