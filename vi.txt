@@ -1,4 +1,12 @@
 
+
+apt update
+apt install vim
+
+
+
 # replace the character , with new line in the current line
 
-: s/,/\r/g
+s/,/\r/g
+
+1,$s/aaa/bbb/g
