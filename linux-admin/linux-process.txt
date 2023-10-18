@@ -39,3 +39,8 @@ lsof
 
 pidof bash
 
+
+
+nohup xx.sh &
+
+
