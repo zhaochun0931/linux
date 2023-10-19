@@ -4,7 +4,11 @@
 /etc/os-release
 
 
+# The net-tools provide network monitoring tools such as ifconfig, ping, and netstat 
+apt-get install -y net-tools
 
+# The lsof allows listing and gathering information about open files, network connections, and the processes that have them open
+apt-get install -y lsof
 
 
 lsb_release -a
