@@ -1,1 +1,11 @@
+Let’s understand the TLS 1.3 handshake process a bit more in depth by breaking it down:
 
+First, the client (browser) sends supported cipher suites and compatible SSL/TLS version to initiate the connection. This is called the “client hello” message.
+
+In return, the web server checks the cipher suites and SSL/TLS version. Then, it shares its public certificate to the client along with the “server hello” message.
+
+Upon receiving the certificate file, the client validates it. The browser then initiates the process of private key verification by generating and encrypting a “pre-master secret” using the public key of the SSL/TLS certificate.
+
+In turn, the web server decrypts the pre-master secret with its private key and establishes a secure connection.
+
+So that’s how the verification of the web server is done. This is called “one-way SSL/TLS.” 
