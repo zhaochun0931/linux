@@ -28,5 +28,5 @@ rabbitmq:3.11-management
 
 
 
-
+rabbitmq-plugins enable rabbitmq_auth_backend_ldap
 
