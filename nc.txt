@@ -1,3 +1,5 @@
+apt install -y netcat
+
 nc -v -z localhost 80
 
 nc -v -z localhost 80-81
