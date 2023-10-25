@@ -1,3 +1,10 @@
+In one-way SSL authentication (Server Certificate Authentication), only the client validates the server; the server does not verify the client application. When implementing one-way SSL authentication, the server application shares its public certificate with the client
+
+
+
+
+
+
 Let’s understand the TLS 1.3 handshake process a bit more in depth by breaking it down:
 
 First, the client (browser) sends supported cipher suites and compatible SSL/TLS version to initiate the connection. This is called the “client hello” message.
