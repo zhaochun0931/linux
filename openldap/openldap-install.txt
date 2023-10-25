@@ -80,7 +80,8 @@ ldapadd -x -D cn=admin,dc=example,dc=com -W -f user.ldif
 ldapsearch -x -b "DC=example,DC=com"
 ldapsearch -x -b "dc=example,dc=com"
 ldapsearch -x -b "uid=demo,ou=people,dc=example,dc=com"
-
+ldapsearch -x -b "dc=example,dc=org" -H ldap://172.18.0.2:1389
+ldapsearch -x -b "uid=user,ou=users,dc=example,dc=org" -H ldap://172.18.0.2:1389
 
 
 # verify with password
