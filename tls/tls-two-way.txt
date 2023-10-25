@@ -1,3 +1,9 @@
+In two-way SSL authentication, the client application verifies the identity of the server application, and then the server application verifies the identity of the client application. Both parties share their public certificates, and then validation is performed. Two-way SSL authentication works with a mutual handshake by exchanging the certificates. You can also authenticate through a username or Common Name injection.
+
+
+
+
+
 Here are the steps required for a 2 way SSL handshake process:
 
 First, the client sends supported cipher suites and compatible SSL/TLS version to initiate the connection. This is called the “client hello” message.
