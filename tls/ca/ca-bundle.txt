@@ -1,7 +1,24 @@
+# ca
 openssl genrsa -out ca.key
 openssl rsa -noout -text -in ca.key
 
 
 openssl req -new -x509 -days 365 -key ca.key -out ca.cert
 openssl x509 -noout -text -in ca.cert
+
+
+
+
+
+
+
+# server
+openssl genrsa -out server.key 4096
+openssl req -new -key server.key -out server.csr
+openssl rsa -noout -text -in server.key
+
+
+
+
+# client
 
