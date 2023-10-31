@@ -3,3 +3,5 @@ openssl rsa -noout -text -in ca.key
 
 
 openssl req -new -x509 -days 365 -key ca.key -out ca.cert
+openssl x509 -noout -text -in ca.cert
+
