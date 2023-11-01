@@ -1,4 +1,4 @@
-After Chrome 58, self-signed certificate without SAN is not valid anymore.
+After Chrome 58, self-signed certificate without SAN(Subject Alternative Name) is not valid anymore.
 
 
 
