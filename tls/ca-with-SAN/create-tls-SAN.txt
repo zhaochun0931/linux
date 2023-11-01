@@ -29,7 +29,9 @@ openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days
 
 
 
-
+openssl verify -CAfile ca.crt tls.crt
+openssl rsa -pubout -in ca.key
+openssl x509 -pubkey -noout -in ca.crt
 
 
 
@@ -60,9 +62,7 @@ openssl pkcs12 -export -in rootCA.crt -inkey ca.key -out ca.pfx
 
 
 
-openssl verify -CAfile ca.crt mydomain.crt
-openssl rsa -pubout -in ca.key
-openssl x509 -pubkey -noout -in ca.crt
+
 
 
 
