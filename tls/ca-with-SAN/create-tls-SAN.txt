@@ -18,6 +18,7 @@ openssl req -new -sha256 -key tls.key \
 -config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:www.xiaoming.com\n")) \
 -out tls.csr
 
+# cannot add the space between the "<" and the "(print" in above command
 
 # sign with the ca
 
