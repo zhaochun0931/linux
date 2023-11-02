@@ -21,7 +21,6 @@ openssl req -new -sha256 -key tls.key \
 # cannot add the space between the "<" and the "(print" in above command
 
 # sign with the ca
-
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days 120 \
 -in tls.csr \
 -CA ca.crt -CAkey ca.key -CAcreateserial \
