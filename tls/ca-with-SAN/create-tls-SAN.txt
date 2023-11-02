@@ -18,7 +18,20 @@ openssl req -new -sha256 -key tls.key \
 -config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:www.xiaoming.com\n")) \
 -out tls.csr
 
+
+openssl req -new -sha256 -key tls.key \
+-subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=www.xiaoming.com" \
+-reqexts SAN \
+-config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:www.xiaoming.com,IP:1.1.1.1\n")) \
+-out tls.csr
+
 # cannot add the space between the "<" and the "(print" in above command
+
+
+
+
+
+
 
 # sign with the ca
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days 120 \
@@ -27,8 +40,14 @@ openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days
 -out tls.crt -sha256
 
 
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com,IP:1.1.1.1") -days 120 \
+-in tls.csr \
+-CA ca.crt -CAkey ca.key -CAcreateserial \
+-out tls.crt -sha256
+
 
 openssl verify -CAfile ca.crt tls.crt
+openssl x509 -noout --text -in tls.crt
 openssl rsa -pubout -in ca.key
 openssl x509 -pubkey -noout -in ca.crt
 
