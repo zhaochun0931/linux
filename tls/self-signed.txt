@@ -52,6 +52,11 @@ This command will create a temporary CSR. We still have the CSR information prom
 
 
 
+
+
+
+
+
 # create a private key and a self-signed certificate with just a single command:
 openssl req -nodes -x509 -newkey rsa:2048 -keyout tls.key -out tls.crt
 openssl req -nodes -x509 -newkey rsa:4096 -sha3-256 -keyout tls.key -out tls.crt
