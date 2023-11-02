@@ -7,6 +7,12 @@ openssl req -x509 -sha256 -newkey rsa:4096 \
   -addext "subjectAltName = DNS:localhost,DNS:example.org" 
 
 
-
+openssl req -x509 -sha256 -newkey rsa:4096 \
+  -keyout tls.key \
+  -out tls.crt \
+  -days 356 \
+  -nodes \
+  -subj "/C=xx/ST=xxx/L=xxx/O=xxx/OU=xxx/CN=example.org"  \
+  -addext "subjectAltName = DNS:localhost,DNS:example.org,IP:1.1.1.1" 
 
   
