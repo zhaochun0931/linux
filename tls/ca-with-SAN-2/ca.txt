@@ -1,3 +1,11 @@
+# ca
+openssl genrsa -out ca.key 4096
+openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=www.ca.com"
+
+
+
+
+# server
 openssl req -x509 -sha256 -newkey rsa:4096 \
   -keyout tls.key \
   -out tls.crt \
