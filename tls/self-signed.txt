@@ -52,14 +52,14 @@ This command will create a temporary CSR. We still have the CSR information prom
 
 
 
-We can even create a private key and a self-signed certificate with just a single command:
-openssl req -newkey rsa:2048 -keyout domain.key -nodes -x509 -days 365 -out domain.crt
-openssl req -newkey rsa:2048 -sha3-256 -keyout domain.key -nodes -x509 -days 365 -out domain.crt
+# create a private key and a self-signed certificate with just a single command:
+openssl req -nodes -x509 -newkey rsa:2048 -keyout tls.key -out tls.crt
+openssl req -nodes -x509 -newkey rsa:4096 -sha3-256 -keyout tls.key -out tls.crt
 
 
 
 
-openssl x509 -in server.crt -text -noout
+openssl x509 -in tls.crt -text -noout
 
 
 
