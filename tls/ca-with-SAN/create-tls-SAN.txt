@@ -54,7 +54,8 @@ openssl x509 -pubkey -noout -in ca.crt
 
 
 
-
+openssl x509 -noout -modulus -in tls.crt | openssl md5
+openssl rsa -noout -modulus -in tls.key | openssl md5
 
 
 
