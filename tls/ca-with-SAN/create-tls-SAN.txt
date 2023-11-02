@@ -34,13 +34,13 @@ openssl req -new -sha256 -key tls.key \
 
 
 # sign with the ca
-openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days 120 \
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days 365 \
 -in tls.csr \
 -CA ca.crt -CAkey ca.key -CAcreateserial \
 -out tls.crt -sha256
 
 
-openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com,IP:1.1.1.1") -days 120 \
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com,IP:1.1.1.1") -days 365 \
 -in tls.csr \
 -CA ca.crt -CAkey ca.key -CAcreateserial \
 -out tls.crt -sha256
