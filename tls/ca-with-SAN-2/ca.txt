@@ -23,4 +23,23 @@ openssl req -x509 -sha256 -newkey rsa:4096 \
   -subj "/C=xx/ST=xxx/L=xxx/O=xxx/OU=xxx/CN=example.org"  \
   -addext "subjectAltName = DNS:localhost,DNS:example.org,IP:1.1.1.1" 
 
-  
+
+
+
+
+
+# generate server key
+openssl genrsa -out tls.key 2048
+
+openssl req -new -sha256 -key tls.key \
+-subj "/C=xx/ST=xxx/L=xxx/O=xxx/OU=xxx/CN=example.org"  \
+-addext "subjectAltName = DNS:localhost,DNS:example.org,IP:1.1.1.1" \
+-out tls.csr
+
+
+# sign with the ca
+openssl x509 -req \
+-days 365 \
+-in tls.csr \
+-CA ca.crt -CAkey ca.key -CAcreateserial \
+-out tls.crt -sha256
