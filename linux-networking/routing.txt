@@ -6,6 +6,10 @@ A route is the path taken by a packet.
 A router is a host or device that performs routing.
 
 
+static and dynamic routing
+
+
+
 
 
 # enable IP forwarding by editing the file /etc/sysctl.conf to include the line
