@@ -16,8 +16,7 @@ static and dynamic routing
 net.ipv4.ip_forward=1
 
 
-Another way to enable IP forwarding is to manipulate the /proc file system.
-Issue the command
+# another way to enable IP forwarding is to manipulate the /proc file system.
 echo “1” >/proc/sys/net/ipv4/ip_forward
 
 The drawback of this method is that you will have to reissue the command each time you reboot the system.
