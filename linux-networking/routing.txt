@@ -32,3 +32,8 @@ To specify a network routing rule by using route, issue a command of the form:
 route add -net ip_address netmask mask_address interface
 
 route add -net 192.168.1.0 netmask 255.255.255.0 eth0
+
+
+
+route add default gw 10.1.1.2 eth2
+
