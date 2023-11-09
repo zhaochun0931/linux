@@ -1,6 +1,14 @@
 
 apt update
 apt install gcc make -y
+apt-get install -y --no-install-recommends \
+		build-essential \
+		ca-certificates \
+		gnupg \
+		libncurses5-dev \
+		wget
+
+
 
 wget https://www.openssl.org/source/openssl-3.0.11.tar.gz
 
