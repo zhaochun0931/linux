@@ -23,3 +23,9 @@ net.ipv4.ip_forward=1
 echo “1” >/proc/sys/net/ipv4/ip_forward
 
 The drawback of this method is that you will have to reissue the command each time you reboot the system.
+
+
+
+To configure routing requires the "route" command, which is contained in the "net-tools" package.
+
+
