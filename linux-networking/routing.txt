@@ -12,6 +12,9 @@ static and dynamic routing
 
 
 
+
+Unless you enable IP forwarding, a host will not forward IP packets. The likely result is that network operations fail with the message "host unreachable."
+
 # enable IP forwarding by editing the file /etc/sysctl.conf to include the line
 net.ipv4.ip_forward=1
 
