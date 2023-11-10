@@ -7,6 +7,9 @@ mv
 pwd
 rm
 touch
+tar
+
+
 
 
 
