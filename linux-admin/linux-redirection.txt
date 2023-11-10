@@ -4,11 +4,21 @@ STDIN refers to the standard input stream; usually, input from the keyboard. STD
 
 The < operator is used to pass input from a file or I/O device data to a command.
 
-0 
-< <<
+
+<
+<<
 
 
+# cat << done > xx
+> hello
+> 1
+> done
+#
 
+# cat xx
+hello
+1
+#
 
 
 STDOUT, the standard output stream. All output from this stream is typically sent to our terminal window. The filehandle for STDOUT is 1
@@ -27,7 +37,8 @@ While > overwrites data, the >> operator preserves data by appending to an exist
 
 stderr
 2 
-2> 2>>
+2> 
+2>>
 
 
 
