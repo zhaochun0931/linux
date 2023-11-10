@@ -1,3 +1,18 @@
+cd
+cp
+find
+ls
+mkdir
+mv
+pwd
+rm
+
+
+
+
+
+
+
 # check and set the timezone
 
 timedatectl
