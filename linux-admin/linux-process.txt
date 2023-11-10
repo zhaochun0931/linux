@@ -1,3 +1,25 @@
+The init process is responsible for spawning log-in processes and managing the system runlevel, Its configuration file /etc/inittab. But the init process and /etc/inittab file were no longer used.
+
+
+/sbin/init
+/etc/inittab
+
+/usr/lib/systemd/systemd
+
+
+# ll /sbin/init
+lrwxrwxrwx. 1 root root 22 Sep 27  2022 /sbin/init -> ../lib/systemd/systemd
+#
+
+
+
+
+
+
+
+
+
+
 ps -ef
 
 top
