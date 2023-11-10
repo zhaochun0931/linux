@@ -18,6 +18,20 @@ world
 #
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 STDOUT, the standard output stream. All output from this stream is typically sent to our terminal window. The filehandle for STDOUT is 1
 
 The > operator is used to direct output from a command to a source; usually a file. By default, a single > will:
@@ -27,6 +41,18 @@ Overwrite any pre-existing data in the file if the file already exists
 
 
 While > overwrites data, the >> operator preserves data by appending to an existing file
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
