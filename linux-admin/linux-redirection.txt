@@ -11,13 +11,13 @@ The < operator is used to pass input from a file or I/O device data to a command
 
 # cat << done > xx
 > hello
-> 1
+> world
 > done
 #
 
 # cat xx
 hello
-1
+world
 #
 
 
