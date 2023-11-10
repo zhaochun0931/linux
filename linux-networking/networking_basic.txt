@@ -55,3 +55,20 @@ wget xxx
 wget xxx -O newfilename
 
 curl -O xxx
+
+
+
+
+
+
+#
+
+
+/etc/sysconfig/network-scripts
+
+/etc/sysconfig/network-scripts/ifcfg-eth0
+
+
+Global network configuration information affecting each interface is stored in the file /etc/sysconfig/network
+
+
