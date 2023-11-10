@@ -10,6 +10,15 @@ touch
 tar
 
 
+tar cvf tarfile.tar file1 file2 dir1 dir2
+tar xvf tarfile.tar
+
+
+tar zcvf tarfile.tar.gz file1 file2 dir1 dir2
+tar zcvf tarfile.tgz file1 file2 dir1 dir2
+tar zxvf tarfile.tgz
+tar zxvf tarfile.tar.gz
+
 
 
 
