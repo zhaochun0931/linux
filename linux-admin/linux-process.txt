@@ -13,7 +13,7 @@ lrwxrwxrwx. 1 root root 22 Sep 27  2022 /sbin/init -> ../lib/systemd/systemd
 
 
 
-
+runlevel
 
 
 
