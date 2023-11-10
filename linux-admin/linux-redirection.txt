@@ -1,7 +1,4 @@
-
-
 STDIN refers to the standard input stream; usually, input from the keyboard. STDIN has a filehandle of 0 (zero)
-
 The < operator is used to pass input from a file or I/O device data to a command.
 
 
