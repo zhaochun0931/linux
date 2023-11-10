@@ -72,3 +72,19 @@ curl -O xxx
 Global network configuration information affecting each interface is stored in the file /etc/sysconfig/network
 
 
+
+ifconfig
+ifconfig eth0
+
+
+
+
+netstat -r -n
+
+
+
+arp
+
+
+
+
