@@ -5,6 +5,12 @@ The < operator is used to pass input from a file or I/O device data to a command
 <
 <<
 
+# Take standard input from filex
+< filex
+
+
+
+
 
 # cat << done > xx
 > hello
@@ -43,6 +49,11 @@ Overwrite any pre-existing data in the file if the file already exists
 While > overwrites data, the >> operator preserves data by appending to an existing file
 
 
+# Write standard output to filex
+> filex
+
+# Append standard output to filex
+>> filex
 
 
 
@@ -58,10 +69,14 @@ While > overwrites data, the >> operator preserves data by appending to an exist
 
 
 
-stderr
-2 
+
+STDERR, 2
+
 2> 
 2>>
+
+# Write standard error stream to fileX
+2> fileX
 
 
 
