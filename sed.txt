@@ -16,3 +16,7 @@ echo XXXyyy | awk '{print toupper($0)}'
 sed -i 's/xxx/yyy/g' filename
 sed -i "s/xxx/yyy/g" filename
 
+
+sed -i "s/xxx/$password/g" filename
+
+
