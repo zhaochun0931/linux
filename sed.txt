@@ -8,3 +8,11 @@ echo XXXyyy | awk '{print tolower($0)}'
 echo XXXyyy | sed 's/[a-z]/\U&/g'
 
 echo XXXyyy | awk '{print toupper($0)}'
+
+
+
+
+# substitute
+sed -i 's/xxx/yyy/g' filename
+sed -i "s/xxx/yyy/g" filename
+
