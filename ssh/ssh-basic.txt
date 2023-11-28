@@ -1,5 +1,34 @@
 apt update
 apt install -y openssh-server
+ssh -V
+
+
+
+
+# enable root login
+/etc/ssh/sshd_config
+
+PermitRootLogin yes
+
+
+
+systemctl restart ssh
+systemctl restart sshd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
