@@ -9,6 +9,10 @@ rm
 touch
 tar
 
+# Print the number of processing units available to the current process
+nproc
+
+
 
 tar cvf tarfile.tar file1 file2 dir1 dir2
 tar xvf tarfile.tar
