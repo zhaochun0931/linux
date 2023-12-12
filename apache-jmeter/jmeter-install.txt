@@ -1,0 +1,13 @@
+https://jmeter.apache.org/download_jmeter.cgi
+
+
+wget https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.2.zip
+
+
+unzip apache-jmeter-5.6.2.zip
+
+cd apache-jmeter-5.6.2/bin
+./jmeter.sh
+
+
+
