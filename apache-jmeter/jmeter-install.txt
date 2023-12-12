@@ -11,3 +11,12 @@ cd apache-jmeter-5.6.2/bin
 
 
 
+
+
+
+# how to use the jmeter
+
+test plan -> thread group (add thread number)
+test plan -> thread group -> add sampler -> http request (hostname and port)
+test plan -> thread group (add listener -> view result)
+
