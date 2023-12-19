@@ -1,0 +1,21 @@
+ip a
+ip address
+ip address show eth0
+
+
+
+
+
+
+
+
+ip r
+ip route
+ip route show default
+
+
+
+ip -6 route show
+
+
+cat /etc/resolv.conf
