@@ -1,0 +1,7 @@
+tar -tvf xxx.tgz
+
+
+
+# extra to a specific directory
+tar -xvf xxx.tgz -C yyy
+tar -xvf xxx.tgz --directory yyy
