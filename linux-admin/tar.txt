@@ -5,3 +5,8 @@ tar -tvf xxx.tgz
 # extra to a specific directory
 tar -xvf xxx.tgz -C yyy
 tar -xvf xxx.tgz --directory yyy
+
+
+
+# automatically create a directory based on the filename of the original and extract 
+tar -xvf xxx.tgz --one-top-level
