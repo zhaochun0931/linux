@@ -117,3 +117,12 @@ openssl s_client -connect localhost:8443 -CAfile ca.crt
 
 
 
+
+
+
+
+# import the certificate to store
+keytool -import -alias tls -file tls.crt -storetype JKS -keystore tls-ts.jks -storepass password
+
+
+
