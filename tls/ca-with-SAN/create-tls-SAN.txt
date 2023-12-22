@@ -1,15 +1,26 @@
 After Chrome 58, self-signed certificate without SAN(Subject Alternative Name) is not valid anymore.
 
 
+working
+
 
 
 # generate ca
 openssl genrsa -out ca.key 4096
+
 openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=www.ca.com"
 
 
 
+
+
+
+
+
+
+
 # generate server key
+
 openssl genrsa -out tls.key 2048
 
 openssl req -new -sha256 -key tls.key \
@@ -17,6 +28,13 @@ openssl req -new -sha256 -key tls.key \
 -reqexts SAN \
 -config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:www.xiaoming.com\n")) \
 -out tls.csr
+
+
+
+
+
+
+
 
 
 openssl req -new -sha256 -key tls.key \
@@ -34,6 +52,7 @@ openssl req -new -sha256 -key tls.key \
 
 
 # sign with the ca
+
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days 365 \
 -in tls.csr \
 -CA ca.crt -CAkey ca.key -CAcreateserial \
@@ -44,6 +63,9 @@ openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com,IP:1.1.
 -in tls.csr \
 -CA ca.crt -CAkey ca.key -CAcreateserial \
 -out tls.crt -sha256
+
+
+
 
 
 openssl verify -CAfile ca.crt tls.crt
