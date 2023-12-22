@@ -90,6 +90,7 @@ openssl rsa -noout -modulus -in tls.key | openssl md5
 openssl pkcs12 -export -in rootCA.crt -inkey ca.key -out ca.pfx
 
 
+
 # add the pfx to the trusted root certification authorities
 
 
@@ -98,6 +99,7 @@ openssl pkcs12 -export -in rootCA.crt -inkey ca.key -out ca.pfx
 
 
 # successfully visit https://www.xiaoming.com from the browser
+
 
 
 
@@ -123,6 +125,19 @@ openssl s_client -connect localhost:8443 -CAfile ca.crt
 
 # import the certificate to store
 keytool -import -alias tls -file tls.crt -storetype JKS -keystore tls-ts.jks -storepass password
+
+
+
+
+
+
+
+
+# convert public cert and key pair to pfx
+openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.p12
+
+# convert the pfx to jks
+keytool -importkeystore -srckeystore tls.p12 -srcstoretype pkcs12 -destkeystore tls.jks
 
 
 
