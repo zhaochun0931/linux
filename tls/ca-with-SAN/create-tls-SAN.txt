@@ -123,7 +123,7 @@ openssl s_client -connect localhost:8443 -CAfile ca.crt
 
 
 
-# import the certificate to store
+# import the certificate to java truststore
 keytool -import -alias tls -file tls.crt -storetype JKS -keystore tls-ts.jks -storepass password
 
 
@@ -136,7 +136,7 @@ keytool -import -alias tls -file tls.crt -storetype JKS -keystore tls-ts.jks -st
 # convert public cert and key pair to pfx
 openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.p12
 
-# convert the pfx to jks
+# convert the pfx to java keystore
 keytool -importkeystore -srckeystore tls.p12 -srcstoretype pkcs12 -destkeystore tls.jks
 
 
