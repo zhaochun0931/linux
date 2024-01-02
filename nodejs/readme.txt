@@ -1,1 +1,1 @@
-nodejs xxx.js
+node xxx.js
