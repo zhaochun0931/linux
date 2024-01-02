@@ -2,3 +2,5 @@ node app.js
 
 
 openssl s_client -connect localhost:443
+openssl s_client -connect localhost:443 -showcerts
+openssl s_client -connect localhost:443 -showcerts -servername server.com
