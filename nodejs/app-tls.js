@@ -10,3 +10,5 @@ https.createServer(options, (req, res) => {
   res.writeHead(200);
   res.end('Hello, world! TLS');
 }).listen(443);
+
+console.log("Server started at port 443");
