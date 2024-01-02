@@ -1,9 +1,10 @@
 # ca
 openssl genrsa -out ca.key
-openssl rsa -noout -text -in ca.key
-
-
 openssl req -new -x509 -days 365 -key ca.key -out ca.crt
+
+
+
+openssl rsa -noout -text -in ca.key
 openssl x509 -noout -text -in ca.crt
 
 
@@ -16,15 +17,15 @@ openssl x509 -noout -text -in ca.crt
 openssl genrsa -out server.key 4096
 openssl req -new -key server.key -out server.csr
 
-openssl x509 -req -in server.csr -CA ca.cert -CAkey ca.key -CAcreateserial -out server.cert
-openssl x509 -req -in server.csr -CA ca.cert -CAkey ca.key -CAcreateserial -out server.cert -sha256 -extfile server_cert_ext.cnf
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -sha256 -extfile server_cert_ext.cnf
 
 
 
 
 openssl rsa -noout -text -in server.key
 openssl req -noout -text -in server.csr
-openssl x509 -noout -text -in server.cert
+openssl x509 -noout -text -in server.crt
 
 
 
