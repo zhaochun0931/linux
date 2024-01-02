@@ -11,3 +11,14 @@ nginx -s reload
 
 
 /etc/nginx/sites-available/default
+
+
+
+
+
+
+# nginx docker
+
+docker run -d -it --rm --name nginx -p 8888:80 nginx
+curl localhost:8888
+
