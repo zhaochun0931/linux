@@ -44,10 +44,13 @@ myCA/
 
 
 # ca
-
 openssl genrsa -out ~/myCA/rootCA/private/ca.key.pem 4096
 chmod 400 ~/myCA/rootCA/private/ca.key.pem
 openssl req -config openssl_root.cnf -key ~/myCA/rootCA/private/ca.key.pem -new -x509 -days 7300 -sha256 -extensions v3_ca -out ~/myCA/rootCA/certs/ca.cert.pem -subj "/C=US/ST=California/L=San Francisco/O=Example Corp/OU=IT Department/CN=Root CA"
+openssl rsa -noout -text -in ~/myCA/rootCA/private/ca.key.pem
+
+chmod 444 ~/myCA/rootCA/certs/ca.cert.pem
+openssl x509 -noout -text -in ~/myCA/rootCA/certs/ca.cert.pem
 
 
 
@@ -57,32 +60,49 @@ openssl req -config openssl_root.cnf -key ~/myCA/rootCA/private/ca.key.pem -new 
 
 
 # intermediate
-openssl genrsa -out intermediateCA/private/intermediate.key.pem
-
-openssl req -config openssl_intermediate.cnf -key intermediateCA/private/intermediate.key.pem -new -sha256 -out intermediateCA/certs/intermediate.csr.pem -subj "/C=US/ST=California/L=San Francisco/O=Example Corp/OU=IT Department/CN=Intermediate CA"
-
-
-# sign the intermediate with ca
-openssl ca -config openssl_root.cnf -extensions v3_intermediate_ca -days 3650 -notext -md sha256 -in intermediateCA/certs/intermediate.csr.pem -out intermediateCA/certs/intermediate.cert.pem
+openssl genrsa -out ~/myCA/intermediateCA/private/intermediate.key.pem
+chmod 400 ~/myCA/intermediateCA/private/intermediate.key.pem
 
 
+openssl req -config openssl_intermediate.cnf -key ~/myCA/intermediateCA/private/intermediate.key.pem -new -sha256 -out ~/myCA/intermediateCA/certs/intermediate.csr.pem -subj "/C=US/ST=California/L=San Francisco/O=Example Corp/OU=IT Department/CN=Intermediate CA"
 
 
-
-openssl verify -CAfile rootCA/certs/ca.cert.pem intermediateCA/certs/intermediate.cert.pem
+# sign the intermediate with root ca key
+openssl ca -config openssl_root.cnf -extensions v3_intermediate_ca -days 3650 -notext -md sha256 -in ~/myCA/intermediateCA/certs/intermediate.csr.pem -out ~/myCA/intermediateCA/certs/intermediate.cert.pem
+chmod 444 ~/myCA/intermediateCA/certs/intermediate.cert.pem
+cat ~/myCA/rootCA/index.txt
 
 
 
+openssl x509 -noout -text -in ~/myCA/intermediateCA/certs/intermediate.cert.pem
+openssl verify -CAfile ~/myCA/rootCA/certs/ca.cert.pem ~/myCA/intermediateCA/certs/intermediate.cert.pem
 
 
 
 
 
-# bundle the certificate chain
-cat intermediateCA/certs/intermediate.cert.pem rootCA/certs/ca.cert.pem > intermediateCA/certs/ca-chain.cert.pem
 
 
-openssl verify -CAfile intermediateCA/certs/ca-chain.cert.pem intermediateCA/certs/intermediate.cert.pem
+
+
+
+
+
+# generate the certificate chain, bundle the certificate chain
+cat ~/myCA/intermediateCA/certs/intermediate.cert.pem ~/myCA/rootCA/certs/ca.cert.pem > ~/myCA/intermediateCA/certs/ca-chain.cert.pem
+openssl verify -CAfile ~/myCA/intermediateCA/certs/ca-chain.cert.pem ~/myCA/intermediateCA/certs/intermediate.cert.pem
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
