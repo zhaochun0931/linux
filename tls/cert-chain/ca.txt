@@ -165,7 +165,7 @@ curl --key client.key  --cert client.cert.pem --cacert ~/myCA/intermediateCA/cer
 
 
 
-
+openssl s_client -connect server.com:443 -CAfile ~/myCA/intermediateCA/certs/ca-chain.cert.pem -cert client.cert.pem -key client.key
 
 
 
