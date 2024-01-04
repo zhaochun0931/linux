@@ -1,18 +1,21 @@
+mkdir -p ~/myCA/rootCA/{certs,crl,newcerts,private,csr}
+mkdir -p ~/myCA/intermediateCA/{certs,crl,newcerts,private,csr}
+
+echo 1000 > ~/myCA/rootCA/serial
+echo 1000 > ~/myCA/intermediateCA/serial
+
+echo 0100 > ~/myCA/rootCA/crlnumber 
+echo 0100 > ~/myCA/intermediateCA/crlnumber
+
+touch ~/myCA/rootCA/index.txt
+touch ~/myCA/intermediateCA/index.txt
 
 
-mkdir -p ~/rootCA/{certs,crl,newcerts,private,csr}
-mkdir -p ~/intermediateCA/{certs,crl,newcerts,private,csr}
-
-echo 1000 > rootCA/serial
-echo 1000 > intermediateCA/serial
 
 
-echo 0100 > rootCA/crlnumber 
-echo 0100 > intermediateCA/crlnumber
 
 
-touch rootCA/index.txt
-touch intermediateCA/index.txt
+
 
 
 # ca
