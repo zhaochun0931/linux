@@ -13,6 +13,31 @@ touch ~/myCA/intermediateCA/index.txt
 
 
 
+# tree myCA/
+myCA/
+├── intermediateCA
+│   ├── certs
+│   ├── crl
+│   ├── crlnumber
+│   ├── csr
+│   ├── index.txt
+│   ├── newcerts
+│   ├── private
+│   └── serial
+└── rootCA
+    ├── certs
+    ├── crl
+    ├── crlnumber
+    ├── csr
+    ├── index.txt
+    ├── newcerts
+    ├── private
+    └── serial
+
+12 directories, 6 files
+#
+
+
 
 
 
