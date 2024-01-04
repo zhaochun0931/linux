@@ -166,3 +166,13 @@ curl --key client.key  --cert client.cert.pem --cacert ~/myCA/intermediateCA/cer
 
 
 
+
+
+
+
+
+
+openssl rsa -noout -text -in xxx.key
+openssl req -noout -text -in xxx.csr
+openssl x509 -noout -text -in xxx.crt
+
