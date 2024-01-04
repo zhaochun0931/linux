@@ -30,9 +30,7 @@ openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out c
 
 
 
-openssl rsa -noout -text -in xxx.key
-openssl req -noout -text -in xxx.csr
-openssl x509 -noout -text -in xxx.crt
+
 
 
 
