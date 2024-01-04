@@ -9,8 +9,7 @@ openssl req -new -x509 -days 365 -key ca.key -out ca.crt
 
 
 # server
-openssl genrsa -out server.key
-openssl req -new -key server.key -out server.csr
+
 
 openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
 openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -sha256 -extfile server_cert_ext.cnf
