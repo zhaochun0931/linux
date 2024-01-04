@@ -44,9 +44,11 @@ myCA/
 
 
 # ca
-openssl genrsa -out rootCA/private/ca.key.pem
 
-openssl req -config openssl_root.cnf -key rootCA/private/ca.key.pem -new -x509 -days 365 -sha256 -extensions v3_ca -out rootCA/certs/ca.cert.pem -subj "/C=US/ST=California/L=San Francisco/O=Example Corp/OU=IT Department/CN=Root CA"
+openssl genrsa -out ~/myCA/rootCA/private/ca.key.pem 4096
+chmod 400 ~/myCA/rootCA/private/ca.key.pem
+openssl req -config openssl_root.cnf -key ~/myCA/rootCA/private/ca.key.pem -new -x509 -days 7300 -sha256 -extensions v3_ca -out ~/myCA/rootCA/certs/ca.cert.pem -subj "/C=US/ST=California/L=San Francisco/O=Example Corp/OU=IT Department/CN=Root CA"
+
 
 
 
