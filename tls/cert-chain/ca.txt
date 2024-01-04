@@ -121,3 +121,12 @@ openssl req -config openssl_intermediate.cnf -key ~/myCA/intermediateCA/private/
 openssl ca -config openssl_intermediate.cnf -extensions server_cert -days 375 -notext -md sha256 -in ~/myCA/intermediateCA/csr/www.example.com.csr.pem -out ~/myCA/intermediateCA/certs/www.example.com.cert.pem
 openssl x509 -noout -text -in ~/myCA/intermediateCA/certs/www.example.com.cert.pem
 
+
+
+
+
+
+
+# client 
+openssl genrsa -out client.key
+openssl req -new -key client.key -out client.csr
