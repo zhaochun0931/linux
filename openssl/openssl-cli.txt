@@ -1,0 +1,14 @@
+openssl s_client -connect localhost:443 -help
+
+openssl list -cipher-algorithms
+
+
+openssl s_client -connect localhost:443 -tls1_1
+
+ -tls1                      Just use TLSv1
+ -tls1_1                    Just use TLSv1.1
+ -tls1_2                    Just use TLSv1.2
+ -tls1_3                    Just use TLSv1.3
+
+
+
