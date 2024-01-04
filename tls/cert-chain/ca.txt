@@ -140,3 +140,29 @@ openssl req -new -key server.key -out server.csr
 openssl x509 -req -in server.csr -CA ~/myCA/intermediateCA/certs/ca-chain.cert.pem -CAkey ~/myCA/intermediateCA/private/intermediate.key.pem -out server.cert.pem -CAcreateserial -days 365 -sha256 -extfile server_cert_ext.cnf
 
 
+
+
+
+#
+curl https://localhost:443 -v
+curl: (60) SSL certificate problem: unable to get local issuer certificate
+
+
+
+
+curl --key client.key  --cert client.cert.pem --cacert ~/myCA/intermediateCA/certs/ca-chain.cert.pem https://localhost:443 -v
+curl: (60) SSL: certificate subject name 'server.com' does not match target host name 'localhost'
+
+
+
+
+
+cat /etc/hosts
+127.0.0.1 server.com
+
+
+curl --key client.key  --cert client.cert.pem --cacert ~/myCA/intermediateCA/certs/ca-chain.cert.pem https://server.com:443 -v
+
+
+
+
