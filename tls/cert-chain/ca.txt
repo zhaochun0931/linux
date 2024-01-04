@@ -109,17 +109,15 @@ openssl verify -CAfile ~/myCA/intermediateCA/certs/ca-chain.cert.pem ~/myCA/inte
 
 
 
-# server
+# generate and sign the server certificate with intermediate ca
+openssl genpkey -algorithm RSA -out ~/myCA/intermediateCA/private/www.example.com.key.pem
+chmod 400 ~/myCA/intermediateCA/private/www.example.com.key.pem
 
-openssl genpkey -algorithm RSA -out intermediateCA/private/www.example.com.key.pem
-
-openssl req -config openssl_intermediate.cnf -key intermediateCA/private/www.example.com.key.pem -new -sha256 -out intermediateCA/csr/www.example.com.csr.pem
+# create csr
+openssl req -config openssl_intermediate.cnf -key ~/myCA/intermediateCA/private/www.example.com.key.pem -new -sha256 -out ~/myCA/intermediateCA/csr/www.example.com.csr.pem
 
 
 # sign the server csr with intermediate CA
-
-openssl ca -config openssl_intermediate.cnf -extensions server_cert -days 375 -notext -md sha256 -in intermediateCA/csr/www.example.com.csr.pem -out intermediateCA/certs/www.example.com.cert.pem
-
-
-openssl x509 -noout -text -in intermediateCA/certs/www.example.com.cert.pem
+openssl ca -config openssl_intermediate.cnf -extensions server_cert -days 375 -notext -md sha256 -in ~/myCA/intermediateCA/csr/www.example.com.csr.pem -out ~/myCA/intermediateCA/certs/www.example.com.cert.pem
+openssl x509 -noout -text -in ~/myCA/intermediateCA/certs/www.example.com.cert.pem
 
