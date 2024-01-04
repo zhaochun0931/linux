@@ -134,3 +134,7 @@ openssl x509 -req -in client.csr -CA ~/myCA/intermediateCA/certs/ca-chain.cert.p
 
 
 
+# server
+openssl genrsa -out server.key
+openssl req -new -key server.key -out server.csr
+
