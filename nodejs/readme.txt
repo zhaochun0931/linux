@@ -1,3 +1,7 @@
+apt update
+apt install -y nodejs 
+
+
 node app.js
 
 
