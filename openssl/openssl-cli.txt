@@ -12,3 +12,14 @@ openssl s_client -connect localhost:443 -tls1_1
 
 
 
+
+
+
+
+
+# run below command in one terminal to set up an ssl server
+openssl s_server -key server.key  -cert server.cert.pem -accept 8443
+
+# run below command in another terminal to connect the ssl server 
+openssl s_client -connect localhost:8443
+
