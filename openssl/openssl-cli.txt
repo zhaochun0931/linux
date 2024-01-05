@@ -23,3 +23,10 @@ openssl s_server -key server.key  -cert server.cert.pem -accept 8443
 # run below command in another terminal to connect the ssl server 
 openssl s_client -connect localhost:8443
 
+
+
+
+
+
+openssl s_server -cert server.cert.pem -key server.key -CAfile ~/myCA/intermediateCA/certs/ca-chain.cert.pem
+openssl s_client -CAfile ~/myCA/intermediateCA/certs/ca-chain.cert.pem -cert client.cert.pem -key client.key
