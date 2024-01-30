@@ -3,6 +3,9 @@ apt install -y nodejs
 node --version
 node -v
 
+nodejs --version
+nodejs -v
+
 
 
 
