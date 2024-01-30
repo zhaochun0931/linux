@@ -1,10 +1,19 @@
 apt update
-apt install -y nodejs
+apt install -y nodejs npm
+
 node --version
 node -v
-
 nodejs --version
 nodejs -v
+npm -v
+
+
+
+
+
+
+
+
 
 
 
