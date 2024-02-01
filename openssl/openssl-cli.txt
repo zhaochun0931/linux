@@ -38,3 +38,11 @@ openssl s_client -CAfile ~/myCA/intermediateCA/certs/ca-chain.cert.pem -cert cli
 
 openssl s_server -cert server-cert.pem -key server-key.pem -accept 8443
 openssl s_client -connect localhost:8443 -cert client-cert.pem -key client-key.pem -CAfile ca-cert.pem -debug -state -msg
+
+
+
+
+
+
+# Certificate files usually have a .pem or .crt extension
+openssl x509 -in server.crt -text -noout
