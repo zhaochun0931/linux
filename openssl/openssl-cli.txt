@@ -59,3 +59,14 @@ openssl rsa -in server.key -check
 openssl x509 -in server.crt -noout -pubkey
 openssl rsa -in server.key -pubout
 
+
+
+
+
+# convert the public crt and the private key to pfx(pkcs12) format
+openssl pkcs12 -export -in server.crt -inkey server.key -out server.p12 -name "certificate"
+
+
+
+
+
