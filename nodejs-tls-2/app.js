@@ -1,8 +1,10 @@
+// use the openssl to generate the private key and the public cert
+
 const tls = require('tls');
 const fs = require('fs');
 const options = {
-  key: fs.readFileSync('./server.key'),
-  cert: fs.readFileSync('./server.crt'),
+  key: fs.readFileSync('/tmp/server.key'),
+  cert: fs.readFileSync('/tmp/server.crt'),
   rejectUnauthorized: false,
   requestCert: true
 };
