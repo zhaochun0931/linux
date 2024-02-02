@@ -1,0 +1,46 @@
+One of them is the OSI (Open Systems Interconnect) Reference Model and consists of 7 layers.
+
+Application layer
+
+Presentation layer
+
+Session layer
+
+Transport layer
+
+Network layer
+
+Data Link layer
+
+Physical layer
+
+
+
+A packet that is sent by us, goes from the top and to the bottom of this list, each layer adding its own set of headers to the packet in what we call the encapsulation phase. 
+When the packet finally reaches it's destination the packet goes backwards through the list and the headers are stripped out of the packet, one by one, each header giving the destination host all of the needed information for the packet data to finally reach the application or program that it was destined for.
+
+
+
+
+
+
+
+
+
+
+TCP/IP architecture 
+
+
+
+There is no universal agreement among people on just how many layers there are in the TCP/IP architecture. However, it is generally considered that there are 3 through 5 layers available, and in most pictures and explanations, there will be 4 layers discussed. We will, for simplicities sake, only consider those four layers that are generally discussed.
+
+Application layer
+
+Transport layer
+
+Internet layer
+
+Network Access layer
+
+
+
