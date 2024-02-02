@@ -1,2 +1,3 @@
 The socket buffer, or "SKB", is the most fundamental data structure in the Linux networking code. Every packet sent or received is handled using this data structure.
 
+skbuffs are the buffers in which the linux kernel handles network packets. The packet is received by the network card, put into a skbuff and then passed to the network stack, which uses the skbuff all the time.
