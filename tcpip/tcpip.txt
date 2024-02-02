@@ -107,3 +107,20 @@ Acknowledgment Number - bit 64 - 95. This field is used when we acknowledge a sp
 
 
 
+
+
+
+
+
+
+
+
+
+Basically, NAT allows a host or several hosts to share the same IP address in a way.
+
+
+NAT servers translates the source and destination addresses of packets as we already said to different addresses. The NAT server receives the packet, rewrites the source and/or destination address and then recalculates the checksum of the packet. One of the most common usages of NAT is the SNAT (Source Network Address Translation) function. Basically, this is used in the above example if we can't afford or see any real idea in having a real public IP for each and every one of the clients. In that case, we use one of the private IP ranges for our local network (for example, 192.168.1.0/24), and then we turn on SNAT for our local network. SNAT will then turn all 192.168.1.0 addresses into it's own public IP (for example, 217.115.95.34). This way, there will be 5-10 clients or many many more using the same shared IP address.
+
+
+
+
