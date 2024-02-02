@@ -1,0 +1,2 @@
+The socket buffer, or "SKB", is the most fundamental data structure in the Linux networking code. Every packet sent or received is handled using this data structure.
+
