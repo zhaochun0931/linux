@@ -44,3 +44,66 @@ Network Access layer
 
 
 
+
+
+
+
+
+The IP protocol is also a connectionless protocol, which in turn means that IP does not "negotiate" a connection. a connection-oriented protocol on the other hand negotiates a connection (called a handshake) and then when all data has been sent, tears it down. TCP is an example of this kind of protocol, however, it is implemented on top of the IP protocol. 
+
+
+IP is also known as an unreliable protocol, or simply put it does not know if a packet was received or not. It simply receives a packet from the transport layer and does its thing, and then passes it on to the network access layer, and then nothing more to it. It may receive a return packet, which traverses from network access layer to the IP protocol which does it's thing again, and then passes it on upwards to the Transport layer. However, it doesn't care if it gets a reply packet, or if the packet was received at the other end. 
+
+
+IP headers
+
+
+Total Length - bits 16 - 31. This field tells us how large the packet is in octets, including headers and everything. The maximum size is 65535 octets, or bytes, for a single packet. The minimum packet size is 576 bytes, not caring if the packet arrives in fragments or not. It is only recommended to send larger packets than this limit if it can be guaranteed that the host can receive it, according to RFC 791. However, these days most networks runs at 1500 byte packet size. This includes almost all ethernet connections, and most Internet connections.
+
+Identification - bits 32 - 46. This field is used in aiding the reassembly of fragmented packets.
+
+Flags - bits 47 - 49. This field contains a few miscellaneous flags pertaining to fragmentation. The first bit is reserved, but still not used, and must be set to 0. The second bit is set to 0 if the packet may be fragmented, and to 1 if it may not be fragmented. The third and last bit can be set to 0 if this was the last fragment, and 1 if there are more fragments of this same packet.
+
+Fragment Offset - bits 50 - 63. The fragment offset field shows where in the datagram that this packet belongs. The fragments are calculated in 64 bits, and the first fragment has offset zero.
+
+Time to live - bits 64 - 72. The TTL field tells us how long the packet may live, or rather how many "hops" it may take over the Internet. Every process that touches the packet must remove one point from the TTL field, and if the TTL reaches zero, the whole packet must be destroyed and discarded. This is basically used as a safety trigger so that a packet may not end up in an uncontrollable loop between one or several hosts. Upon destruction the host should return an ICMP Time exceeded message to the sender.
+
+
+
+
+
+
+
+
+
+
+
+
+TCP characteristics
+
+The TCP protocol resides on top of the IP protocol. It is a stateful protocol and has built-in functions to see that the data was received properly by the other end host. The main goals of the TCP protocol is to see that data is reliably received and sent, that the data is transported between the Internet layer and Application layer correctly, and that the packet data reaches the proper program in the application layer, and that the data reaches the program in the right order. All of this is possible through the TCP headers of the packet.
+
+The TCP protocol looks at data as an continuous data stream with a start and a stop signal. The signal that indicates that a new stream is waiting to be opened is called a SYN three-way handshake in TCP, and consists of one packet sent with the SYN bit set. The other end then either answers with SYN/ACK or SYN/RST to let the client know if the connection was accepted or denied, respectively. If the client receives an SYN/ACK packet, it once again replies, this time with an ACK packet. At this point, the whole connection is established and data can be sent. During this initial handshake, all of the specific options that will be used throughout the rest of the TCP connection is also negotiated, such as ECN, SACK, etcetera.
+
+While the datastream is alive, we have further mechanisms to see that the packets are actually received properly by the other end. This is the reliability part of TCP. This is done in a simple way, using a Sequence number in the packet. Every time we send a packet, we give a new value to the Sequence number, and when the other end receives the packet, it sends an ACK packet back to the data sender. The ACK packet acknowledges that the packet was received properly. The sequence number also sees to it that the packet is inserted into the data stream in a good order.
+
+Once the connection is closed, this is done by sending a FIN packet from either end-point. The other end then responds by sending a FIN/ACK packet. The FIN sending end can then no longer send any data, but the other end-point can still finish sending data. Once the second end-point wishes to close the connection totally, it sends a FIN packet back to the originally closing end-point, and the other end-point replies with a FIN/ACK packet. Once this whole procedure is done, the connection is torn down properly.
+
+As you will also later see, the TCP headers contain a checksum as well. The checksum consists of a simple hash of the packet. With this hash, we can with rather high accuracy see if a packet has been corrupted in any way during transit between the hosts.
+
+
+
+
+
+
+
+
+
+
+
+Sequence Number - bit 32 - 63. The sequence number field is used to set a number on each TCP packet so that the TCP stream can be properly sequenced (e.g., the packets winds up in the correct order). The Sequence number is then returned in the ACK field to ackonowledge that the packet was properly received.
+
+Acknowledgment Number - bit 64 - 95. This field is used when we acknowledge a specific packet a host has received. For example, we receive a packet with one Sequence number set, and if everything is okey with the packet, we reply with an ACK packet with the Acknowledgment number set to the same as the original Sequence number.
+
+
+
