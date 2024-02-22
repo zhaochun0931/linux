@@ -21,6 +21,8 @@ URI     ldap://ldap.example.com ldap://ldap-provider.example.com:666
 
 
 
+the port 389 is up
+
 
 
 # ss -ltnp
