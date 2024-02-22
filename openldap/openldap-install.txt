@@ -1,5 +1,10 @@
 DN: Distinguished Name
 CN: Common Name
+OU: Organization Unit
+
+
+
+
 
 
 #install openladap
