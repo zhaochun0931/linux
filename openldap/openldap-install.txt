@@ -1,3 +1,7 @@
+DN: Distinguished Name
+CN: Common Name
+
+
 #install openladap
 
 apt update
