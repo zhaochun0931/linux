@@ -13,3 +13,14 @@ tar -xvf xxx.tgz --directory yyy
 
 # automatically create a directory based on the filename of the original and extract 
 tar -xvf xxx.tgz --one-top-level
+
+
+
+
+
+
+
+
+tar -cvzf xxx.tgz 1.txt 2.txt 3.txt
+
+tar -xzvf xxx.tgz
