@@ -1,0 +1,4 @@
+tcpdump -i any host 10.0.0.4 -w /tmp/xx.pcap
+
+
+
