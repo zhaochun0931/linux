@@ -7,5 +7,5 @@ DC: Domain Component
 
 
 
-
+entry — A single unit within an LDAP directory. Each entry is identified by its unique Distinguished Name (DN).
 
