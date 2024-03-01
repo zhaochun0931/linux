@@ -5,7 +5,7 @@ objectClass: shadowAccount
 cn: demo
 sn: Wiz
 # the password is demo and below the hash value of password
-userPassword: {SSHA}G50Ug1/Ro0G/yso5q7D0U0sCTL05W/7f
+userPassword: {SSHA}SdwS9aG/qfHLLjRH4jxNej8z1NOPk6s3
 loginShell: /bin/bash
 uidNumber: 1000
 gidNumber: 1000
