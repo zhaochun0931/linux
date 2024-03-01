@@ -48,7 +48,7 @@ We can put the values in the above expression as per our requirements:
 ldap-server-hostname – LDAP server’s hostname or IP address
 -D – user we want to authenticate with
 -b – DN of the search base
-
+Importantly, the -x option means we use simple authentication. The -W option asks for the password of the user at runtime.
 
 
 ldapsearch -x -H ldap://10.0.0.4 -D "cn=admin,dc=example,dc=com" -W -b "dc=example,dc=com"
