@@ -8,3 +8,13 @@ nc -v -z localhost 80-81
 
 
 nv -lvk 1234
+
+
+
+
+
+
+
+# set up a tcp server
+nc -l 0.0.0.0 8888 -q 10
+nc -l 8888 -q 10
