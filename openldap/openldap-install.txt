@@ -21,14 +21,52 @@ DC: Domain Component
 apt update
 apt install slapd ldap-utils -y
 
+
+
+Please enter the password for the admin entry in your LDAP directory.
+Adminstrator password: password
+
+
+
+# install successfully
+
+
+
+
+
+
+
+
+
+# configure the openldap
+
+
 # DNS domain name: example.com
 
 dpkg-reconfigure slapd
 
 
+If you enable this option, no initial configuration or database will be created for you.
+Omit OpenLDAP server configuration? No
+
+The DNS domain name is used to construct the base DN of the LDAP directory. For example, 'foo.example.org' will create the directory with 'dc=foo, dc=example, dc=org' as base DN.
+DNS domain name: example.com
+
+
+Please enter the name of the organization to use in the base DN of your LDAP directory.
+Organization name: test
+
+
+
+Do you want the database to be removed when slapd is purged? Yes
+
+There are still files in /var/lib/ldap which will probably break the configuration process. If you enable this option, the maintainer scripts will move the old database files out of the way before creating a new database.
+Move old database?  Yes
+
+
+
 
 /etc/ldap/ldap.conf
-
 BASE    dc=example,dc=com
 URI     ldap://ldap.example.com ldap://ldap-provider.example.com:666
 
@@ -41,6 +79,7 @@ URI     ldap://ldap.example.com ldap://ldap-provider.example.com:666
 the port 389 is up
 
 
+ss -ltnp
 
 # ss -ltnp
 State                   Recv-Q                   Send-Q                                     Local Address:Port                                      Peer Address:Port                  Process
