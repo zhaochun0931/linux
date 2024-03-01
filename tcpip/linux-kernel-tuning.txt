@@ -1,2 +1,3 @@
 /proc/sys
 
+cat /etc/sysctl.conf
