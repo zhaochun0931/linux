@@ -3,7 +3,7 @@ objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount
 cn: demo
-# sn: Wiz
+sn: demo
 # the password is demo and below the hash value of password
 userPassword: {SSHA}SdwS9aG/qfHLLjRH4jxNej8z1NOPk6s3
 loginShell: /bin/bash
