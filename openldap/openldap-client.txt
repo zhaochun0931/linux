@@ -28,3 +28,7 @@ Now, let’s use the -x option with the ldapsearch command for an anonymous bind
 
 
 ldapsearch -x -LLL -H ldap:/// -b dc=example,dc=com dn
+
+
+Since we’ve not given any Bind DN using the -D option, no password is needed. Consequently, we have an anonymous bind.
+
