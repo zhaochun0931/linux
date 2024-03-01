@@ -76,3 +76,34 @@ ldapsearch -Q -LLL -Y EXTERNAL -H ldapi:/// -b "dc=example,dc=com" dn
 
 
 The -Q option enables the SASL quiet mode, while the -LLL option just formats the output style. In addition, the -Y option sets the SASL mechanism for authentication, EXTERNAL in this example.
+
+
+
+
+
+
+
+
+
+
+
+Authentication Using ldapwhoami Command
+
+1. Using Anonymous Bind
+
+ldapwhoami -x -H ldap:/// 
+
+Again, the -x option indicates an anonymous bind.
+
+
+
+
+2. Using Simple Bind
+
+ldapwhoami -x -H ldap:/// -D "cn=admin,dc=example,dc=com" -W
+
+
+
+3. Using SASL Authentication
+
+ldapwhoami -Y EXTERNAL -H ldapi:/// -Q
