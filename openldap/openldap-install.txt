@@ -128,6 +128,14 @@ ldapadd -x -D cn=admin,dc=example,dc=com -W -f group.ldif
 # password hash
 slappasswd
 
+# slappasswd
+New password:
+Re-enter new password:
+{SSHA}XjqjhFZVFhBkxpeFnmy6g2SfUPO2yWd8
+#
+
+
+
 
 # add user
 ldapadd -x -D cn=admin,dc=example,dc=com -W -f user.ldif
