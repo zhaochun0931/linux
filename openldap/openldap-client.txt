@@ -32,6 +32,11 @@ ldapsearch -x -LLL -H ldap:/// -b dc=example,dc=com dn
 
 Since we’ve not given any Bind DN using the -D option, no password is needed. Consequently, we have an anonymous bind.
 
+ldapsearch -H ldap://localhost -x
+ldapsearch -H ldap://10.0.0.5 -x
+
+
+
 
 
 
