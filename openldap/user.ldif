@@ -4,6 +4,7 @@ objectClass: posixAccount
 objectClass: shadowAccount
 cn: demo
 sn: Wiz
+# the password is demo and below the hash value of password
 userPassword: {SSHA}G50Ug1/Ro0G/yso5q7D0U0sCTL05W/7f
 loginShell: /bin/bash
 uidNumber: 1000
