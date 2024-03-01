@@ -1,3 +1,20 @@
+# check linux kernel version
+hostnamectl
+
+uname -r
+
+uname -a
+
+
+
+cat /proc/version
+
+
+
+
+
+
+
 /proc/sys
 
 cat /etc/sysctl.conf
