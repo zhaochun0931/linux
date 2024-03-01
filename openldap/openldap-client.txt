@@ -1,1 +1,12 @@
 Authentication Using ldapsearch Command
+
+
+
+We can use the ldapsearch command to perform LDAP authentication. In essence, we can use three different authentication schemes:
+
+anonymous bind
+simple plaintext-based authentication
+Simple Authentication and Security Layer (SASL)
+
+
+Notably, SASL is a more complex approach.
