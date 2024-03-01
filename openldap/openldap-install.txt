@@ -1,11 +1,3 @@
-DN: Distinguished Name
-CN: Common Name
-OU: Organization Unit
-O: Organization
-C: Country
-DC: Domain Component
-
-
 
 
 
