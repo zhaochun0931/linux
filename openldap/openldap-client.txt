@@ -32,3 +32,25 @@ ldapsearch -x -LLL -H ldap:/// -b dc=example,dc=com dn
 
 Since we’ve not given any Bind DN using the -D option, no password is needed. Consequently, we have an anonymous bind.
 
+
+
+
+2. Using Simple Bind
+In simple authentication or simple bind, the DN of the account entry verifies that account for authentication. Along with that, it uses a password to confirm who we are.
+
+Here’s the syntax for a simple bind or plain text authentication command:
+
+ldapsearch -x -H ldap://ldap-server-hostname_or_IP -D "cn=admin,dc=example,dc=com" -W -b "dc=example,dc=com"
+
+
+We can put the values in the above expression as per our requirements:
+
+ldap-server-hostname – LDAP server’s hostname or IP address
+-D – user we want to authenticate with
+-b – DN of the search base
+
+
+
+ldapsearch -x -H ldap://10.0.0.4 -D "cn=admin,dc=example,dc=com" -W -b "dc=example,dc=com"
+ldapsearch -x -H ldap://localhost -D "cn=admin,dc=example,dc=com" -W -b "dc=example,dc=com"
+ldapsearch -x -H ldap://ldap.example.com -D "cn=admin,dc=example,dc=com" -W -b "dc=example,dc=com"
