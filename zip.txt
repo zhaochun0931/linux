@@ -1,0 +1,2 @@
+unzip xx.zip -d xx
+
