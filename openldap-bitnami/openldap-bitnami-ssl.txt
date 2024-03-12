@@ -1,0 +1,35 @@
+/tmp/bitnami
+
+-rw-r--r--  1 root root 1294 Mar 12 04:44 ca.crt
+-rw-------  1 root root 1704 Mar 12 04:44 ca.key
+-rw-r--r--  1 root root 1318 Mar 12 04:50 openldap.crt
+-rw-r--r--  1 root root 1050 Mar 12 04:50 openldap.csr
+-rw-r--r--  1 root root 1704 Mar 12 04:49 openldap.key
+
+
+
+
+
+
+
+
+docker run --rm --name openldap \
+  --network rabbitmq_vnet \
+  --env LDAP_ADMIN_USERNAME=admin \
+  --env LDAP_ADMIN_PASSWORD=password \
+  --env LDAP_USERS=user \
+  --env LDAP_PASSWORDS=password \
+  --env LDAP_ROOT=dc=example,dc=org \
+  --env LDAP_ADMIN_DN=cn=admin,dc=example,dc=org \
+  --env BITNAMI_DEBUG=yes \
+  --env LDAP_ENABLE_TLS=yes \
+  --env LDAP_LDAPS_PORT_NUMBER=1636 \
+  --env LDAP_TLS_CERT_FILE=/tmp/openldap.crt \
+  --env LDAP_TLS_KEY_FILE=/tmp/openldap.key \
+  --env LDAP_TLS_CA_FILE=/tmp/ca.crt \
+  -v /tmp/bitnami:/tmp:ro \
+  bitnami/openldap:latest
+
+
+
+  
