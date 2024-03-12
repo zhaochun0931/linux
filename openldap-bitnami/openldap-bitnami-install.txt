@@ -43,6 +43,8 @@ docker run --rm -d -it --name rabbitmq1 \
 
 
 
+# ssh into rabbitmq and enable the ldap plugin
+docker exec -it rabbitmq1 bash
 rabbitmq-plugins enable rabbitmq_auth_backend_ldap
 
 
