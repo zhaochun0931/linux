@@ -1,0 +1,51 @@
+docker run --rm --name openldap \
+  --network rabbitmq_vnet \
+  --env LDAP_ADMIN_USERNAME=admin \
+  --env LDAP_ADMIN_PASSWORD=password \
+  --env LDAP_USERS=user \
+  --env LDAP_PASSWORDS=password \
+  --env LDAP_ROOT=dc=example,dc=com \
+  --env LDAP_ADMIN_DN=cn=admin,dc=example,dc=org \
+  bitnami/openldap:latest
+
+
+
+===
+
+ 05:58:21.88 INFO  ==> ** Starting LDAP setup **
+ 05:58:21.92 INFO  ==> Validating settings in LDAP_* env vars
+ 05:58:21.92 INFO  ==> Initializing OpenLDAP...
+ 05:58:21.93 INFO  ==> Creating LDAP online configuration
+ 05:58:21.94 INFO  ==> Creating slapd.ldif
+ 05:58:21.96 INFO  ==> Starting OpenLDAP server in background
+ 05:58:22.96 INFO  ==> Configure LDAP credentials for admin user
+ 05:58:22.97 INFO  ==> Adding LDAP extra schemas
+ 05:58:23.00 INFO  ==> Creating LDAP default tree
+
+ 05:58:24.05 INFO  ==> ** LDAP setup finished! **
+ 05:58:24.08 INFO  ==> ** Starting slapd **
+65efef00.05a41104 0x74dcb0f1f740 @(#) $OpenLDAP: slapd 2.6.7 (Feb 22 2024 18:16:24) $
+	@adf17e22548f:/bitnami/blacksmith-sandox/openldap-2.6.7/servers/slapd
+65efef00.0630f4e6 0x74dcb0f1f740 slapd starting
+
+
+
+
+
+
+
+docker run --rm -d -it --name rabbitmq1 \
+  --network rabbitmq_vnet \
+  -p 5672:5672 -p 15672:15672 \
+  --mount type=bind,source="$(pwd)"/advanced.config,target=/etc/rabbitmq/advanced.config,readonly \
+  rabbitmq:3.11-management
+
+
+
+
+rabbitmq-plugins enable rabbitmq_auth_backend_ldap
+
+
+login the localhost:15672 with user/password
+
+
