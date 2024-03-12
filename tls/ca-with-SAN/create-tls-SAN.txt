@@ -144,6 +144,10 @@ keytool -importkeystore -srckeystore tls.p12 -srcstoretype pkcs12 -destkeystore 
 
 
 # generate a password protected private key
+openssl genrsa -des3 -out ca.key
 
-openssl genrsa -out ca.key -aes256
 
+# check that a private key (ca.key) is a valid key:
+openssl rsa -check -in ca.key
+
+openssl rsa -noout -modulus -in ca.key | openssl md5
