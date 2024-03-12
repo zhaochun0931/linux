@@ -51,7 +51,7 @@ openssl req -new -sha256 -key tls.key \
 
 
 
-# sign with the ca
+# sign csr with the ca
 
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days 365 \
 -in tls.csr \
