@@ -141,3 +141,9 @@ keytool -importkeystore -srckeystore tls.p12 -srcstoretype pkcs12 -destkeystore 
 
 
 
+
+
+# generate a password protected private key
+
+openssl genrsa -out ca.key -aes256
+
