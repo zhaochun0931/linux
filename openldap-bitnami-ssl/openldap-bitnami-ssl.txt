@@ -11,6 +11,8 @@
 
 
 
+docker network create rabbitmq_vnet
+
 
 
 docker run --rm --name openldap \
