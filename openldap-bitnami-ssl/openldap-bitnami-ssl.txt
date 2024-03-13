@@ -64,7 +64,7 @@ rabbitmq:3.11-management
 
 
 
-
+docker exec -it rabbitmq1  bash
 rabbitmq-plugins enable rabbitmq_auth_backend_ldap
 
 
