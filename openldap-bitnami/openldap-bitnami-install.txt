@@ -9,6 +9,8 @@ docker run --rm --name openldap \
   bitnami/openldap:latest
 
 
+# the bitnami ldap listens on the port 1389 by default
+
 
 ===
 
