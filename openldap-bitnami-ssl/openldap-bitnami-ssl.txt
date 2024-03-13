@@ -16,6 +16,7 @@ docker network create rabbitmq_vnet
 
 
 docker run --rm --name openldap \
+--hostname openldap \
   --network rabbitmq_vnet \
   -p 1636:1636 \
   --env LDAP_ADMIN_USERNAME=admin \
