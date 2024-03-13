@@ -17,6 +17,7 @@ docker network create rabbitmq_vnet
 
 docker run --rm --name openldap \
   --network rabbitmq_vnet \
+  -p 1636:1636 \
   --env LDAP_ADMIN_USERNAME=admin \
   --env LDAP_ADMIN_PASSWORD=password \
   --env LDAP_USERS=user \
@@ -31,6 +32,15 @@ docker run --rm --name openldap \
   --env LDAP_TLS_CA_FILE=/tmp/ca.crt \
   -v /tmp/bitnami:/tmp:ro \
   bitnami/openldap:latest
+
+
+
+apt install ldap-utils
+
+nc -vz localhost 1636
+
+
+
 
 
 
