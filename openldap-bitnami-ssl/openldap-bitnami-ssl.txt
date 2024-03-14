@@ -1,10 +1,31 @@
 /tmp/bitnami
 
--rw-r--r--  1 root root 1294 Mar 12 04:44 ca.crt
--rw-------  1 root root 1704 Mar 12 04:44 ca.key
--rw-r--r--  1 root root 1318 Mar 12 04:50 tls.crt
--rw-r--r--  1 root root 1050 Mar 12 04:50 tls.csr
--rw-r--r--  1 root root 1704 Mar 12 04:49 tls.key
+-rw-r--r-- 1 root root 1294 Mar 25 15:28 ca.crt
+-rw-r--r-- 1 root root 1704 Mar 25 15:28 ca.key
+-rw-r--r-- 1 root root 1294 Mar 25 15:31 openldap.crt
+-rw-r--r-- 1 root root 1029 Mar 25 15:30 openldap.csr
+-rw-r--r-- 1 root root 1708 Mar 25 15:33 openldap.key
+-rw-r--r-- 1 root root 1298 Mar 25 15:31 rabbitmq1.crt
+-rw-r--r-- 1 root root 1033 Mar 25 15:30 rabbitmq1.csr
+-rw-r--r-- 1 root root 1708 Mar 25 15:35 rabbitmq1.key
+
+
+
+generate ca
+
+generate a certicate with CN: openldapd and sign this cert with ca
+
+generate a certicate with CN: rabbitmq1 and sign this cert with ca
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -21,15 +42,15 @@ docker run --rm --name openldap \
   -p 1636:1636 \
   --env LDAP_ADMIN_USERNAME=admin \
   --env LDAP_ADMIN_PASSWORD=password \
-  --env LDAP_USERS=user \
-  --env LDAP_PASSWORDS=password \
+  --env LDAP_USERS=user1,user2 \
+  --env LDAP_PASSWORDS=password1,password2 \
   --env LDAP_ROOT=dc=example,dc=com \
   --env LDAP_ADMIN_DN=cn=admin,dc=example,dc=com \
   --env BITNAMI_DEBUG=yes \
   --env LDAP_ENABLE_TLS=yes \
   --env LDAP_LDAPS_PORT_NUMBER=1636 \
-  --env LDAP_TLS_CERT_FILE=/tmp/tls.crt \
-  --env LDAP_TLS_KEY_FILE=/tmp/tls.key \
+  --env LDAP_TLS_CERT_FILE=/tmp/openldap.crt \
+  --env LDAP_TLS_KEY_FILE=/tmp/openldap.key \
   --env LDAP_TLS_CA_FILE=/tmp/ca.crt \
   -v /tmp/bitnami:/tmp:ro \
   bitnami/openldap:latest
@@ -53,8 +74,8 @@ docker run -d -it --rm --name rabbitmq1 --hostname rabbitmq1 \
 -e RABBITMQ_DEFAULT_USER=admin \
 -e RABBITMQ_DEFAULT_PASS=password \
 --mount type=bind,source="$(pwd)"/advanced.config,target=/etc/rabbitmq/advanced.config,readonly \
---mount type=bind,source="$(pwd)"/tls.crt,target=/tmp/tls.crt,readonly \
---mount type=bind,source="$(pwd)"/tls.key,target=/tmp/tls.key,readonly \
+--mount type=bind,source="$(pwd)"/tls.crt,target=/tmp/rabbitmq1.crt,readonly \
+--mount type=bind,source="$(pwd)"/tls.key,target=/tmp/rabbitmq1.key,readonly \
 --mount type=bind,source="$(pwd)"/ca.crt,target=/tmp/ca.crt,readonly \
 rabbitmq:3.11-management
 
@@ -67,5 +88,11 @@ rabbitmq:3.11-management
 
 docker exec -it rabbitmq1  bash
 rabbitmq-plugins enable rabbitmq_auth_backend_ldap
+
+
+https://localhost:15671
+
+user1/password1
+user2/password2
 
 
