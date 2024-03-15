@@ -6,9 +6,12 @@ working
 
 
 # generate ca
+
+export caname=www.ca.com
+
 openssl genrsa -out ca.key
 
-openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=www.ca.com"
+openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$caname"
 
 
 
@@ -21,12 +24,14 @@ openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "
 
 # generate server key
 
+export servername=www.xiaoming.com
+
 openssl genrsa -out tls.key
 
 openssl req -new -sha256 -key tls.key \
--subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=www.xiaoming.com" \
+-subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$servername" \
 -reqexts SAN \
--config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:www.xiaoming.com\n")) \
+-config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:$servername\n")) \
 -out tls.csr
 
 
@@ -38,9 +43,9 @@ openssl req -new -sha256 -key tls.key \
 
 
 openssl req -new -sha256 -key tls.key \
--subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=www.xiaoming.com" \
+-subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$servername" \
 -reqexts SAN \
--config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:www.xiaoming.com,IP:1.1.1.1\n")) \
+-config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:$servername,IP:1.1.1.1\n")) \
 -out tls.csr
 
 # cannot add the space between the "<" and the "(print" in above command
@@ -53,13 +58,13 @@ openssl req -new -sha256 -key tls.key \
 
 # sign csr with the ca
 
-openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com") -days 365 \
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:$servername") -days 365 \
 -in tls.csr \
 -CA ca.crt -CAkey ca.key -CAcreateserial \
 -out tls.crt -sha256
 
 
-openssl x509 -req -extfile <(printf "subjectAltName=DNS:www.xiaoming.com,IP:1.1.1.1") -days 365 \
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:$servername,IP:1.1.1.1") -days 365 \
 -in tls.csr \
 -CA ca.crt -CAkey ca.key -CAcreateserial \
 -out tls.crt -sha256
