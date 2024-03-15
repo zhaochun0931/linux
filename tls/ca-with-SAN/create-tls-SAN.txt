@@ -9,7 +9,16 @@ working
 
 export caname=www.ca.com
 
+# generate the private key without the password
 openssl genrsa -out ca.key
+
+# generate the private key with the password "xxxyyy", the private key is the password-protected key
+openssl genrsa -out ca.key -des3 --passout pass:xxxyyy 
+
+
+# check that a private key (ca.key) is a valid key:
+openssl rsa -check -in ca.key
+
 
 openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$caname"
 
@@ -148,11 +157,6 @@ keytool -importkeystore -srckeystore tls.p12 -srcstoretype pkcs12 -destkeystore 
 
 
 
-# generate a password protected private key
-openssl genrsa -des3 -out ca.key
 
-
-# check that a private key (ca.key) is a valid key:
-openssl rsa -check -in ca.key
 
 openssl rsa -noout -modulus -in ca.key | openssl md5
