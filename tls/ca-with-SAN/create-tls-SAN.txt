@@ -82,6 +82,12 @@ openssl x509 -req -extfile <(printf "subjectAltName=DNS:$servername,IP:1.1.1.1")
 
 
 
+
+
+
+
+# verification
+
 openssl verify -CAfile ca.crt tls.crt
 openssl x509 -noout --text -in tls.crt
 openssl rsa -pubout -in ca.key
@@ -127,7 +133,7 @@ openssl pkcs12 -export -in rootCA.crt -inkey ca.key -out ca.pfx
 
 # how to verify the certificate
 
-openssl s_server -cert mydomain.crt -key mydomain.key -accept 8443
+openssl s_server -cert tls.crt -key tls.key -accept 8443
 
 openssl s_client -connect localhost:8443 -CAfile ca.crt
 
