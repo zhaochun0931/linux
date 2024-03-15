@@ -1,15 +1,21 @@
 if date
 then
-date
+  date
 fi
-
-
 
 
 
 if date
 then
-echo xxx
+    echo xxx
 else
-echo yyy
+    echo yyy
+fi
+
+
+if test  -f xx.txt
+then
+      echo 'xx.txt is here'
+else
+       echo "xx.txt is not here"
 fi
