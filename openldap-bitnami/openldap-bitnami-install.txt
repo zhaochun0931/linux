@@ -4,8 +4,8 @@ docker run --rm --name openldap \
   --network rabbitmq_vnet \
   --env LDAP_ADMIN_USERNAME=admin \
   --env LDAP_ADMIN_PASSWORD=password \
-  --env LDAP_USERS=user \
-  --env LDAP_PASSWORDS=password \
+  --env LDAP_USERS=user01,user02 \
+  --env LDAP_PASSWORDS=password01,password02 \
   --env LDAP_ROOT=dc=example,dc=com \
   --env LDAP_ADMIN_DN=cn=admin,dc=example,dc=com \
   bitnami/openldap:latest
@@ -60,6 +60,6 @@ docker exec -it rabbitmq1 bash
 rabbitmq-plugins enable rabbitmq_auth_backend_ldap
 
 
-login the localhost:15672 with user/password
+login the localhost:15672 with user01/password01, user02/password02
 
 
