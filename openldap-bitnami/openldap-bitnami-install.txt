@@ -38,6 +38,14 @@ docker run --rm --name openldap \
 
 
 
+
+
+docker inspect openldap | egrep -i ipaddress
+
+
+
+
+
 docker run --rm -d -it --name rabbitmq1 \
   --network rabbitmq_vnet \
   -p 5672:5672 -p 15672:15672 -p 15671:15671 \
