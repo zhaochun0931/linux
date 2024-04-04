@@ -3,3 +3,10 @@ apt-get install -y ethtool
 
 
 ethtool --version
+
+
+
+ethtool eth0
+
+
+ethtool --driver eth0
