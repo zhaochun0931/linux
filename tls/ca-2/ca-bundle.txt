@@ -41,8 +41,8 @@ openssl pkcs12 -export -in client-cert.pem -inkey client-key.pem -out client.p12
 
 
 # verify 
-openssl s_server -CAfile ca-cert.pem  -cert server-cert.pem -key server-key.pem
-openssl s_client -CAfile ca-cert.pem
+openssl s_server -CAfile ca.crt  -cert tls.crt -key tls.key
+openssl s_client -CAfile ca.crt
 
 
 # verify the server and the client
