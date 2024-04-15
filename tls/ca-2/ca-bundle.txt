@@ -1,7 +1,7 @@
 # ca
-openssl genrsa -out ca-key.pem
-openssl req -new -out ca.csr -key ca-key.pem
-openssl x509 -req -in ca-req.csr -out ca-cert.pem -signkey ca-key.pem
+openssl genrsa -out ca.key
+openssl req -new -out ca.csr -key ca.key
+openssl x509 -req -in ca.csr -out ca.cert -signkey ca.key
   
 # export to p12 format
 openssl pkcs12 -export -in ca-cert.pem -inkey ca-key.pem -out ca.p12
