@@ -34,3 +34,8 @@ systemctl status rsyslog.service
 ss -antlup
 
 
+# test to send the message to syslog
+
+echo "hello rsyslog" > /dev/udp/localhost/514
+
+
