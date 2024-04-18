@@ -18,7 +18,7 @@ rsyslogd -v
 
 
 /etc/rsyslog.conf
-
+/etc/rsyslog.d/50-default.conf
 
 
 # specify the port in the /etc/rsyslog.conf
