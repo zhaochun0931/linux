@@ -16,10 +16,21 @@ rsyslogd -v
 /etc/services
 
 
+
 /etc/rsyslog.conf
 
 
 
+# specify the port in the /etc/rsyslog.conf
 
+$ModLoad imudp
+$UDPServerRun 514
+
+
+systemctl restart rsyslog.service
+systemctl status rsyslog.service
+
+
+ss -antlup
 
 
