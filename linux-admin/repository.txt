@@ -1,0 +1,7 @@
+lsb_release -sc
+
+
+
+/etc/apt/sources.list
+
+/etc/apt/sources.list.d
