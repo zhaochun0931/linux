@@ -39,3 +39,5 @@ ss -antlup
 echo "hello rsyslog" > /dev/udp/localhost/514
 
 
+logger "hello rsyslog"
+
