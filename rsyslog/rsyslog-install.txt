@@ -1,0 +1,12 @@
+#install
+  
+add-apt-repository ppa:adiscon/v8-devel
+apt-get update
+apt-get install rsyslog
+
+
+
+
+
+
+
