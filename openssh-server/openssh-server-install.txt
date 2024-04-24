@@ -1,3 +1,12 @@
 ssh -V
 
 
+systemctl restart sshd.service
+systemctl status sshd.service
+
+
+
+/etc/ssh/sshd_config
+
+PermitRootLogin yes
+PasswordAuthentication yes
