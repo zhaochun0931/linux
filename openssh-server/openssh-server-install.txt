@@ -19,3 +19,19 @@ systemctl status sshd.service
 
 PermitRootLogin yes
 PasswordAuthentication yes
+
+
+
+
+# passwordless setup
+
+By default the public key is saved in the file ~/.ssh/id_rsa.pub, while ~/.ssh/id_rsa is the private key. Now copy the id_rsa.pub file to the remote host and append it to ~/.ssh/authorized_keys by entering:
+
+ssh-copy-id username@remotehost
+
+Finally, double check the permissions on the authorized_keys file, only the authenticated user should have read and write permissions. If the permissions are not correct change them by:
+
+chmod 600 .ssh/authorized_keys
+
+
+You should now be able to SSH to the host without being prompted for a password.
