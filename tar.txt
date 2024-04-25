@@ -19,8 +19,24 @@ $
 tar -tvf xxx.tgz
 
 
-# extract the xz file
+
+
+
+# tar.xz file
 tar -xf xxx.tar.xz
+
+
+
+
+
+
+# xz file
+unxz 123.xz
+
+
+
+
+
 
 
 
