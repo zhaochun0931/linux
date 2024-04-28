@@ -68,3 +68,13 @@ grep -c xxx file
 grep -l xxx *
 
 
+
+
+
+
+
+
+# 
+egrep -Ri abc *
+
+
