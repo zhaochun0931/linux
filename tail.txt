@@ -1,0 +1,7 @@
+Print  the  last  10 lines of each FILE to standard output.
+
+tail /etc/passwd
+
+tail -n 5 /etc/passwd
+
+tail -f /var/log/syslog
