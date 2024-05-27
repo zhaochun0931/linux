@@ -62,16 +62,21 @@ curl -O xxx
 
 
 
-#
-
-
+# traditional network configuration file
 /etc/sysconfig/network-scripts
-
 /etc/sysconfig/network-scripts/ifcfg-eth0
 
 
 Global network configuration information affecting each interface is stored in the file /etc/sysconfig/network
 
+
+
+# new network configuration tool netplan (yaml file)
+/etc/netplan/50-cloud-init.yaml
+
+
+
+ip link show eth0
 
 
 ifconfig
