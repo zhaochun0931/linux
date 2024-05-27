@@ -50,12 +50,7 @@ lshw -class network
 
 
 
-# download the file
 
-wget xxx
-wget xxx -O newfilename
-
-curl -O xxx
 
 
 
@@ -73,6 +68,9 @@ Global network configuration information affecting each interface is stored in t
 
 # new network configuration tool netplan (yaml file)
 /etc/netplan/50-cloud-init.yaml
+
+netplan apply
+
 
 
 
