@@ -4,3 +4,7 @@ scp -v username@ip:/tmp/xxx .
 
 # yyy is a directory
 scp -r username@ip:/tmp/yyy .
+
+
+
+scp -v username@ip:/tmp/xxx/* .
