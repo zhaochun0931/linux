@@ -1,0 +1,5 @@
+wget xxx
+
+wget xxx -o new_file_name
+
+
