@@ -22,6 +22,9 @@ PasswordAuthentication yes
 
 # passwordless configuration
 
+ssh-keygen
+
+
 By default the public key is saved in the file ~/.ssh/id_rsa.pub, while ~/.ssh/id_rsa is the private key. 
 Now copy the id_rsa.pub file to the remote host and append it to ~/.ssh/authorized_keys by entering:
 
