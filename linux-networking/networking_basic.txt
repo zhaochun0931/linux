@@ -42,7 +42,8 @@ ip a
 
 
 
-
+# list network 
+lshw -class network
 
 
 
