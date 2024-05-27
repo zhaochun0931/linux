@@ -101,6 +101,15 @@ arp
 # network tuning
 
 
+there are many tools to manage the eternet device, such as network manager
+
+
+apt  install network-manager
+nmcli
+
+
+
+
 
 
 
