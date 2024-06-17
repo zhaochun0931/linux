@@ -4,3 +4,5 @@ tree .
 
 tree /var
 
+tree -L 1 /var
+
