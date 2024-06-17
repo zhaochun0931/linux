@@ -1,0 +1,6 @@
+apt install tree
+
+tree .
+
+tree /var
+
