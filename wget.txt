@@ -2,7 +2,7 @@ wget xxx
 
 
 
-# When downloading a file, Wget defaults to storing it using the name that the file has on the server. You can change that by using the -O option to specify a new name.
-wget xxx -o new_file_name
+# When downloading a file, Wget defaults to storing it using the name that the file has on the server. You can change that by using the -O ( capital character O not number 0 ) option to specify a new name.
+wget xxx -O new_file_name
 
 
