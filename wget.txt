@@ -11,3 +11,8 @@ wget xxx -O new_file_name
 # download multiple files 
 wget -i file-list.txt
 
+
+
+# show the progress of download
+wget -q --show-progress xxx
+
