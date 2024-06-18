@@ -6,3 +6,8 @@ wget xxx
 wget xxx -O new_file_name
 
 
+
+
+# download multiple files 
+wget -i file-list.txt
+
