@@ -1,3 +1,6 @@
+apt install unzip
+
+
 # extract the zip file to the specific directory
 unzip xx.zip -d xx
 
