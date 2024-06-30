@@ -24,4 +24,22 @@ dmesg
 
 /proc/sys
 
-cat /etc/sysctl.conf
+
+
+# check current value
+sysctl net.ipv4.ip_forward
+
+
+
+
+# change the value
+sysctl -w net.ipv4.ip_forward=1
+
+
+
+
+
+# save and keep the value persistent across the reboot
+change the value in /etc/sysctl.conf file
+
+
