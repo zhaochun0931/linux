@@ -1,0 +1,11 @@
+# decompress
+
+xz -d filename.xz
+
+
+
+
+
+
+#
+
