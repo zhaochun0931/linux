@@ -1,0 +1,31 @@
+# compress
+
+bzip2 file.txt
+
+
+This will compress file.txt and produce file.txt.bz2
+
+
+
+
+
+file.txt.bz2
+
+
+
+
+
+# decompress
+
+bunzip2 file.txt.bz2
+
+This will decompress file.txt.bz2 and restore it to file.txt
+
+
+
+
+
+
+
+
+
