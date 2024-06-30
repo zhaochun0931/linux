@@ -27,3 +27,8 @@ read -sp "please input the password: " password
 echo $password
 
 
+
+
+
+name1=xxx
+echo "new name is: " $name1
