@@ -1,15 +1,16 @@
 # decompress
-
 xz -d linux-6.9.7.tar.xz
-
 tar -xf linux-6.9.7.tar
 
 
 
-
+tar -xvf linux-6.9.7.tar.xz
 
 
 # compress
-
 xz filename
+
+
+
+
 
