@@ -32,14 +32,19 @@ sysctl net.ipv4.ip_forward
 
 
 
+1. change the value temporarily
 # change the value
 sysctl -w net.ipv4.ip_forward=1
 
 
 
 
-
+2. change the value permanaently
 # save and keep the value persistent across the reboot
 change the value in /etc/sysctl.conf file
+
+# apply the change
+sysctl -p
+
 
 
