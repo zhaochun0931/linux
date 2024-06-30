@@ -23,6 +23,9 @@ dmesg
 
 
 /proc/sys
+/etc/sysctl.conf
+
+
 
 
 
