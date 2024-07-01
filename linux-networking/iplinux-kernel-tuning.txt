@@ -26,7 +26,7 @@ dmesg
 /etc/sysctl.conf
 
 
-# print the current kernel value
+# print all kernel value
 sysctl -a
 
 
