@@ -51,3 +51,24 @@ sysctl -p
 
 
 
+
+
+
+
+
+
+#  Check TCP Congestion Control Algorithms on Linux, By default, Linux uses the Reno and CUBIC congestion control algorithm
+sysctl net.ipv4.tcp_available_congestion_control
+sysctl net.ipv4.tcp_congestion_control
+
+
+
+
+TCP BBR is a TCP congestion control algorithm developed by Google. BBR stands for Bottleneck Bandwidth and RTT.
+
+
+
+
+
+
+
