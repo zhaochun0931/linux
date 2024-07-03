@@ -1,4 +1,4 @@
-apt-get install wget
+apt-get install -y wget
 
 
 
