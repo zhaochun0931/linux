@@ -1,3 +1,12 @@
+apt-get install wget
+
+
+
+
+
+
+
+
 wget xxx
 
 
