@@ -1,0 +1,52 @@
+Ubuntu uses the Advanced Package Tool (APT) as its package management system, and repositories are collections of software packages that APT uses to locate, install, and update software on your system.
+
+
+
+/etc/apt/sources.list
+
+This file contains the list of repositories (or sources) where APT can find software packages. Each line typically represents a repository or a software source.
+
+
+
+
+
+/etc/apt/sources.list.d/
+
+This directory can contain additional configuration files ending with .list. Each file can contain repository definitions, allowing you to manage software sources separately.
+
+
+
+
+
+
+
+
+
+Repository Types
+Main: Officially supported software maintained by Ubuntu developers.
+
+Universe: Community-maintained open-source software.
+
+Restricted: Software that is not open-source but is supported by Ubuntu.
+
+Multiverse: Software that is not free.
+
+
+
+
+
+
+
+
+
+add-apt-repository universe
+
+
+
+apt update
+update the package lists from all repositories configured on your system. This command refreshes the package index.
+
+
+
+
+
