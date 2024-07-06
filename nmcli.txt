@@ -4,3 +4,4 @@ apt install -y network-manager
 
 
 
+nmcli device show
