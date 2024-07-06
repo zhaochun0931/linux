@@ -74,38 +74,20 @@ netplan apply
 
 
 
-ip link show eth0
-
-
-ifconfig
-ifconfig eth0
-
-
-
-
-netstat -r -n
-
-
-
-arp
-
-
-/etc/fstab
 
 
 
 
 
+Receive ring buffers are shared between the device driver and network interface controller (NIC). The card assigns a transmit (TX) and receive (RX) ring buffer. As the name implies, the ring buffer is a circular buffer where an overflow overwrites existing data. There are two ways to move data from the NIC to the kernel, hardware interrupts and software interrupts, also called SoftIRQs.
+
+The kernel uses the RX ring buffer to store incoming packets until the device driver can process them. The device driver drains the RX ring, typically by using SoftIRQs, which puts the incoming packets into a kernel data structure called an sk_buff or skb to begin its journey through the kernel and up to the application that owns the relevant socket.
+
+The kernel uses the TX ring buffer to hold outgoing packets which should be sent to the network. These ring buffers reside at the bottom of the stack and are a crucial point at which packet drop can occur, which in turn will adversely affect network performance.
 
 
-# network tuning
 
 
-there are many tools to manage the eternet device, such as network manager
-
-
-apt  install network-manager
-nmcli
 
 
 
