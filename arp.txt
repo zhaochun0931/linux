@@ -2,3 +2,9 @@ arp
 
 
 
+# arp
+Address                  HWtype  HWaddress           Flags Mask            Iface
+172.16.204.1             ether   9a:dd:60:c7:26:65   C                     ens160
+172.16.204.254           ether   00:50:56:e9:bb:fe   C                     ens160
+_gateway                 ether   00:50:56:ff:3d:89   C                     ens160
+#
