@@ -1,0 +1,18 @@
+find . -type f -iname "1.txt"
+
+
+
+
+find . -type f -iname 1.txt -exec cat {} \;
+
+
+# must use the "" if you want to use the wild characters
+
+# the {} \; pattern is fixed 
+# no space between {}
+# no space between \;
+
+
+
+find . -type f -iname "*txt" -exec cat {} \;
+
