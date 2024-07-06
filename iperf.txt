@@ -1,9 +1,25 @@
+apt update
 apt install iperf
 
+iperf --version
 
 
 
+
+
+
+
+
+
+# server side
 iperf -s
+
+
+
+# client side
+
+iperf -i2 -t 60 -c10.1.1.1
+
 
 
 
