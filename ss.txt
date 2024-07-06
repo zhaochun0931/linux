@@ -1,1 +1,6 @@
 ss -lnp
+
+ss -antlup
+
+
+ss -t state established
