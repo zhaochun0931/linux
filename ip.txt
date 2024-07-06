@@ -6,3 +6,8 @@ ip -V
 ip address show
 
 ip link show
+
+
+
+
+ip route show
