@@ -32,3 +32,4 @@ echo $password
 
 name1=xxx
 echo "new name is: " $name1
+echo "new name is: " ${name1}
