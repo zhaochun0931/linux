@@ -1,0 +1,3 @@
+dig www.google.com
+
+dig +trace www.google.com
