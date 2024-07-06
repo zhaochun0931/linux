@@ -17,3 +17,10 @@ ethtool --statistics eth0
 ethtool -S eth0
 
 ethtool -g eth0
+
+
+
+
+ethtool -i eth0
+
+modinfo -p e1000e
