@@ -1,0 +1,13 @@
+apt update
+apt install net-tools
+
+
+
+
+
+
+ifconfig
+
+ifconfig eth0
+
+
