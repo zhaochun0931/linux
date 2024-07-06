@@ -1,0 +1,6 @@
+apt install -y network-manager
+
+
+
+
+
