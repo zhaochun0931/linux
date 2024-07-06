@@ -1,1 +1,8 @@
 curl -O xxx
+
+
+
+
+
+
+curl -i --cacert tls.crt --key tls.key https://localhost:8080/geode/v1
