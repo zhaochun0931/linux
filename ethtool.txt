@@ -13,3 +13,5 @@ ethtool --driver eth0
 
 
 ethtool --statistics eth0
+ethtool -S eth0
+
