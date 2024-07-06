@@ -1,8 +1,9 @@
 apt-get install -y ethtool
-
-
-
 ethtool --version
+
+
+
+
 
 
 
@@ -15,3 +16,4 @@ ethtool --driver eth0
 ethtool --statistics eth0
 ethtool -S eth0
 
+ethtool -g eth0
