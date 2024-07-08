@@ -14,15 +14,21 @@ iptables -A INPUT -p tcp -m tcp --dport 5671 -j ACCEPT
 
 
 
-iptables -A INPUT -p tcp -m tcp --dport 5671 -j DROP
 
+
+
+
+
+iptables -A INPUT -p tcp -m tcp --dport 5671 -j DROP
 # nc -vz localhost 5671
 no response after running this command
 
 
 
-iptables -A INPUT -p tcp -m tcp --dport 5671 -j REJECT
 
+
+
+iptables -A INPUT -p tcp -m tcp --dport 5671 -j REJECT
 reject-with icmp-port-unreachable
 
 # nc -vz localhost 5671
