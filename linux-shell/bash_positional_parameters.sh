@@ -1,4 +1,4 @@
-# $0 being the script’s name, $1 being the fi rst parameter, $2 being the second parameter, and so on, up to $9 for the ninth parameter
+# $0 being the script’s name, $1 being the first parameter, $2 being the second parameter, and so on, up to $9 for the ninth parameter
 
 
 
