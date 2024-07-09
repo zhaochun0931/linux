@@ -1,3 +1,5 @@
 bash -version
 
 
+# enable debug mode
+set -x
