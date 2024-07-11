@@ -1,0 +1,20 @@
+X.509 certificates are digital documents that represent a user, computer, service, or device. A certificate authority (CA), subordinate CA, or registration authority issues X.509 certificates. The certificates contain the public key of the certificate subject. 
+
+They don't contain the subject's private key, which must be stored securel
+
+
+
+
+
+The public key consists of a string of random numbers and can be used to encrypt a message.
+
+
+
+
+
+
+The most common algorithms used to generate public keys are:
+
+Rivest–Shamir–Adleman (RSA)
+Elliptic curve cryptography (ECC)
+Digital signature algorithm (DSA)
