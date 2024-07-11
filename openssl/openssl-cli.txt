@@ -13,6 +13,32 @@ openssl s_client -connect localhost:443 -tls1_1
 
 
 
+# generate private key and public key
+openssl genpkey -algorithm RSA -out mykey -outpubkey mycrt -outform PEM
+
+$ file *
+mycrt: ASCII text
+mykey: ASCII text
+$
+
+
+
+
+
+openssl genpkey -algorithm RSA -out mykey -outpubkey mycrt -outform DER
+$ file *
+mycrt: data
+mykey: DER Encoded Key Pair, 2048 bits
+$
+
+
+
+
+
+
+
+
+
 
 
 
