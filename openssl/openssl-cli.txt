@@ -46,10 +46,15 @@ openssl x509 -req -in mycsr -signkey mykey -out mycrt
 
 
 
+$ file *
+mycrt: PEM certificate
+mycsr: PEM certificate request
+mykey: ASCII text
+mypub: ASCII text
+$
 
 
-
-up till now, the self-signed certificate is successfully.
+Up till now, the self-signed certificate is successfully.
 
 
 
