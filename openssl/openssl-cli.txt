@@ -14,7 +14,7 @@ openssl s_client -connect localhost:443 -tls1_1
 
 
 # generate private key and public key
-openssl genpkey -algorithm RSA -out mykey -outpubkey mycrt -outform PEM
+openssl genpkey -algorithm RSA -out mykey -outpubkey mypub -outform PEM
 
 $ file *
 mycrt: ASCII text
@@ -25,11 +25,41 @@ $
 
 
 
-openssl genpkey -algorithm RSA -out mykey -outpubkey mycrt -outform DER
+openssl genpkey -algorithm RSA -out mykey -outpubkey mypub -outform DER
 $ file *
 mycrt: data
 mykey: DER Encoded Key Pair, 2048 bits
 $
+
+
+
+# generate csr
+openssl req -new -key mykey -out mycsr
+openssl req -text -in mycsr -verify -noout
+
+
+
+# generate x509 certificate
+openssl x509 -req -in mycsr -signkey mykey -out mycrt
+
+
+
+
+
+
+
+
+up till now, the self-signed certificate is successfully.
+
+
+
+
+
+
+
+
+
+
 
 
 
