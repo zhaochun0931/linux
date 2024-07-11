@@ -41,6 +41,7 @@ openssl req -text -in mycsr -verify -noout
 
 # generate x509 certificate
 openssl x509 -req -in mycsr -signkey mykey -out mycrt
+openssl x509 -in mycrt -noout -fingerprint
 
 
 
