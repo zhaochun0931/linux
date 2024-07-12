@@ -1,0 +1,3 @@
+shasum -a 256 xxx
+
+shasum -a 512 xxx
