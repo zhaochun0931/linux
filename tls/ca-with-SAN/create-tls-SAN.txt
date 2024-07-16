@@ -107,7 +107,7 @@ openssl rsa -noout -modulus -in tls.key | openssl md5
 
 
 # export to pfx
-openssl pkcs12 -export -in rootCA.crt -inkey ca.key -out ca.pfx
+openssl pkcs12 -export -in ca.crt -inkey ca.key -out ca.pfx
 
 
 
