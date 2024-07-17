@@ -8,3 +8,9 @@ scp -r username@ip:/tmp/yyy .
 
 
 scp -v username@ip:/tmp/xxx/* .
+
+
+
+
+
+scp  -i /Users/zchun/.labpass/opsmgr-09.slot-35.tanzu-gss-labs.vmware.com.pem ca.crt  ubuntu@opsmgr-09.slot-35.tanzu-gss-labs.vmware.com:/tmp
