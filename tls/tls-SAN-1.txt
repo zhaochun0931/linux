@@ -187,6 +187,8 @@ jks
 
 # convert public cert and key pair to pfx
 openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.p12
+openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.p12 -password pass:password
+
 
 # convert the pfx to java keystore
 keytool -importkeystore -srckeystore tls.p12 -srcstoretype pkcs12 -destkeystore tls.jks
