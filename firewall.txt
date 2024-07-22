@@ -1,0 +1,10 @@
+firewall-cmd --get-active-zones
+
+
+
+firewall-cmd --list-all
+firewall-cmd --zone=public --add-port=5432/tcp --permanent
+
+firewall-cmd --query-port=5432/tcp
+
+firewall-cmd --reload
