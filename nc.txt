@@ -18,3 +18,12 @@ nv -lvk 1234
 # set up a tcp server
 nc -l 0.0.0.0 8888 -q 10
 nc -l 8888 -q 10
+
+
+
+
+
+# perform the http request
+printf "GET / HTTP/1.0\r\n\r\n" | nc kubia-demo-svc-clusterip 8080
+
+echo -e  "GET / HTTP/1.0\r\n\r\n" | nc kubia-demo-svc-clusterip 8080
