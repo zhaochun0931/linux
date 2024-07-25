@@ -1,3 +1,13 @@
+The iptables utility on Red Hat Enterprise Linux uses the nf_tables kernel API instead of the legacy back end.
+
+
+
+
+
+
+
+
+
 iptables -L
 
 
