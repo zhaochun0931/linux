@@ -8,15 +8,27 @@ firewalld blocks all traffic on ports that are not explicitly set as open.
 
 
 
-
-
+zone:
 The predefined zones are stored in the /usr/lib/firewalld/zones/ directory and can be instantly applied to any available network interface. These files are copied to the /etc/firewalld/zones/ directory only after they are modified. 
 
 
-
-
-
 On installation, the default zone in firewalld is set to be the public zone. The default zone can be changed.
+
+
+
+
+
+service:
+Alternatively, you can edit the XML files in the /etc/firewalld/services/ directory. If a service is not added or changed by the user, then no corresponding XML file is found in /etc/firewalld/services/. 
+The files in the /usr/lib/firewalld/services/ directory can be used as templates if you want to add or change a
+service.
+
+
+
+
+
+
+
 
 
 
