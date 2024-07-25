@@ -1,6 +1,11 @@
 firewalld is a firewall service daemon that provides a dynamic customizable host-based firewall with a D-Bus interface.
 
 
+firewalld uses the concepts of zones and services, that simplify the traffic management. 
+
+firewalld blocks all traffic on ports that are not explicitly set as open.
+
+
 
 
 
