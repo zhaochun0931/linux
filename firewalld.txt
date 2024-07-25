@@ -1,3 +1,10 @@
+firewalld is a firewall service daemon that provides a dynamic customizable host-based firewall with a D-Bus interface.
+
+
+
+
+
+
 systemctl status firewalld.service
 systemctl stop firewalld.service
 
