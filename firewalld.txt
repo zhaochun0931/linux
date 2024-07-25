@@ -63,13 +63,17 @@ firewall-cmd --get-active-zones
 
 firewall-cmd --list-all
 firewall-cmd --list-services
+firewall-cmd --get-services
+
+
+
 
 
 firewall-cmd --zone=public --add-port=5432/tcp --permanent
 firewall-cmd --zone=public --remove-port=5432/tcp --permanent
 firewall-cmd --check-config
 
-
+firewall-cmd --runtime-to-permanent
 
 
 
