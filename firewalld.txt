@@ -84,7 +84,11 @@ firewall-cmd --reload
 
 
 # very dangerous
+# Enabling panic mode stops all networking traffic. For this reason, it should be used only when you have the physical access to the machine or if you are logged in using a serial console.
 
 firewall-cmd --panic-on
 firewall-cmd --panic-off
+firewall-cmd --query-panic
+
+
 
