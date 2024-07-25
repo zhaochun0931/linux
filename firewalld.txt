@@ -16,6 +16,20 @@ The predefined zones are stored in the /usr/lib/firewalld/zones/ directory and c
 
 
 
+On installation, the default zone in firewalld is set to be the public zone. The default zone can be changed.
+
+
+
+
+
+
+
+
+
+
+
+# how to check and configure the firewalld 
+
 
 
 systemctl status firewalld.service
