@@ -10,6 +10,14 @@ firewalld blocks all traffic on ports that are not explicitly set as open.
 
 
 
+The predefined zones are stored in the /usr/lib/firewalld/zones/ directory and can be instantly applied to any available network interface. These files are copied to the /etc/firewalld/zones/ directory only after they are modified. 
+
+
+
+
+
+
+
 systemctl status firewalld.service
 systemctl stop firewalld.service
 
