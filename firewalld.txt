@@ -76,3 +76,15 @@ firewall-cmd --check-config
 firewall-cmd --query-port=5432/tcp
 
 firewall-cmd --reload
+
+
+
+
+
+
+
+# very dangerous
+
+firewall-cmd --panic-on
+firewall-cmd --panic-off
+
