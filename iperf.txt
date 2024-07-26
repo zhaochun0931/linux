@@ -1,8 +1,18 @@
+# ubuntu
 apt update
 apt install iperf
 
-iperf --version
 
+
+# centos
+yum install iperf3 -y
+
+
+
+
+
+iperf --version
+iperf3 --version
 
 
 
