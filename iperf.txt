@@ -23,13 +23,23 @@ iperf3 --version
 
 # server side
 iperf -s
+iperf3 -s
+
+
+
+
+# iperf3 -s
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+
+
+
 
 
 
 # client side
-
-iperf -i2 -t 60 -c10.1.1.1
-
+iperf3 -c localhost
 
 
 
