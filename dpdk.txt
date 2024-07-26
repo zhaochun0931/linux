@@ -1,1 +1,9 @@
+The data plane development kit (DPDK) provides libraries and network drivers to accelerate packet
+processing in user space.
+Administrators use DPDK, for example, in virtual machines to use Single Root I/O Virtualization (SRIOV)
+to reduce latencies and increase I/O throughput.
+
+
+
+
 yum install dpdk
