@@ -6,12 +6,12 @@ The nftables framework classifies packets and it is the successor to the iptable
 
 # add table
 nft add table ip table-name
-
+nft delete table table-name
 
 
 # add chain
 nft add chain ip table-name chain-name '{ type filter hook input priority 0; }'
-
+nft delete chain table-name chain-name
 
 
 'ip' specifies that the table is for IPv4.
