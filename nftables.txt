@@ -22,6 +22,7 @@ nft delete chain table-name chain-name
 
 # add rule
 nft add rule ip table-name chain-name tcp dport 22 accept
+nft delete rule ip table-name chain-name input handle 1
 
 
 # list rule
