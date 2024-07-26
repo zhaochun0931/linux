@@ -1,7 +1,8 @@
-The iptables utility on Red Hat Enterprise Linux uses the nf_tables kernel API instead of the legacy back end.
+firewalld: Use the firewalld utility for simple firewall use cases. The utility is easy to use and covers the typical use cases for these scenarios.
 
+nftables: Use the nftables utility to set up complex and performance-critical firewalls, such as for a whole network.
 
-
+iptables: The iptables utility on Red Hat Enterprise Linux uses the nf_tables kernel API instead of the legacy back end. The nf_tables API provides backward compatibility so that scripts that use iptables commands still work on Red Hat Enterprise Linux.
 
 
 
