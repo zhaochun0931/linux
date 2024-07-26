@@ -1,0 +1,1 @@
+The nftables framework classifies packets and it is the successor to the iptables, ip6tables, arptables, ebtables, and ipset utilities.
