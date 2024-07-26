@@ -13,3 +13,10 @@ buffers reside at the bottom of the stack and are a crucial point at which packe
 turn will adversely affect network performance.
 Increase the size of an Ethernet device’s ring buffers if the packet drop rate causes applications to
 report a loss of data, timeouts, or other issues.
+
+
+
+
+ethtool -g eth0
+
+
