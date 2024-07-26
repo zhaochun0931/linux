@@ -52,6 +52,20 @@ service.
 
 
 
+NAT(network address translation) type:
+Masquerading
+Source NAT (SNAT)
+Destination NAT (DNAT)
+Redirect
+
+
+
+
+
+
+
+
+
 
 
 
