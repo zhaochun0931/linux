@@ -18,7 +18,9 @@ port, that is it waits for any traffic coming to this port.
 
 
 
-
+ACCEPT: Accepts all incoming packets except those disallowed by specific rules.
+REJECT: Rejects all incoming packets except those allowed by specific rules. When firewalld rejects packets, the source machine is informed about the rejection.
+DROP: Drops all incoming packets except those allowed by specific rules. When firewalld drops packets, the source machine is not informed about the packet drop.
 
 
 
