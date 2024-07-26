@@ -6,6 +6,20 @@ firewalld uses the concepts of zones and services, that simplify the traffic man
 firewalld blocks all traffic on ports that are not explicitly set as open.
 
 
+Ports are logical devices that enable an operating system to receive and distinguish network traffic and
+forward it accordingly to system services. These are usually represented by a daemon that listens on the
+port, that is it waits for any traffic coming to this port.
+
+
+
+
+
+
+
+
+
+
+
 
 
 zone:
