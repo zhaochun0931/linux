@@ -60,6 +60,21 @@ Redirect
 
 
 
+1. Masquerading and source NAT (SNAT)
+Use one of these NAT types to change the source IP address of packets.
+
+
+For example, Internet Service Providers do not route private IP ranges, such as 10.0.0.0/8. If you use private IP ranges in
+your network and users should be able to reach servers on the Internet, map the source IP address of
+packets from these ranges to a public IP address.
+
+
+Masquerading and SNAT are very similar to one another. The differences are:
+Masquerading automatically uses the IP address of the outgoing interface. Therefore, use masquerading if the outgoing interface uses a dynamic IP address.
+SNAT sets the source IP address of packets to a specified IP and does not dynamically look up the IP of the outgoing interface. Therefore, SNAT is faster than masquerading. Use SNAT if the outgoing interface uses a fixed IP address.
+
+
+
 
 
 
