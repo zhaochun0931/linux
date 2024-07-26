@@ -20,13 +20,21 @@ nft delete chain table-name chain-name
 'priority 0' defines the priority of the hook.
 
 
+
+
+
+
+
+
+
 # add rule
 nft add rule ip table-name chain-name tcp dport 22 accept
-nft delete rule ip table-name chain-name input handle 1
+nft delete rule ip table-name chain-name handle 1
 
 
 # list rule
 nft list ruleset
+nft -a list ruleset
 
 
 # save 
