@@ -5,6 +5,12 @@ the order of DNS servers in etc/resolv.conf.
 
 
 
+By default, Red Hat Enterprise Linux (RHEL) sends all DNS requests to the first DNS server specified in
+the /etc/resolv.conf file. If this server does not reply, RHEL uses the next server in this file.
+
+
+
+
 dig www.google.com
 
 dig +trace www.google.com
