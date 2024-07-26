@@ -14,6 +14,11 @@ port, that is it waits for any traffic coming to this port.
 
 
 
+/etc/sysconfig/network-scripts
+
+
+
+
 
 
 
