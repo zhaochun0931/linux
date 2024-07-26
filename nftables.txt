@@ -33,7 +33,6 @@ nft delete rule ip table-name chain-name handle 1
 
 
 # list rule
-nft list ruleset
 nft -a list ruleset
 
 
