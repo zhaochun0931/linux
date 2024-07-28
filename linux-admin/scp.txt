@@ -1,3 +1,6 @@
+scp uses ssh for data transfer, uses the same authentication and provides the same security as ssh
+
+
 scp username@ip:/tmp/xxx .
 scp -v username@ip:/tmp/xxx .
 
