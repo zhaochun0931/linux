@@ -1,0 +1,10 @@
+mkdir xxx
+rm -R xxx/
+
+
+
+
+
+
+touch xxx
+rm xxx
