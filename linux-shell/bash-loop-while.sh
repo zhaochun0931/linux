@@ -1,5 +1,5 @@
 while :
 do
 echo $(date)
-sleep 10
+sleep 1
 done
