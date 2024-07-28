@@ -1,5 +1,3 @@
-
-
 apt update
 apt install vim
 
@@ -9,4 +7,9 @@ apt install vim
 
 s/,/\r/g
 
-1,$s/aaa/bbb/g
+
+
+
+
+
+1,$s/xxx/yyy/g
