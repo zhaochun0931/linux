@@ -1,0 +1,11 @@
+date
+
+
+date +%A
+date +%a
+
+date +%H:%M:%S
+
+# date +%H:%M:%S
+03:57:52
+#

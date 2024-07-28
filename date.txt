@@ -1,6 +1,0 @@
-date
-
-
-date +%A
-date +%a
-
