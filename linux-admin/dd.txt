@@ -1,0 +1,4 @@
+dd if=/dev/null of=/tmp/xx bs=10M count=1
+
+
+dd if=/dev/zero of=/tmp/xx bs=10M count=1
