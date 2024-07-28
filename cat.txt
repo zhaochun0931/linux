@@ -2,3 +2,33 @@ cat
 
 cat -n /etc/passwd
   
+
+
+
+
+
+
+# append
+cat << done >> /tmp/xx
+
+# overwrite
+cat << done > /tmp/xx
+
+
+
+
+
+# cat << done >> /tmp/xx
+line 1
+line 2
+done
+#
+
+
+# cat /tmp/xx
+line 1
+line 2
+# 
+
+
+
