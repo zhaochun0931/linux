@@ -1,0 +1,60 @@
+tar -cvzf test.tgz 1.txt 2.txt 3.txt
+tar -cvzf test.tar.gz 1.txt 2.txt 3.txt
+
+
+
+
+tar -xzvf test.tgz
+
+file test.tgz
+
+
+
+
+
+$ file test.tgz
+test: gzip compressed data, last modified: Mon Feb 26 03:33:30 2024, from Unix, original size modulo 2^32 8704
+$
+
+
+
+
+tar -tvf test.tgz
+
+
+
+
+
+# tar.xz file
+tar -xf test.tar.xz
+
+
+
+
+
+
+# xz file
+unxz 123.xz
+
+
+
+
+
+
+
+
+# extra to a specific directory
+tar -xvf test.tgz -C yyy
+tar -xvf test.tgz --directory yyy
+
+
+
+# automatically create a directory based on the filename of the original and extract 
+tar -xvf test.tgz --one-top-level
+
+
+
+
+
+
+
