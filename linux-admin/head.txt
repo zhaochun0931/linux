@@ -1,6 +1,0 @@
-# Print the first 10 lines of each FILE to standard output
-head /etc/passwd
-
-head -n 5 /etc/passwd
-head -n5 /etc/passwd
-head -5 /etc/passwd
