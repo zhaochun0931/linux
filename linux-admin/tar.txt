@@ -1,12 +1,17 @@
+# compress
+
 tar -cvzf test.tgz 1.txt 2.txt 3.txt
 tar -cvzf test.tar.gz 1.txt 2.txt 3.txt
 
 
 
-
+# uncompress
 tar -xzvf test.tgz
+file test.tar.gz
 
-file test.tgz
+
+
+
 
 
 
