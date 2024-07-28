@@ -13,3 +13,11 @@ s/,/\r/g
 
 
 1,$s/xxx/yyy/g
+
+
+
+
+command mode
+ZZ
+:wq!
+
