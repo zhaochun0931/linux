@@ -1,4 +1,4 @@
-The tr (trim/translate) command can be used to delete or translate characters.
+# The tr (trim/translate) command can be used to delete or translate characters.
 
 
 
