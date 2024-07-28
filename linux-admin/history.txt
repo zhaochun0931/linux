@@ -2,4 +2,7 @@ history
 history 10
 
 
-.bash_history
+~/.bash_history
+
+
+
