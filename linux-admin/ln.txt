@@ -1,4 +1,7 @@
+# hard link
 ln xxx original-file-name
 
+
+# soft link
 ln -s xxx original-file-name
 
