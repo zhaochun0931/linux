@@ -1,1 +1,4 @@
+ln xxx original-file-name
+
+ln -s xxx original-file-name
 
