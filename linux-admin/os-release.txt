@@ -1,0 +1,10 @@
+# Ubuntu
+
+cat /etc/os-release
+
+
+
+# Centos
+
+
+
