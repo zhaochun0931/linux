@@ -14,6 +14,13 @@ rpm -qf /usr/bin/nc
 
 
 
+
+# deb, This package format is the default on Debian GNU/Linux, also in Ubuntu.
 dpkg -S /usr/bin/cat
 
 
+
+
+# apt, The Advanced Package Tool is a management system for software packages
+apt update
+apt install 
