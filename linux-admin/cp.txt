@@ -1,0 +1,2 @@
+touch xx
+cp xx yy
