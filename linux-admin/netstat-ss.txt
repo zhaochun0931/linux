@@ -1,3 +1,20 @@
+netstat -antlup
+
+
+netstat -rn
+
+
+
+
+
+
+
+
+
+
+
+
+
 ss -lnp
 
 ss -antlup
