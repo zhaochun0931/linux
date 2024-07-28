@@ -1,5 +1,11 @@
 ls -al
 
+
+-S     sort by file size, largest first
 ls -alSh
 
 
+
+
+
+ls -alrt
