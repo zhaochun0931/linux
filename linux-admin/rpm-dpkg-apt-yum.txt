@@ -22,5 +22,14 @@ dpkg -S /usr/bin/cat
 
 
 # apt, The Advanced Package Tool is a management system for software packages
+# 
+# 
+# get an index of the available packages
 apt update
-apt install 
+apt install xxx
+
+
+
+
+# centos or redhat
+Yellowdog's Updater Modified (yum) is another tool that recently became more popular
