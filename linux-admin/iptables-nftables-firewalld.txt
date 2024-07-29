@@ -1,4 +1,19 @@
+netfilter
+
 The Linux kernel implements firewalling via the netfilter framework.
+
+Netfilter allows kernel modules to inspect every incoming, outgoing,
+or forwarded packet and act upon such a packet by either allowing it or blocking it.
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -19,7 +34,7 @@ firewalld uses the concepts of zones and services, that simplify the traffic man
 firewalld blocks all traffic on ports that are not explicitly set as open.
 
 
-
+The firewalld service is incompatible with the iptables service
 
 
 
