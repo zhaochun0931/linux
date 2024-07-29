@@ -1,3 +1,24 @@
+There are three types of I/O, which each have their own identifier, called a file descriptor:
+  standard input: 0
+  standard output: 1
+  standard error: 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 STDIN refers to the standard input stream; usually, input from the keyboard. STDIN has a filehandle of 0 (zero)
 The < operator is used to pass input from a file or I/O device data to a command.
 
