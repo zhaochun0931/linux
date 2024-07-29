@@ -56,7 +56,9 @@ uptime
 
 
 
-timedatectl set-ntp 0
+timedatectl set-ntp false
+timedatectl set-time '2024-03-09 10:59:00'
+
 
 
 
