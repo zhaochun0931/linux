@@ -1,0 +1,46 @@
+Bash offers a built-in time command that displays how long a command takes to execute. The timing is highly
+accurate and can be used on any command.
+
+
+time command1
+
+
+
+
+
+
+
+
+
+
+
+
+hardware clock and system clock
+
+
+When a Linux server boots, the hardware clock, also referred to as real-time clock, is read.
+
+This clock typically resides in the computer hardware.
+
+
+
+
+System time is a time maintained by the operating system. Once the system has booted, the system clock is completely independent of the hardware clock.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+uptime
+
