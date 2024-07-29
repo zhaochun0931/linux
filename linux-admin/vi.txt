@@ -30,3 +30,18 @@ command mode
 ZZ
 :wq!
 
+
+
+# delete n lines staring from the current cursor position
+n dd
+
+# delete n words at the right side of the cursor
+n dw
+
+
+#  will copy a block of text
+yy
+
+
+
+
