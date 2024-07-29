@@ -38,6 +38,33 @@ tar -xf test.tar.xz
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+apt install unzip
+
+
+# extract the zip file to the specific directory
+unzip xx.zip -d xx
+
+
+
+
+
+
+
+
+
+
+
 # xz file
 unxz 123.xz
 
