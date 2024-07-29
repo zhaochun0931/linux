@@ -1,1 +1,4 @@
 
+shutdown -h now
+shutdown -r now
+
