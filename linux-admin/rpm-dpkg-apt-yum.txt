@@ -1,6 +1,4 @@
 RPM, the RedHat Package Manager
-
-
 Most packages are simply installed with the upgrade option, -U, whether the package is already installed or not.
 
 rpm -Uvh /path/to/rpm-package(s)
@@ -15,8 +13,40 @@ rpm -qf /usr/bin/nc
 
 
 
+
+
+
+
+
+
+
+
+
 # deb, This package format is the default on Debian GNU/Linux, also in Ubuntu.
 dpkg -S /usr/bin/cat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -27,6 +57,25 @@ dpkg -S /usr/bin/cat
 # get an index of the available packages
 apt update
 apt install xxx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
