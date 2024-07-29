@@ -1,3 +1,14 @@
+iptables -> firewalld -> nftables
+
+
+
+
+
+
+
+
+
+
 netfilter
 
 The Linux kernel implements firewalling via the netfilter framework.
