@@ -55,4 +55,21 @@ sed -i "s/xxx/$password/g" filename
 
 
 
+# print the first field
+
+head /etc/passwd | cut -d: -f1
+head /etc/passwd | cut -d":" -f1
+head /etc/passwd | cut -d':' -f1
+
+
+
+
+
+
+
+
+
+
+
+
 
