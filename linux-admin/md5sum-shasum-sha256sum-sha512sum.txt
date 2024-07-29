@@ -17,7 +17,7 @@ sha512sum filename
 
 
 
-
+yum install perl-Digest-SHA
 shasum -a 256 xxx
 shasum -a 512 xxx
 
