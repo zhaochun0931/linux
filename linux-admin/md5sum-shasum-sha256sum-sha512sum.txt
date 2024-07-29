@@ -1,0 +1,23 @@
+md5sum filename
+
+
+
+
+
+
+
+
+sha256sum filename
+sha512sum filename
+
+
+
+
+
+
+
+
+
+shasum -a 256 xxx
+shasum -a 512 xxx
+
