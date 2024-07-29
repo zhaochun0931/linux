@@ -82,8 +82,14 @@ While > overwrites data, the >> operator preserves data by appending to an exist
 
 
 
+# both commands below direct the output to /tmp/xxx file
+ls 1> /tmp/xxx
+ls > /tmp/xxx
 
 
+
+# this command will direct the error to the /tmp/error file and the normal output to /tmp/noerror
+ls 1 2 * 2> /tmp/error 1> /tmp/noerror
 
 
 
