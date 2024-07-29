@@ -3,6 +3,15 @@ apt install vim
 
 
 
+
+
+two modes:
+command mode
+insert mode
+
+
+
+
 # replace the character , with new line in the current line
 
 s/,/\r/g
