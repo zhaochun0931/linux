@@ -1,0 +1,5 @@
+The kernel, once it is loaded, finds init in sbin and executes it.
+
+When init starts, it becomes the parent or grandparent of all of the processes that start up automatically on
+your Linux system. The first thing init does, is reading its initialization file, /etc/inittab. This instructs
+init to read an initial configuration script for the environment
