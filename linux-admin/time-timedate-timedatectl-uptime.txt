@@ -44,3 +44,20 @@ System time is a time maintained by the operating system. Once the system has bo
 
 uptime
 
+
+
+
+
+
+
+
+
+
+
+
+
+timedatectl set-ntp 0
+
+
+
+
