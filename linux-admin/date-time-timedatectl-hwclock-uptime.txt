@@ -108,6 +108,11 @@ date +%H:%M:%S
 
 
 hwclock
+hwclock --systohc
+hwclock --hctosys
+
+
+
 
 
 
