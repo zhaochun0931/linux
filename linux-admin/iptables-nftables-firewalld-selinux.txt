@@ -304,6 +304,8 @@ ls -Z
 
 
 cat /etc/selinux/config
+SELINUX=disabled
+
 
 
 reboot to take effective
