@@ -1,0 +1,5 @@
+The proc file system contains many files that provide information about the
+current performance state of a Linux server.
+
+Every process that runs on Linux has a unique PID, and each of these processes builds its own environment
+
