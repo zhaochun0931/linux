@@ -1,0 +1,6 @@
+In earlier versions of RHEL, network bonding was the default method for creating aggregated network interfaces. 
+
+In RHEL 7, network teaming has been added as a solution. 
+
+The main difference between these two is that network bonding happened completely in user space, whereas in network teaming, the
+teamd daemon is added to allow interaction in user space as well. Even if both methods are still valid, network teaming is the preferred method.
