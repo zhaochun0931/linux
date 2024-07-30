@@ -297,6 +297,7 @@ setenforce 1
 sestatus
 getenforce
 
+ls -Z
 
 
 
