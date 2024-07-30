@@ -3,3 +3,40 @@ current performance state of a Linux server.
 
 Every process that runs on Linux has a unique PID, and each of these processes builds its own environment
 
+
+
+
+
+/proc
+
+/proc/sys
+
+
+
+
+To change a parameter, there are two methods:
+Use echo to write the new parameter to the kernel tunable file.
+Use sysctl -w to write the parameter to the kernel tunable.
+
+
+
+
+
+systemctl status systemd-sysctl.service
+
+During boot, the systemd-sysctl service is started. This service reads the sysctl configuration.
+
+
+/etc/sysctl.conf is the default configuration file. On RHEL 7, this file should be used no longer.
+
+sysctl settings are defined through files in /usr/lib/sysctl.d/, /run/sysctl.d/, and /etc/sysctl.d/
+
+
+
+
+
+
+
+To get an idea of all available tunables, you can use the sysctl -a command. This command lists all available tunables.
+
+
