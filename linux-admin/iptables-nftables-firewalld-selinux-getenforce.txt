@@ -273,3 +273,45 @@ nft list ruleset > /etc/sysconfig/nftables.conf
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# selinux
+
+# Temporarily Set SELinux to Permissive Mode
+setenforce 0
+
+
+setenforce 1
+sestatus
+getenforce
+
+
+
+
+
+
+cat /etc/selinux/config
+
+
+reboot to take effective
+
+
+
+
+
+
+
+
+
