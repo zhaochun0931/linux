@@ -66,6 +66,7 @@ cat /etc/resolv.conf
 
 
 ip address show
+ip address show eth0
 
 ip link show
 
