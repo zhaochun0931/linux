@@ -1,6 +1,10 @@
+-subj "/C=US/ST=State/L=City/O=Organization/OU=Unit/CN=example.com"
+
+
+
 # ca
 openssl genrsa -out ca.key
-openssl req -new -out ca.csr -key ca.key
+openssl req -new -out ca.csr -key ca.key -subj "CN=myca.com"
 openssl x509 -req -in ca.csr -out ca.crt -signkey ca.key
 
 # export to p12 format
@@ -16,7 +20,7 @@ openssl pkcs12 -export -in ca-cert.pem -inkey ca-key.pem -out ca.p12
 
 # server
 openssl genrsa -out server.key
-openssl req -new -out server.csr -key server.key
+openssl req -new -out server.csr -key server.key -subj "CN=myserver.com"
 openssl x509 -req -in server.csr -out server.crt -CA ca.crt -CAkey ca.key -CAcreateserial
 
 # export to p12 format
