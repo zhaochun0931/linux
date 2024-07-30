@@ -60,3 +60,14 @@ openssl s_client -CAfile ca-cert.pem
 openssl s_server -CAfile ca-cert.pem -cert server-cert.pem -key server-key.pem 
 openssl s_client -CAfile ca-cert.pem -cert client-cert.pem -key client-key.pem
 
+
+
+or configure the nginx with ssl
+
+change the /etc/hosts
+
+1.1.1.1 myserver.com
+
+
+curl --cacert ca-cert.pem --cert client-cert.pem --key client-key.pem https://myserver.com:8443
+curl --cacert ca-cert.pem  https://myserver.com:8443
