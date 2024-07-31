@@ -69,7 +69,39 @@ Hashing algorithms used to produce hashes in SSH are Message Authentication Code
 
 
 
+
+
 ssh username@host
 
 ssh 'username@email'@host
+
+
+
+
+
+
+
+
+
+create a pair of two keys consisting of a public and a private key
+
+ssh-keygen
+
+
+~/.ssh/id_rsa.pub - public key
+~/.ssh/id_rsa - private key
+
+
+# file *
+id_rsa:     OpenSSH private key
+id_rsa.pub: OpenSSH RSA public key
+#
+
+
+
+The public key does not need to be secret. It is used to verify the private key. The private key is secret.
+
+Copy the most recently modified public key to a remote machine you want to log into:
+ssh-copy-id username@localhost
+
 
