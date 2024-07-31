@@ -77,6 +77,21 @@ apt install xxx
 
 
 
+yum repolist
+yum list al
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
