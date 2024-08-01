@@ -61,8 +61,12 @@ nmap localhost
 
 
 
-# scan all ports, '-p-' scans all 65535 ports
+# scan all ports, '-p-' scans all 65535 ports, specify -p- to scan ports from 1 through 65535
 nmap -p- localhost
+nmap -p1-65535 localhost
+
+
+
 
 
 
