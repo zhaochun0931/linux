@@ -1,5 +1,6 @@
-Linux offers tools for managing and manipulating the transmission of packets. The Linux Traffic Control
-(TC) subsystem helps in policing, classifying, shaping, and scheduling network traffic. TC also mangles
+Linux offers tools for managing and manipulating the transmission of packets. 
+
+The Linux Traffic Control(TC) subsystem helps in policing, classifying, shaping, and scheduling network traffic. TC also mangles
 the packet content during classification by using filters and actions. The TC subsystem achieves this by
 using queuing disciplines (qdisc), a fundamental element of the TC architecture.
 
