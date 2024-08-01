@@ -54,6 +54,7 @@ apt install unzip
 
 # extract the zip file to the specific directory
 unzip xx.zip -d xx
+zip xx.zip 1.txt 2.txt
 
 
 
