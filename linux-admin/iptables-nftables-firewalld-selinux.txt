@@ -2,6 +2,83 @@ iptables -> firewalld -> nftables
 
 
 
+firewalld: Use the firewalld utility for simple firewall use cases. The utility is easy to use and covers the typical use cases for these scenarios.
+
+nftables: Use the nftables utility to set up complex and performance-critical firewalls, such as for a whole network.
+
+iptables: The iptables utility on Red Hat Enterprise Linux uses the nf_tables kernel API instead of the legacy back end. The nf_tables API provides backward compatibility so that scripts that use iptables commands still work on Red Hat Enterprise Linux.
+
+
+
+
+
+
+
+
+
+
+
+iptables -L
+
+
+
+--proto	-p proto
+--match	-m match
+--jump	-j target
+
+
+
+
+
+iptables -A INPUT -p tcp -m tcp --dport 5671 -j ACCEPT
+
+
+
+
+
+
+
+
+iptables -A INPUT -p tcp -m tcp --dport 5671 -j DROP
+# nc -vz localhost 5671
+no response after running this command
+
+
+
+
+
+
+iptables -A INPUT -p tcp -m tcp --dport 5671 -j REJECT
+reject-with icmp-port-unreachable
+
+# nc -vz localhost 5671
+nc: connect to localhost (127.0.0.1) port 5671 (tcp) failed: Connection refused
+#
+
+
+
+iptables --flush
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
