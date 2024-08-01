@@ -27,3 +27,37 @@ nc -l 8888 -q 10
 printf "GET / HTTP/1.0\r\n\r\n" | nc kubia-demo-svc-clusterip 8080
 
 echo -e  "GET / HTTP/1.0\r\n\r\n" | nc kubia-demo-svc-clusterip 8080
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nmap
+
+
+apt update
+apt install nmap -y
+
+
+
+
+
+
+
+
+nmap localhost
+
+
+
