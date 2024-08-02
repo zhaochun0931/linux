@@ -2,6 +2,12 @@ find . -type f -iname "1.txt"
 
 
 
+# find the normal files
+find . -maxdepth 1 -type f
+
+
+
+
 
 find . -type f -iname 1.txt -exec cat {} \;
 
