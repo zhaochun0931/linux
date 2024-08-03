@@ -100,3 +100,9 @@ dig www.google.com
 dig +trace www.google.com
 
 
+
+
+host www.google.com
+
+
+
