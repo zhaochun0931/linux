@@ -41,6 +41,7 @@ drwxr-xr-x 106 root root 4096 Oct 14 07:59 ..
 
 useradd -D
 
+useradd’s default values are stored in /etc/default/useradd
 
 # useradd -D
 GROUP=100
