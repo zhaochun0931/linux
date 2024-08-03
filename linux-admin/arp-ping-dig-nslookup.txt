@@ -1,3 +1,63 @@
+/etc/nsswitch.conf
+\|/
+\|/
+\|/
+/etc/hosts
+\|/
+\|/
+\|/
+/etc/resolv.conf
+
+
+
+hosts:      files dns myhostname
+
+
+
+In this context, the line hosts: files dns myhostname specifies the order in which the system will attempt to resolve hostnames:
+
+First, it will look at local files, like /etc/hosts.
+Next, it will query DNS servers.
+Finally, it will use the machine’s hostname.
+
+
+
+
+Well, you could on a small internal network that you controlled and which did not have very
+many IP addresses. But, the hosts(/etc/hosts) file is not a manageable solution on a large network,
+as it is an impossible task to keep it up to date. You could not have control
+over every IP address.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 arp
 
 
