@@ -134,6 +134,10 @@ This will decompress file.txt.bz2 and restore it to file.txt
 
 
 
+# gunzip
+
+gunzip xx.gz
+
 
 
 
