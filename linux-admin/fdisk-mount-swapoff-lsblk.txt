@@ -2,9 +2,29 @@ fdisk -l
 
 
 
+/proc/partitions
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 lsblk
 
+
+
+
+
+
+
+mount
 
