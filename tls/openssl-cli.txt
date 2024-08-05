@@ -106,13 +106,16 @@ openssl s_client -connect localhost:8443 -cert client-cert.pem -key client-key.p
 
 
 
-# Certificate files usually have a .pem or .crt extension
+# check certificate
+# certificate files usually have a .pem or .crt extension
 openssl x509 -in server.crt -text -noout
 
 
+# check csr
 openssl req -text -noout -verify -in server.csr
 
 
+# check private key
 openssl rsa -in server.key -check
 
 
