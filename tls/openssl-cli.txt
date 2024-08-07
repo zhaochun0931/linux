@@ -106,8 +106,7 @@ openssl s_client -connect localhost:8443 -cert client-cert.pem -key client-key.p
 
 
 
-# check certificate
-# certificate files usually have a .pem or .crt extension
+# check certificate, certificate files usually have a .pem or .crt extension
 openssl x509 -in server.crt -text -noout
 
 
