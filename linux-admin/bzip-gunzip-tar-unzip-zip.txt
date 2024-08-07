@@ -11,6 +11,12 @@ file test.tar.gz
 
 
 
+# extract to a new directory
+tar -xvzf test.tgz -C newdir
+
+
+
+
 
 
 
