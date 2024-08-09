@@ -1,0 +1,29 @@
+mTLS (Mutual TLS) is a security protocol that enhances standard TLS (Transport Layer Security) by requiring both the client and server to authenticate each other. Here’s a detailed overview:
+
+What is mTLS?
+Mutual TLS (mTLS) is an extension of TLS (which is used to secure communication between clients and servers) that adds an extra layer of authentication. In a typical TLS setup, the server presents a certificate to the client, and the client verifies the server's identity. In mTLS, both the client and the server authenticate each other using their respective certificates.
+
+
+
+
+
+How mTLS Works
+
+Server Authentication:
+The server presents its certificate to the client.
+The client verifies the server's certificate against trusted certificate authorities (CAs).
+
+Client Authentication:
+The client also presents its certificate to the server.
+The server verifies the client's certificate against its list of trusted CAs.
+
+
+
+
+
+
+
+
+Secure Communication:
+
+Once both parties are authenticated, a secure, encrypted communication channel is established using TLS.
