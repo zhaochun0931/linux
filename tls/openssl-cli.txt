@@ -80,9 +80,9 @@ Up till now, the self-signed certificate is successfully.
 
 
 # run below command in one terminal to set up an ssl server
-openssl s_server -key mytls.key  -cert mytls.crt -accept 8443
+openssl s_server -cert server.crt -key server.key -accept 8443
 
-# run below command in another terminal to connect the ssl server 
+# another terminal to connect the ssl server 
 openssl s_client -connect localhost:8443
 
 
@@ -98,7 +98,6 @@ openssl s_client -CAfile ~/myCA/intermediateCA/certs/ca-chain.cert.pem -cert cli
 
 
 
-openssl s_server -cert server-cert.pem -key server-key.pem -accept 8443
 openssl s_client -connect localhost:8443 -cert client-cert.pem -key client-key.pem -CAfile ca-cert.pem -debug -state -msg
 
 
