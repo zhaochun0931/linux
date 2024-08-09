@@ -12,6 +12,14 @@ openssl s_client -connect localhost:443 -tls1_1
 
 
 
+openssl ciphers
+openssl ciphers -s -tls1_3
+
+
+
+
+
+
 
 # generate private key and public key
 openssl genpkey -algorithm RSA -out mytls.key -outpubkey mytls.pem -outform PEM
