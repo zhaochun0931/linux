@@ -9,7 +9,7 @@ An important field is Common Name, which should be the exact Fully Qualified D
 
 
 
-We can also create both the private key and CSR with a single command:
+# create both the private key and CSR with a single command
 openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr
 
 
