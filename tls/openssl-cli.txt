@@ -90,8 +90,8 @@ openssl s_client -connect localhost:8443
 
 
 
-openssl s_server -cert server.cert.pem -key server.key -CAfile ~/myCA/intermediateCA/certs/ca-chain.cert.pem
-openssl s_client -CAfile ~/myCA/intermediateCA/certs/ca-chain.cert.pem -cert client.cert.pem -key client.key
+openssl s_server -cert server.cert.pem -key server.key -CAfile ca.crt
+openssl s_client -connect localhost:8443 -CAfile ca.crt -cert client.cert.pem -key client.key
 
 
 
