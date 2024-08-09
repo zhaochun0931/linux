@@ -115,8 +115,7 @@ openssl req -text -noout -verify -in server.csr
 
 
 # check private key
-openssl rsa -in server.key -check
-
+openssl rsa -check -in server.key
 
 
 # verify public key, The public key contained in a private key and a certificate must be the same
