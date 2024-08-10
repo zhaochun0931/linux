@@ -23,12 +23,21 @@ public key
 openssl genrsa -out server.key
 
 
+
+# create CSR
 #If we want our certificate signed, we need a certificate signing request (CSR), create a CSR (domain.csr) from our existing private key, the important field is Common Name, which should be the exact Fully Qualified Domain Name (FQDN) of our domain. A challenge password and An optional company name can be left empty
 openssl req -key server.key -new -out server.csr
 
 
+
 # or create both the private key and CSR with a single command
 openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr
+
+
+
+
+
+
 
 
 
@@ -80,9 +89,18 @@ openssl req -key server.key -new -x509 -out server.crt
 
 
 
+
+
+
+
+
+
+
+
 # create a private key and a self-signed certificate with just a single command:
-openssl req -nodes -x509 -newkey rsa:2048 -keyout server.key -out server.crt
-openssl req -nodes -x509 -newkey rsa:4096 -sha3-256 -keyout server.key -out server.crt
+openssl req -x509 -nodes -newkey rsa:2048 -keyout server.key -out server.crt
+openssl req -x509 -noenc -newkey rsa:2048 -keyout server.key -out server.crt
+openssl req -x509 -nodes -newkey rsa:4096 -sha3-256 -keyout server.key -out server.crt
 
 
 
@@ -106,10 +124,6 @@ openssl s_server -accept 8443 -cert server.crt -key server.key
 
 # then open another terminal to use openssl s_client to connect to test server on port 8443:
 openssl s_client -connect localhost:8443
-
-
-
-
 openssl s_client -connect localhost:10334 -tls1_3
 
 
