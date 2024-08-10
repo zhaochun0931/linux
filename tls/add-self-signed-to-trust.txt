@@ -1,0 +1,13 @@
+cp /tmp/server.crt /usr/local/share/ca-certificates
+
+update-ca-certificates
+
+
+ls /etc/ssl/certs/
+
+
+
+
+
+
+curl --cert server.crt --key server.key https://xiaoming.com
