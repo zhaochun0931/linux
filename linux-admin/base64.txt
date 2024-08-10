@@ -5,7 +5,13 @@ base64 is a binary-to-text encoding scheme that represents binary data in an ASC
 
 Let's encode and decode a simple string "hello" using Base64:
 
-Encoding (Text to Base64):
+
+
+# Encoding (Text to Base64):
+
+
+
+
 Original text: hello
 Base64 encoded: aGVsbG8K
 
@@ -16,7 +22,17 @@ aGVsbG8K
 
 
 
-Decoding (Base64 to Text):
+
+
+
+# Decoding (Base64 to Text):
+
+
+base64 -d
+base64 --decode
+
+
+
 
 Base64 encoded: aGVsbG8K
 Decoded text: helo
@@ -24,3 +40,11 @@ Decoded text: helo
 # echo aGVsbG8K | base64 --decode
 hello
 #
+
+
+
+
+
+
+
+
