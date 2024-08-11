@@ -17,6 +17,9 @@ subjectAltName = @alt_names
 [ alt_names ]
 DNS.1 = *.example.com
 DNS.2 = example.com
+IP.1 = 192.168.1.1
+IP.2 = 192.168.1.2
+
 
 [ v3_ca ]
 subjectAltName = @alt_names
