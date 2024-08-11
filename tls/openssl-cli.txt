@@ -203,9 +203,17 @@ openssl rsa -in server.key -pubout
 
 
 
-# convert the public crt and the private key to pfx(pkcs12) format
-openssl pkcs12 -export -in server.crt -inkey server.key -out server.p12 -name "certificate"
+# convert the public crt and the private key to pfx(pkcs12) format, you should set the export password for pfx file
+openssl pkcs12 -export -in server.crt -inkey server.key -out server.p12 -name aliasname
 
+
+
+
+
+# check pfx/p12 file
+openssl pkcs12 -info -in server.p12
+
+you must Enter PEM pass phrase, such as 'password'
 
 
 
