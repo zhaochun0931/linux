@@ -4,7 +4,7 @@
 
 # ca
 openssl genrsa -out ca-key.pem
-openssl req -new -out ca-req.csr -key ca-key.pem -subj "/CN=myca.com"
+openssl req -new -out ca-req.csr -key ca-key.pem -subj "/CN=myca"
 openssl x509 -req -in ca-req.csr -out ca-cert.pem -signkey ca-key.pem
 
 # export to p12 format
