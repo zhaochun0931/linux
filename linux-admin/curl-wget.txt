@@ -1,3 +1,5 @@
+# To download a file using curl, use the -O (uppercase o) option to save the file with its original name
+
 curl -O xxx
 curl -i --cacert tls.crt --key tls.key https://localhost:8080/geode/v1
 
