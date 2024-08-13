@@ -218,3 +218,8 @@ you must Enter PEM pass phrase, such as 'password'
 
 
 
+
+# 
+openssl verify -CAfile testca/ca_certificate.pem server/server_certificate.pem
+
+
