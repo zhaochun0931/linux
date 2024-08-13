@@ -27,3 +27,7 @@ find . -type f -iname "*txt" -exec cat {} \;
 
 # find files in last 30mins
 find . -mmin -30
+
+
+# 1 day before
+find . -atime -1
