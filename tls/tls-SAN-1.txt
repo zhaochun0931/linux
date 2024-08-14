@@ -7,7 +7,6 @@ working
 
 # generate ca
 
-export caname=www.ca.com
 
 # generate the private key without the password
 openssl genrsa -out ca.key
@@ -17,9 +16,7 @@ openssl genrsa -out ca.key -des3 --passout pass:xxxyyy
 
 
 
-
-
-openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$caname"
+openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=myca"
 
 
 
@@ -41,8 +38,7 @@ openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "
 
 # generate server key
 
-export servername=www.xiaoming.com
-
+export servername=xiaoming.com
 openssl genrsa -out tls.key
 
 openssl req -new -sha256 -key tls.key \
@@ -103,18 +99,7 @@ openssl x509 -req -extfile <(printf "subjectAltName=DNS:$servername,IP:1.1.1.1")
 
 
 
-# verification
 
-openssl verify -CAfile ca.crt tls.crt
-openssl x509 -noout --text -in tls.crt
-openssl rsa -pubout -in ca.key
-openssl x509 -pubkey -noout -in ca.crt
-
-
-
-
-openssl x509 -noout -modulus -in tls.crt | openssl md5
-openssl rsa -noout -modulus -in tls.key | openssl md5
 
 
 
