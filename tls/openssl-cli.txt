@@ -219,7 +219,25 @@ you must Enter PEM pass phrase, such as 'password'
 
 
 
-# 
+# verification
+
 openssl verify -CAfile testca/ca_certificate.pem server/server_certificate.pem
+
+
+openssl x509 -noout --text -in tls.crt
+openssl x509 -noout -modulus -in tls.crt | openssl md5
+
+openssl rsa -pubout -in tls.key
+openssl rsa -noout -modulus -in tls.key | openssl md5
+
+
+openssl x509 -pubkey -noout -in ca.crt
+
+
+
+
+
+
+
 
 
