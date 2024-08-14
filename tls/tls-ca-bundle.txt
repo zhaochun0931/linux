@@ -7,9 +7,6 @@ openssl genrsa -out ca-key.pem
 openssl req -new -out ca-req.csr -key ca-key.pem -subj "/CN=myca"
 openssl x509 -req -in ca-req.csr -out ca-cert.pem -signkey ca-key.pem
 
-# export to p12 format
-openssl pkcs12 -export -in ca-cert.pem -inkey ca-key.pem -out ca.p12
-
 
 
 
@@ -23,8 +20,7 @@ openssl genrsa -out server-key.pem
 openssl req -new -out server-req.csr -key server-key.pem -subj "/CN=myserver.com"
 openssl x509 -req -in server-req.csr -out server-cert.pem -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial
 
-# export to p12 format
-openssl pkcs12 -export -in server-cert.pem -inkey server-key.pem -out server.p12
+
 
 
 
@@ -39,10 +35,6 @@ openssl pkcs12 -export -in server-cert.pem -inkey server-key.pem -out server.p12
 openssl genrsa -out client-key.pem
 openssl req -new -out client-req.csr -key client-key.pem -subj "/CN=myclient.com"
 openssl x509 -req -in client-req.csr -out client-cert.pem -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial
-
-# export to p12 format
-openssl pkcs12 -export -in client-cert.pem -inkey client-key.pem -out client.p12
-
 
 
 
