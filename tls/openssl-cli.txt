@@ -210,6 +210,9 @@ openssl pkcs12 -export -in server.crt -inkey server.key -out server.p12 -name al
 
 
 
+
+
+
 # check pfx/p12 file
 openssl pkcs12 -info -in server.p12
 
