@@ -38,7 +38,7 @@ openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "
 
 # generate server key
 
-export servername=xiaoming.com
+export servername=xiaomingxyz
 openssl genrsa -out tls.key
 
 openssl req -new -sha256 -key tls.key \
