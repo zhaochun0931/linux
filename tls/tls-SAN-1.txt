@@ -58,7 +58,7 @@ openssl req -new -sha256 -key tls.key \
 openssl req -new -sha256 -key tls.key \
 -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$servername" \
 -reqexts SAN \
--config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:$servername,IP:1.1.1.1\n")) \
+-config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:$servername,IP:10.211.55.11\n")) \
 -out tls.csr
 
 # cannot add the space between the "<" and the "(print" in above command
