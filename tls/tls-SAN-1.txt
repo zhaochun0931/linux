@@ -38,14 +38,20 @@ openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "
 
 # generate server key
 
-export SERVERNAME=xiaomingxyz
+export SERVERNAME1=xiaomingxxx
+export SERVERNAME2=xiaomingyyy
+export SERVERNAME3=xiaomingzzz
+export SERVERNAME3=*.xiaoming
+
+
+
 
 openssl genrsa -out tls.key
 
 openssl req -new -sha256 -key tls.key \
 -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$SERVERNAME" \
 -reqexts SAN \
--config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:$SERVERNAME,IP:10.211.55.11\n")) \
+-config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:$SERVERNAME1,DNS:$SERVERNAME2,DNS:$SERVERNAME3,IP:10.211.55.11\n")) \
 -out tls.csr
 
 # cannot add the space between the "<" and the "(print" in above command
@@ -57,7 +63,7 @@ openssl req -new -sha256 -key tls.key \
 
 
 # sign csr with the ca
-openssl x509 -req -extfile <(printf "subjectAltName=DNS:$SERVERNAME,IP:10.211.55.11") -days 365 \
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:$SERVERNAME1,DNS:$SERVERNAME2,DNS:$SERVERNAME3,IP:10.211.55.11") -days 365 \
 -in tls.csr \
 -CA ca.crt -CAkey ca.key -CAcreateserial \
 -out tls.crt -sha256
