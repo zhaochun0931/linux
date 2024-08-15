@@ -1,3 +1,10 @@
+# add the self signed certificat to trust store in Ubuntu linx
+
+
+
+
+
+
 cp /tmp/server.crt /usr/local/share/ca-certificates
 
 update-ca-certificates
