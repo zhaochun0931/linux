@@ -49,7 +49,7 @@ export SERVERNAME3=*.xiaoming
 openssl genrsa -out tls.key
 
 openssl req -new -sha256 -key tls.key \
--subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$SERVERNAME" \
+-subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$SERVERNAME1" \
 -reqexts SAN \
 -config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:$SERVERNAME1,DNS:$SERVERNAME2,DNS:$SERVERNAME3,IP:10.211.55.11\n")) \
 -out tls.csr
