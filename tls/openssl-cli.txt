@@ -182,8 +182,16 @@ openssl s_client -connect localhost:8443 -cert client-cert.pem -key client-key.p
 
 
 
-# check certificate
-openssl x509 -in server.crt -text -noout
+# check crt
+# extract the public key, the public key contained in a private key and a certificate must be the same
+
+openssl x509 -text -noout -in tls.crt 
+openssl x509 -noout -modulus -in tls.crt | openssl md5
+openssl x509 -noout -pubkey -in tls.crt 
+
+
+
+
 
 
 # check csr
@@ -194,22 +202,15 @@ openssl req -text -noout -verify -in tls.csr
 
 
 # check private key
-openssl rsa -check -in server.key
-
-
-
-# check crt
-openssl x509 -noout --text -in tls.crt
-openssl x509 -noout -modulus -in tls.crt | openssl md5
-
+openssl rsa -check -in tls.key
 openssl rsa -pubout -in tls.key
 openssl rsa -noout -modulus -in tls.key | openssl md5
 
 
 
-# verify public key, The public key contained in a private key and a certificate must be the same
-openssl x509 -in server.crt -noout -pubkey
-openssl rsa -in server.key -pubout
+
+
+
 
 
 
@@ -310,7 +311,6 @@ keytool -import -alias tls -file tls.crt -storetype JKS -keystore tls-ts.jks -st
 
 
 
-openssl rsa -noout -modulus -in ca.key | openssl md5
 
 
 
