@@ -244,3 +244,64 @@ openssl x509 -pubkey -noout -in ca.crt
 
 
 
+
+
+# how to verify the certificate
+
+openssl s_server -cert tls.crt -key tls.key -accept 8443
+
+openssl s_client -connect localhost:8443 -CAfile ca.crt
+
+
+
+
+
+
+
+
+
+
+
+
+
+public cert and private key pair
+|
+|
+|
+\/
+\/
+pfx
+|
+|
+|
+\/
+\/
+jks
+
+
+
+
+
+# convert public cert and key pair to pfx
+openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.p12
+openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.p12 -password pass:password
+
+
+# convert the pfx to java keystore
+keytool -importkeystore -srckeystore tls.p12 -srcstoretype pkcs12 -destkeystore tls.jks
+
+# import the certificate to java truststore
+keytool -import -alias tls -file tls.crt -storetype JKS -keystore tls-ts.jks -storepass password
+
+
+
+
+
+openssl rsa -noout -modulus -in ca.key | openssl md5
+
+
+
+
+
+
+
