@@ -38,27 +38,14 @@ openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "
 
 # generate server key
 
-export servername=xiaomingxyz
+export SERVERNAME=xiaomingxyz
+
 openssl genrsa -out tls.key
 
 openssl req -new -sha256 -key tls.key \
--subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$servername" \
+-subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$SERVERNAME" \
 -reqexts SAN \
--config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:$servername\n")) \
--out tls.csr
-
-
-
-
-
-
-
-
-
-openssl req -new -sha256 -key tls.key \
--subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$servername" \
--reqexts SAN \
--config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:$servername,IP:10.211.55.11\n")) \
+-config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:$SERVERNAME,IP:10.211.55.11\n")) \
 -out tls.csr
 
 # cannot add the space between the "<" and the "(print" in above command
@@ -70,14 +57,7 @@ openssl req -new -sha256 -key tls.key \
 
 
 # sign csr with the ca
-
-openssl x509 -req -extfile <(printf "subjectAltName=DNS:$servername") -days 365 \
--in tls.csr \
--CA ca.crt -CAkey ca.key -CAcreateserial \
--out tls.crt -sha256
-
-
-openssl x509 -req -extfile <(printf "subjectAltName=DNS:$servername,IP:10.211.55.11") -days 365 \
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:$SERVERNAME,IP:10.211.55.11") -days 365 \
 -in tls.csr \
 -CA ca.crt -CAkey ca.key -CAcreateserial \
 -out tls.crt -sha256
@@ -113,31 +93,14 @@ openssl pkcs12 -export -in ca.crt -inkey ca.key -out ca.pfx
 
 
 
-# add the pfx to the trusted root certification authorities
+# add the pfx to the trusted root certification authorities in windows
 
 
 # add the entry for the www.xiaoming.com in the /etc/hosts or windows hosts files
-1.1.1.1 www.xiaoming.com
+10.211.55.11 xiaomingxzy
 
 
-# successfully visit https://www.xiaoming.com from the browser
-
-
-
-
-
-
-
-
-
-
-
-
-# how to verify the certificate
-
-openssl s_server -cert tls.crt -key tls.key -accept 8443
-
-openssl s_client -connect localhost:8443 -CAfile ca.crt
+# successfully visit https://xiaomingxyz from the browser
 
 
 
@@ -149,39 +112,3 @@ openssl s_client -connect localhost:8443 -CAfile ca.crt
 
 
 
-
-
-public cert and private key pair
-|
-|
-|
-\/
-\/
-pfx
-|
-|
-|
-\/
-\/
-jks
-
-
-
-
-
-# convert public cert and key pair to pfx
-openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.p12
-openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.p12 -password pass:password
-
-
-# convert the pfx to java keystore
-keytool -importkeystore -srckeystore tls.p12 -srcstoretype pkcs12 -destkeystore tls.jks
-
-# import the certificate to java truststore
-keytool -import -alias tls -file tls.crt -storetype JKS -keystore tls-ts.jks -storepass password
-
-
-
-
-
-openssl rsa -noout -modulus -in ca.key | openssl md5
