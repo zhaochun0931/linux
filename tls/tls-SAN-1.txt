@@ -19,6 +19,10 @@ openssl genrsa -out ca.key -des3 --passout pass:xxxyyy
 openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=myca"
 
 
+# ll ca.*
+-rw-r--r-- 1 root root 1277 Aug 20 03:26 ca.crt
+-rw------- 1 root root 1704 Aug 20 03:26 ca.key
+#
 
 # Up till now, the ca.crt and the ca.key are successfully generated.
 
