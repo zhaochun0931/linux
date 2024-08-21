@@ -49,6 +49,28 @@ sed -i "s/xxx/$password/g" filename
 
 
 
+You can use sed to print a specific range of lines from a file.
+
+
+sed -n '10,20p' filename
+
+-n: Suppresses automatic printing.
+'10,20p': Specifies that lines 10 to 20 should be printed.
+
+
+
+
+
+awk 'NR>=10 && NR<=20' filename
+NR: A built-in variable in awk that represents the current line number.
+NR>=10 && NR<=20: Specifies the range of lines to be printed.
+
+
+
+
+
+
+
 
 
 
