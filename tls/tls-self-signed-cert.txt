@@ -2,12 +2,10 @@ private key
 |
 |
 |
-\|/
 public key
 |
 |
 |
-\|/
 (certificate signing request)CSR
 
 
@@ -20,18 +18,18 @@ public key
 
 
 # create a private key
-openssl genrsa -out server.key
+openssl genrsa -out tls.key
 
 
 
 # create CSR
 #If we want our certificate signed, we need a certificate signing request (CSR), create a CSR (domain.csr) from our existing private key, the important field is Common Name, which should be the exact Fully Qualified Domain Name (FQDN) of our domain. A challenge password and An optional company name can be left empty
-openssl req -key server.key -new -out server.csr
+openssl req -key tls.key -new -out tls.csr
 
 
 
 # or create both the private key and CSR with a single command
-openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr
+openssl req -newkey rsa:2048 -nodes -keyout tls.key -out tls.csr
 
 
 
@@ -53,7 +51,7 @@ openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr
 # It can be used to encrypt data just as well as CA-signed certificates, but our users will be shown a warning that says the certificate isn't trusted.
 
 # create a self-signed certificate (domain.crt) with our existing private key and CSR:
-openssl x509 -signkey server.key -in server.csr -req -days 365 -out server.crt
+openssl x509 -signkey tls.key -in tls.csr -req -days 365 -out tls.crt
 
 
 
