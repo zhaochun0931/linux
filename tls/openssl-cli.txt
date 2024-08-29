@@ -317,3 +317,9 @@ keytool -import -alias tls -file tls.crt -storetype JKS -keystore tls-ts.jks -st
 
 
 
+# list the alias or the entries in PKCS#12 file
+openssl pkcs12 -info -in keystore.p12 -legacy
+
+
+
+
