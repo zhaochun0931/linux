@@ -56,6 +56,16 @@ openssl x509 -signkey tls.key -in tls.csr -req -days 365 -out tls.crt
 
 
 
+# Up till now, you have a private key and a self signed cert
+
+
+
+
+
+
+
+
+
 
 
 
@@ -68,7 +78,7 @@ openssl x509 -signkey tls.key -in tls.csr -req -days 365 -out tls.crt
 
 # or just one command to create a cert and a private key in a single command, this command will create a temporary CSR. We still have the CSR information prompt, of course.
 # We can create a self-signed certificate with just a private key:
-openssl req -key server.key -new -x509 -out server.crt
+openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out certificate.pem 
 
 
 
