@@ -18,3 +18,41 @@ The most common algorithms used to generate public keys are:
 Rivest–Shamir–Adleman (RSA)
 Elliptic curve cryptography (ECC)
 Digital signature algorithm (DSA)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+An SSL certificate contains four components that are important to SSL configuration:
+
+Private key: used when encrypting data sent from the server to the client. Data encrypted with the private key can only be deciphered using the public key. 
+
+
+Public key: used when encrypting data sent from client to server (such as the session key). Data encrypted with the public key can only be decrypted using the private key. The public key is shared with all clients during the SSL handshake that occurs during SSL connection establishment. Public keys of trusted certificates are contained in the trust store.
+
+
+Signature: serves both to prevent certificate tampering and to establish trust for the certificate. The signature is a hash of other key parts of the certificate that is then encrypted using the private key of either the same certificate (for a self-signed certificate) or a certificate authority (CA) such as Verisign. If a CA signs a certificate, the certificate will also contain the certificate(s) of the signer(s) in a certificate chain. The certificate at the end of a certificate chain (the root CA) must be trusted for the certificate to be accepted.
+
+
+Common name (CN): usually the name of the host being authenticated. The HTTPS protocol requires that the CN in the certificate matches the host name in the HTTPS URL. 
+
+
+
+
