@@ -1,3 +1,5 @@
+# netcat
+
 apt install -y netcat
 
 nc -v -z localhost 80
@@ -44,7 +46,14 @@ echo -e  "GET / HTTP/1.0\r\n\r\n" | nc kubia-demo-svc-clusterip 8080
 
 
 
-nmap
+
+
+
+
+
+
+
+# nmap
 
 
 apt update
