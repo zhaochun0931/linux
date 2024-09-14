@@ -68,6 +68,9 @@ apt install nmap -y
 
 nmap localhost
 
+# operating system detection
+nmap -O <target>
+
 
 
 # scan all ports, '-p-' scans all 65535 ports, specify -p- to scan ports from 1 through 65535
