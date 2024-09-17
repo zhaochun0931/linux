@@ -1,6 +1,21 @@
 # netcat
 
+# On Ubuntu, there are two versions of Netcat available: netcat and netcat-openbsd. The netcat-openbsd package is generally preferred because it’s the OpenBSD variant, which is more actively maintained and has more features.
+
+
+# Installing netcat might install either netcat-openbsd or netcat-traditional, depending on which package is available and preferred by your system.
+
+
+
+
 apt install -y netcat
+apt install -y netcat-openbsd
+apt install -y netcat-traditional
+
+
+
+
+
 
 nc -v -z localhost 80
 
