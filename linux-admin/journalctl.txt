@@ -1,0 +1,7 @@
+journalctl
+
+journalctl -u <service_name>
+journalctl -u docker.service
+
+
+journalctl -f
