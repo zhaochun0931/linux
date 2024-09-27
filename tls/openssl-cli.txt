@@ -323,3 +323,13 @@ openssl pkcs12 -info -in keystore.p12 -legacy
 
 
 
+
+
+
+
+
+
+
+
+# generate the 3k size file
+openssl rand -out random_file.txt -hex 1536
