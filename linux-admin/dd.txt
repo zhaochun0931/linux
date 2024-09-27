@@ -2,3 +2,9 @@ dd if=/dev/null of=/tmp/xx bs=10M count=1
 
 
 dd if=/dev/zero of=/tmp/xx bs=10M count=1
+
+
+dd if=/dev/zero of=myfile.txt bs=1K count=3
+
+bs=1K sets the block size to 1 kilobyte.
+count=3 means to write 3 blocks, resulting in a total size of 3 KB.
