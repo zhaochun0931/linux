@@ -18,6 +18,17 @@ create a new file system
 |
 |
 mount the new file system to mount point
+|
+|
+|
+umount the file system which is no longer in use
+
+
+
+
+
+
+
 
 
 
