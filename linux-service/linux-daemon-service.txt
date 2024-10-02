@@ -30,3 +30,50 @@ strings /sbin/init | egrep -i systemd
 
 
 
+
+Checking services for SysVinit systems
+|
+|
+|
+Checking services for Upstart systems
+|
+|
+|
+Checking services for systemd systems
+
+
+
+chkconfig --list
+
+
+
+
+systemctl list-unit-files --type=service
+
+
+
+
+
+
+
+
+
+
+
+Stopping and starting SysVinit services
+|
+|
+|
+Stopping and starting Upstart services
+|
+|
+|
+Stopping and starting systemd services
+
+service
+
+initctl
+
+systemctl status sshd
+
+
