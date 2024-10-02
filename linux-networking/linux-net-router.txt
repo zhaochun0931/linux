@@ -1,4 +1,7 @@
 If you have more than one network interface on a computer (typically two or more NICs), you can confi gure Linux as a router. 
+When a Linux system is used as a router, it is often used as a fi rewall between a private network and a public network, such as the Internet, as well.
+
+
 
 To make this happen, all that is needed is a change to one kernel parameter that allows packet forwarding. 
 
