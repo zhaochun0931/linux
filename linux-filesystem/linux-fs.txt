@@ -5,6 +5,13 @@ cat /proc/filesystems
 
 
 
+|--- ext3
+|--- ext2
+|--- ext4
+
+
+
+
 
 
 
