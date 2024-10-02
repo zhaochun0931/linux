@@ -1,4 +1,14 @@
+To see filesystem types that are loaded in your kernel, type cat /proc/filesystems
+
 cat /proc/filesystems
+
+
+
+
+
+
+
+
 
 uname -r
 
