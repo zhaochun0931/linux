@@ -1,0 +1,1 @@
+Security Enhanced Linux (SELinux), SELinux is a security enhancement module deployed on top of Linux.
