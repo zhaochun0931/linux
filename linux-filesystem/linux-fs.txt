@@ -181,3 +181,11 @@ dd if=/dev/zero of=/tmp/file1 bs=1M count=100
 
 
 swap partition
+
+
+Enabling swap areas
+
+A swap area is an area of the disk that is made available to Linux if the system runs out of memory (RAM). If your RAM is full and you try to start another application without a swap area, that application will fail.
+With a swap area, Linux can temporarily swap out data from RAM to the swap area and then get it back when needed. You take a performance hit, but it is better than having processes fail.
+
+
