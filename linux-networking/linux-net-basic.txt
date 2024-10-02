@@ -8,15 +8,20 @@ configure the network
 |
 |
 |
+test the route
+|
+|
+|
 test the network
 
 
 
 
 
-
+traceroute (apt install traceroute, apt install inetutils-traceroute)
 route (apt install net-tools)
 ping (apt-get install -y net-tools)
+hostname
 
 
 
