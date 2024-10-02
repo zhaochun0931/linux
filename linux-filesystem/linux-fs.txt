@@ -5,6 +5,24 @@ cat /proc/filesystems
 
 
 
+create a new file system
+|
+|
+|
+mount the new file system to mount point
+
+
+
+mkfs
+
+
+
+
+
+
+
+
+
 
 
 Using the /etc/fstab file to define mountable file systems
@@ -173,7 +191,6 @@ partprobe
 
 
 
-mkfs
 fsck
 
 mount
