@@ -12,6 +12,10 @@ Using the /etc/fstab file to define mountable file systems
 |
 |
 Using the mount command to mount file systems
+|
+|
+|
+Using the umount command (To use umount, you can give it either a directory name or a device name)
 
 
 
