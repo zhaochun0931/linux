@@ -37,3 +37,11 @@ sestatus
 
 To change the mode setting, you can use the setenforce newsetting, where newsetting is either 0 (permissive) or 1 (enforcing)
 
+
+
+
+
+
+To disable SELinux, you must edit the SELinux confi guration file. Rebooting the system always changes the mode back to what is set in that confi guration file. 
+The preferred method of changing the SELinux mode is to modify the configuration file and then reboot the system.
+
