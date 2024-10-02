@@ -16,6 +16,10 @@ Using the mount command to mount file systems
 
 
 
+Linux systems automatically run mount -a (mount all filesystems from the /etc/fstab file) each time you boot.
+
+
+
 
 
 uname -r
