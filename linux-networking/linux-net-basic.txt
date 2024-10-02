@@ -1,7 +1,24 @@
 # Ubuntu
-
 /etc/lsb-release
 /etc/os-release
+
+
+
+# centos
+
+# traditional network configuration file
+/etc/sysconfig/network-scripts
+/etc/sysconfig/network-scripts/ifcfg-eth0
+
+NetworkManager stored network profiles in ifcfg format in this directory (/etc/sysconfig/network-scripts/). However, the ifcfg format is deprecated
+
+
+
+
+/etc/NetworkManager/system-connections
+
+
+
 
 
 configure the network
@@ -81,9 +98,7 @@ lshw -class network
 
 
 
-# traditional network configuration file
-/etc/sysconfig/network-scripts
-/etc/sysconfig/network-scripts/ifcfg-eth0
+
 
 
 Global network configuration information affecting each interface is stored in the file /etc/sysconfig/network
