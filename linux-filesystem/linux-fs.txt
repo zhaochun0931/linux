@@ -5,6 +5,14 @@ cat /proc/filesystems
 
 
 
+
+
+
+
+create a partitioned disk
+|
+|
+|
 create a new file system
 |
 |
