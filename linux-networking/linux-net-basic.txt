@@ -4,6 +4,25 @@
 /etc/os-release
 
 
+configure the network
+|
+|
+|
+test the network
+
+
+
+
+
+
+route (apt install net-tools)
+ping (apt-get install -y net-tools)
+
+
+
+
+
+
 
 
 # cat /etc/os-release
@@ -29,7 +48,7 @@ REDHAT_SUPPORT_PRODUCT_VERSION="8.7"
 
 
 # The net-tools provide network monitoring tools such as ifconfig, ping, and netstat 
-apt-get install -y net-tools
+
 
 # The lsof allows listing and gathering information about open files, network connections, and the processes that have them open
 apt-get install -y lsof
