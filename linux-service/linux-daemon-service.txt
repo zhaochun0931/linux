@@ -1,0 +1,32 @@
+SysVinit
+|
+|
+|
+Systemd
+
+
+
+
+
+The Linux kernel has a process ID (PID) of 0. Thus, the initialization process (init or systemd) daemon has a parent process ID (PPID) of 0, and a PID of 1.
+
+
+
+
+
+The Linux init daemon was based upon the UNIX System V init daemon. Thus, it is called the SysVinit daemon. However, it was not the only classic init daemon. The init daemon is not part of the Linux kernel. 
+Therefore, it can come in different fl avors, and Linux distributions can choose which fl avor to use. Another classic init daemon was based on Berkeley UNIX, also called BSD. 
+Therefore, the two original Linux init daemons were BSD init and SysVinit.
+
+
+
+
+
+
+strings /sbin/init | egrep -i upstart
+strings /sbin/init | egrep -i systemd
+
+
+
+
+
