@@ -17,13 +17,21 @@ create a new swap area
 |
 |
 enable the swap area temporarily
+|
+|
+|
+enable the swap area permanently
+|
+|
+|
+disable the swap area
 
 
 
 
-To create a swap area from a partition or a file, use the mkswap command. 
 
-To temporarily enable that swap area, you can use the swapon command.
+
+To create a swap area from a partition or a file, use the mkswap command.  To temporarily enable that swap area, you can use the swapon command.
 
 
 
@@ -55,3 +63,18 @@ Swap:           3071          51        3020
 
 
 2047 + 1024 = 3071
+
+
+
+
+# swapoff /tmp/my-swap
+
+
+
+
+
+
+
+
+
+enable the swap area permanent, you need to add it to your /etc/fstab file
