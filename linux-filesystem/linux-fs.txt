@@ -7,6 +7,14 @@ cat /proc/filesystems
 
 
 
+Using the /etc/fstab file to define mountable file systems
+|
+|
+|
+Using the mount command to mount file systems
+
+
+
 
 
 
@@ -162,7 +170,6 @@ fsck
 
 mount
 
-/etc/fstab
 /etc/mtab
 
 
