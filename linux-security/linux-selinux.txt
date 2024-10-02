@@ -1,1 +1,39 @@
 Security Enhanced Linux (SELinux), SELinux is a security enhancement module deployed on top of Linux.
+
+
+SELinux confi gurations can only be set and modifi ed by the root user. Configuration and policy files are located in the /etc/selinux directory. The primary configuration file is the /etc/selinux/config file.
+
+
+cat /etc/selinux/config
+
+
+
+
+check selinux mode
+|
+|
+|
+configure selinux mode
+
+
+
+
+To see SELinux’s current mode on your system, use the getenforce command. 
+
+getenforce
+
+
+
+
+
+
+
+To see both the current mode and the mode set in the confi guration fi le, use the sestatus command.
+
+sestatus
+
+
+
+
+To change the mode setting, you can use the setenforce newsetting, where newsetting is either 0 (permissive) or 1 (enforcing)
+
