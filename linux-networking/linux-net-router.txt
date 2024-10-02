@@ -1,0 +1,38 @@
+If you have more than one network interface on a computer (typically two or more NICs), you can confi gure Linux as a router. 
+
+To make this happen, all that is needed is a change to one kernel parameter that allows packet forwarding. 
+
+To turn on the ip_forward parameter immediately and temporarily, type the following as root:
+
+
+
+temporarily enable the packet forward
+|
+|
+|
+permanently enable the packet forward
+
+
+
+
+
+
+[root@centos sysconfig]# cat /proc/sys/net/ipv4/ip_forward
+0
+[root@centos sysconfig]# echo 1 > /proc/sys/net/ipv4/ip_forward
+[root@centos sysconfig]#
+[root@centos sysconfig]# cat /proc/sys/net/ipv4/ip_forward
+1
+[root@centos sysconfig]#
+
+
+
+Packet forwarding (routing) is disabled by default, with the value of ip_forward set to 0. By setting it to 1, packet forwarding is immediately enabled.
+
+
+
+
+
+
+To make this change permanent, you must add that value to the /etc/sysctl.conf fi le, so it appears as follows:
+net.ipv4.ip_forward = 1
