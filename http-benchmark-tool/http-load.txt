@@ -1,1 +1,10 @@
 sudo apt-get install http-load
+
+
+
+
+http_load -num 100 -con 10 http://example.com/index.html
+
+-num 100: Specifies the total number of requests to send.
+-con 10: Specifies the number of concurrent connections to use.
+http://example.com/index.html: The URL you want to test.
