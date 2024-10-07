@@ -1,0 +1,47 @@
+By default, Linux uses the Reno and CUBIC congestion control algorithm
+
+#  Check TCP Congestion Control Algorithms on Linux, 
+sysctl net.ipv4.tcp_available_congestion_control
+sysctl net.ipv4.tcp_congestion_control
+
+
+
+
+
+TCP BBR is a TCP congestion control algorithm developed by Google. It tackles the shortcomings of traditional TCP congestion control algorithms (Reno or CUBIC). 
+BBR stands for Bottleneck Bandwidth and RTT.
+
+
+
+
+
+
+
+TCP BBR is supported by Linux since kernel version 4.9. Use the following command to check your Linux kernel version.
+
+uname -r
+
+
+
+
+
+Once you have kernel 4.9 or above, edit sysctl.conf file.
+
+
+# enable BBR
+
+vi /etc/sysctl.conf
+
+
+
+At the end of the config file, add the following lines.
+
+net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+
+
+
+
+Save the file, and refresh your configuration by using this command,
+
+sysctl -p
