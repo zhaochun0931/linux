@@ -1,0 +1,9 @@
+[Unit]
+Description=Erlang
+
+[Service]
+ExecStart=/usr/bin/erl -sname localhost -setcookie CVGSSOGHIASCWFHJJVKH
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
