@@ -1,1 +1,10 @@
 Create a service file /etc/systemd/system/erlang.service
+
+
+systemctl daemon-reload
+
+systemctl start erlang.service
+
+
+
+systemctl enable erlang.service
