@@ -1,23 +1,39 @@
 After Chrome 58, self-signed certificate without SAN(Subject Alternative Name) is not valid anymore.
 
 
+
+Certificate without SAN:
+
+Typically only secures a single domain name (the Common Name, or CN).
+For example, if the CN is example.com, the certificate is valid only for that domain.
+
+
+
+Certificate with SAN:
+
+Can secure multiple domain names within a single certificate.
+
+
+
+
+
+
+
+
+
+
+
+
 working
 
 
 
 # generate ca
-
-
-# generate the private key without the password
 openssl genrsa -out ca.key
 
 openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=myca"
 
 
-# ll ca.*
--rw-r--r-- 1 root root 1277 Aug 20 03:26 ca.crt
--rw------- 1 root root 1704 Aug 20 03:26 ca.key
-#
 
 # Up till now, the ca.crt and the ca.key are successfully generated.
 
@@ -27,20 +43,11 @@ openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "
 
 
 
-
-
-
-
-
-
-
-
 # generate server key
 
-export SERVERNAME1=xiaomingxxx
-export SERVERNAME2=xiaomingyyy
-export SERVERNAME3=xiaomingzzz
-export SERVERNAME4=*.xiaoming
+export SERVERNAME1=test1
+export SERVERNAME2=test2
+export SERVERNAME3=*.test
 
 
 
@@ -50,7 +57,7 @@ openssl genrsa -out tls.key
 openssl req -new -sha256 -key tls.key \
 -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=$SERVERNAME1" \
 -reqexts SAN \
--config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:$SERVERNAME1,DNS:$SERVERNAME2,DNS:$SERVERNAME3,DNS:$SERVERNAME4,IP:10.211.55.11\n")) \
+-config <(cat /etc/ssl/openssl.cnf <(printf "\n[SAN]\nsubjectAltName=DNS:$SERVERNAME1,DNS:$SERVERNAME2,DNS:$SERVERNAME3,IP:10.211.55.11\n")) \
 -out tls.csr
 
 # cannot add the space between the "<" and the "(print" in above command
@@ -62,7 +69,7 @@ openssl req -new -sha256 -key tls.key \
 
 
 # sign csr with the ca
-openssl x509 -req -extfile <(printf "subjectAltName=DNS:$SERVERNAME1,DNS:$SERVERNAME2,DNS:$SERVERNAME3,DNS:$SERVERNAME4,IP:10.211.55.11") -days 365 \
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:$SERVERNAME1,DNS:$SERVERNAME2,DNS:$SERVERNAME3,IP:10.211.55.11") -days 365 \
 -in tls.csr \
 -CA ca.crt -CAkey ca.key -CAcreateserial \
 -out tls.crt -sha256
@@ -106,14 +113,3 @@ openssl pkcs12 -export -in ca.crt -inkey ca.key -out ca.pfx
 
 
 # successfully visit https://xiaomingxyz from the browser
-
-
-
-
-
-
-
-
-
-
-
