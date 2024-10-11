@@ -11,8 +11,7 @@ working
 # generate the private key without the password
 openssl genrsa -out ca.key
 
-# generate the private key with the password "xxxyyy", the private key is the password-protected key
-openssl genrsa -out ca.key -des3 --passout pass:xxxyyy 
+
 
 
 
