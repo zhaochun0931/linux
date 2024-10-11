@@ -11,10 +11,6 @@ working
 # generate the private key without the password
 openssl genrsa -out ca.key
 
-
-
-
-
 openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=myca"
 
 
