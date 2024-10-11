@@ -181,8 +181,12 @@ openssl s_client -connect localhost:8443 -cert client-cert.pem -key client-key.p
 
 
 
+# validate the Certificate Chain
+openssl verify -CAfile your_ca_bundle.crt your_certificate.crt
 
-# check crt
+
+
+# check certificate
 # extract the public key, the public key contained in a private key and a certificate must be the same
 
 openssl x509 -text -noout -in tls.crt 
