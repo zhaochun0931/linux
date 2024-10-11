@@ -3,9 +3,9 @@
 
 
 # ca
-openssl genrsa -out ca-key.pem
-openssl req -new -out ca-req.csr -key ca-key.pem -subj "/CN=myca"
-openssl x509 -req -in ca-req.csr -out ca-cert.pem -signkey ca-key.pem
+openssl genrsa -out ca.key
+openssl req -new -out ca.csr -key ca.key -subj "/CN=myca"
+openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
 
 
 
@@ -16,9 +16,9 @@ openssl x509 -req -in ca-req.csr -out ca-cert.pem -signkey ca-key.pem
 
 
 # server
-openssl genrsa -out server-key.pem
-openssl req -new -out server-req.csr -key server-key.pem -subj "/CN=myserver.com"
-openssl x509 -req -in server-req.csr -out server-cert.pem -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial
+openssl genrsa -out server.key
+openssl req -new -out server.csr -key server.key -subj "/CN=myserver.com"
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
 
 
 
@@ -32,9 +32,9 @@ openssl x509 -req -in server-req.csr -out server-cert.pem -CA ca-cert.pem -CAkey
 
 
 # client
-openssl genrsa -out client-key.pem
-openssl req -new -out client-req.csr -key client-key.pem -subj "/CN=myclient.com"
-openssl x509 -req -in client-req.csr -out client-cert.pem -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial
+openssl genrsa -out client.key
+openssl req -new -out client.csr -key client.key -subj "/CN=myclient.com"
+openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt
 
 
 
@@ -44,13 +44,13 @@ openssl x509 -req -in client-req.csr -out client-cert.pem -CA ca-cert.pem -CAkey
 
 
 # verify 
-openssl s_server -CAfile ca-cert.pem  -cert server-cert.pem -key server-key.pem
-openssl s_client -CAfile ca-cert.pem
+openssl s_server -CAfile ca.crt  -cert server.crt -key server.key
+openssl s_client -CAfile ca.crt
 
 
 # verify the server and the client
-openssl s_server -CAfile ca-cert.pem -cert server-cert.pem -key server-key.pem 
-openssl s_client -CAfile ca-cert.pem -cert client-cert.pem -key client-key.pem
+openssl s_server -CAfile ca.crt -cert server.crt -key server.key
+openssl s_client -CAfile ca.crt -cert client.crt -key client.key
 
 
 
