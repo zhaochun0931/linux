@@ -188,6 +188,7 @@ openssl s_client -connect localhost:8443 -cert client-cert.pem -key client-key.p
 openssl x509 -text -noout -in tls.crt 
 openssl x509 -noout -modulus -in tls.crt | openssl md5
 openssl x509 -noout -pubkey -in tls.crt 
+openssl x509 -in your_certificate.crt -text -noout
 
 
 
