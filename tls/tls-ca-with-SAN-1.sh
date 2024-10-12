@@ -81,16 +81,3 @@ openssl x509 -req -extfile <(printf "subjectAltName=DNS:$SERVERNAME1,DNS:$SERVER
 
 
 
-# export to pfx
-openssl pkcs12 -export -in ca.crt -inkey ca.key -out ca.pfx
-
-
-
-# add the pfx to the trusted root certification authorities in windows
-
-
-# add the entry for the www.xiaoming.com in the /etc/hosts or windows hosts files
-10.211.55.11 xiaomingxzy
-
-
-# successfully visit https://xiaomingxyz from the browser
