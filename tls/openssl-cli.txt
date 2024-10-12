@@ -258,6 +258,29 @@ openssl s_client -connect localhost:10334 -tls1_3
 
 
 
+# export to pfx
+openssl pkcs12 -export -in ca.crt -inkey ca.key -out ca.pfx
+
+
+
+# add the pfx to the trusted root certification authorities in windows
+
+
+# add the entry for the www.xiaoming.com in the /etc/hosts or windows hosts files
+10.211.55.11 xiaomingxzy
+
+
+# successfully visit https://xiaomingxyz from the browser
+
+
+
+
+
+
+
+
+
+
 
 
 # convert the public crt and the private key to pfx(pkcs12) format, you should set the export password for pfx file
