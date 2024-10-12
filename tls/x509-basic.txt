@@ -56,3 +56,29 @@ Common name (CN): usually the name of the host being authenticated. The HTTPS pr
 
 
 
+
+
+
+
+After Chrome 58, self-signed certificate without SAN(Subject Alternative Name) is not valid anymore.
+
+
+
+Certificate without SAN:
+
+Typically only secures a single domain name (the Common Name, or CN).
+For example, if the CN is example.com, the certificate is valid only for that domain.
+
+
+
+Certificate with SAN:
+
+Can secure multiple domain names within a single certificate.
+
+
+
+
+
+
+
+
