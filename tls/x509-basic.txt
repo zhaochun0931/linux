@@ -79,6 +79,22 @@ Can secure multiple domain names within a single certificate.
 
 
 
+private key
+|
+|
+|
+public key
+|
+|
+|
+(certificate signing request)CSR
+
+
+
+
+
+
+
 
 
 
