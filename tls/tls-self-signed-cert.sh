@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 # create a private key
 openssl genrsa -out server.key
 
@@ -116,15 +106,6 @@ openssl req -x509 -nodes -newkey rsa:4096 -sha3-256 -keyout server.key -out serv
 
 
 
-
-
-# test the self-signed cert, use openssl s_server to start a TLS/SSL test server on port 8443:
-openssl s_server -accept 8443 -cert server.crt -key server.key
-
-
-# then open another terminal to use openssl s_client to connect to test server on port 8443:
-openssl s_client -connect localhost:8443
-openssl s_client -connect localhost:10334 -tls1_3
 
 
 
