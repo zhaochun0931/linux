@@ -1,17 +1,3 @@
-After Chrome 58, self-signed certificate without SAN(Subject Alternative Name) is not valid anymore.
-
-
-
-Certificate without SAN:
-
-Typically only secures a single domain name (the Common Name, or CN).
-For example, if the CN is example.com, the certificate is valid only for that domain.
-
-
-
-Certificate with SAN:
-
-Can secure multiple domain names within a single certificate.
 
 
 
@@ -20,17 +6,14 @@ Can secure multiple domain names within a single certificate.
 
 
 
+this guide is working.
 
 
-
-
-working
 
 
 
 # generate ca
 openssl genrsa -out ca.key
-
 openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=CN/ST=Shanghai/O=ORG/OU=ORG_UNIT/CN=myca"
 
 
@@ -45,10 +28,14 @@ openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "
 
 # generate server key
 
-export SERVERNAME1=test1
-export SERVERNAME2=test2
-export SERVERNAME3=*.test
+export SERVERNAME1=name1
+export SERVERNAME2=name2
+export SERVERNAME3=name3
+export SERVERNAME4=*.name
 
+
+# Ensure that the wildcard character * is placed correctly. 
+# It should only be at the beginning of the domain part, like *.example.com. It cannot be used for the top-level domain (e.g., *example.com is invalid).
 
 
 
