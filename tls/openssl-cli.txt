@@ -16,6 +16,12 @@ xxx
 
 Private Key PEM:
 
+different algorithms:
+--- RSA
+--- DSA
+--- ECDSA
+
+
 Contents: Contains a private key, which could be for RSA, DSA, or ECDSA.
 Header/Footer: Can start with -----BEGIN PRIVATE KEY----- or more specific headers like -----BEGIN RSA PRIVATE KEY-----.
 Purpose: Used to authenticate the owner of the certificate and to decrypt data encrypted with the corresponding public key.
