@@ -2,43 +2,6 @@
 
 
 
-# ca
-openssl genrsa -out ca.key
-openssl req -new -out ca.csr -key ca.key -subj "/CN=myca"
-openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
-
-
-
-
-
-
-
-
-
-# server
-openssl genrsa -out server.key
-openssl req -new -out server.csr -key server.key -subj "/CN=servername"
-openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
-
-
-
-
-
-
-
-
-
-
-
-
-# client
-openssl genrsa -out client.key
-openssl req -new -out client.csr -key client.key -subj "/CN=myclient.com"
-openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt
-
-
-
-
 
 
 
