@@ -17,7 +17,7 @@ openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
 
 # server
 openssl genrsa -out server.key
-openssl req -new -out server.csr -key server.key -subj "/CN=myserver.com"
+openssl req -new -out server.csr -key server.key -subj "/CN=servername"
 openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
 
 
