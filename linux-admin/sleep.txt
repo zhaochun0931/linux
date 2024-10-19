@@ -13,3 +13,12 @@ Can be s for seconds (default), m for minutes, h for hours, or d for days.
 
 
 
+
+
+
+Some versions of sleep, particularly in GNU core utilities, support the infinity argument:
+
+sleep infinity
+
+
+
