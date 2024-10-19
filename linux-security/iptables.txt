@@ -168,56 +168,6 @@ or forwarded packet and act upon such a packet by either allowing it or blocking
 
 
 
-# selinux
-
-
-Security Enhanced Linux (SELinux) is an additional layer of system security that determines which process can access which files, directories, and ports.
-
-
-
-SELinux has two possible states
-Enabled
-Disabled
-
-
-
-When SELinux is enabled, it can run in one of the following modes:
-Enforcing
-Permissive
-
-When SELinux is disabled, only Discretionary Access Control (DAC) rules are used.
-
-
-
-
-
-
-
-
-
-
-
-
-# Temporarily Set SELinux to Permissive Mode
-setenforce 0
-
-
-setenforce 1
-sestatus
-getenforce
-
-ls -Z
-
-
-
-
-
-cat /etc/selinux/config
-SELINUX=disabled
-
-
-
-reboot to take effective
 
 
 
