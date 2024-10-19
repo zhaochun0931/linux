@@ -1,8 +1,6 @@
 #  Create a Root Certificate
-
 openssl genrsa -out rootCA.key 2048
 openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 3650 -out rootCA.pem
-
 
 
 
@@ -11,6 +9,14 @@ openssl genrsa -out intermediateCA.key 2048
 openssl req -new -key intermediateCA.key -out intermediateCA.csr
 openssl x509 -req -in intermediateCA.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out intermediateCA.pem -days 3650 -sha256 -extfile intermediateCA.cnf -extensions v3_ca
 
+
+
 # Create an End-Entity Certificate
 openssl genrsa -out endEntity.key 2048
 openssl req -new -key endEntity.key -out endEntity.csr
+openssl x509 -req -in endEntity.csr -CA intermediateCA.pem -CAkey intermediateCA.key -CAcreateserial -out endEntity.pem -days 365 -sha256 -extfile endEntity.cnf -extensions v3_req
+
+
+
+# Verify the Certificate Chain
+openssl verify -CAfile rootCA.pem -untrusted intermediateCA.pem endEntity.pem
