@@ -11,9 +11,16 @@ Certificates can be saved in various formats.
 
 
 
+ASCII PEM format:
+A PEM certificate (.pem) file contains a Base64-encoded certificate beginning with -----BEGIN CERTIFICATE----- and ending with -----END CERTIFICATE-----. One of the most common formats for X.509 certificates,
 
 
 
+ASCII PEM key	Contains a Base64-encoded DER key
+
+
+PKCS #12 key and certificate:
+A complex format that can store and protect a key and the entire certificate chain. It's commonly used with a .p12 or .pfx extension. PKCS #12 is synonymous with the PFX format.
 
 
 
