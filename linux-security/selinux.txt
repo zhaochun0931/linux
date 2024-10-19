@@ -1,7 +1,31 @@
 Security Enhanced Linux (SELinux), SELinux is a security enhancement module deployed on top of Linux.
+Security Enhanced Linux (SELinux) is an additional layer of system security that determines which process can access which files, directories, and ports.
 
 
 SELinux confi gurations can only be set and modifi ed by the root user. Configuration and policy files are located in the /etc/selinux directory. The primary configuration file is the /etc/selinux/config file.
+
+
+
+
+SELinux has two possible states
+--- Enabled
+--- Disabled
+
+
+
+
+When SELinux is enabled, it can run in one of the following modes:
+--- Enforcing
+--- Permissive
+
+When SELinux is disabled, only Discretionary Access Control (DAC) rules are used.
+
+
+
+
+
+
+
 
 
 cat /etc/selinux/config
@@ -44,4 +68,53 @@ To change the mode setting, you can use the setenforce newsetting, where newsett
 
 To disable SELinux, you must edit the SELinux confi guration file. Rebooting the system always changes the mode back to what is set in that confi guration file. 
 The preferred method of changing the SELinux mode is to modify the configuration file and then reboot the system.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Temporarily Set SELinux to Permissive Mode
+setenforce 0
+
+
+setenforce 1
+sestatus
+getenforce
+
+ls -Z
+
+
+
+
+
+cat /etc/selinux/config
+SELINUX=disabled
+
+
+
+reboot to take effective
+
+
 
