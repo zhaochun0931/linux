@@ -2,3 +2,14 @@ sleep
 
 sleep 10
 
+
+
+
+Can be s for seconds (default), m for minutes, h for hours, or d for days.
+
+
+
+
+
+
+
