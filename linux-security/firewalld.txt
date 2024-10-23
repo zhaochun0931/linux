@@ -117,6 +117,7 @@ firewall-cmd --reload
 
 
 
+# zone
 firewall-cmd --get-zones
 firewall-cmd --list-all-zones
 firewall-cmd --get-default-zone
