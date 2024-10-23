@@ -131,19 +131,24 @@ firewall-cmd --get-active-zones
 
 
 
+# service
 firewall-cmd --list-all
+
+
+# To see what services you currently have active on your firewall
 firewall-cmd --list-services
+
+# To see a list of all available service services that you could potentially add to your firewall
 firewall-cmd --get-services
 
 
 
 
-# add ports
+# ports
 firewall-cmd --list-ports
 firewall-cmd --zone=public --add-port=5432/tcp --permanent
 firewall-cmd --zone=public --remove-port=5432/tcp --permanent
 firewall-cmd --check-config
-
 
 
 # By default, all changes to firewalld's configuration are temporary
