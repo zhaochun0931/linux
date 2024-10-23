@@ -125,6 +125,9 @@ firewall-cmd --get-active-zones
 
 
 
+# A zone can only be in an active state if it has one of these two conditions:
+# The zone is assigned to a network interface
+# The zone is assigned source IPs or network ranges
 
 
 
