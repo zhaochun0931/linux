@@ -140,6 +140,12 @@ firewall-cmd --zone=public --add-port=5432/tcp --permanent
 firewall-cmd --zone=public --remove-port=5432/tcp --permanent
 firewall-cmd --check-config
 
+
+
+# By default, all changes to firewalld's configuration are temporary
+
+
+
 firewall-cmd --runtime-to-permanent
 
 
