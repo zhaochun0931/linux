@@ -107,7 +107,7 @@ SNAT sets the source IP address of packets to a specified IP and does not dynami
 # how to check and configure the firewalld 
 
 
-
+systemctl enable --now firewalld
 systemctl status firewalld.service
 systemctl stop firewalld.service
 firewall-cmd --state
