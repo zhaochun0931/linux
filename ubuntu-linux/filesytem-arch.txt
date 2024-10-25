@@ -3,9 +3,54 @@
 
 --- Systemd files
 
+
+
+
+
 the majority can be found in the /etc/ directory with either a .conf or .cnf extention
 
 packages will check in additional <config>.d/ directories where you can place personal changes
+
+
+
+
+
+
+
+
+
+
+
+
+/etc/systemd/system
+
+
+Many packages ship service unit files for interacting with Systemd. Unit files allow packages to define background tasks, initialization behavior, and interactions with the operating system. The files, or symlinks of them, will automatically be placed in the /lib/systemd/system/ directory. Likewise, the files can also show up in /etc/systemd/system.
+
+
+
+systemctl edit apache2
+
+
+
+
+
+
+
+Once the changes are saved, the override file will be created in /etc/systemd/system/apache2.service.d/override.conf.
+To apply changes, run
+sudo systemctl daemon-reload
+
+
+
+
+
+
+
+
+
+
+
 
 
 
