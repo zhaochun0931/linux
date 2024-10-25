@@ -1,0 +1,11 @@
+
+--- Configuration files
+
+--- Systemd files
+
+the majority can be found in the /etc/ directory with either a .conf or .cnf extention
+
+packages will check in additional <config>.d/ directories where you can place personal changes
+
+
+
