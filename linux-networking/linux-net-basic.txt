@@ -19,6 +19,30 @@ NetworkManager stored network profiles in ifcfg format in this directory (/etc/s
 
 
 
+Ethernet interfaces
+Ethernet interfaces are identified by the system using predictable network interface names. These names can appear as eno1 or enp0s25. However, in some cases an interface may still use the kernel eth# style of naming.
+
+ip a
+lshw -class network
+
+
+
+
+
+
+
+
+Ethernet Interface logical names
+Interface logical names can also be configured via a Netplan configuration.
+
+
+
+ethtool is a program that displays and changes Ethernet card settings such as auto-negotiation, port speed, duplex mode, and Wake-on-LAN.
+ethtool
+
+
+
+
 
 
 configure the network
