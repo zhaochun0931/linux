@@ -46,6 +46,9 @@ ethtool
 
 
 configure the network
+--- Temporary IP address assignment
+--- Dynamic IP address assignment (DHCP client)
+--- Static IP address assignment
 |
 |
 |
