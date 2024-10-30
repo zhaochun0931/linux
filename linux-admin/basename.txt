@@ -1,0 +1,5 @@
+basename rsk2pnq314-locator1-01-01.gfs .gfs
+
+$ basename rsk2pnq314-locator1-01-01.gfs .gfs
+rsk2pnq314-locator1-01-01
+$
