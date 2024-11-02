@@ -33,8 +33,19 @@ nv -lvk 1234
 
 
 # set up a tcp server
-nc -l 0.0.0.0 8888 -q 10
-nc -l 8888 -q 10
+nc -l 0.0.0.0 8888
+nc -l 8888
+
+nc -lk 8888
+
+     -k      When a connection is completed, listen for another one.  Requires -l.  When used together with the -u
+             option, the server socket is not connected and it can receive UDP datagrams from multiple hosts.
+
+
+
+
+
+
 
 
 
