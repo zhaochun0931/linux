@@ -26,6 +26,12 @@ export SERVERNAME3=name3
 export SERVERNAME4=*.name
 
 
+export SERVERNAME1=*.my-tanzu-rabbit-nodes.rabbitmq-system.svc.local
+export SERVERNAME2=my-tanzu-rabbit.rabbitmq-system.svc.local
+
+
+
+
 # Ensure that the wildcard character * is placed correctly. 
 # It should only be at the beginning of the domain part, like *.example.com. It cannot be used for the top-level domain (e.g., *example.com is invalid).
 
