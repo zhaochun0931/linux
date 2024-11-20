@@ -26,8 +26,8 @@ export SERVERNAME3=name3
 export SERVERNAME4=*.name
 
 
-export SERVERNAME1=*.my-tanzu-rabbit-nodes.rabbitmq-system.svc.local
-export SERVERNAME2=my-tanzu-rabbit.rabbitmq-system.svc.local
+export SERVERNAME1=*.my-rabbit-nodes.rabbitmq-system.svc.local
+export SERVERNAME2=my-rabbit.rabbitmq-system.svc.local
 
 
 
