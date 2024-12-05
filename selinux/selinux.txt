@@ -7,16 +7,16 @@ SELinux confi gurations can only be set and modifi ed by the root user. Configur
 
 
 
-SELinux has two possible states
---- Enabled
---- Disabled
+SELinux has three possible states
+
+- enforcing
+- permissive
+- disabled
 
 
 
 
-When SELinux is enabled, it can run in one of the following modes:
---- Enforcing
---- Permissive
+
 
 When SELinux is disabled, only Discretionary Access Control (DAC) rules are used.
 
@@ -42,6 +42,12 @@ configure selinux mode
 
 
 
+To see both the current mode and the mode set in the confi guration fi le, use the sestatus command.
+
+sestatus
+
+
+
 To see SELinux’s current mode on your system, use the getenforce command. 
 
 getenforce
@@ -52,9 +58,6 @@ getenforce
 
 
 
-To see both the current mode and the mode set in the confi guration fi le, use the sestatus command.
-
-sestatus
 
 
 
