@@ -1,11 +1,6 @@
 # install the prerequsite tools for compiling the source code 
-
-
-
 apt-get update
 apt install build-essential -y
-
-
 apt install libncurses5-dev libncursesw5-dev -y
 
 
