@@ -3,8 +3,8 @@ apt-get update
 apt install build-essential -y
 apt install libncurses5-dev libncursesw5-dev -y
 apt install libicu-dev -y
-apt install bison
-apt install pkg-config
+apt install bison -y
+apt install pkg-config -y
 pkg-config --modversion icu-i18n
 
 
