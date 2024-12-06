@@ -4,7 +4,8 @@ apt install build-essential -y
 apt install libncurses5-dev libncursesw5-dev -y
 apt install libicu-dev -y
 
-
+apt install pkg-config
+pkg-config --modversion icu-i18n
 
 
 
