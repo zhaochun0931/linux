@@ -2,8 +2,7 @@
 apt-get update
 apt install build-essential -y
 apt install libncurses5-dev libncursesw5-dev -y
-apt install libicu-dev -y
-apt install bison -y
+apt install libicu-dev bison flex libreadline-dev zlib1g-dev-y
 apt install pkg-config -y
 pkg-config --modversion icu-i18n
 
