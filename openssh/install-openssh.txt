@@ -16,12 +16,7 @@ systemctl status sshd.service
 
 
 
-# configuration
 
-/etc/ssh/sshd_config
-
-PermitRootLogin yes
-PasswordAuthentication yes
 
 
 
