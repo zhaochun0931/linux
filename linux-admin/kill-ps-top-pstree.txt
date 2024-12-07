@@ -17,6 +17,8 @@
 ps -ef
 ps -aux
 ps aux
+ps -f -u username
+
 
 
 
