@@ -9,6 +9,7 @@ systemctl status sshd.service
 
 
 
+/etc/ssh/sshd_config
 
 
 
