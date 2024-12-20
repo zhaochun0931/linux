@@ -1,0 +1,18 @@
+Without an I/O scheduler, every I/O request would send an interrupt to the kernel so the I/O operation could be performed
+
+
+I/O schedulers typically use the following techniques:
+
+Request Merging. Adjacent requests are merged to reduce disk seeking and to increase the size of the I/O syscalls (usually resulting in higher performance).
+Elevator. Requests are ordered on the basis of physical location on the disk so that seeks are in one direction as much as possible. This technique is sometimes referred to as “sorting.”
+Prioritization. Requests are prioritized in some way. The details of the ordering are up to the I/O scheduler.
+
+
+
+
+
+Currently, four are included in the kernel:
+- Completely Fair Queuing (CFQ)
+- Deadline
+- NOOP
+- Anticipatory
