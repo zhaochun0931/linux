@@ -8,3 +8,22 @@ tcpdump -i any dst port 5432
 
 
 tcpdump -i any host 1.1.1.1 and dst port 5432
+
+
+
+
+
+
+
+
+
+
+
+
+brew install --cask wireshark
+
+
+
+tshark -R demo.pcap -Y "tcp.analysis.retransmission"
+
+
