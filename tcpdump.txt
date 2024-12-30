@@ -25,5 +25,5 @@ brew install --cask wireshark
 
 
 tshark -R demo.pcap -Y "tcp.analysis.retransmission"
-
+tcp.analysis.window_full
 
