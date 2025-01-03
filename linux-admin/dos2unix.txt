@@ -1,0 +1,6 @@
+dos2unix -i *txt
+
+
+
+
+dos2unix -f *
