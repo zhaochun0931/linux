@@ -4,3 +4,8 @@ dos2unix -i *txt
 
 
 dos2unix -f *
+
+
+CRLF: This is a common line terminator in Windows environments, represented by the characters \r (Carriage Return) and \n (Line Feed)
+
+To convert a file with CRLF line terminators (Windows format) to Unix format (which uses LF line terminators), you need to replace the CRLF pairs (\r\n) with just LF (\n).
