@@ -1,15 +1,8 @@
 md5sum filename
 
 
-
-
-
-
-
-
 sha256sum filename
 sha512sum filename
-
 
 
 
