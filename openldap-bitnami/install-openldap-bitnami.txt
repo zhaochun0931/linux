@@ -4,7 +4,7 @@ docker network create my-network --driver bridge
 docker run --rm --name openldap \
   --network my-network \
   --env LDAP_ADMIN_USERNAME=admin \
-  --env LDAP_ADMIN_PASSWORD=password \
+  --env LDAP_ADMIN_PASSWORD=adminpassword \
   --env LDAP_USERS=user01,user02 \
   --env LDAP_PASSWORDS=password01,password02 \
   --env LDAP_ROOT=dc=example,dc=com \
@@ -35,6 +35,26 @@ docker run --rm --name openldap \
 65efef00.05a41104 0x74dcb0f1f740 @(#) $OpenLDAP: slapd 2.6.7 (Feb 22 2024 18:16:24) $
 	@adf17e22548f:/bitnami/blacksmith-sandox/openldap-2.6.7/servers/slapd
 65efef00.0630f4e6 0x74dcb0f1f740 slapd starting
+
+
+
+
+
+
+docker run --detach --rm --name mariadb-galera \
+    --network my-network \
+    --env MARIADB_ROOT_PASSWORD=root-password \
+    --env MARIADB_GALERA_MARIABACKUP_PASSWORD=backup-password \
+    --env MARIADB_USER=customuser \
+    --env MARIADB_DATABASE=customdatabase \
+    --env MARIADB_ENABLE_LDAP=yes \
+    --env LDAP_URI=ldap://openldap:1389 \
+    --env LDAP_BASE=dc=example,dc=org \
+    --env LDAP_BIND_DN=cn=admin,dc=example,dc=org \
+    --env LDAP_BIND_PASSWORD=adminpassword \
+    bitnami/mariadb-galera:latest
+
+
 
 
 
