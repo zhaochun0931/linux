@@ -40,6 +40,13 @@ docker run --rm --name openldap \
 
 
 
+docker exec -it openldap bash 
+ldapsearch -x -H ldap://localhost:1389 -D "cn=admin,dc=example,dc=com" -W -b "dc=example,dc=com"
+
+
+
+
+
 
 docker run --detach --rm --name mariadb-galera \
     --network my-network \
