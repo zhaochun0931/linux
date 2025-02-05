@@ -8,8 +8,7 @@ line 2 3
 line 3
 #
 
-
-       -y, --side-by-side
+-y, --side-by-side
 
 
 
