@@ -19,3 +19,12 @@ myclient
 
 
 http://localhost:8080/realms/test/account
+
+
+
+
+
+rabbitmq.configure:*/*/*
+rabbitmq.read:*/*/*
+rabbitmq.write:*/*/*
+
