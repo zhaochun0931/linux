@@ -28,3 +28,8 @@ rabbitmq.configure:*/*/*
 rabbitmq.read:*/*/*
 rabbitmq.write:*/*/*
 
+
+
+http://10.211.55.22:8080/realms/test/.well-known/openid-configuration
+
+
