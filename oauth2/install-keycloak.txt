@@ -5,3 +5,16 @@ http://localhost:8080
 
 admin/admin
 
+
+
+
+Create a realm: test
+Create a user: myuser/mypassword
+
+
+
+
+
+
+
+http://localhost:8080/realms/test/account
