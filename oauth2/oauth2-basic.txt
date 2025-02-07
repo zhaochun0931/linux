@@ -18,3 +18,4 @@ The first type of client is an application that wants to participate in single-s
 The other type of client is one that is requesting an access token so that it can invoke other services on behalf of the authenticated user.
 
 
+OpenID Connect is the preferred protocol to secure applications. 
