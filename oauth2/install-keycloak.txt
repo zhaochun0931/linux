@@ -14,7 +14,8 @@ Create a user: myuser/mypassword
 
 
 
-
+client type: OpenID Connect type
+myclient
 
 
 http://localhost:8080/realms/test/account
