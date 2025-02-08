@@ -28,9 +28,16 @@ http://localhost:8080/realms/test/account
 
 
 
-rabbitmq.configure:*/*/*
-rabbitmq.read:*/*/*
-rabbitmq.write:*/*/*
+rabbitmq.tag:management
+rabbitmq.tag:administrator
+rabbitmq.read:*/*
+rabbitmq.write:*/*
+rabbitmq.configure:*/*
+
+
+
+
+
 
 
 
