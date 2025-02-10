@@ -12,27 +12,33 @@ admin/admin
 
 
 
-Create a realm: test
-Create a user: myuser/mypassword
+1. Create a realm: test
+2. Create a user: myuser/mypassword
 
 
 
+3. Create a client: myclient
+Client type: OpenID Connect type
 
-client type: OpenID Connect type
-myclient
 
 
 http://localhost:8080/realms/test/account
 
 
 
-
+4. Create the client scope:
 
 rabbitmq.tag:management
 rabbitmq.tag:administrator
 rabbitmq.read:*/*
 rabbitmq.write:*/*
 rabbitmq.configure:*/*
+
+
+
+5. Add these client scopes to client(myclient)
+
+
 
 
 
