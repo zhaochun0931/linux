@@ -38,6 +38,11 @@ rabbitmq.configure:*/*
 
 5. Add these client scopes to client(myclient)
 
+6. Create the roles
+
+rabbitmq.tag:management
+rabbitmq.tag:administrator
+
 
 
 
