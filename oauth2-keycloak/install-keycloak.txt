@@ -60,7 +60,25 @@ curl -X POST 'http://localhost:8080/realms/{realm-name}/protocol/openid-connect/
 
 
 
+or
+
+
+
+echo -n "my-client:my-secret" | base64
+
+curl --request POST --url http://localhost:8080/realms/test/protocol/openid-connect/token \
+--header 'Authorization: Basic {base64_credential}' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data 'grant_type=client_credentials'
+
+
+
+
+
 https://jwt.io/
+
+
+
 
 
 
