@@ -60,6 +60,14 @@ curl -X POST 'http://localhost:8080/realms/{realm-name}/protocol/openid-connect/
 -d 'grant_type=client_credentials'
 
 
+curl --request POST \
+--url http://localhost:8080/realms/{realm-name}/protocol/openid-connect/token \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data 'client_id={rabbitmq-client}' \
+--data 'client_secret={client-secret}' \
+--data 'grant_type=client_credentials'
+
+
 curl -X POST 'http://localhost:8080/realms/{realm-name}/protocol/openid-connect/token' \
 -d 'client_id={client-id}' \
 -d 'client_secret={client-secret}' \
