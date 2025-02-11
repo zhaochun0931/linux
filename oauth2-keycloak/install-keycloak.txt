@@ -18,7 +18,8 @@ admin/admin
 
 
 3. Create a client: myclient
-Client type: OpenID Connect type
+Client type: OpenID Connect
+
 
 Clients -> Create client
 
