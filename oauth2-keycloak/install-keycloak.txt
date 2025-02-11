@@ -30,6 +30,8 @@ http://localhost:8080/realms/test/account
 
 4. Create the client scope:
 
+Client scopes -> Create client scope
+
 rabbitmq.tag:management
 rabbitmq.tag:administrator
 rabbitmq.read:*/*
