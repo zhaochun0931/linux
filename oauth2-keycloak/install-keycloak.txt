@@ -60,6 +60,11 @@ curl -X POST 'http://localhost:8080/realms/{realm-name}/protocol/openid-connect/
 -d 'grant_type=client_credentials'
 
 
+curl -X POST 'http://localhost:8080/realms/{realm-name}/protocol/openid-connect/token' \
+-d 'client_id={client-id}' \
+-d 'client_secret={client-secret}' \
+-d 'grant_type=client_credentials' \
+--data scope={scope_name}
 
 
 or
