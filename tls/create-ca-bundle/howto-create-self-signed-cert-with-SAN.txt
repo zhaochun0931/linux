@@ -1,12 +1,79 @@
+1. Generate the private key for the CA
 openssl genpkey -algorithm RSA -out ca.key
+
+2. Create a self-signed root certificate for the CA
 openssl req -new -x509 -key ca.key -out ca.crt -days 3650 -subj "/CN=myca"
 
-
-
+3. Generate the private key for the server
 openssl genpkey -algorithm RSA -out server.key
+
+4. Create the CSR for the server
 openssl req -new -key server.key -out server.csr -subj "/CN=keycloak"
 
+5. Create a openssl.cnf file to include SANs
 
-
-
+6. Create the server certificate with SANs
 openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 365 -sha256 -extfile openssl.cnf -extensions v3_req
+
+7. Verify the certificate
+openssl x509 -in server.crt -noout -text
+
+
+
+
+
+# openssl x509 -in server.crt -noout -text
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            36:e9:b1:33:2a:94:53:13:a5:88:05:2b:69:60:a3:94:8b:95:c7:15
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: CN = myca
+        Validity
+            Not Before: Feb 11 23:17:49 2025 GMT
+            Not After : Feb 11 23:17:49 2026 GMT
+        Subject: CN = keycloak
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:cb:f5:41:97:08:c0:82:3e:a3:f9:93:f0:ba:bd:
+                    c4:df:96:55:1b:33:63:d5:0d:c6:fb:77:c3:af:d1:
+                    35:e3:00:aa:d5:a6:a0:6c:61:e0:04:48:bf:42:12:
+                    03:57:f4:bd:4a:f1:54:65:9e:ad:0d:f2:df:e3:30:
+                    24:b7:6d:ca:0b:d2:87:dc:7e:12:45:4a:58:da:4c:
+                    88:91:0b:e7:ca:1f:63:74:bc:af:bb:8f:f4:fe:aa:
+                    3c:97:03:c0:4b:9f:f6:4a:22:48:73:d8:8c:95:95:
+                    a9:4c:1c:50:1f:41:1c:12:08:2e:89:5d:84:b6:b4:
+                    e7:5e:91:20:94:21:b0:91:e9:63:5d:a6:a8:9a:47:
+                    e8:50:25:a4:da:11:a7:81:97:ce:e4:e5:2b:1b:25:
+                    26:27:52:e2:cd:ea:45:50:b6:7f:37:0d:7b:53:83:
+                    41:ff:72:e7:95:50:1c:50:b3:7a:2b:2f:f1:b4:fc:
+                    ab:25:55:bc:f5:22:d3:1f:81:93:06:b9:08:b6:16:
+                    97:3a:f2:10:17:6d:4c:a5:5b:14:94:ea:1f:e5:22:
+                    1c:7f:9a:33:95:73:c7:c2:ac:d5:ab:e6:76:d4:b9:
+                    bd:16:d0:85:df:8a:26:87:df:64:9b:92:8a:94:8b:
+                    3e:0c:02:e2:f2:02:ef:2b:69:b5:18:af:1e:61:73:
+                    73:3d
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Alternative Name:
+                DNS:keycloak, DNS:www.example.com, DNS:api.example.com, IP Address:10.211.55.22
+    Signature Algorithm: sha256WithRSAEncryption
+         79:bd:64:06:1d:e8:aa:f1:41:64:4d:d9:18:a2:fa:69:18:87:
+         a1:ce:65:d1:61:c9:8c:9a:15:9a:dc:ae:31:a4:90:9e:23:e0:
+         b9:3d:57:f0:57:a6:3c:2a:f3:b6:9d:cb:06:d5:15:2b:a3:60:
+         e6:c4:98:30:dc:35:13:ff:14:eb:df:5e:c7:5f:b1:8f:c8:86:
+         3d:42:3b:16:17:f7:e2:eb:a1:6e:d7:a4:a7:47:53:ff:74:cb:
+         2f:07:dc:dd:32:18:6e:ff:7e:39:1e:61:d2:42:a5:03:d4:71:
+         d9:b5:62:13:84:ed:b8:1c:57:a7:bf:66:a3:9e:6e:63:20:0f:
+         53:f6:eb:c7:19:87:e8:d2:c1:a0:7b:77:e0:b7:62:64:0a:12:
+         64:cc:e4:17:89:a5:a0:3a:a8:c5:de:6d:8d:f9:16:3a:a5:5b:
+         fb:4f:e5:c7:4f:d4:96:0c:1c:d3:1c:28:f1:a7:4a:6c:bb:ff:
+         95:3d:db:8c:cc:29:9b:b2:ba:6c:df:2e:8c:6c:e2:73:61:4c:
+         76:3f:c3:eb:9f:ef:b7:3f:90:d1:42:b6:45:28:56:90:e8:4f:
+         15:1e:e5:ce:b6:53:06:67:ca:0c:20:2d:59:3a:bf:3d:f1:39:
+         c0:0f:5a:78:c3:bd:52:cd:2b:fc:ce:c8:a9:c9:42:c5:df:38:
+         ff:9f:5e:60
+#
