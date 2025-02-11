@@ -57,6 +57,9 @@ curl -X POST 'http://localhost:8080/realms/{realm-name}/protocol/openid-connect/
 -d 'client_secret={client-secret}' \
 -d 'grant_type=client_credentials'
 
+
+
+
 https://jwt.io/
 
 
