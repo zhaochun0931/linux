@@ -20,6 +20,8 @@ admin/admin
 3. Create a client: myclient
 Client type: OpenID Connect type
 
+Clients -> Create client
+
 
 
 http://localhost:8080/realms/test/account
