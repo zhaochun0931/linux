@@ -19,6 +19,9 @@ create a self-signed certificate
 #
 #
 
+chmod 666 /root/keycloak_certs/*
+
+
 docker run \
 --detach --rm \
 --name keycloak \
