@@ -30,6 +30,7 @@ chmod 666 /root/keycloak_certs/*
 docker run \
 --detach --rm \
 --name keycloak \
+--hostname keycloak \
 --publish 8080:8080 \
 --publish 8443:8443 \
 --env KEYCLOAK_ADMIN=admin \
