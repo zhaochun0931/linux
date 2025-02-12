@@ -2,6 +2,11 @@ docker run -p 8080:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADM
 
 
 
+unzip keycloak-26.1.2.zip
+cd keycloak-26.1.2/bin
+./kc.sh start-dev --bootstrap-admin-username admin --bootstrap-admin-password admin
+
+
 
 create a self-signed certificate 
 
