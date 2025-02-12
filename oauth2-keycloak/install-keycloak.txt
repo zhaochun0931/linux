@@ -3,6 +3,37 @@ docker run -p 8080:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADM
 
 
 
+create a self-signed certificate 
+
+# tree /root/keycloak_certs/
+/root/keycloak_certs/
+├── ca.crt
+├── ca.key
+├── ca.srl
+├── openssl.cnf
+├── server.crt
+├── server.csr
+└── server.key
+
+0 directories, 7 files
+#
+#
+
+docker run \
+--detach --rm \
+--name keycloak \
+--publish 8080:8080 \
+--publish 8443:8443 \
+--env KEYCLOAK_ADMIN=admin \
+--env KEYCLOAK_ADMIN_PASSWORD=admin \
+--mount type=bind,source=/root/keycloak_certs/,target=/opt/keycloak/certs/ \
+quay.io/keycloak/keycloak start-dev \
+--https-certificate-file=/opt/keycloak/certs/server.crt \
+--https-certificate-key-file=/opt/keycloak/certs/server.key
+
+
+
+
 
 
 http://localhost:8080
