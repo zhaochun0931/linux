@@ -7,3 +7,6 @@ cat /etc/os-release
 cat /etc/redhat-release
 
 
+hostnamectl
+
+rpm -q rocky-release
