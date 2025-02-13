@@ -1,0 +1,9 @@
+# Ubuntu
+cat /etc/os-release
+
+
+
+# redhat, centos, rocky
+cat /etc/redhat-release
+
+
