@@ -22,8 +22,8 @@ ps -f -u username
 
 
 
-
-
+# LWP: Lightweight Process (Thread ID)
+ps -L -p PID
 
 
 
