@@ -9,3 +9,31 @@ System calls are the primary interface between a user-level program and the Linu
 
 strace ls
 
+
+
+
+Basic Structure of strace Output:
+
+1. System Call Name: The name of the system call (e.g., open, read, write, execve).
+2. Arguments: The arguments passed to the system call.
+3. Return Value: The return value of the system call (often an integer or pointer).
+4. Error Codes: If the system call fails, it will display an error code (usually -1 with errno value).
+
+
+
+
+execve
+the system call used to execute a program
+
+brk
+a system call used to control the program's heap memory.
+
+openat
+a system call used to open a file or directory. It's a more flexible version of open, allowing you to specify relative file paths from a directory file descriptor.
+
+openat(AT_FDCWD, "demo_file.txt", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 3
+
+Return Value: = 3 means that the system call was successful, and the file descriptor returned is 3
+
+
+
