@@ -1,1 +1,4 @@
-s
+strace is a powerful command-line tool in Linux used for tracing system calls and signals
+
+
+
