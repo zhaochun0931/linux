@@ -2,3 +2,10 @@ strace is a powerful command-line tool in Linux used for tracing system calls an
 
 
 
+System calls are the primary interface between a user-level program and the Linux kernel.
+
+
+
+
+strace ls
+
