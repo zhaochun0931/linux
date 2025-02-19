@@ -1,0 +1,10 @@
+# first line
+gg
+
+# the last line
+G
+
+
+
+# replace the hello with world from the line 1 to the bottom
+:1,$s/hello/world/g
