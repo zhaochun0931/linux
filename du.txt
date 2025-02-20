@@ -1,1 +1,12 @@
+-h, --human-readable
+-s, --summarize
+-d, --max-depth=N
+
+
+du -sh
+
+du -Sh -d 1
+
+
+
 du -h /tmp
