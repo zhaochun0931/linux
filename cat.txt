@@ -1,7 +1,13 @@
 cat
 
 cat -n /etc/passwd
-  
+
+
+
+#
+cat > /tmp/xxx
+
+CTRL + D 
 
 
 
