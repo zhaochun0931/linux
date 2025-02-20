@@ -1,7 +1,8 @@
 ls -al
-
+ls -lSh
 
 -S     sort by file size, largest first
+
 ls -alSh
 
 
@@ -9,3 +10,14 @@ ls -alSh
 
 
 ls -alrt
+
+
+ls */*
+
+
+
+for i in $(ls */*)
+do
+echo $i
+done
+
