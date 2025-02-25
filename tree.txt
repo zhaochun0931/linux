@@ -1,8 +1,18 @@
 apt install tree
 
+
+
+
+
+
+
+
+
 tree .
 
 tree /var
 
 tree -L 1 /var
+
+tree -L 2
 
