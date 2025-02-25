@@ -42,3 +42,8 @@ TZ=UTC tshark -Y 'frame.time >= "2025-02-21 17:37:00" && frame.time <= "2025-02-
 
 
 TZ=UTC tshark -r XX.pcap -T fields -e frame.time -t ad
+
+
+
+TZ=UTC tshark -Y "tcp.flags.reset==1 or tcp.analysis.retransmission" -t ad -r *trc075
+
