@@ -31,6 +31,10 @@ brew install --cask wireshark
 
 
 tshark -R demo.pcap -Y "tcp.analysis.retransmission"
+
+TZ=UTC tshark -r *trc117 -Y "tcp.flags.reset==1" -t ad
+
+
 tcp.analysis.window_full
 
 
