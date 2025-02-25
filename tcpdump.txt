@@ -33,3 +33,8 @@ brew install --cask wireshark
 tshark -R demo.pcap -Y "tcp.analysis.retransmission"
 tcp.analysis.window_full
 
+
+
+
+
+TZ=UTC tshark -r XX.pcap -T fields -e frame.time -t ad
