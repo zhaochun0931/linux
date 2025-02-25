@@ -38,7 +38,7 @@ TZ=UTC tshark -r *trc117 -Y "tcp.flags.reset==1" -t ad
 tcp.analysis.window_full
 
 
-
+TZ=UTC tshark -Y 'frame.time >= "2025-02-21 17:37:00" && frame.time <= "2025-02-21 17:37:20"' -t ad -r *trc117
 
 
 TZ=UTC tshark -r XX.pcap -T fields -e frame.time -t ad
