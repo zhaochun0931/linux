@@ -18,6 +18,12 @@ tcpdump -i any host 1.1.1.1 and dst port 5432
 
 
 
+frame.time >= "2025-02-21 17:36"
+
+
+
+
+
 
 
 brew install --cask wireshark
