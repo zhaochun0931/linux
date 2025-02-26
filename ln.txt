@@ -1,0 +1,42 @@
+ln -s <target> <link_name>
+
+
+
+
+[root@data73 local]# ls -al
+total 20
+drwxr-xr-x. 16 root    root    4096 Feb 26 03:48 .
+drwxr-xr-x. 12 root    root     144 Dec 15 08:50 ..
+drwxr-xr-x.  2 root    root      22 Dec 24 06:36 bin
+drwxr-xr-x.  2 root    root       6 Oct 10  2021 etc
+drwxr-xr-x.  2 root    root       6 Oct 10  2021 games
+drwxr-xr-x. 10 gpadmin gpadmin 4096 Dec 24 06:43 greenplum-db-6.27.4
+drwxr-xr-x. 10 gpadmin gpadmin 4096 Dec 24 06:38 greenplum-db-6.28.1
+drwxr-xr-x. 10 gpadmin gpadmin 4096 Dec 24 06:59 greenplum-db-7.3.3
+drwxr-xr-x. 11 gpadmin gpadmin 4096 Feb 26 03:48 greenplum-db-7.4.0
+
+
+ln -s greenplum-db-7.4.0 greenplum-db
+
+
+
+
+[root@data73 local]# ls -al
+total 20
+drwxr-xr-x. 16 root    root    4096 Feb 26 03:48 .
+drwxr-xr-x. 12 root    root     144 Dec 15 08:50 ..
+drwxr-xr-x.  2 root    root      22 Dec 24 06:36 bin
+drwxr-xr-x.  2 root    root       6 Oct 10  2021 etc
+drwxr-xr-x.  2 root    root       6 Oct 10  2021 games
+lrwxrwxrwx.  1 root    root      18 Feb 26 03:48 greenplum-db -> greenplum-db-7.4.0
+drwxr-xr-x. 10 gpadmin gpadmin 4096 Dec 24 06:43 greenplum-db-6.27.4
+drwxr-xr-x. 10 gpadmin gpadmin 4096 Dec 24 06:38 greenplum-db-6.28.1
+drwxr-xr-x. 10 gpadmin gpadmin 4096 Dec 24 06:59 greenplum-db-7.3.3
+drwxr-xr-x. 11 gpadmin gpadmin 4096 Feb 26 03:48 greenplum-db-7.4.0
+
+
+
+
+
+
+
