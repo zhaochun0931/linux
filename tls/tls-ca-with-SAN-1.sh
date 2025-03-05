@@ -42,6 +42,11 @@ export SERVERNAME2=my-rabbit.rabbitmq-system.svc.local
 
 openssl genrsa -out server.key
 
+# generate the private key with password
+openssl genrsa -out server.key -aes256
+
+
+
 # cannot add the space between the "<" and the "(print" in above command
 
 openssl req -new -sha256 -key server.key \
