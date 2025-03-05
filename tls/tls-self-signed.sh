@@ -41,7 +41,9 @@ openssl req -x509 -nodes -newkey rsa \
 # verify
 openssl s_server -cert server.crt -key server.key -accept 8443
 
+
 openssl s_client -connect localhost:8443
+openssl s_client -connect localhost:8443 -tls1_3
 openssl s_client -connect localhost:8443 -CAfile ca.crt
 
 
