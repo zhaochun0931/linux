@@ -1,3 +1,6 @@
+# Creating a Self-Signed Certificate, A self-signed certificate is a certificate that's signed with its own private key. 
+
+
 # create a private key
 openssl genrsa -out server.key
 
@@ -28,7 +31,6 @@ openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr
 
 
 
-# Creating a Self-Signed Certificate, A self-signed certificate is a certificate that's signed with its own private key. 
 # It can be used to encrypt data just as well as CA-signed certificates, but our users will be shown a warning that says the certificate isn't trusted.
 
 # create a self-signed certificate (domain.crt) with our existing private key and CSR:
