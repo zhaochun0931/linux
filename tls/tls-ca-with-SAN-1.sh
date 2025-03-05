@@ -67,6 +67,14 @@ openssl x509 -req -extfile <(printf "subjectAltName=DNS:$SERVERNAME1,DNS:$SERVER
 
 
 
+├── ca.crt
+├── ca.key
+├── ca.srl
+├── server.crt
+├── server.csr
+└── server.key
+
+
 # Up till now, the tls.crt and the tls.key are successfully generated.
 
 
