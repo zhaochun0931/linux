@@ -30,7 +30,7 @@ openssl req -x509 -nodes -newkey rsa:2048 -keyout server.key -out server.crt
 openssl req -x509 -nodes -newkey rsa:4096 -keyout server.key -out server.crt
 
 openssl req -x509 -nodes -newkey rsa \
--keyout ldap.key -out ldap.crt \
+-keyout server.key -out server.crt \
 -subj "/C=US/ST=State/L=City/O=MyOrg/OU=IT/CN=ldap.example.com"
 
 
@@ -45,6 +45,14 @@ openssl s_server -cert server.crt -key server.key -accept 8443
 openssl s_client -connect localhost:8443
 openssl s_client -connect localhost:8443 -tls1_3
 openssl s_client -connect localhost:8443 -CAfile ca.crt
+
+
+
+
+
+
+
+openssl rsa -in server.key -check
 
 
 
