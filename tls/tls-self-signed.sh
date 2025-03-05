@@ -24,14 +24,14 @@ openssl x509 -signkey server.key -in server.csr -req -days 365 -out server.crt
 
 
 
-# create a private key and a self-signed certificate with just a single command, this command will create a temporary CSR
-
+# one single command to create a private key and a self-signed certificate, this command will create a temporary CSR
 openssl req -x509 -nodes -newkey rsa -keyout server.key -out server.crt
 openssl req -x509 -nodes -newkey rsa:2048 -keyout server.key -out server.crt
 openssl req -x509 -nodes -newkey rsa:4096 -keyout server.key -out server.crt
 
-
-
 openssl req -x509 -nodes -newkey rsa \
 -keyout ldap.key -out ldap.crt \
 -subj "/C=US/ST=State/L=City/O=MyOrg/OU=IT/CN=ldap.example.com"
+
+
+
