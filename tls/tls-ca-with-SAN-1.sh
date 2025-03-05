@@ -20,6 +20,9 @@ openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "
 
 # generate server key
 
+export SERVERNAME1=$(hostname)
+
+
 export SERVERNAME1=name1
 export SERVERNAME2=name2
 export SERVERNAME3=name3
