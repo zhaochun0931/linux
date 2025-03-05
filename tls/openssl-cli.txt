@@ -170,11 +170,7 @@ Up till now, the self-signed certificate is successfully.
 
 
 
-# run below command in one terminal to set up an ssl server
-openssl s_server -cert server.crt -key server.key -accept 8443
 
-# open another terminal to connect the ssl server 
-openssl s_client -connect localhost:8443
 
 
 
