@@ -276,31 +276,6 @@ you must Enter PEM pass phrase, such as 'password'
 
 
 
-# verification
-openssl verify -CAfile ca_certificate.pem server_certificate.pem
-
-
-
-
-
-openssl x509 -pubkey -noout -in ca.crt
-
-
-
-
-
-
-
-
-
-
-
-# how to verify the certificate
-
-openssl s_server -cert tls.crt -key tls.key -accept 8443
-
-openssl s_client -connect localhost:8443 -CAfile ca.crt
-
 
 
 
