@@ -47,6 +47,21 @@ ldapsearch -x -H ldap://localhost:1389 -D "cn=admin,dc=example,dc=com" -W -b "dc
 
 
 
+ldapsearch -x -H ldap://localhost:1389 -D "cn=admin,dc=example,dc=com" -w password -b "dc=example,dc=com"
+
+
+
+-x: Use simple authentication.
+-H ldap://localhost:389: Connect to the LDAP server.
+-D "cn=admin,dc=example,dc=com": Bind as the admin user.
+-w adminpassword: Provide the admin password.
+-b "dc=example,dc=com": Base DN to search.
+
+
+
+
+
+
 
 docker run --detach --rm --name mariadb-galera \
     --network my-network \
