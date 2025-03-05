@@ -14,7 +14,7 @@ openssl req -key server.key -new -out server.csr
 openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr
 
 
-
+# sign with the private key
 openssl x509 -signkey server.key -in server.csr -req -days 365 -out server.crt
 
 
@@ -38,6 +38,16 @@ openssl req -x509 -nodes -newkey rsa \
 
 
 
+
+
+
+
+
+
+
+
+
+
 # verify
 openssl s_server -cert server.crt -key server.key -accept 8443
 
@@ -52,9 +62,20 @@ openssl s_client -connect localhost:8443 -CAfile ca.crt
 
 
 
+
+
+
+
+
 openssl rsa -in server.key -check
+openssl rsa -in server.key -text
+openssl pkey -in server.key -check
 
 
 
+# verify the private key matches a certificate and a CSR
+openssl rsa -noout -modulus -in server.key | openssl md5
+openssl x509 -noout -modulus -in server.crt | openssl md5
+openssl req -noout -modulus -in server.csr | openssl md5
 
 
