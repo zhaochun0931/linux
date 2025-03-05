@@ -1,3 +1,11 @@
+1. private key
+2. public key
+3. certificate
+
+
+
+
+
 the PEM (Privacy-Enhanced Mail) format uses Base64 encoding to represent binary data in an ASCII string format, making it easier to handle in text-based systems.
 
 
@@ -165,7 +173,7 @@ Up till now, the self-signed certificate is successfully.
 # run below command in one terminal to set up an ssl server
 openssl s_server -cert server.crt -key server.key -accept 8443
 
-# another terminal to connect the ssl server 
+# open another terminal to connect the ssl server 
 openssl s_client -connect localhost:8443
 
 
@@ -192,7 +200,6 @@ openssl verify -CAfile your_ca_bundle.crt your_certificate.crt
 
 
 
-# check certificate
 # extract the public key, the public key contained in a private key and a certificate must be the same
 
 openssl x509 -text -noout -in tls.crt 
@@ -203,26 +210,6 @@ openssl x509 -in your_certificate.crt -text -noout
 
 
 
-
-
-private key
-|
-|
-|
-certificate
-
-
-
-
-
-# check private key
-openssl rsa -check -in tls.key
-openssl rsa -pubout -in tls.key
-openssl rsa -noout -modulus -in tls.key | openssl md5
-
-
-# check csr
-openssl req -text -noout -verify -in tls.csr
 
 
 
