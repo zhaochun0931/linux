@@ -1,0 +1,17 @@
+netstat -antlup
+
+
+netstat -rn
+
+
+
+
+
+
+
+
+
+
+
+
+
