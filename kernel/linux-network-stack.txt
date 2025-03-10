@@ -1,0 +1,14 @@
+Linux Tune Network Stack (Buffers Size)
+
+
+cat /proc/sys/net/core/rmem_default
+cat /proc/sys/net/core/rmem_max
+cat /proc/sys/net/core/wmem_default
+cat /proc/sys/net/core/wmem_max
+
+
+
+
+You also need to set minimum size, initial size, and maximum size in bytes:
+echo 'net.ipv4.tcp_rmem= 10240 87380 12582912' >> /etc/sysctl.conf
+echo 'net.ipv4.tcp_wmem= 10240 87380 12582912' >> /etc/sysctl.conf
