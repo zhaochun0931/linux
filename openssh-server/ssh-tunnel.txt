@@ -1,0 +1,1 @@
+ssh -L [local_address:]local_port:[remote_address]:remote_port [user]@[jumbox_ssh_server] -N
