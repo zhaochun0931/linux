@@ -1,6 +1,14 @@
 lsof -i -nP
 
 
+
+lsof -i -P -n | grep LISTEN
+
+-i: Shows all network files.
+-P: Shows port numbers instead of service names.
+-n: Prevents name resolution (faster).
+
+
 lsof -iUDP -nP
 lsof -iTCP -nP
 
