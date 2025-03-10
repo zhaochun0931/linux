@@ -1,6 +1,36 @@
 Linux Tune Network Stack (Buffers Size)
 
 
+The system-wide TCP socket buffer settings 
+
+Socket buffers temporarily store data that the kernel has received or should send:
+
+The read socket buffer holds packets that the kernel has received but which the application has not read yet.
+The write socket buffer holds packets that an application has written to the buffer but which the kernel has not passed to the IP stack and network driver yet.
+
+
+If a TCP packet is too large and exceeds the buffer size or packets are sent or received at a too fast rate, the kernel drops any new incoming TCP packet until the data is removed from the buffer. In this case, increasing the socket buffers can prevent packet loss
+
+
+
+Both the net.ipv4.tcp_rmem (read) and net.ipv4.tcp_wmem (write) socket buffer kernel settings contain three values:
+
+net.ipv4.tcp_rmem = 4096  131072  6291456
+net.ipv4.tcp_wmem = 4096  16384   4194304
+
+
+The displayed values are in bytes and Red Hat Enterprise Linux uses them in the following way:
+
+The first value is the minimum buffer size. New sockets cannot have a smaller size.
+The second value is the default buffer size. If an application sets no buffer size, this is the default value.
+The third value is the maximum size of automatically tuned buffers.
+
+
+
+
+
+
+
 cat /proc/sys/net/core/rmem_default
 cat /proc/sys/net/core/rmem_max
 cat /proc/sys/net/core/wmem_default
