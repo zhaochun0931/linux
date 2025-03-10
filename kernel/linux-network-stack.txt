@@ -28,6 +28,17 @@ The third value is the maximum size of automatically tuned buffers.
 
 
 
+The system-wide TCP socket buffers temporarily store data that the kernel has received or should send. Both net.ipv4.tcp_rmem (read) and net.ipv4.tcp_wmem (write) socket buffer kernel settings each contain three settings: A minimum, default, and maximum value.
+
+Important
+Setting too large buffer sizes wastes memory. Each socket can be set to the size that the application requests, and the kernel doubles this value. For example, if an application requests a 256 KiB socket buffer size and opens 1 million sockets, the system can use up to 512 GB RAM (512 KiB x 1 million) only for the potential socket buffer space.
+
+Additionally, a too large value for the maximum buffer size can increase the latency.
+
+
+
+
+
 
 
 
