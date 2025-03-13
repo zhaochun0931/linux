@@ -27,6 +27,7 @@ iptables -L
 --jump	-j target
 
 
+iptables -A INPUT -p tcp --dport <PORT_NUMBER> -j DROP
 
 
 
