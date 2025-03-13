@@ -38,6 +38,11 @@ iptables -A INPUT -p tcp ! --dport 22 -j DROP
 
 
 
+iptables -A OUTPUT -p tcp --dport 8899 -j REJECT
+
+
+
+
 
 
 
