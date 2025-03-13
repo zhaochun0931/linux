@@ -29,11 +29,12 @@ iptables -L
 
 iptables -A INPUT -p tcp --dport <PORT_NUMBER> -j DROP
 
+iptables -A INPUT -p tcp ! --dport 22 -j DROP
 
 
 iptables -A INPUT -p tcp -m tcp --dport 5671 -j ACCEPT
 
-
+iptables -A INPUT -p tcp ! --dport 22 -j DROP
 
 
 
@@ -93,88 +94,4 @@ The Linux kernel implements firewalling via the netfilter framework.
 
 Netfilter allows kernel modules to inspect every incoming, outgoing,
 or forwarded packet and act upon such a packet by either allowing it or blocking it.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
