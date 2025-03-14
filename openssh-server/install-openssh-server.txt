@@ -3,10 +3,10 @@ apt install -y openssh-server
 ssh -V
 
 systemctl restart sshd.service
+systemctl restart sshd
 
 systemctl status sshd.service
 systemctl status sshd
-systemctl restart ssh
 
 
 
