@@ -8,3 +8,7 @@ apt remove <package-name>
 
 
 apt purge <package-name>
+
+
+
+apt autoremove
