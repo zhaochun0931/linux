@@ -1,0 +1,10 @@
+apt list --installed
+dpkg --get-selections
+
+
+
+
+apt remove <package-name>
+
+
+apt purge <package-name>
