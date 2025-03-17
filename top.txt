@@ -10,3 +10,78 @@ d: Change the update interval (default is 3 seconds)
 
 
 
+top - 10:32:15 up 2 days,  4:13,  1 user,  load average: 0.01, 0.05, 0.08
+Tasks: 149 total,   1 running, 148 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  1.1 us,  0.3 sy,  0.0 ni, 98.3 id,  0.0 wa,  0.1 hi,  0.1 si,  0.0 st
+MiB Mem :   7992.5 total,   3420.7 free,   2721.3 used,   2850.5 buff/cache
+MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   5459.1 avail Mem
+
+
+
+Breakdown:
+Time: 10:32:15 — The current system time.
+
+Uptime: up 2 days, 4:13 — The system has been running for 2 days and 4 hours.
+
+User count: 1 user — There is currently 1 user logged in.
+
+Load averages: load average: 0.01, 0.05, 0.08 — This shows the load averages over the last 1, 5, and 15 minutes. The load average is an indicator of how many processes are actively running or waiting for CPU resources. A value of 1.0 per CPU core is generally considered fully utilized, but these numbers should be interpreted in context with the number of CPU cores.
+
+Tasks: 149 total — Total number of tasks (processes).
+
+1 running — How many processes are currently running.
+148 sleeping — How many are waiting for something (e.g., I/O operations).
+0 stopped — How many are stopped.
+0 zombie — How many are in a "zombie" state (terminated but not cleaned up).
+CPU Usage: 1.1 us, 0.3 sy, 0.0 ni, 98.3 id, 0.0 wa, 0.1 hi, 0.1 si, 0.0 st
+
+us (user): 1.1% — Time spent on user-level tasks (applications).
+sy (system): 0.3% — Time spent on kernel-level tasks (system calls).
+ni (nice): 0.0% — Time spent on processes with a modified priority (nice value).
+id (idle): 98.3% — Time the CPU is idle.
+wa (waiting): 0.0% — Time spent waiting for I/O operations.
+hi (hardware interrupts): 0.1% — Time the CPU spends handling hardware interrupts.
+si (software interrupts): 0.1% — Time spent handling software interrupts.
+st (steal time): 0.0% — Time the virtual CPU spends waiting for real CPU resources from the hypervisor (relevant in virtualized environments).
+Memory Usage:
+
+total: The total amount of physical memory (RAM).
+free: The amount of free memory available.
+used: The amount of memory being actively used.
+buff/cache: Memory used by buffers or cache (used to improve performance).
+Swap Usage:
+
+total: The total amount of swap space.
+free: How much swap space is free.
+used: How much swap space is in use.
+avail Mem: The total memory available, including swap and free RAM.
+
+
+
+2. Process List (Bottom part)
+This section shows the currently running processes on your system.
+
+Example output:
+
+PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+12345 user     20   0  123456  23456   1234 S  0.0  0.3   0:01.23 bash
+67890 user     20   0  345678  45678   2345 S  1.2  0.5   1:23.45 firefox
+
+
+Columns:
+PID: The Process ID. A unique number assigned to each running process.
+USER: The user who owns the process.
+PR: The process priority. Higher values indicate lower priority (lower number = higher priority).
+NI: The "nice" value of the process, which affects its priority.
+VIRT: The total virtual memory used by the process (includes memory that has been swapped out).
+RES: The resident memory (RAM) used by the process (memory that is actually in RAM).
+SHR: The shared memory used by the process.
+S: The process status. Common values are:
+S for sleeping (waiting for resources).
+R for running.
+Z for zombie (terminated but not cleaned up).
+T for stopped (either by a signal or a debugger).
+%CPU: The percentage of CPU being used by the process.
+%MEM: The percentage of RAM being used by the process.
+TIME+: The total CPU time the process has consumed since it started.
+COMMAND: The name of the command running (or the executable).
