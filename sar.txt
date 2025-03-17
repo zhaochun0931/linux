@@ -1,4 +1,41 @@
+System Activity Reporter
+
 
 yum install sysstat
+
+systemctl restart sysstat
+
+
+sar -u 1 5   #每隔一秒刷新，刷新5次
+
+
+
+
+
+# sar -u 1 5
+Linux 5.4.0-208-generic (ubuntu1) 	03/17/2025 	_aarch64_	(2 CPU)
+
+02:59:28 AM     CPU     %user     %nice   %system   %iowait    %steal     %idle
+02:59:29 AM     all      0.50      0.00      0.00      0.00      0.00     99.50
+02:59:30 AM     all      0.00      0.00      0.00      0.00      0.00    100.00
+02:59:31 AM     all      0.51      0.00      0.51      0.00      0.00     98.99
+02:59:32 AM     all      0.50      0.00      0.50      0.00      0.00     99.00
+02:59:33 AM     all      0.00      0.00      0.00      0.00      0.00    100.00
+Average:        all      0.30      0.00      0.20      0.00      0.00     99.50
+#
+
+
+
+%user：用户模式下消耗的CPU时间比例。
+
+%nice：通过nice改变了进程调度优先级的进程，在用户模式下消耗的CPU时间比例。
+
+%system：系统模式下消耗的CPU时间比例。
+
+%iowait：CPU等待磁盘I/O导致空闲状态消耗的时间比例。
+
+%steal：利用Xen等操作系统虚拟化技术，等待其它虚拟CPU计算占用的时间比例。
+
+%idle：CPU空闲时间百分比。
 
 
