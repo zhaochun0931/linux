@@ -1,0 +1,12 @@
+Some useful options and keypresses:
+
+q: Quit the top command.
+P: Sort processes by CPU usage.
+M: Sort processes by memory usage.
+1: Toggle CPU core display (shows per-core CPU usage).
+d: Change the update interval (default is 3 seconds)
+
+
+
+
+
