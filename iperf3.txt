@@ -44,3 +44,22 @@ iperf3 -c localhost
 
 
 
+
+     server side:   iperf3 -s
+     client side:   iperf3 -uVc {server-host} -b1000m -t60 --get-server-output -l8192
+
+(NOTE: please do test from segment host to the master, and also to same test from master to the segment host)
+If we see the packet drop rate keeps showing non-zero values like below:
+
+[  5] local xxxxxxx port xxxxx connected to xxxxx port xxxxx
+[ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  94.2 MBytes   791 Mbits/sec  0.003 ms  1944/14008 (14%)
+[  5]   1.00-2.00   sec   109 MBytes   913 Mbits/sec  0.010 ms  1314/15241 (8.6%)
+[  5]   2.00-3.00   sec   107 MBytes   895 Mbits/sec  0.002 ms  1621/15273 (11%)
+[  5]   3.00-4.00   sec   109 MBytes   912 Mbits/sec  0.003 ms  1349/15269 (8.8%)
+then means there is a network issue in the cluster
+
+3) If possible, next time when we see such a long running query between the master and seg128, try to collect both pstack and strace of the long running session process on both host. It would be helpful to understand the full stack trace.
+
+
+
