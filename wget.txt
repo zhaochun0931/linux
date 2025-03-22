@@ -2,8 +2,7 @@ apt-get install -y wget
 
 
 
-dnf wget
-
+dnf install -y wget
 
 
 
