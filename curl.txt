@@ -1,4 +1,4 @@
-# To download a file using curl, use the -O (uppercase o) option to save the file with its original name
+# To download a file using curl, use the -O (uppercase o, not zero) option to save the file with its original name
 
 curl -O xxx
 
@@ -37,32 +37,3 @@ Transfer-Encoding: chunked
 
 
 
-
-
-
-apt-get install -y wget
-
-
-
-
-
-
-
-
-wget xxx
-
-
-
-# When downloading a file, Wget defaults to storing it using the name that the file has on the server. You can change that by using the -O ( upper alphabet letter O not number 0 ) option to specify a new name.
-wget xxx -O new_file_name
-
-
-
-
-# download multiple files 
-wget -i file-list.txt
-
-
-
-# show the progress of download
-wget -q --show-progress xxx
