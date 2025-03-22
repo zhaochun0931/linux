@@ -1,1 +1,43 @@
 Cgroups (Control Groups) are a Linux kernel feature that allows you to allocate, manage, and limit system resources (CPU, memory, I/O, network, etc.) for processes or groups of processes.
+
+
+There are two versions of cgroups in Linux:
+
+1. Cgroups v1
+Resources are managed in separate hierarchical groups (e.g., cpu, memory, blkio are separate groups).
+Each controller (e.g., cpu, memory) has its own directory structure.
+Used in older Linux distributions.
+
+
+2. Cgroups v2
+Introduces a unified hierarchy where all resources can be managed together.
+More flexible and efficient for modern containerized workloads.
+Used by default in newer Linux distributions (e.g., RHEL 8+, Ubuntu 20.04+).
+
+
+
+
+
+To check which version is in use:
+
+stat -fc %T /sys/fs/cgroup/
+
+If output is cgroup2fs, then Cgroups v2 is enabled.
+Otherwise, it's using Cgroups v1.
+
+
+
+[root@rabbitmq2 ~]# stat -fc %T /sys/fs/cgroup/
+cgroup2fs
+[root@rabbitmq2 ~]#
+
+
+
+
+
+
+[root@rabbitmq2 ~]# stat -fc %T /sys/fs/cgroup/
+tmpfs
+[root@rabbitmq2 ~]#
+
+
