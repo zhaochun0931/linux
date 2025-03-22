@@ -27,17 +27,17 @@ Otherwise, it's using Cgroups v1.
 
 
 
-[root@rabbitmq2 ~]# stat -fc %T /sys/fs/cgroup/
+# stat -fc %T /sys/fs/cgroup/
 cgroup2fs
-[root@rabbitmq2 ~]#
+#
 
 
 
 
 
 
-[root@rabbitmq2 ~]# stat -fc %T /sys/fs/cgroup/
+# stat -fc %T /sys/fs/cgroup/
 tmpfs
-[root@rabbitmq2 ~]#
+#
 
 
