@@ -1,0 +1,1 @@
+Cgroups (Control Groups) are a Linux kernel feature that allows you to allocate, manage, and limit system resources (CPU, memory, I/O, network, etc.) for processes or groups of processes.
