@@ -1,0 +1,10 @@
+/etc/sysconfig/network-scripts/ifcfg-eth0
+
+The /etc/sysconfig/network-scripts/ifcfg-* configuration files are deprecated in newer versions of CentOS/Rocky Linux (8 and above). 
+Rocky Linux now uses NetworkManager with nmcli or nmtui to configure network settings instead of those old scripts.
+
+
+A lot has changed with network configuration as of Rocky Linux 9. 
+One of the major changes is the move from Network-Scripts (still available to install-but effectively deprecated) to the use of Network Manager and key files, rather than ifcfg based files. 
+
+
