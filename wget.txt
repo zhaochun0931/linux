@@ -2,6 +2,9 @@ apt-get install -y wget
 
 
 
+dnf wget
+
+
 
 
 
