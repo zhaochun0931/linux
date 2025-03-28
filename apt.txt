@@ -1,3 +1,6 @@
+apt is a newer, higher-level command that combines the functionality of several older tools (like apt-get and apt-cache) into a more user-friendly interface.
+
+
 apt list --installed
 dpkg --get-selections
 
