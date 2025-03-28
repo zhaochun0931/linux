@@ -1,18 +1,4 @@
-awk '{ print }'
 
-awk '/abc/ { print }'
-
-awk '/abc/ { print $1}'
-
-awk '/abc/ { print $1 "\t" $2}'
-
-
-
-echo xyz123 | awk '{print substr($0,2)}'
-
-$ echo xyz123 | awk '{print substr($0,2)}'
-yz123
-$
 
 
 
