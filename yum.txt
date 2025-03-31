@@ -1,1 +1,3 @@
+yum list installed
+sudo yum remove <package-name>
 
