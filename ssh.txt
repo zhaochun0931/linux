@@ -1,4 +1,0 @@
-ssh -l username host
-
-
-
