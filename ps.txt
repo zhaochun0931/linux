@@ -7,6 +7,13 @@ A process is an instance of a program with an associated processor environment (
 
 
 
+There is a parent/child relationship between processes. A child process results from the parent calling the fork() primitive and duplicating its code to create a child. The PID of the child is returned to the parent process so that it can talk to it. Each child has its parent's identifier, the PPID.
+
+
+
+
+
+
 
 
        This version of ps accepts several kinds of options:
