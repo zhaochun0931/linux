@@ -112,30 +112,3 @@ tar -xvf test.tgz --one-top-level
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# gunzip
-
-gunzip xx.gz
-
-
-
-
-
-
-
-
-
-
-
