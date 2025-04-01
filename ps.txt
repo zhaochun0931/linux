@@ -1,3 +1,8 @@
+When a program runs, the system will create a process by placing the program data and code in memory and creating a runtime stack. 
+
+A process is an instance of a program with an associated processor environment (ordinal counter, registers, etc...) and memory environment.
+
+
 
 
 
