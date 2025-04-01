@@ -1,0 +1,10 @@
+nohup allows the launching of a process independently of a connection.
+
+
+
+nohup command
+
+
+
+
+nohup ignores the SIGHUP signal sent when a user logs out.
