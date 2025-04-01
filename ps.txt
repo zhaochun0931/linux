@@ -25,6 +25,13 @@ When a parent process dies, their children are said to be orphans. They are then
 
 
 
+Processes can run in two ways:
+synchronous: the user loses access to the shell during command execution. The command prompt reappears at the end of the process execution.
+asynchronous: the process is processed in the background. The command prompt is displayed again immediately.
+
+
+
+
 This version of ps accepts several kinds of options:
 1. UNIX options, which may be grouped and must be preceded by a dash.
 2. BSD options, which may be grouped and must not be used with a dash.
