@@ -1,6 +1,9 @@
 bzip2 --version
 
 
+Compression by bzip2 is better than compression by gzip , but executing it takes longer.
+
+
 
 # compress
 
@@ -22,3 +25,8 @@ This will compress file.txt and produce file.txt.bz2
 bunzip2 file.txt.bz2
 
 This will decompress file.txt.bz2 and restore it to file.txt
+
+
+
+
+
