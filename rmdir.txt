@@ -1,0 +1,1 @@
+The rmdir command deletes an empty directory. To delete both a non-empty directory and its contents, use the rm command
