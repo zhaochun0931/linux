@@ -15,6 +15,16 @@ There is a parent/child relationship between processes. A child process results 
 
 
 
+The end-of-process sequencing is as follows:
+1. Closing of the open files
+2. Release of the used memory
+3. Sending a signal to the parent and child processes
+When a parent process dies, their children are said to be orphans. They are then adopted by the init process, which will destroy them.
+
+
+
+
+
 This version of ps accepts several kinds of options:
 1. UNIX options, which may be grouped and must be preceded by a dash.
 2. BSD options, which may be grouped and must not be used with a dash.
