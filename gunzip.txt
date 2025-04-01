@@ -1,0 +1,6 @@
+# gunzip
+
+gunzip xx.gz
+
+
+
