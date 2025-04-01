@@ -1,3 +1,17 @@
+Here is a ranking of the compression of a set of text files from least to most efficient:
+compress ( .tar.Z )
+gzip ( .tar.gz )
+bzip2 ( .tar.bz2 )
+lzip ( .tar.lz )
+xz ( .tar.xz )
+
+
+
+
+
+
+
+
 # compress
 
 tar -cvzf test.tgz 1.txt 2.txt 3.txt
