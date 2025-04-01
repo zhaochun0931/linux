@@ -15,12 +15,10 @@ There is a parent/child relationship between processes. A child process results 
 
 
 
-
-       This version of ps accepts several kinds of options:
-
-       1   UNIX options, which may be grouped and must be preceded by a dash.
-       2   BSD options, which may be grouped and must not be used with a dash.
-       3   GNU long options, which are preceded by two dashes.
+This version of ps accepts several kinds of options:
+1. UNIX options, which may be grouped and must be preceded by a dash.
+2. BSD options, which may be grouped and must not be used with a dash.
+3. GNU long options, which are preceded by two dashes.
 
 
 
@@ -28,8 +26,10 @@ There is a parent/child relationship between processes. A child process results 
 
 ps -ef
 ps -aux
-ps aux
 ps -f -u username
+
+
+ps aux
 
 
 
