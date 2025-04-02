@@ -1,0 +1,11 @@
+sudo yum install sshpass -y
+
+
+
+
+sudo apt install sshpass -y
+
+
+
+
+
