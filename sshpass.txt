@@ -9,3 +9,11 @@ sudo apt install sshpass -y
 
 
 
+
+
+
+sshpass -p password ssh-copy-id hostname1
+
+
+
+
