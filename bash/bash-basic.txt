@@ -1,0 +1,28 @@
+bash -version
+bash --version
+
+
+
+# enable debug mode
+set -x
+
+# move to the beginning of the line
+ctrl + a
+
+# move to the end of the line
+ctrl + e
+
+
+# delete from current cursor to the end of line
+ctrl + k
+
+
+# delete from current cursor to the beginning of line
+ctrl + u
+
+
+
+# history command
+ctrl + r
+
+ctrl + g
