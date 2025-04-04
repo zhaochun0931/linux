@@ -5,10 +5,3 @@ SAN (Subject Alternative Name) is an extension in an SSL/TLS certificate that al
 2. Avoids Common Name (CN) Limitations, The CN field only allows one hostname, but SAN allows many.
 3. Essential for Modern Browsers, Some browsers ignore the CN field and only use SAN.
 4. Used in Wildcard and Multi-Domain Certificates.
-
-
-
-
-
-
-
