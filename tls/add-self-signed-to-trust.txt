@@ -1,0 +1,34 @@
+# add the self signed certificat to trust store in Ubuntu linx
+
+
+
+
+
+
+
+
+
+
+
+
+
+curl --cert server.crt --key server.key https://xiaoming.com
+
+
+# On Ubuntu/Debian:
+
+sudo cp minio.crt /usr/local/share/ca-certificates/
+sudo update-ca-certificates
+
+
+
+
+
+
+
+
+# On CentOS/RedHat:
+
+
+sudo cp minio.crt /etc/pki/ca-trust/source/anchors/
+sudo update-ca-trust
