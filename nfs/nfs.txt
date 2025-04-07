@@ -7,6 +7,22 @@ systemctl start nfs-server
 systemctl status rpcbind
 
 
+
+For NFS to work, the following ports need to be open:
+
+2049/tcp: NFS
+
+111/tcp and 111/udp: Portmapper/rpcbind
+
+20048/tcp and 20048/udp: NFS mount daemon (optional)
+
+
+
+
+
+
+
+
 vi /etc/exports
 
 
