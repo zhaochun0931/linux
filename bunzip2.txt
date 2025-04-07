@@ -1,0 +1,11 @@
+The file name is truncated by bunzip2 , and the extension .bz2 is removed.
+
+bunzip2 usr.cpio.bz2
+
+
+
+
+bunzip2 also decompresses the file with the following extensions:
+-bz 
+.tbz2 
+tbz 
