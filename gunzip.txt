@@ -4,3 +4,12 @@ gunzip xx.gz
 
 
 
+The file name is truncated by gunzip and the extension .gz is removed.
+
+
+
+gunzip also decompresses files with the following extensions:
+.z 
+-z 
+_z 
+-gz 
