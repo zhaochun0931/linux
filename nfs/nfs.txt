@@ -1,0 +1,22 @@
+ yum install nfs-utils -y
+
+
+systemctl start nfs-server
+systemctl status rpcbind
+
+
+vi /etc/exports
+
+
+/tmp/repository 172.80.0.226/32(rw,sync,no_subtree_check)
+
+
+
+
+
+
+exportfs -v
+# exportfs -v
+/tmp/repository
+		172.80.0.226/32(sync,wdelay,hide,no_subtree_check,sec=sys,rw,secure,root_squash,no_all_squash)
+#
