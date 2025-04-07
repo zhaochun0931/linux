@@ -3,6 +3,9 @@ bzip2 --version
 
 Compression by bzip2 is better than compression by gzip , but executing it takes longer.
 
+The file name is given the extension .bz2
+
+
 
 
 # compress
