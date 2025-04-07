@@ -1,0 +1,40 @@
+The BIOS startup
+
+The BIOS (Basic Input/Output System) performs the POST (power on self-test) to detect, test and initialize the system hardware components.
+It then loads the MBR (Master Boot Record).
+
+
+
+The Master boot record (MBR)
+
+The Master Boot Record is the first 512 bytes of the boot disk. The MBR discovers the boot device and loads the bootloader GRUB2 into memory and transfers
+control to it.
+The next 64 bytes contain the partition table of the disk.
+
+
+
+The GRUB2 bootloader
+
+The default bootloader for the Rocky 8 distribution is GRUB2 (GRand Unified Bootloader). GRUB2 replaces the old GRUB bootloader (also called GRUB legacy).
+The GRUB 2 configuration file is located under /boot/grub2/grub.cfg but this file should not be edited directly.
+
+
+The kernel
+The kernel starts the systemd process with PID 1.
+root 1 0 0 02:10 ? 00:00:02 /usr/lib/systemd/systemd --switched-root --system --deserialize 23
+
+
+
+systemd
+Systemd is the parent of all system processes. It reads the target of the /etc/systemd/system/default.target link (e.g., /usr/lib/systemd/system/multi-user.target) 
+to determine the default target of the system. The file defines the services to be started.
+
+Systemd then places the system in the target-defined state by performing the following initialization tasks:
+Set the machine name
+Initialize the network
+Initialize SELinux
+Display the welcome banner
+Initialize the hardware based on the arguments given to the kernel at boot time
+Mount the file systems, including virtual file systems like /proc
+Clean up directories in /var
+Start the virtual memory (swap)
