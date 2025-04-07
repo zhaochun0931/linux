@@ -1,3 +1,0 @@
-apt install stress
-
-stress -c 2 --timeout 60
