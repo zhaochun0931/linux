@@ -1,1 +1,9 @@
+gzip xxx.tar
 
+ls
+
+xxx.tar.gz
+
+
+
+The file receives the extension .gz
