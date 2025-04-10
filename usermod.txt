@@ -52,3 +52,14 @@ SHELL=/bin/bash
 SKEL=/etc/skel
 CREATE_MAIL_SPOOL=no
 #
+
+
+
+
+usermod -aG groupname username
+
+-a: Append the user to the group(s)
+-G: Group(s) to add the user to
+groupname: The group you want the user to join
+username: The user you want to modify
+
