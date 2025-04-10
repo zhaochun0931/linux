@@ -7,4 +7,11 @@ usermod -aG sudo username
 
 
 
+or
+
+visudo
+
+username ALL=(ALL) NOPASSWD: ALL
+
+
 
