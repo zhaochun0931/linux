@@ -1,0 +1,52 @@
+free -h
+
+swapon --show
+
+
+
+
+
+$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:          5.5Gi       2.3Gi       296Mi       875Mi       3.0Gi       2.1Gi
+Swap:         5.9Gi       579Mi       5.4Gi
+$
+$ swapon --show
+NAME      TYPE      SIZE   USED PRIO
+/dev/dm-1 partition 5.9G 579.7M   -2
+$
+
+
+
+
+
+fdisk -l
+
+
+
+/proc/partitions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+lsblk
+
+
+
+
+
+
+
+mount
+
