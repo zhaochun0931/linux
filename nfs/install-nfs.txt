@@ -1,8 +1,15 @@
+# install nfs-utils on both server and client side
+
 yum install nfs-utils -y
 
 
 
-# nfs server
+
+
+
+
+# The NFS service also requires that the RPC service be running (rpcbind). The nfs-server service automatically starts the rpcbind service
+
 systemctl start nfs-server
 systemctl status rpcbind
 
