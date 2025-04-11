@@ -3,6 +3,8 @@ free -h
 swapon --show
 
 
+swapoff -a
+
 
 
 
@@ -15,6 +17,43 @@ $ swapon --show
 NAME      TYPE      SIZE   USED PRIO
 /dev/dm-1 partition 5.9G 579.7M   -2
 $
+
+
+
+
+
+
+
+swappiness is a kernel parameter that controls how aggressively Linux uses swap space.
+
+It’s a value between 0 and 100:
+
+0 → Avoid swap as much as possible (use RAM until it’s almost full)
+
+100 → Swap more aggressively (start using swap earlier)
+
+
+
+
+
+
+cat /proc/sys/vm/swappiness
+
+
+
+
+
+Add this line to /etc/sysctl.conf:
+
+vm.swappiness=10
+
+
+Then apply:
+
+sudo sysctl -p
+
+
+
 
 
 
