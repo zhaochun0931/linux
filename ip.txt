@@ -1,0 +1,56 @@
+the ip command is part of the iproute2 package, which is the modern and more powerful networking tool suite for Linux. It is intended to replace ifconfig and other legacy tools like route and netstat.
+
+
+
+
+
+
+
+ip -V
+
+
+
+
+ip a
+ip address
+ip address show eth0
+
+
+
+
+
+
+
+
+ip r
+ip route
+ip route show default
+
+
+
+ip -6 route show
+
+
+cat /etc/resolv.conf
+
+
+
+
+
+
+
+
+
+ip address show
+ip address show eth0
+ip addr show dev eth0
+ip a s eth0
+
+
+ip link show
+
+
+
+
+ip route show
+
