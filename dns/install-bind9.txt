@@ -1,3 +1,7 @@
+The Domain Name System (DNS) is responsible for translating (resolving) a service name to an IP address. 
+
+
+
 apt update
 apt install bind9 bind9utils -y
 
