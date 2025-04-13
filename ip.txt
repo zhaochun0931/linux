@@ -2,6 +2,7 @@ the ip command is part of the iproute2 package, which is the modern and more pow
 
 
 
+apt install -y iproute2
 
 
 
