@@ -27,13 +27,27 @@ lrwxrwxrwx 1 root root 39 Aug 10  2023 /etc/resolv.conf -> ../run/systemd/resolv
 
 
 
-Static hostnames
+2. Static hostnames
 
 Static hostnames are locally defined hostname-to-IP mappings located in the file /etc/hosts
 
 Entries in the hosts file will have precedence over DNS by default.
 
 
+
+
+
+3. Name Service Switch (NSS) configuration
+
+The order in which your system selects a method of resolving hostnames to IP addresses is controlled by the Name Service Switch (NSS) configuration file /etc/nsswitch.conf
+
+
+hosts:          files dns
+
+
+
+files first tries to resolve static hostnames located in /etc/hosts
+dns represents a legacy unicast DNS query
 
 
 
