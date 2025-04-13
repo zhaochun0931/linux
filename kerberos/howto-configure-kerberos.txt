@@ -41,6 +41,11 @@ kadmin.local:  quit
 #
 
 
+# add other users
+addprinc user1
+addprinc user2
+
+
 systemctl restart krb5-admin-server
 
 
@@ -73,8 +78,8 @@ kadmin.local:
 
 
 
- getprinc kuser
-
+getprinc kuser
+getprinc user1
 
 
 kadmin.local:  getprinc kuser
@@ -86,6 +91,27 @@ Maximum ticket life: 0 days 10:00:00
 Maximum renewable life: 7 days 00:00:00
 Last modified: Sun Apr 13 02:52:14 UTC 2025 (root/admin@mykdc)
 Last successful authentication: Sun Apr 13 02:53:49 UTC 2025
+Last failed authentication: [never]
+Failed password attempts: 0
+Number of keys: 2
+Key: vno 1, aes256-cts-hmac-sha1-96
+Key: vno 1, aes128-cts-hmac-sha1-96
+MKey: vno 1
+Attributes: REQUIRES_PRE_AUTH
+Policy: [none]
+kadmin.local:
+
+
+
+kadmin.local:  getprinc user1
+Principal: user1@mykdc
+Expiration date: [never]
+Last password change: Sun Apr 13 03:08:05 UTC 2025
+Password expiration date: [never]
+Maximum ticket life: 0 days 10:00:00
+Maximum renewable life: 7 days 00:00:00
+Last modified: Sun Apr 13 03:08:05 UTC 2025 (root/admin@mykdc)
+Last successful authentication: Sun Apr 13 03:09:08 UTC 2025
 Last failed authentication: [never]
 Failed password attempts: 0
 Number of keys: 2
