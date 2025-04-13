@@ -140,6 +140,21 @@ kadmin.local:  ktadd -k /tmp/krb5.keytab user1
 
 klist -k /tmp/krb5.keytab
 
+# klist -k /tmp/krb5.keytab
+Keytab name: FILE:/tmp/krb5.keytab
+KVNO Principal
+---- --------------------------------------------------------------------------
+   2 user1@mykdc
+   2 user1@mykdc
+root@ubuntu1:~#
+
+
+
+
+
+
+# copy the keytab to other client to verify
+kinit -k -t /tmp/krb5.keytab user1
 
 
 
