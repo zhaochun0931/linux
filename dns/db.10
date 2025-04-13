@@ -1,0 +1,14 @@
+$TTL    604800
+@       IN      SOA     ns.example.com. admin.example.com. (
+                         2023102901 ; Serial
+                         604800      ; Refresh
+                         86400       ; Retry
+                         2419200     ; Expire
+                         604800 )    ; Negative Cache TTL
+
+; Nameservers
+@       IN      NS      ns.example.com.
+
+; PTR Records
+14      IN      PTR     ns.example.com.
+14      IN      PTR     www.example.com.
