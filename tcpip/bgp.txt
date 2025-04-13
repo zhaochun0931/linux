@@ -1,0 +1,60 @@
+Border Gateway Protocol (BGP) refers to a gateway protocol that enables the internet to exchange routing information between different autonomous systems (AS). 
+
+
+
+
+As networks interact with each other, they need a way to communicate. This is accomplished through peering. BGP makes peering possible. Without it, networks would not be able to send and receive information with each other.
+
+
+When you have a network router that connects to other networks, it does not know which network is the best one to send its data to. BGP takes into consideration all the different peering options a router has and chooses the one closest to where the router is. 
+
+Each potential peer communicates the routing information it has and that gets stored within a routing information base (RIB). BGP can access this information and use it to choose the best peering option.
+
+
+
+
+
+
+
+
+
+An autonomous system is a smaller network under the control of a single administrative entity. You can uniquely identify such networks by their autonomous system number assigned by the Internet Assigned Numbers Authority (IANA). Data travels between autonomous systems as it moves from source to destination.
+
+
+
+
+
+
+
+BGP
+|--- External BGP
+|--- Internal BGP
+
+
+
+
+Additionally, organizations must use external BGP to connect their corporate network to the internet.
+
+
+
+
+
+
+
+
+Establishing a Peer Connection:
+
+BGP peers establish a TCP connection (typically over port 179) to exchange routing information. This connection is known as a BGP session.
+
+
+
+
+
+Neighbor Configuration:
+
+When configuring BGP, you specify neighbors (peers) using their IP addresses and their respective AS numbers. This establishes the relationship between the two routers.
+
+Example configuration might look like this:
+
+neighbor 192.0.2.1 remote-as 65001
+
