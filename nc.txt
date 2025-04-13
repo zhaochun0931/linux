@@ -79,29 +79,7 @@ echo -e  "GET / HTTP/1.0\r\n\r\n" | nc kubia-demo-svc-clusterip 8080
 
 
 
-# nmap
 
-
-apt update
-apt install nmap -y
-
-
-
-
-
-
-
-
-nmap localhost
-
-# operating system detection
-nmap -O <target>
-
-
-
-# scan all ports, '-p-' scans all 65535 ports, specify -p- to scan ports from 1 through 65535
-nmap -p- localhost
-nmap -p1-65535 localhost
 
 
 
