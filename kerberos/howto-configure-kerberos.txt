@@ -6,3 +6,10 @@
 
 
 
+
+# generate the password for the Kerberos Realm
+
+krb5_newrealm
+
+
+
