@@ -1,3 +1,7 @@
+Name resolution (as it relates to IP networking) is the process of mapping hostnames to IP addresses, and vice-versa, making it easier to identify resources on a network.
+
+configure your system for name resolution using DNS and static hostname records
+
 The Domain Name System (DNS) is responsible for translating (resolving) a service name to an IP address. 
 
 
