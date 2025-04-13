@@ -1,7 +1,12 @@
+ifconfig is the traditional utility for network configuration and management on Unix-based systems. It's part of the net-tools package, which is now considered deprecated on many modern Linux distributions.
+
+
+
+
+
+
 apt update
 apt install net-tools
-
-
 
 
 
