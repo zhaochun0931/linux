@@ -45,6 +45,9 @@ kadmin.local:  quit
 addprinc user1
 addprinc user2
 
+listprincs
+
+
 
 systemctl restart krb5-admin-server
 
