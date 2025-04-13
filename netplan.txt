@@ -1,1 +1,55 @@
+Netplan is a utility for configuring network settings in modern versions of Ubuntu.
 
+
+Netplan uses YAML (Yet Another Markup Language) files for configuration. These files typically reside in the /etc/netplan/ directory.
+
+
+
+Backend Choices: Netplan supports two backend renderers:
+
+Networkd: The default backend for server installations, uses systemd-networkd to apply network configurations.
+
+Networkd (systemd-networkd):
+systemd-networkd is a system service that is part of the systemd system and service manager. It is a lightweight, low-level network manager that provides network configuration and management for systems. It is designed for server environments where network configurations are typically static and need to be configured at boot.
+
+
+Networkd is configured through files in /etc/systemd/network/ (for example, eth0.network), or if using Netplan, via YAML files in /etc/netplan/.
+
+
+
+
+
+NetworkManager: Typically used on desktop environments and manages network configurations for user-oriented setups.
+
+
+NetworkManager is a more feature-rich, user-oriented tool for managing network connections, primarily in desktop environments. It allows for dynamic network configurations, supports mobile networks, VPNs, Wi-Fi, and has both command-line and graphical user interface tools.
+
+
+NetworkManager is configured through various GUI tools like nm-connection-editor or through configuration files in /etc/NetworkManager/
+
+Example of a static IP configuration using nmcli
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/etc/netplan/00-installer-config.yaml
+
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    enp0s5:
+      dhcp4: true
+  version: 2
