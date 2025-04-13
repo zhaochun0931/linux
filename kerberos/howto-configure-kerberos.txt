@@ -13,3 +13,89 @@ krb5_newrealm
 
 
 
+/etc/krb5kdc/kadm5.acl
+
+
+*/admin *
+
+
+
+
+
+
+# add the admin principal to the Kerberos database
+kadmin.local
+
+
+# add the principal name kuser
+
+addprinc kuser
+
+
+kadmin.local:  addprinc kuser
+No policy specified for kuser@mykdc; defaulting to no policy
+Enter password for principal "kuser@mykdc":
+Re-enter password for principal "kuser@mykdc":
+Principal "kuser@mykdc" created.
+kadmin.local:  quit
+#
+
+
+systemctl restart krb5-admin-server
+
+
+
+
+
+
+# install Kerberos Client
+apt install krb5-user -y
+
+
+
+
+# authenticate to the Kerberos server and obtain a ticket from it with the following command:
+
+kinit kuser
+klist
+
+
+
+# Verify Authentication
+
+On the Kerberos server machine, run the following command:
+
+kadmin.local
+
+# kadmin.local
+Authenticating as principal root/admin@mykdc with password.
+kadmin.local:
+
+
+
+ getprinc kuser
+
+
+
+kadmin.local:  getprinc kuser
+Principal: kuser@mykdc
+Expiration date: [never]
+Last password change: Sun Apr 13 02:52:14 UTC 2025
+Password expiration date: [never]
+Maximum ticket life: 0 days 10:00:00
+Maximum renewable life: 7 days 00:00:00
+Last modified: Sun Apr 13 02:52:14 UTC 2025 (root/admin@mykdc)
+Last successful authentication: Sun Apr 13 02:53:49 UTC 2025
+Last failed authentication: [never]
+Failed password attempts: 0
+Number of keys: 2
+Key: vno 1, aes256-cts-hmac-sha1-96
+Key: vno 1, aes128-cts-hmac-sha1-96
+MKey: vno 1
+Attributes: REQUIRES_PRE_AUTH
+Policy: [none]
+kadmin.local:
+
+
+
+
