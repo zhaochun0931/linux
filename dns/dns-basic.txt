@@ -27,5 +27,15 @@ lrwxrwxrwx 1 root root 39 Aug 10  2023 /etc/resolv.conf -> ../run/systemd/resolv
 
 
 
+Static hostnames
+
+Static hostnames are locally defined hostname-to-IP mappings located in the file /etc/hosts
+
+Entries in the hosts file will have precedence over DNS by default.
+
+
+
+
+
 
 
