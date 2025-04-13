@@ -7,3 +7,25 @@ The Domain Name System (DNS) is responsible for translating (resolving) a servic
 
 
 Traditionally, the file /etc/resolv.conf was a static configuration file
+
+
+
+
+
+systemd-resolved handles nameserver configuration, and it should be interacted with through the systemd-resolve command. Netplan configures systemd-resolved to generate a list of nameservers and domains to put in /etc/resolv.conf, which is a symlink:
+
+
+# ls -al /etc/resolv.conf
+lrwxrwxrwx 1 root root 39 Aug 10  2023 /etc/resolv.conf -> ../run/systemd/resolve/stub-resolv.conf
+#
+/etc/resolv.conf -> ../run/systemd/resolve/stub-resolv.conf
+
+
+
+
+
+
+
+
+
+
