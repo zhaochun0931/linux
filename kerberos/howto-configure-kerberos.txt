@@ -125,3 +125,23 @@ kadmin.local:
 
 
 
+
+
+
+# setup done
+
+
+
+
+# generate the krb5.keytab
+
+
+kadmin.local:  ktadd -k /tmp/krb5.keytab user1
+
+klist -k /tmp/krb5.keytab
+
+
+
+
+
+
