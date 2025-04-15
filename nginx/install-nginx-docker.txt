@@ -1,1 +1,5 @@
+docker run -d -it --rm --name mynginx -p 8888:80 nginx
+curl localhost:8888
 
+
+docker exec -it mynginx bash
