@@ -11,3 +11,12 @@ Replaces older systems like SysVinit and Upstart.
 
 
 Built-in logging (journald)
+
+
+
+
+
+
+
+
+systemctl daemon-reload
