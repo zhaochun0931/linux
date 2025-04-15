@@ -1,0 +1,24 @@
+adduser is usually a more user-friendly, high-level script (or interactive tool) that wraps around useradd (or equivalent system calls) and provides a guided, interactive process for creating a new user. It’s designed to prompt you for any missing information.
+
+
+
+
+
+# adduser xiaoming
+Adding user `xiaoming' ...
+Adding new group `xiaoming' (1001) ...
+Adding new user `xiaoming' (1001) with group `xiaoming' ...
+Creating home directory `/home/xiaoming' ...
+Copying files from `/etc/skel' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for xiaoming
+Enter the new value, or press ENTER for the default
+	Full Name []:
+	Room Number []:
+	Work Phone []:
+	Home Phone []:
+	Other []:
+Is the information correct? [Y/n] Y
+#
