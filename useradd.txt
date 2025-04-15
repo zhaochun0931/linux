@@ -9,5 +9,11 @@ sudo useradd -m -s /bin/bash newuser
 
 
 
+# useradd xiaoming
+# 
+# su - xiaoming
+su: warning: cannot change directory to /home/xiaoming: No such file or directory
+xiaoming@gf1:/root$
+
 
 useradd is a low-level utility that directly interfaces with system configuration files.  It performs minimal setup by creating a new user account but does not handle some of the additional setup tasks by default. After creating the account with useradd, you might need to run additional commands to set a password 
