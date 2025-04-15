@@ -23,3 +23,110 @@ mysql  Ver 8.0.41-0ubuntu0.20.04.1 for Linux on aarch64 ((Ubuntu))
 # mysql --version
 mysql  Ver 8.0.41-0ubuntu0.20.04.1 for Linux on aarch64 ((Ubuntu))
 #
+
+
+
+
+
+# install mysql client
+apt install -y mysql-client
+
+# connect to database
+mysql -u root -p
+mysql -h localhost -u root -p
+
+
+
+
+
+select version();
+mysql> select version();
++-----------+
+| version() |
++-----------+
+| 9.0.1     |
++-----------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+# load the sample database
+
+https://www.mysqltutorial.org/getting-started-with-mysql/how-to-load-sample-database-into-mysql-database-server/
+
+
+
+mysql> source /tmp/mysqlsampledatabase.sql
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| classicmodels      |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql>
+
+
+the sample database classicmodels was loaded.
+
+
+
+
+
+
+
+
+
+# there is no default password for root, but you can use below command to configure the password for root user, in below example, we change the root password to password
+alter user root@localhost identified with mysql_native_password by 'password';
+
+# remove the root password
+alter user root@localhost identified with mysql_native_password by '';
+
+
+
+
+
+
+# change root password 
+mysqladmin -u root -p password
+
+
+# mysqladmin -u root -p password
+Enter password:
+New password:
+Confirm new password:
+Warning: Since password will be sent to server in plain text, use ssl connection to ensure password safety.
+root@test:~#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mysql_secure_installation
+
