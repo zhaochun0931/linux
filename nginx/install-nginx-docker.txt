@@ -25,3 +25,10 @@ nginx -s reload
 
 
 
+
+
+
+/etc/nginx/nginx.conf
+
+
+
