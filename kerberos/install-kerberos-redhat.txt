@@ -1,0 +1,38 @@
+# install server
+dnf update -y
+dnf install krb5-server krb5-workstation krb5-libs -y
+
+
+
+
+
+# Initialize the KDC Database
+systemctl start krb5kdc
+systemctl start kadmin
+
+
+
+mkdir -p /var/kerberos/krb5kdc
+
+kdb5_util create -s
+
+
+The -s flag creates the database in the default location /var/kerberos/krb5kdc/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# install client
+dnf update -y
+dnf install krb5-workstation -y
