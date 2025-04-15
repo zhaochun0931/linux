@@ -1,0 +1,117 @@
+Query Execution Flow in MySQL:
+
+Query Input: The user inputs an SQL query.
+
+Parser: The query goes through the parser, which checks the syntax and creates a parse tree.
+
+Analyzer: The analyzer checks if the SQL query is semantically valid (checks for table and column existence, permission checks).
+
+Optimizer: The optimizer takes over and generates an execution plan that optimizes the performance of the query.
+
+Execution: The execution engine finally runs the query based on the optimized plan.
+
+
+
+
+
+
+Parser -> Analyzer -> Optimizer
+
+
+
+
+
+
+1. Create the Database:
+
+
+CREATE DATABASE demo_db;
+USE demo_db;
+
+
+
+2. Create the Table:
+
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    position VARCHAR(100)
+);
+
+
+
+3. Insert Sample Data:
+
+
+INSERT INTO employees (name, age, position) VALUES
+('Alice', 30, 'Software Engineer'),
+('Bob', 25, 'Data Scientist'),
+('Charlie', 35, 'Project Manager');
+
+
+
+4. Demo Query for the Parser:
+
+SELECT name, age FROM employe WHERE age > 30;
+
+
+5. Demo Query for the Analyzer:
+
+SELECT name, age, salary FROM employees WHERE age > 30;
+
+
+6. Demo Query for the Optimizer:
+
+EXPLAIN SELECT name, age FROM employees WHERE age > 30;
+
+
+mysql> EXPLAIN SELECT name, age FROM employees WHERE age > 30;
++----+-------------+-----------+------------+------+---------------+------+---------+------+------+----------+-------------+
+| id | select_type | table     | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
++----+-------------+-----------+------------+------+---------------+------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | employees | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |    33.33 | Using where |
++----+-------------+-----------+------------+------+---------------+------+---------+------+------+----------+-------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql>
+
+
+
+
+7. Adding an Index for Optimization:
+
+
+mysql> CREATE INDEX age_idx ON employees(age);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> EXPLAIN SELECT name, age FROM employees WHERE age > 30;
++----+-------------+-----------+------------+-------+---------------+---------+---------+------+------+----------+-----------------------+
+| id | select_type | table     | partitions | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra                 |
++----+-------------+-----------+------------+-------+---------------+---------+---------+------+------+----------+-----------------------+
+|  1 | SIMPLE      | employees | NULL       | range | age_idx       | age_idx | 4       | NULL |    1 |   100.00 | Using index condition |
++----+-------------+-----------+------------+-------+---------------+---------+---------+------+------+----------+-----------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql>
+
+
+
+Summary of Steps and MySQL Components:
+Parser: It checks the syntax of the SQL query.
+Example error: ERROR 1146: Table 'demo_db.employe' doesn't exist
+Analyzer: It ensures the query is semantically correct, verifying table and column existence and permissions.
+Example error: ERROR 1054: Unknown column 'salary' in 'field list'
+Optimizer: It decides the best query execution plan based on available indexes, table statistics, etc.
+Example output: EXPLAIN output showing how MySQL will execute the query and which index it will use.
+
+
+
+
+
+Conclusion:
+The parser catches syntax errors (like misspelled table names).
+The analyzer checks the logical structure of the query (like missing columns).
+The optimizer optimizes the query execution for performance (by using indexes).
