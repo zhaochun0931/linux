@@ -1,0 +1,1 @@
+docker run -d --rm -it --name myhaproxy -v $(pwd)/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg -p 9000:9000 haproxy
