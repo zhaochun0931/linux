@@ -1,0 +1,10 @@
+[Unit]
+Description=My Awesome App
+After=network.target
+
+
+[Service]
+ExecStart=/root/myapp.sh
+
+[Install]
+WantedBy=multi-user.target
