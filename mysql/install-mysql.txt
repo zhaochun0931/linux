@@ -1,0 +1,25 @@
+apt update
+apt install -y mysql-server
+
+
+systemctl status mysql
+
+systemctl start mysql
+
+
+
+
+
+mysql --version
+mysql -V
+
+
+
+# mysql -V
+mysql  Ver 8.0.41-0ubuntu0.20.04.1 for Linux on aarch64 ((Ubuntu))
+#
+
+
+# mysql --version
+mysql  Ver 8.0.41-0ubuntu0.20.04.1 for Linux on aarch64 ((Ubuntu))
+#
