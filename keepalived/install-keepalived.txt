@@ -1,0 +1,10 @@
+apt update
+apt install keepalived -y
+
+
+
+touch /etc/keepalived/keepalived.conf
+
+
+
+systemctl start keepalived
