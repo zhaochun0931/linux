@@ -1,0 +1,13 @@
+systemd is the init system and service manager used by most modern Linux distributions (like Ubuntu, CentOS, Fedora, Debian, etc.). It’s responsible for booting the system, managing services, logging, and more.
+
+In simple terms:
+
+systemd is the thing that starts everything on your Linux system — and manages it while it's running.
+
+
+Replaces older systems like SysVinit and Upstart.
+
+
+
+
+Built-in logging (journald)
