@@ -1,1 +1,30 @@
+apt update
+apt install haproxy -y
+haproxy -v
 
+
+
+
+
+# configure
+/etc/haproxy/haproxy.cfg
+
+haproxy -c -f /etc/haproxy/haproxy.cfg
+
+
+
+There are four essential sections to an HAProxy configuration file. They are global, defaults, frontend, and backend. 
+
+
+A frontend section defines the IP addresses and ports that clients can connect to. You may add as many frontend sections as needed to expose various websites or applications to the internet.
+
+
+
+
+
+
+
+systemctl restart haproxy
+
+
+http://localhost:9000/stats
