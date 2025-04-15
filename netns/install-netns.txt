@@ -1,3 +1,12 @@
+Network namespaces (netns) in Linux allow you to create isolated network environments within a single host. Each namespace has its own set of network interfaces, routing tables, and firewall rules, which can be very useful for containerization, testing, or isolating network configurations.
+
+
+
+
+
+
+
+
 ip netns list
 
 ip netns add ns1
