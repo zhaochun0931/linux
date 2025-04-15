@@ -1,0 +1,23 @@
+docker run --rm -d -it --name mysql -e MYSQL_ROOT_PASSWORD=password -d mysql
+
+
+docker exec -it mysql bash
+
+mysql -u root -p
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.01 sec)
+
+mysql>
+
