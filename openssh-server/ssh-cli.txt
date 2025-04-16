@@ -1,0 +1,5 @@
+ssh -Q cipher
+
+ssh -Q mac
+
+
