@@ -17,3 +17,11 @@ debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit
 
 
 
+
+
+
+
+ssh -v -c aes128-ctr 10.1.1.1
+
+debug1: kex: server->client cipher: aes128-ctr MAC: umac-64-etm@openssh.com compression: none
+debug1: kex: client->server cipher: aes128-ctr MAC: umac-64-etm@openssh.com compression: none
