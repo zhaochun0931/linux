@@ -25,3 +25,19 @@ SSL/TLS/DTLS and client and server tests
 QUIC client tests
 handling of S/MIME signed or encrypted mail
 and more...
+
+
+
+
+
+
+
+
+The OpenSSL configuration file is located at /etc/ssl/openssl.cnf and is used both by the library itself and the command-line tools included in the package.
+
+
+/etc/ssl/openssl.cnf
+
+
+
+
