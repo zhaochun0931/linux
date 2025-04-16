@@ -41,3 +41,10 @@ The OpenSSL configuration file is located at /etc/ssl/openssl.cnf and is used bo
 
 
 
+
+
+
+openssl ciphers -s -v DEFAULT:@SECLEVEL=2
+
+
+
