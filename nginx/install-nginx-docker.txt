@@ -39,3 +39,8 @@ nginx -s reload
 
 
 /etc/nginx/nginx.conf
+
+/usr/share/nginx/html/index.html
+
+
+
