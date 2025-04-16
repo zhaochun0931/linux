@@ -1,5 +1,15 @@
 docker run -d -it --rm --name mynginx -p 8888:80 nginx
+
+docker port nginx
+
 curl localhost:8888
+
+
+
+
+
+
+
 
 
 docker exec -it mynginx bash
@@ -29,6 +39,3 @@ nginx -s reload
 
 
 /etc/nginx/nginx.conf
-
-
-
