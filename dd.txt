@@ -1,0 +1,10 @@
+dd if=/dev/zero of=largefile bs=1M count=5120
+
+
+if=/dev/zero: This specifies the input file, which in this case is /dev/zero, a special file that provides null bytes (zeroes).
+
+of=largefile: This specifies the output file. You can change largefile to the desired filename.
+
+bs=1M: This sets the block size to 1MB.
+
+count=5120: This specifies the number of blocks to copy. Since each block is 1MB, count=5120 will result in a 5GB file (5120 MB).
