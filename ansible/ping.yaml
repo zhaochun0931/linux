@@ -1,0 +1,11 @@
+- name: Ping all hosts
+  hosts: all
+  tasks:
+    - name: Ping each host
+      ping:
+
+- name: Run a command on all hosts
+  hosts: all
+  tasks:
+    - name: Run a command
+      command:  echo hello
