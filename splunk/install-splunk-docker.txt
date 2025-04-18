@@ -1,0 +1,9 @@
+https://github.com/splunk/docker-splunk
+
+             
+
+docker run -p 8000:8000 -e "SPLUNK_PASSWORD=password" \
+             -e "SPLUNK_START_ARGS=--accept-license" \
+             -it --name so1 splunk/splunk:latest
+
+After the container starts up, you can access Splunk Web at http://localhost:8000 with admin:password
