@@ -1,0 +1,39 @@
+- name: Add nginx stable repository from PPA and install its signing key on Ubuntu target
+  hosts: localhost
+  tasks:
+    - name: add repository
+      ansible.builtin.apt_repository:
+        repo: ppa:rabbitmq/rabbitmq-erlang-24
+
+
+- name: Run 'apt update' in Ubuntu
+  hosts: localhost
+  tasks:
+    - name: Update package cache
+      apt:
+        update_cache: yes
+
+- name: Install multiple packages in Ubuntu
+  hosts: localhost
+  tasks:
+    - name: Install packages
+      apt:
+        name:
+          - erlang-base
+          - erlang-asn1
+          - erlang-crypto
+          - erlang-eldap
+          - erlang-ftp
+          - erlang-inets
+          - erlang-mnesia
+          - erlang-os-mon
+          - erlang-parsetools
+          - erlang-public-key
+          - erlang-runtime-tools
+          - erlang-snmp
+          - erlang-ssl
+          - erlang-syntax-tools
+          - erlang-tftp
+          - erlang-tools
+          - erlang-xmerl
+        state: present
