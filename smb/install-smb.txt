@@ -1,0 +1,52 @@
+
+
+window:
+
+C:\Users\username>systeminfo
+
+Host Name:                 xxx
+OS Name:                   Microsoft Windows 10 Enterprise
+OS Version:                10.0.19042 N/A Build 19042
+C:\Users\username>
+
+
+share one directory in the windows.
+
+C:\Users\username>net share
+
+Share name   Resource                        Remark
+
+-------------------------------------------------------------------------------
+myshare           C:\share
+The command completed successfully.
+
+
+C:\Users\username>
+
+
+
+ubuntu server:
+
+root@ubuntu:~# cat /etc/lsb-release 
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=20.04
+DISTRIB_CODENAME=focal
+DISTRIB_DESCRIPTION="Ubuntu 20.04.1 LTS"
+root@ubuntu:~# 
+
+
+apt install smbclient 
+apt install cifs-utils
+
+mkdir /mnt/test
+
+
+
+
+mount -t cifs -o domain=DOMAIN_NAME,username=USER_NAME //192.168.0.103/myshare /mnt/test
+
+
+
+
+
+
