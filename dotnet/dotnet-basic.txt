@@ -1,0 +1,16 @@
+Create a New Project:
+
+
+dotnet new console -n MyConsoleApp
+
+
+
+  cd MyConsoleApp
+
+  dotnet build
+
+
+  dotnet run
+
+
+  
