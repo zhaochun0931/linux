@@ -1,3 +1,6 @@
+The md5sum command works with checksums to verify that files are unchanged
+
+
 md5sum *
 
 md5sum /etc/passwd
