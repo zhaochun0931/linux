@@ -1,0 +1,11 @@
+uptime
+
+
+
+# uptime
+ 12:37:42 up 13:28,  2 users,  load average: 0.00, 0.00, 0.00
+#
+
+
+
+
