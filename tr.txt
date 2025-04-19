@@ -1,0 +1,49 @@
+The tr (trim/translate) command can be used to delete or translate characters.
+
+
+
+
+
+echo hello | tr 'a-z' 'A-Z'
+
+# echo hello | tr 'a-z' 'A-Z'
+HELLO
+#
+
+
+
+
+
+
+
+echo hello222world333 | tr -d '0-9'
+
+
+# echo hello222world333
+hello222world333
+#
+# echo hello222world333 | tr -d '0-9'
+helloworld
+#
+
+
+
+
+
+
+# remove the new line char
+tr -d '\n'
+tr -d '\n' file.txt output.txt
+
+
+
+
+
+echo "hell;world" | tr -d ";"
+
+echo "hell;world" | tr -d ';'
+
+
+
+
+
