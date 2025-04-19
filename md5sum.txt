@@ -1,8 +1,12 @@
-sum filename
+md5sum *
+
+md5sum /etc/passwd
 
 
+# md5sum /etc/passwd
+a26ddb33dbf7db71334e95042c9e7dad  /etc/passwd
+#
 
-md5sum filename
 
 
 
