@@ -1,4 +1,2 @@
 mkdir xxx
 mkdir -p xxx/yyy/zzz
-
-
