@@ -1,0 +1,28 @@
+# print the first field
+
+head /etc/passwd | cut -d: -f1
+head /etc/passwd | cut -d":" -f1
+head /etc/passwd | cut -d':' -f1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
