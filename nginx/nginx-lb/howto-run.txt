@@ -3,3 +3,10 @@ docker compose up
 
 
 
+$ curl localhost
+You've hit myweb1
+
+
+$ curl localhost
+You've hit myweb2
+$
