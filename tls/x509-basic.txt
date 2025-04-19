@@ -44,6 +44,17 @@ The public key consists of a string of random numbers and can be used to encrypt
 
 
 
+
+1. symmetric crytptography
+use the same key to encrypt and decrypt
+
+2. asymmetric cryptography
+use the different key(public key and private key)
+
+
+
+
+
 The most common algorithms used to generate public keys are:
 
 Rivest–Shamir–Adleman (RSA)
