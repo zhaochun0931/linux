@@ -1,9 +1,13 @@
-Here is a ranking of the compression of a set of text files from least to most efficient:
 compress ( .tar.Z )
 gzip ( .tar.gz )
 bzip2 ( .tar.bz2 )
 lzip ( .tar.lz )
 xz ( .tar.xz )
+
+
+
+
+
 
 
 
