@@ -1,13 +1,24 @@
 X.509 certificates are digital documents that represent a user, computer, service, or device. 
-A certificate authority (CA), subordinate CA, or registration authority issues X.509 certificates. 
-The certificates contain the public key of the certificate subject. 
 
-They don't contain the subject's private key, which must be stored securel
+A certificate authority (CA)
+
+
+
+
 
 
 Certificates can be saved in various formats.
---- Privacy-Enhanced Mail (PEM)
---- Personal Information Exchange (PFX)
+
+Privacy-Enhanced Mail
+.pem
+
+Personal Information Exchange
+.pfx
+
+
+
+
+
 
 
 
