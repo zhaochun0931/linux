@@ -55,3 +55,15 @@ find . -mmin -30
 
 # 1 day before
 find . -atime -1
+
+
+
+
+
+
+
+
+
+
+
+find  | xargs head
