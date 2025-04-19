@@ -1,17 +1,23 @@
 services:
-  backend1:
+  myweb1:
     image: luksa/kubia:latest
+    hostname: myweb1
+    container_name: myweb1
     networks:
       - my-network
   
-  backend2:
+  myweb2:
     image: luksa/kubia:latest
+    hostname: myweb2
+    container_name: myweb2
     networks:
       - my-network
       
   mylb:
     #image: arm64v8/nginx
     image: nginx
+    hostname: mylb
+    container_name: mylb
     ports:
       - "80:80"  # Map port 80 on the host to port 80 in the container
     volumes:
