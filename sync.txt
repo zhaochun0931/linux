@@ -1,0 +1,6 @@
+The sync command flushes all disk caches to disk. The kernel usually buffers reads, writes, inode changes, and other disk-related activity in memory. sync writes the changes to disk.
+
+
+
+
+sync
