@@ -13,6 +13,10 @@ openssl genrsa -out server.key
 openssl req -key server.key -new -out server.csr
 
 
+req is a subcommand to generate or manage CSRs or self-signed certificates.
+
+
+
 
 # or just create both the private key and CSR with a single command
 openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr
@@ -20,10 +24,10 @@ openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr
 
 
 # sign with the private key
-openssl x509 -signkey server.key -in server.csr -req -out server.crt
+openssl x509 -req -in server.csr -signkey server.key -out server.crt
 
 
-
+This command uses the -req option to indicate that the input is a CSR (server.csr) and signs it with a private key to produce the certificate (server.crt).
 
 
 
