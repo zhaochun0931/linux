@@ -1,1 +1,17 @@
 stat /etc/passwd
+
+
+#stat /etc/passwd
+  File: /etc/passwd
+  Size: 1873      	Blocks: 8          IO Block: 4096   regular file
+Device: fd00h/64768d	Inode: 132122      Links: 1
+Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2025-04-18 14:53:14.067889437 +0000
+Modify: 2025-04-13 11:18:47.251381033 +0000
+Change: 2025-04-13 11:18:47.251381033 +0000
+ Birth: 2025-04-13 11:18:47.251381033 +0000
+#
+#
+# ls -al /etc/passwd
+-rw-r--r-- 1 root root 1873 Apr 13 11:18 /etc/passwd
+#
