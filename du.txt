@@ -1,3 +1,11 @@
+The du (disk usage) command measures the disk space
+
+
+By default, it measures the current directory and all its subdirectories
+
+
+
+
 -h, --human-readable
 -s, --summarize
 -d, --max-depth=N
