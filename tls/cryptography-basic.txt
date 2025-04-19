@@ -1,6 +1,0 @@
-1. symmetric crytptography
-use the same key to encrypt and decrypt
-
-2. asymmetric cryptography
-use the different key(public key and private key)
-
