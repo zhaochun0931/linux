@@ -15,3 +15,14 @@ Change: 2025-04-13 11:18:47.251381033 +0000
 # ls -al /etc/passwd
 -rw-r--r-- 1 root root 1873 Apr 13 11:18 /etc/passwd
 #
+
+
+
+
+# stat -f /etc/passwd
+  File: "/etc/passwd"
+    ID: 9705f3aa1744f46c Namelen: 255     Type: ext2/ext3
+Block size: 4096       Fundamental block size: 4096
+Blocks: Total: 7817692    Free: 5932493    Available: 5528986
+Inodes: Total: 1998848    Free: 1869806
+#
