@@ -14,6 +14,12 @@ ctrl + k
 delete the current cursor to the end of the line
 
 
+
+ctrl +w 
+delete the previous word
+
+
+
 /etc/profile
 
 
