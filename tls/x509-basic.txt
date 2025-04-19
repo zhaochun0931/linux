@@ -1,4 +1,6 @@
-X.509 certificates are digital documents that represent a user, computer, service, or device.  
+X.509 is a standard that defines the format of public key certificates.
+
+
 
 self-signed certificate (X.509 format) 
 
