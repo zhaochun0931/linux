@@ -1,0 +1,8 @@
+watch ls
+
+
+
+watch -n 1 ls
+
+watch -n3 ls
+
