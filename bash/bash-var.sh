@@ -1,11 +1,30 @@
-# The character = assigns content to a variable
-# There is no space before or after the = sign
-username=xiaoming
+# no space before or after the = sign
+MYVAR=xiaoming
+echo $MYVAR
 
 
 
-# Once the variable is created, it can be used by prefixing it with a dollar $
-echo $username
+
+# MYVAR=xiaoming
+#
+#
+# echo $MYVAR
+xiaoming
+#
+
+
+
+
+
+# myvar=helloworld
+# echo $myvar
+helloworld
+#
+
+
+
+
+
 
 
 
@@ -43,17 +62,22 @@ set
 
 
 
-# Substitute commands
+
+
+
+
+# substitute commands
 mydate=`date`
 echo $mydate
 
-sleep 1
+
+# mydate=`date`
+# echo $mydate
+Sat Apr 19 12:54:46 PM UTC 2025
+#
+
 
 
 # Preferred syntax
 mydate=$(date)
 echo $mydate
-
-
-
-
