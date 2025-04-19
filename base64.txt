@@ -1,0 +1,22 @@
+echo hello | base64
+
+
+# echo hello | base64
+aGVsbG8K
+#
+
+
+
+
+
+
+
+echo aGVsbG8K | base64 -d
+
+echo aGVsbG8K | base64 --decode
+
+
+
+# echo aGVsbG8K | base64 -d
+hello
+#
