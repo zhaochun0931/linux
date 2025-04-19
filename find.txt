@@ -1,4 +1,22 @@
+find
+
+find .
+
+find ..
+
+
 find . -type f -iname "1.txt"
+
+
+find . -type d
+
+
+
+
+find -size +N
+
+find -size -N
+
 
 
 
@@ -17,6 +35,12 @@ find . -type f -iname 1.txt -exec cat {} \;
 # the {} \; pattern is fixed 
 # no space between {}
 # no space between \;
+
+
+the symbol “{}” (make sure to quote or escape it) represents the path to the file found
+
+
+
 
 
 
