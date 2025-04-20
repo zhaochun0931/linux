@@ -2,6 +2,21 @@ iptables -> firewalld -> nftables
 
 
 
+
+INPUT
+
+
+OUTPUT
+
+
+FORWARD
+
+
+NAT
+
+
+
+
 firewalld: Use the firewalld utility for simple firewall use cases.
 
 nftables: Use the nftables utility to set up complex and performance-critical firewalls, such as for a whole network.
@@ -65,28 +80,6 @@ nc: connect to localhost (127.0.0.1) port 5671 (tcp) failed: Connection refused
 
 
 iptables --flush
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
