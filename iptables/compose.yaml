@@ -1,0 +1,18 @@
+services:
+  myalpine1:
+    image: alpine:latest
+    container_name: myalpine1
+    command: sh -c "apk update && apk add iptables && sleep 24h"  # Install iptables and keep the container running
+    networks:
+      - demo-network  # Optional: custom network if required
+
+  myalpine2:
+    image: alpine:latest
+    container_name: myalpine2
+    command: sh -c "apk update && apk add iptables && sleep 24h"  # Install iptables and keep the container running
+    networks:
+      - demo-network  # Optional: custom network if required
+
+networks:
+  demo-network:
+    driver: bridge  # Default driver
