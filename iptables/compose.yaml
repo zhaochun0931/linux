@@ -2,6 +2,9 @@ services:
   myalpine1:
     image: alpine:latest
     container_name: myalpine1
+    hostname: myalpine1
+    user: root
+    privileged: true
     command: sh -c "apk update && apk add iptables && sleep 24h"  # Install iptables and keep the container running
     networks:
       - demo-network  # Optional: custom network if required
@@ -9,6 +12,9 @@ services:
   myalpine2:
     image: alpine:latest
     container_name: myalpine2
+    hostname: myalpine2
+    user: root
+    privileged: true
     command: sh -c "apk update && apk add iptables && sleep 24h"  # Install iptables and keep the container running
     networks:
       - demo-network  # Optional: custom network if required
