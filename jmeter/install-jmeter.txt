@@ -1,0 +1,22 @@
+https://jmeter.apache.org/download_jmeter.cgi
+
+
+
+
+
+
+wget https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz
+tar -xzvf apache-jmeter-5.6.3.tgz
+cd apache-jmeter-5.6.3/bin
+./jmeter.sh
+
+
+
+
+
+
+# how to use the jmeter
+
+test plan -> thread group (add thread number)
+test plan -> thread group -> add sampler -> http request (hostname and port)
+test plan -> thread group (add listener -> view result)
