@@ -1,0 +1,9 @@
+apt update
+apt install -y shadowsocks-libev
+
+
+/etc/shadowsocks-libev/config.json
+
+ 
+systemctl restart shadowsocks-libev
+systemctl status shadowsocks-libev
