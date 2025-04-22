@@ -1,1 +1,30 @@
 In Linux, VRF stands for Virtual Routing and Forwarding. It's a technology that allows you to create multiple, isolated routing tables within a single Linux machine.
+
+
+
+
+In Linux, VRF is implemented using iproute2 tools and relies on the vrf network interface type. 
+
+
+
+
+ip link add <vrf_name> type vrf table <vrf_table_id>
+
+<vrf_name> is the name of the VRF instance.
+
+<vrf_table_id> is the identifier for the VRF's routing table (usually an integer, e.g., 100).
+
+
+
+
+
+
+ip link set dev eth0 master <vrf_name>
+
+
+
+ip link set dev <vrf_name> up
+ip link set dev eth0 up
+
+
+
