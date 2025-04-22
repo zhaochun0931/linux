@@ -1,1 +1,20 @@
+Zabbix Architecture
+
+
+Zabbix Server: Core component that gathers data
+
+Zabbix Agent: Installed on monitored hosts to collect metrics
+
+Database: Stores all monitoring data (MySQL, PostgreSQL, etc.)
+
+Web Frontend: Dashboard & configuration UI (PHP-based)
+
+Proxy (optional): For distributed monitoring in large setups
+
+
+
+
+
+
+
 
