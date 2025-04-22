@@ -148,3 +148,112 @@ NAT servers translates the source and destination addresses of packets as we alr
 
 
 
+
+
+
+
+
+Common TCP/IP tuning techniques
+
+
+MTU
+|
+|
+|
+Fragmentation
+|
+|
+|
+The Don’t Fragment bit in an IP packet
+|
+|
+|
+TCP maximum segment size
+|
+|
+|
+Path MTU Discovery
+|
+|
+|
+Latency and round-trip time
+|
+|
+|
+TCP window scaling
+
+
+
+
+
+
+MTU
+
+The maximum transmission unit (MTU) is the largest size frame (packet), specified in bytes, that can be sent over a network interface. The MTU is a configurable setting. 
+The default setting on most network devices globally, is 1,500 bytes.
+
+
+
+
+
+Fragmentation
+
+Fragmentation occurs when a packet is sent that exceeds the MTU of a network interface. The TCP/IP stack will break the packet into smaller pieces (fragments) that conform to the interface's MTU. 
+Fragmentation occurs at the IP layer and is independent of the underlying protocol (such as TCP). 
+When a 2,000-byte packet is sent over a network interface with an MTU of 1,500, the packet will be broken down into one 1,500-byte packet and one 500-byte packet.
+
+Network devices in the path between a source and destination can either drop packets that exceed the MTU or fragment the packet into smaller pieces.
+
+
+
+
+The Don’t Fragment bit in an IP packet
+
+The Don’t Fragment (DF) bit is a flag in the IP protocol header. The DF bit indicates that network devices on the path between the sender and receiver must not fragment the packet. When a network device receives a packet with the Don’t Fragment bit set, and that packet exceeds the device's interface MTU, the standard behavior is for the device to drop the packet. The device sends an ICMP Fragmentation Needed message back to the original source of the packet.
+
+
+
+
+TCP maximum segment size
+
+TCP maximum segment size (MSS) is a setting that limits the size of TCP segments, which avoids fragmentation of TCP packets. Operating systems will typically use this formula to set MSS:
+
+MSS = MTU - (IP header size + TCP header size)
+
+The IP header and the TCP header are 20 bytes each, or 40 bytes total. So, an interface with an MTU of 1,500 will have an MSS of 1,460. But the MSS is configurable.
+
+This setting is agreed to in the TCP three-way handshake when a TCP session is set up between a source and a destination. Both sides send an MSS value, and the lower of the two is used for the TCP connection
+
+
+
+
+
+
+Path MTU Discovery
+MSS is negotiated, but it might not indicate the actual MSS that can be used. This is because other network devices in the path between the source and the destination might have a lower MTU value than the source and destination. In this case, the device whose MTU is smaller than the packet will drop the packet. The device will send back an ICMP Fragmentation Needed (Type 3, Code 4) message that contains its MTU. This ICMP message allows the source host to reduce its Path MTU appropriately. The process is called Path MTU Discovery (PMTUD).
+
+
+
+
+Latency and round-trip time
+Network latency is governed by the speed of light over a fiber optic network. Network throughput of TCP is also effectively governed by the round-trip time (RTT) between two network devices.
+
+
+
+Latency and round-trip time effects on TCP
+Round-trip time has a direct effect on maximum TCP throughput. In TCP protocol, window size is the maximum amount of traffic that can be sent over a TCP connection before the sender needs to receive acknowledgement from the receiver. If the TCP MSS is set to 1,460 and the TCP window size is set to 65,535, the sender can send 45 packets before it has to receive acknowledgement from the receiver. If the sender doesn't get acknowledgement, it will retransmit the data. Here's the formula:
+
+TCP window size / TCP MSS = packets sent
+
+In this example, 65,535 / 1,460 is rounded up to 45.
+
+
+
+
+TCP window scaling
+TCP window scaling is a technique that dynamically increases the TCP window size to allow more data to be sent before an acknowledgement is required. In the previous example, 45 packets would be sent before an acknowledgement was required. If you increase the number of packets that can be sent before an acknowledgement is needed, you're reducing the number of times a sender is waiting for acknowledgement, which increases the TCP maximum throughput.
+
+
+
+
+
