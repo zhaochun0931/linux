@@ -1,0 +1,1 @@
+In Linux, VRF stands for Virtual Routing and Forwarding. It's a technology that allows you to create multiple, isolated routing tables within a single Linux machine.
