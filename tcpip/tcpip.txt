@@ -16,6 +16,30 @@ Physical layer
 
 
 
+
+The process of sending and receiving data over a network is commonly categorized into 7 layers. The layers are typically abbreviated as L1 - L7. You can think of data as passing through each of these layers in turn as it is sent or received from an application, with each layer being responsible for a particular part of the processing required to send or receive the data over the network.
+
+
+
+In a modern enterprise or public cloud network, the layers commonly map as follows:
+L5-7: all the protocols most application developers are familiar with. e.g. HTTP, FTP, SSH, SSL, DNS.
+L4: TCP or UDP, including source and destination ports.
+L3: IP packets and IP routing.
+L2: Ethernet packets and Ethernet switching.
+
+
+
+
+
+When sending data over the network, each layer in the network stack adds its own header containing the control/metadata the layer needs to process the packet as it traverses the network, passing the resulting packet on to the next layer of the stack. In this way the complete packet is produced, which includes all the control/metadata required by every layer of the stack, without any layer understanding the data or needing to process the control/metadata of adjacent network layers.
+
+
+
+
+
+
+
+
 A packet that is sent by us, goes from the top and to the bottom of this list, each layer adding its own set of headers to the packet in what we call the encapsulation phase. 
 When the packet finally reaches it's destination the packet goes backwards through the list and the headers are stripped out of the packet, one by one, each header giving the destination host all of the needed information for the packet data to finally reach the application or program that it was destined for.
 
