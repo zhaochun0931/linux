@@ -1,0 +1,12 @@
+docker build -t alpine-nonroot .
+
+
+
+docker run --rm -d --name myalpine alpine-nonroot /bin/sh -c "while true; do echo 'Running'; sleep 1; done"
+
+
+
+docker exec -it myalpine sh
+/ $ id
+uid=1000(myuser) gid=1000(myuser) groups=1000(myuser)
+/ $
