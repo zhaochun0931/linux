@@ -5,7 +5,7 @@ jobs
 
 
 
-
 $ jobs
-[1]+  Running                 nc -l 1234 &
+[1]-  Running                 nc -l 1234 &
+[2]+  Running                 nc -l 2345 &
 $
