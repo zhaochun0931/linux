@@ -21,6 +21,9 @@ nc -v -z localhost 80
 
 nc -v -z localhost 80-81
 
+nv -vz localhost 80-81 100-101
+
+
 
 
 
