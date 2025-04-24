@@ -1,3 +1,30 @@
+OpenSSL is a robust, commercial-grade, full-featured Open Source Toolkit for the TLS (formerly SSL), DTLS and QUIC protocols.
+
+
+The OpenSSL toolkit includes:
+
+libssl an implementation of all TLS protocol versions up to TLSv1.3 (RFC 8446), DTLS protocol versions up to DTLSv1.2 (RFC 6347) and the QUIC version 1 protocol (RFC 9000).
+
+libcrypto a full-strength general purpose cryptographic library. It constitutes the basis of the TLS implementation, but can also be used independently.
+
+openssl the OpenSSL command line tool, a swiss army knife for cryptographic tasks, testing and analyzing. It can be used for
+
+
+
+
+
+
+The OpenSSL configuration file is located at /etc/ssl/openssl.cnf and is used both by the library itself and the command-line tools included in the package.
+
+/etc/ssl/openssl.cnf
+
+
+
+openssl ciphers -s -v DEFAULT:@SECLEVEL=2
+
+
+
+
 1. private key
 2. public key
 3. certificate
