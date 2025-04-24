@@ -30,6 +30,7 @@ The connection is closed (FIN, ACK).
 
 
 
+a simple Java TCP server and client with a long connection:
 
 PersistentSocketServer.java
 
