@@ -9,3 +9,13 @@ $ jobs
 [1]-  Running                 nc -l 1234 &
 [2]+  Running                 nc -l 2345 &
 $
+
+
+kill %job_id
+
+
+
+kill %1
+kill %2
+
+
