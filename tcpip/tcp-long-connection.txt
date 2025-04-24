@@ -1,1 +1,33 @@
+A TCP long connection (also called a persistent TCP connection) refers to a network connection where the client and server maintain an open connection over a longer period of time, rather than opening and closing it for each request-response cycle.
+
+
+
+
+
+
+
+
+
+
+
+In a TCP long connection:
+
+The connection remains open and idle between messages.
+
+It's reused for multiple communications over time without re-establishing the connection.
+
+
+
+
+
+In a typical TCP short connection:
+
+A connection is established (SYN, SYN-ACK, ACK).
+
+One or a few requests are sent.
+
+The connection is closed (FIN, ACK).
+
+
+
 
