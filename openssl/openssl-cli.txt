@@ -212,6 +212,42 @@ openssl x509 -in your_certificate.crt -text -noout
 
 
 
+# verify
+openssl s_server -cert server.crt -key server.key -accept 8443
+
+
+# open another terminal
+openssl s_client -connect localhost:8443
+openssl s_client -connect localhost:8443 -tls1_3
+openssl s_client -connect localhost:8443 -CAfile ca.crt
+
+
+
+
+
+
+
+
+
+
+
+
+openssl rsa -in server.key -check
+openssl rsa -in server.key -text
+openssl pkey -in server.key -check
+
+
+
+# verify private key
+openssl rsa -noout -modulus -in server.key | openssl md5
+
+# verify csr
+openssl req -noout -modulus -in server.csr | openssl md5
+
+# verify public cert
+openssl x509 -noout -modulus -in server.crt | openssl md5
+
+
 
 
 
