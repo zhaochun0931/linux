@@ -1,0 +1,11 @@
+# list the background jobs
+
+
+jobs
+
+
+
+
+$ jobs
+[1]+  Running                 nc -l 1234 &
+$
