@@ -19,3 +19,10 @@ kill %1
 kill %2
 
 
+
+
+# Bring it to the foreground:
+fg %job_id
+
+fg %2
+
