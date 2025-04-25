@@ -1,3 +1,22 @@
+Lightweight Directory Access Protocol (LDAP), which is commonly used for directory services
+
+
+LDAP uses schemas to define the structure of the directory data
+
+
+
+Each piece of information in OpenLDAP is stored as an entry. An entry consists of a Distinguished Name (DN), which is a unique identifier, and a set of attributes. 
+Attributes hold the actual data, such as the user's name or email address. 
+
+
+
+
+
+
+
+
+
+
 #install openladap
 
 apt update
