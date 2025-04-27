@@ -1,0 +1,54 @@
+curl -sfL https://get.k3s.io | sh - 
+
+
+# Check for Ready node, takes ~30 seconds 
+sudo k3s kubectl get node 
+
+
+
+
+
+
+A single-node server installation is a fully-functional Kubernetes cluster, including all the datastore, control-plane, kubelet, and container runtime components necessary to host workload pods. 
+It is not necessary to add additional server or agents nodes, but you may want to do so to add additional capacity or redundancy to your cluster.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To install additional agent nodes and add them to the cluster, run the installation script with the K3S_URL and K3S_TOKEN environment variables. Here is an example showing how to join an agent:
+
+
+curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
+
+Setting the K3S_URL parameter causes the installer to configure K3s as an agent, instead of a server. 
+The K3s agent will register with the K3s server listening at the supplied URL. The value to use for K3S_TOKEN is stored at /var/lib/rancher/k3s/server/node-token on your server node.
+
+
+
+
+
+/var/lib/rancher/k3s/server/token
+
+
+
+
+
+
+# kubectl get nodes
+NAME      STATUS   ROLES                  AGE     VERSION
+ubuntu1   Ready    control-plane,master   9m32s   v1.32.3+k3s1
+ubuntu2   Ready    <none>                 11s     v1.32.3+k3s1
+#
+
+
+
