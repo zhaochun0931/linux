@@ -1,3 +1,12 @@
+A swap area is an area of the disk that is made available to Linux if the system runs out of memory (RAM). If your RAM is full and you try to start another application without a swap area, that application will fail.
+With a swap area, Linux can temporarily swap out data from RAM to the swap area and then get it back when needed. You take a performance hit, but it is better than having processes fail.
+
+
+
+
+
+
+
 free -h
 
 swapon --show
@@ -87,5 +96,81 @@ lsblk
 
 
 
-mount
 
+
+
+
+
+
+
+create a new swap area
+|
+|
+|
+enable the swap area temporarily
+|
+|
+|
+enable the swap area permanently
+|
+|
+|
+disable the swap area
+
+
+
+
+
+
+To create a swap area from a partition or a file, use the mkswap command.  To temporarily enable that swap area, you can use the swapon command.
+
+
+
+# free -m
+               total        used        free      shared  buff/cache   available
+Mem:            1956        1135         190          27         752         821
+Swap:           2047          49        1998
+#
+
+
+# dd if=/dev/zero of=/root/my-swap bs=1M count=1024
+1024+0 records in
+1024+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 0.578303 s, 1.9 GB/s
+#
+# mkswap /root/my-swap
+mkswap: /root/my-swap: insecure permissions 0644, fix with: chmod 0600 /root/my-swap
+Setting up swapspace version 1, size = 1024 MiB (1073737728 bytes)
+no label, UUID=1e61fb70-b2a1-4c37-8d5b-437b0ef38c0f
+# 
+# swapon /root/my-swap
+swapon: /root/my-swap: insecure permissions 0644, 0600 suggested.
+#
+# free -m
+               total        used        free      shared  buff/cache   available
+Mem:            1956        1138          50          27         890         818
+Swap:           3071          51        3020
+#
+
+
+2047 + 1024 = 3071
+
+
+
+
+# swapoff /root/my-swap
+
+
+
+
+
+
+
+
+
+enable the swap area permanent, you need to add it to your /etc/fstab file
+
+/root/my-swap swap swap defaults 0 0
+
+
+swapon -a
