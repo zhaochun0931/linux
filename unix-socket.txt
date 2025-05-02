@@ -1,4 +1,11 @@
-A socket in Linux is a bidirectional communication pipe. Unlike standard FIFOs or pipes, work with sockets is done using the sockets interface as opposed to the file interface.
+A socket in Linux is a bidirectional communication pipe. 
+Unlike standard FIFOs or pipes, work with sockets is done using the sockets interface as opposed to the file interface.
+
+
+
+
+A Unix domain socket is a special file used for communication between processes on the same machine.
+
 
 
 
