@@ -77,6 +77,11 @@ Now, if we stop the client as well and remove the -u parameter to start the netc
 
 
 
+# list unix socket
+
+ss -xl
+
+
 
 
 
