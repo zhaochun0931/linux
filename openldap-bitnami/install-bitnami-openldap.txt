@@ -9,6 +9,7 @@ docker run --rm --name openldap \
   --env LDAP_PASSWORDS=password01,password02 \
   --env LDAP_ROOT=dc=example,dc=com \
   --env LDAP_ADMIN_DN=cn=admin,dc=example,dc=com \
+  -p 1389:1389 \
   bitnami/openldap:latest
 
 
