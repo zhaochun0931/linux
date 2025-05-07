@@ -6,3 +6,8 @@ tar -xzvf openldap-2.6.9.tgz
 cd openldap-2.6.9/
 
 ./configure
+
+make depend
+
+make
+
