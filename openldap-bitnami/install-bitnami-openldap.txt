@@ -4,7 +4,7 @@ docker network create my-network --driver bridge
 docker run --rm --name openldap \
   --network my-network \
   --env LDAP_ADMIN_USERNAME=admin \
-  --env LDAP_ADMIN_PASSWORD=adminpassword \
+  --env LDAP_ADMIN_PASSWORD=password \
   --env LDAP_USERS=user01,user02 \
   --env LDAP_PASSWORDS=password01,password02 \
   --env LDAP_ROOT=dc=example,dc=com \
