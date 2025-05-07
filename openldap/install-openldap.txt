@@ -1,7 +1,4 @@
-Lightweight Directory Access Protocol (LDAP), which is commonly used for directory services
-
-
-LDAP uses schemas to define the structure of the directory data
+Lightweight Directory Access Protocol (LDAP) uses schemas to define the structure of the directory data
 
 
 
@@ -17,7 +14,7 @@ Attributes hold the actual data, such as the user's name or email address.
 
 
 
-#install openladap
+# install openladap
 
 apt update
 apt install slapd ldap-utils -y
