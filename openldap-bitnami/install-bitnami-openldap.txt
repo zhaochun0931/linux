@@ -75,6 +75,12 @@ ldapsearch -x -H ldap://localhost:1389 -b "dc=example,dc=com" -D "cn=admin,dc=ex
 
 
 
+ldapwhoami -H ldap://data74:1389 -D "cn=user01,ou=users,dc=example,dc=com" -w password01
+ldapwhoami -h data74:1389 -D "cn=user01,ou=users,dc=example,dc=com" -w password01
+
+
+
+
 
 
 
