@@ -8,6 +8,10 @@ pkg-config --modversion icu-i18n
 
 
 
+# 
+dnf groupinstall "Development Tools"
+
+
 
 # build the linux kernel
 wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.9.7.tar.xz
