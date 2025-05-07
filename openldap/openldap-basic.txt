@@ -1,4 +1,29 @@
 DN: Distinguished Name
+
+In OpenLDAP, a DN (Distinguished Name) is the unique identifier for each entry in the LDAP directory.
+
+
+
+
+A DN is like a full path to an object in the LDAP hierarchy — similar to a file path in a filesystem.
+
+Example:
+cn=John Doe,ou=users,dc=example,dc=com
+
+Breakdown:
+cn=John Doe → Common name (entry for a person)
+
+ou=users → Organizational unit
+
+dc=example,dc=com → Domain components (root of the directory)
+
+Together, they uniquely identify a specific object.
+
+
+
+
+
+
 CN: Common Name
 OU: Organization Unit
 O: Organization
@@ -7,22 +32,33 @@ DC: Domain Component
 
 
 
-entry — A single unit within an LDAP directory. Each entry is identified by its unique Distinguished Name (DN).
-
 
 
 
 In OpenLDAP, the Base DN (Distinguished Name) is the root of the LDAP directory tree under which all entries are stored. It defines where LDAP searches start.
 
-
 If your LDAP domain is:
 
 example.com
 
-
 Then the Base DN is usually:
 
 dc=example,dc=com
+
+
+
+
+
+
+entry — A single unit within an LDAP directory. Each entry is identified by its unique Distinguished Name (DN).
+
+
+
+
+
+
+
+
 
 
 
