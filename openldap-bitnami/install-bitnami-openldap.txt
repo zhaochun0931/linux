@@ -48,6 +48,15 @@ ldapsearch -x -H ldap://localhost:1389 -D "cn=admin,dc=example,dc=com" -W -b "dc
 
 
 
+
+# 
+
+yum install openldap-clients
+
+
+
+
+
 ldapsearch -x -H ldap://localhost:1389 -D "cn=admin,dc=example,dc=com" -w password -b "dc=example,dc=com"
 
 
