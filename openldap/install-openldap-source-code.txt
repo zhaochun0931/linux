@@ -26,6 +26,17 @@ Everything should now be installed under /usr/local
 /usr/local/libexec/slapd
 
 
+/usr/local/libexec/slapd -V
+
+
+
+# /usr/local/libexec/slapd -V
+@(#) $OpenLDAP: slapd 2.6.9 (May  7 2025 08:44:14) $
+	root@data74:/root/openldap-2.6.9/servers/slapd
+
+#
+
+
 
 ldapsearch -x -b '' -s base '(objectclass=*)' namingContexts
 
