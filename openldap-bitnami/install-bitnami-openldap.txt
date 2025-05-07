@@ -57,7 +57,7 @@ dnf install openldap-clients
 
 
 
-
+ldapsearch -x -H ldap://localhost:1389 -b "dc=example,dc=com"
 
 
 
