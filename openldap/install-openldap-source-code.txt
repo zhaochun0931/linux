@@ -17,3 +17,20 @@ make install
 
 
 Everything should now be installed under /usr/local
+
+
+
+
+
+
+/usr/local/libexec/slapd
+
+
+
+ldapsearch -x -b '' -s base '(objectclass=*)' namingContexts
+
+
+ldapsearch -x -s base -b "" supportedLDAPVersion
+
+
+
