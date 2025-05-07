@@ -23,3 +23,9 @@ example.com
 Then the Base DN is usually:
 
 dc=example,dc=com
+
+
+
+
+
+ldapsearch -x -H ldap://localhost:1389 -b "" -s base namingContexts
