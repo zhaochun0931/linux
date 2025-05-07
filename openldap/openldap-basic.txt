@@ -34,6 +34,23 @@ DC: Domain Component
 
 
 
+In OpenLDAP, cn stands for Common Name. It is a commonly used naming attribute in Distinguished Names (DNs), typically representing:
+
+A person's full name
+
+A group name
+
+Or even descriptive labels (like cn=admin, cn=LDAP Server, etc.)
+
+
+
+
+
+
+
+
+
+
 
 In OpenLDAP, the Base DN (Distinguished Name) is the root of the LDAP directory tree under which all entries are stored. It defines where LDAP searches start.
 
@@ -52,6 +69,15 @@ dc=example,dc=com
 
 entry — A single unit within an LDAP directory. Each entry is identified by its unique Distinguished Name (DN).
 
+
+
+
+
+In OpenLDAP, dc stands for Domain Component. It is used to represent parts of a domain name in the Distinguished Name (DN) of LDAP entries.
+
+dc=example,dc=com
+└── ou=users
+    └── cn=alice
 
 
 
