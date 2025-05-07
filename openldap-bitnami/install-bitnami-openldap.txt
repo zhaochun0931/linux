@@ -53,6 +53,11 @@ ldapsearch -x -H ldap://localhost:1389 -D "cn=admin,dc=example,dc=com" -W -b "dc
 
 yum install openldap-clients
 
+dnf install openldap-clients
+
+
+
+
 
 
 
