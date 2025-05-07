@@ -11,3 +11,9 @@ make depend
 
 make
 
+make install
+
+
+
+
+Everything should now be installed under /usr/local
