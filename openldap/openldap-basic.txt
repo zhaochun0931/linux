@@ -9,3 +9,17 @@ DC: Domain Component
 
 entry — A single unit within an LDAP directory. Each entry is identified by its unique Distinguished Name (DN).
 
+
+
+
+In OpenLDAP, the Base DN (Distinguished Name) is the root of the LDAP directory tree under which all entries are stored. It defines where LDAP searches start.
+
+
+If your LDAP domain is:
+
+example.com
+
+
+Then the Base DN is usually:
+
+dc=example,dc=com
