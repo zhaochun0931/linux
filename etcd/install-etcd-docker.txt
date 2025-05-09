@@ -1,0 +1,1 @@
+docker run -it --name etcd bitnami/etcd:latest
