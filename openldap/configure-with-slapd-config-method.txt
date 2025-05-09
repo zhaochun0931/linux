@@ -230,3 +230,35 @@ When you use simple bind (-x) and specify a Bind DN with -D as your authenticati
 
 
 
+
+# Example SASL EXTERNAL
+
+ldapwhoami -Y EXTERNAL -H ldapi:/// -Q
+
+
+
+$ id
+uid=1000(xman) gid=1000(xman) groups=1000(xman),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),110(lxd)
+$
+$
+$ ldapwhoami -Y EXTERNAL -H ldapi:/// -Q
+dn:gidNumber=1000+uidNumber=1000,cn=peercred,cn=external,cn=auth
+$
+
+
+
+
+
+sudo ldapwhoami -Y EXTERNAL -H ldapi:/// -Q
+
+
+xman@ubuntu2:~$ sudo ldapwhoami -Y EXTERNAL -H ldapi:/// -Q
+dn:gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+xman@ubuntu2:~$
+
+
+
+When using SASL EXTERNAL via the ldapi:/// transport, the Bind DN becomes a combination of the uid and gid of the connecting user, followed by the suffix cn=peercred,cn=external,cn=auth. The server ACLs know about this, and grant the local root user complete write access to cn=config via the SASL mechanism.
+
+
+
