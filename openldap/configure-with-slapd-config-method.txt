@@ -299,3 +299,31 @@ result: 0 Success
 # numEntries: 1
 $
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ldapadd -x -D cn=admin,dc=ldap,dc=xiaoming,dc=com -W -f dept1.ldif
+
+
+ldapadd -x -D cn=admin,dc=ldap,dc=xiaoming,dc=com -W -f user1.ldif
+
+
+
+ldapsearch -x -LLL -b dc=ldap,dc=xiaoming,dc=com '(uid=user1)'
+
+
+
+
+
