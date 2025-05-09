@@ -203,3 +203,30 @@ dn: dc=ldap,dc=xiaoming,dc=com
 -x This is called a “simple bind”, and is essentially a plain text authentication. Since no Bind DN was provided (via -D), this became an anonymous bind. Without -x, the default is to use a Simple Authentication Security Layer (SASL) bind.
 
 -Y EXTERNAL This is using a SASL bind (no -x was provided), and further specifying the EXTERNAL type. Together with -H ldapi:///, this uses a local UNIX socket connection.
+
+
+
+
+ldapwhoami -x
+
+# ldapwhoami -x
+anonymous
+#
+
+
+
+ldapwhoami -x -D cn=admin,dc=ldap,dc=xiaoming,dc=com -W
+
+# ldapwhoami -x -D cn=admin,dc=ldap,dc=xiaoming,dc=com -W
+Enter LDAP Password:
+dn:cn=admin,dc=ldap,dc=xiaoming,dc=com
+#
+
+
+
+
+When you use simple bind (-x) and specify a Bind DN with -D as your authentication DN, the server will look for a userPassword attribute in the entry, and use that to verify the credentials.
+
+
+
+
