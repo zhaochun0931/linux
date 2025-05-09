@@ -22,6 +22,8 @@ generate a certicate with CN: rabbitmq1 and sign this cert with ca
 
 
 
+chmod 644 openldap.key
+
 
 
 
