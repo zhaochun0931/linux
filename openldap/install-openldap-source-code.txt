@@ -31,6 +31,8 @@ Everything should now be installed under /usr/local
 
 /usr/local/etc/openldap/slapd.conf
 
+mkdir -p /usr/local/var/openldap-data
+
 slaptest -u
 
 
