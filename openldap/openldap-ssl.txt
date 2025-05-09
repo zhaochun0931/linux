@@ -8,5 +8,5 @@ systemctl restart slapd
 
 
 
-/usr/local/libexec/slapd -h “ldap:/// ldaps:///”
+/usr/local/libexec/slapd -h "ldap:/// ldaps:///"
 
