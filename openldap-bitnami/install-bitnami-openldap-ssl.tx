@@ -43,7 +43,7 @@ docker run --rm --name openldap \
   --env LDAP_ADMIN_USERNAME=admin \
   --env LDAP_ADMIN_PASSWORD=password \
   --env LDAP_USERS=user1,user2 \
-  --env LDAP_PASSWORDS=password1,password2 \
+  --env LDAP_PASSWORDS=password,password \
   --env LDAP_ROOT=dc=example,dc=com \
   --env LDAP_ADMIN_DN=cn=admin,dc=example,dc=com \
   --env BITNAMI_DEBUG=yes \
