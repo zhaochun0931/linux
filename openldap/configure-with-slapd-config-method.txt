@@ -324,6 +324,12 @@ ldapadd -x -D cn=admin,dc=ldap,dc=xiaoming,dc=com -W -f user1.ldif
 ldapsearch -x -LLL -b dc=ldap,dc=xiaoming,dc=com '(uid=user1)'
 
 
+ldapsearch -x -D "cn=admin,dc=ldap,dc=xiaoming,dc=com" -W -b "dc=ldap,dc=xiaoming,dc=com"
+
+ldapsearch -x -D "cn=admin,dc=ldap,dc=xiaoming,dc=com" -W -b "dc=ldap,dc=xiaoming,dc=com" "(uid=user1)"
+
+
+
 
 
 
