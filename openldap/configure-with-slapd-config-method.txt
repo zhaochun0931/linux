@@ -1,0 +1,34 @@
+This configuration database consists of a collection of text-based LDIF files located under /etc/ldap/slapd.d
+
+
+# pwd
+/etc/ldap/slapd.d
+# 
+# 
+# 
+# ll
+total 16
+drwxr-xr-x 3 openldap openldap 4096 May  9 22:11  .
+drwxr-xr-x 5 root     root     4096 May  9 13:55  ..
+drwxr-x--- 3 openldap openldap 4096 May  9 22:11 'cn=config'
+-rw------- 1 openldap openldap  478 May  9 22:11 'cn=config.ldif'
+# 
+# 
+# 
+# tree .
+.
+├── cn=config
+│   ├── cn=module{0}.ldif
+│   ├── cn=schema
+│   │   ├── cn={0}core.ldif
+│   │   ├── cn={1}cosine.ldif
+│   │   ├── cn={2}nis.ldif
+│   │   └── cn={3}inetorgperson.ldif
+│   ├── cn=schema.ldif
+│   ├── olcDatabase={0}config.ldif
+│   ├── olcDatabase={-1}frontend.ldif
+│   └── olcDatabase={1}mdb.ldif
+└── cn=config.ldif
+
+2 directories, 10 files
+#
