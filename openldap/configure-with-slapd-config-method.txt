@@ -39,6 +39,120 @@ drwxr-x--- 3 openldap openldap 4096 May  9 22:11 'cn=config'
 
 
 
+┌───────────────────────────────────┤ Configuring slapd ├───────────────────────────────────┐
+│                                                                                           │
+│ If you enable this option, no initial configuration or database will be created for you.  │
+│                                                                                           │
+│ Omit OpenLDAP server configuration?                                                       │
+│                                                                                           │
+│                          <Yes>                             <No>
+
+
+
+NO
+
+
+
+
+
+ ┌──────────────────────────────────────────────┤ Configuring slapd ├───────────────────────────────────────────────┐
+ │ The DNS domain name is used to construct the base DN of the LDAP directory. For example, 'foo.example.org' will  │
+ │ create the directory with 'dc=foo, dc=example, dc=org' as base DN.                                               │
+ │                                                                                                                  │
+ │ DNS domain name:                                                                                                 │
+ │                                                                                                                  │
+ │ ldap.xiaoming.com_______________________________________________________________________________________________ │
+ │                                                                                                                  │
+ │                                                      <Ok>                                                        │
+ │                                                                                                                  │
+ └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+
+┌──────────────────────────────────┤ Configuring slapd ├───────────────────────────────────┐
+│ Please enter the name of the organization to use in the base DN of your LDAP directory.  │
+│                                                                                          │
+│ Organization name:                                                                       │
+│                                                                                          │
+│ users___________________________________________________________________________________ │
+│                                                                                          │
+│                                          <Ok>                                            │
+│                                                                                          │
+└──────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+
+
+
+┌─────────────────────────┤ Configuring slapd ├──────────────────────────┐
+│ Please enter the password for the admin entry in your LDAP directory.  │
+│                                                                        │
+│ Administrator password:                                                │
+│                                                                        │
+│ password______________________________________________________________ │
+│                                                                        │
+│                                 <Ok>                                   │
+│                                                                        │
+└────────────────────────────────────────────────────────────────────────┘
+
+
+    ┌───────────────────────────────────────────┤ Configuring slapd ├────────────────────────────────────────────┐
+    │ Please enter the admin password for your LDAP directory again to verify that you have typed it correctly.  │
+    │                                                                                                            │
+    │ Confirm password:                                                                                          │
+    │                                                                                                            │
+    │ password__________________________________________________________________________________________________ │
+    │                                                                                                            │
+    │                                                   <Ok>                                                     │
+    │                                                                                                            │
+    └────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+
+
+
+
+
+┌─────────────────────┤ Configuring slapd ├─────────────────────┐
+│                                                               │
+│                                                               │
+│                                                               │
+│ Do you want the database to be removed when slapd is purged?  │
+│                                                               │
+│                <Yes>                   <No>                   │
+│                                                               │
+└───────────────────────────────────────────────────────────────┘
+
+
+
+
+Yes
+
+
+
+
+ ┌──────────────────────────────────────────────┤ Configuring slapd ├───────────────────────────────────────────────┐
+ │                                                                                                                  │
+ │ There are still files in /var/lib/ldap which will probably break the configuration process. If you enable this   │
+ │ option, the maintainer scripts will move the old database files out of the way before creating a new database.   │
+ │                                                                                                                  │
+ │ Move old database?                                                                                               │
+ │                                                                                                                  │
+ │                                 <Yes>                                    <No>                                    │
+ │                                                                                                                  │
+ └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+Yes
+
+
+
+
+
+
+
+
+
 
 
 
@@ -70,3 +184,15 @@ dn: olcDatabase={1}mdb,cn=config
 #
 #
 #
+
+
+
+
+
+ldapsearch -x -LLL -H ldap:/// -b dc=ldap,dc=xiaoming,dc=com dn
+
+# ldapsearch -x -LLL -H ldap:/// -b dc=ldap,dc=xiaoming,dc=com dn
+dn: dc=ldap,dc=xiaoming,dc=com
+
+#
+
