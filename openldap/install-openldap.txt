@@ -31,7 +31,6 @@ This guide will use a database suffix of dc=example,dc=com
 
 
 # install openladap
-
 apt update
 apt install slapd ldap-utils -y
 
