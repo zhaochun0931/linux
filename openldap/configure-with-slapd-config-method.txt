@@ -196,3 +196,10 @@ dn: dc=ldap,dc=xiaoming,dc=com
 
 #
 
+
+
+
+
+-x This is called a “simple bind”, and is essentially a plain text authentication. Since no Bind DN was provided (via -D), this became an anonymous bind. Without -x, the default is to use a Simple Authentication Security Layer (SASL) bind.
+
+-Y EXTERNAL This is using a SASL bind (no -x was provided), and further specifying the EXTERNAL type. Together with -H ldapi:///, this uses a local UNIX socket connection.
