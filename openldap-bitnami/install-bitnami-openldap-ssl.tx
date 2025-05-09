@@ -56,6 +56,7 @@ docker run --rm --name openldap \
 --env LDAP_TLS_KEY_FILE=/tmp/openldap.key \
 --env LDAP_TLS_CA_FILE=/tmp/ca.crt \
 -v $(pwd)/openldap-cert:/tmp:ro \
+-v $(pwd)/openldap-cert/ca.crt://usr/local/share/ca-certificates \
 bitnami/openldap:latest
 
 
