@@ -1,1 +1,3 @@
-docker run -it --name etcd bitnami/etcd:latest
+docker run -it --rm --name etcd \
+-e ETCD_ROOT_PASSWORD=password \
+bitnami/etcd:latest
