@@ -1,0 +1,3 @@
+dn: ou=dept1,dc=ldap,dc=xiaoming,dc=com
+objectClass: organizationalUnit
+ou: dept1
