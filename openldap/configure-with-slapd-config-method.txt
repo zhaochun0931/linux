@@ -262,3 +262,40 @@ When using SASL EXTERNAL via the ldapi:/// transport, the Bind DN becomes a comb
 
 
 
+
+
+
+
+
+
+
+
+
+
+ldapsearch -x -b "dc=ldap,dc=xiaoming,dc=com" "(objectclass=*)"
+
+$ ldapsearch -x -b "dc=ldap,dc=xiaoming,dc=com" "(objectclass=*)"
+# extended LDIF
+#
+# LDAPv3
+# base <dc=ldap,dc=xiaoming,dc=com> with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# ldap.xiaoming.com
+dn: dc=ldap,dc=xiaoming,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: users
+dc: ldap
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+$
+
