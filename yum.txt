@@ -1,3 +1,14 @@
+yum groupinstall "Development Tools"
+
+
+
+
+
+
+
+
+
+
 yum list installed
 sudo yum remove <package-name>
 
