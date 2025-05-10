@@ -1,0 +1,54 @@
+# add the self signed certificat ca to trust store in Ubuntu linx
+
+# On Ubuntu/Debian:
+
+cp myca.crt /usr/local/share/ca-certificates/
+update-ca-certificates
+
+
+
+
+
+/usr/local/share/ca-certificates
+
+
+
+
+This also creates a /etc/ssl/certs/myca.pem symlink pointing to the real file in /usr/local/share/ca-certificates
+
+
+# ll /etc/ssl/certs/myca.pem
+lrwxrwxrwx 1 root root 41 May 10 01:18 /etc/ssl/certs/myca.pem -> /usr/local/share/ca-certificates/myca.crt
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+curl --cert server.crt --key server.key https://xiaoming.com
+
+
+
+
+
+
+
+
+
+
+
+# On CentOS/RedHat:
+
+
+sudo cp minio.crt /etc/pki/ca-trust/source/anchors/
+sudo update-ca-trust
