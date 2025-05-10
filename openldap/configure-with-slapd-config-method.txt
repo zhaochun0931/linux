@@ -362,13 +362,17 @@ root@ubuntu2:~#
 
 
 
-ldapadd -x -D cn=admin,dc=myldap,dc=com -W -f dept1.ldif
+ldapadd -x -D cn=admin,dc=myldap,dc=com -f group.ldif -W
+ldapadd -x -D cn=admin,dc=myldap,dc=com -f group.ldif -w password 
 ldapsearch -x -LLL -H ldap:/// -b dc=myldap,dc=com
 
 
 
 
-ldapadd -x -D cn=admin,dc=myldap,dc=com -W -f user1.ldif
+ldapadd -x -D cn=admin,dc=myldap,dc=com -f user1.ldif -W
+ldapadd -x -D cn=admin,dc=myldap,dc=com -f user1.ldif -w password
+
+
 ldapsearch -x -LLL -H ldap:/// -b dc=myldap,dc=com
 
 
