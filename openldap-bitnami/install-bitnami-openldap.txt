@@ -62,6 +62,81 @@ ldapsearch -x -H ldap://localhost:1389 -b "dc=example,dc=com"
 
 ldapsearch -x -H ldap://data74:1389 -b "dc=example,dc=com" -D "cn=user01,ou=users,dc=example,dc=com" -w password
 
+
+[root@data74 ~]# ldapsearch -x -H ldap://data74:1389 -b "dc=example,dc=com" -D "cn=user01,ou=users,dc=example,dc=com" -w password
+# extended LDIF
+#
+# LDAPv3
+# base <dc=example,dc=com> with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# example.com
+dn: dc=example,dc=com
+objectClass: dcObject
+objectClass: organization
+dc: example
+o: example
+
+# users, example.com
+dn: ou=users,dc=example,dc=com
+objectClass: organizationalUnit
+ou: users
+
+# groups, example.com
+dn: ou=groups,dc=example,dc=com
+objectClass: organizationalUnit
+ou: groups
+
+# user01, users, example.com
+dn: cn=user01,ou=users,dc=example,dc=com
+cn: User1
+cn: user01
+sn: Bar1
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+userPassword:: cGFzc3dvcmQ=
+uid: user01
+uidNumber: 1000
+gidNumber: 1000
+homeDirectory: /home/user01
+
+# user02, users, example.com
+dn: cn=user02,ou=users,dc=example,dc=com
+cn: User2
+cn: user02
+sn: Bar2
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+userPassword:: cGFzc3dvcmQ=
+uid: user02
+uidNumber: 1001
+gidNumber: 1001
+homeDirectory: /home/user02
+
+# readers, groups, example.com
+dn: cn=readers,ou=groups,dc=example,dc=com
+cn: readers
+objectClass: groupOfNames
+member: cn=user01,ou=users,dc=example,dc=com
+member: cn=user02,ou=users,dc=example,dc=com
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 7
+# numEntries: 6
+[root@data74 ~]#
+
+
+
+
+
+
 ldapsearch -x -h data74:1389 -b "dc=example,dc=com" -D "cn=user01,ou=users,dc=example,dc=com" -w password
 
 
