@@ -1,3 +1,0 @@
-dn: ou=users,dc=myldap,dc=com
-objectClass: organizationalUnit
-ou: users
