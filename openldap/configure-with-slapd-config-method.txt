@@ -1,6 +1,12 @@
 This configuration database consists of a collection of text-based LDIF files located under /etc/ldap/slapd.d
 
 
+
+
+
+
+
+
 # pwd
 /etc/ldap/slapd.d
 # 
@@ -35,6 +41,12 @@ drwxr-x--- 3 openldap openldap 4096 May  9 22:11 'cn=config'
 
 
 
+
+
+
+
+
+dpkg-reconfigure slapd
 
 
 
