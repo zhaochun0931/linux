@@ -36,12 +36,6 @@ apt install slapd ldap-utils -y
 
 
 
-Please enter the password for the admin entry in your LDAP directory.
-Adminstrator password: admin
-
-
-
-
 
 
 Configuring slapd
@@ -63,12 +57,50 @@ Confirm password:
 
 
 
+systemctl status slapd.service
+
+
+
+
+# systemctl status slapd.service
+● slapd.service - LSB: OpenLDAP standalone server (Lightweight Directory Access Protocol)
+     Loaded: loaded (/etc/init.d/slapd; generated)
+    Drop-In: /usr/lib/systemd/system/slapd.service.d
+             └─slapd-remain-after-exit.conf
+     Active: active (running) since Sat 2025-05-10 04:40:47 UTC; 45s ago
+       Docs: man:systemd-sysv-generator(8)
+    Process: 2539 ExecStart=/etc/init.d/slapd start (code=exited, status=0/SUCCESS)
+      Tasks: 3 (limit: 2197)
+     Memory: 3.3M
+        CPU: 9ms
+     CGroup: /system.slice/slapd.service
+             └─2546 /usr/sbin/slapd -h "ldap:/// ldapi:///" -g openldap -u openldap -F /etc/ldap/slapd.d
+
+May 10 04:40:47 ubuntu1 systemd[1]: Starting LSB: OpenLDAP standalone server (Lightweight Directory Access Protocol)...
+May 10 04:40:47 ubuntu1 slapd[2539]:  * Starting OpenLDAP slapd
+May 10 04:40:47 ubuntu1 slapd[2545]: @(#) $OpenLDAP: slapd 2.5.18+dfsg-0ubuntu0.22.04.3 (Dec  9 2024 02:54:19) $
+                                             Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+May 10 04:40:47 ubuntu1 slapd[2546]: slapd starting
+May 10 04:40:47 ubuntu1 slapd[2539]:    ...done.
+May 10 04:40:47 ubuntu1 systemd[1]: Started LSB: OpenLDAP standalone server (Lightweight Directory Access Protocol).
+#
+
+
+
 
 
 
 After installation, you can reconfigure OpenLDAP:
 
 dpkg-reconfigure slapd
+
+
+
+
+
+
+
+
 
 
 
