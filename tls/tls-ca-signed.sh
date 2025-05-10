@@ -10,7 +10,7 @@ openssl req -x509 -new -nodes -keyout myca.key -out myca.crt -subj "/C=US/ST=Sta
 
 
 openssl req -new -nodes -keyout ldap.key -out ldap.csr \
--subj "/C=US/ST=State/L=City/O=Organization/OU=IT/CN=xiaomingldap.com"
+-subj "/C=US/ST=State/L=City/O=Organization/OU=IT/CN=myldap.com"
 
 ├── myca.crt
 ├── myca.key
