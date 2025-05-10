@@ -41,7 +41,11 @@ modifying entry "cn=config"
 
 
 
-/etc/default/slapd
+
+
+# add the following line to the default file /etc/default/slapd
+SLAPD_SERVICES="ldap:/// ldapi:/// ldaps:///"
+
 
 
 systemctl restart slapd
