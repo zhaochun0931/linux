@@ -209,10 +209,27 @@ dn: olcDatabase={1}mdb,cn=config
 
 
 
-ldapsearch -x -LLL -H ldap:/// -b dc=ldap,dc=xiaoming,dc=com dn
 
-# ldapsearch -x -LLL -H ldap:/// -b dc=ldap,dc=xiaoming,dc=com dn
-dn: dc=ldap,dc=xiaoming,dc=com
+ldapsearch -x -LLL -H ldap:/// -b dc=xiaomingldap,dc=com
+
+# ldapsearch -x -LLL -H ldap:/// -b dc=xiaomingldap,dc=com
+dn: dc=xiaomingldap,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: users
+dc: xiaomingldap
+
+#
+
+
+
+
+
+ldapsearch -x -LLL -H ldap:/// -b dc=xiaomingldap,dc=com dn
+
+# ldapsearch -x -LLL -H ldap:/// -b dc=xiaomingldap,dc=com dn
+dn: dc=xiaomingldap,dc=com
 
 #
 
@@ -235,12 +252,22 @@ anonymous
 
 
 
-ldapwhoami -x -D cn=admin,dc=ldap,dc=xiaoming,dc=com -W
+ldapwhoami -x -D cn=admin,dc=xiaomingldap,dc=com -W
+ldapwhoami -x -D cn=admin,dc=xiaomingldap,dc=com -w password
 
-# ldapwhoami -x -D cn=admin,dc=ldap,dc=xiaoming,dc=com -W
+
+
+# ldapwhoami -x -D cn=admin,dc=xiaomingldap,dc=com -W
 Enter LDAP Password:
-dn:cn=admin,dc=ldap,dc=xiaoming,dc=com
+dn:cn=admin,dc=xiaomingldap,dc=com
 #
+
+
+# ldapwhoami -x -D cn=admin,dc=xiaomingldap,dc=com -w password
+dn:cn=admin,dc=xiaomingldap,dc=com
+#
+
+
 
 
 
@@ -292,24 +319,25 @@ When using SASL EXTERNAL via the ldapi:/// transport, the Bind DN becomes a comb
 
 
 
-ldapsearch -x -b "dc=ldap,dc=xiaoming,dc=com" "(objectclass=*)"
+ldapsearch -x -b "dc=xiaomingldap,dc=com" "(objectclass=*)"
 
-$ ldapsearch -x -b "dc=ldap,dc=xiaoming,dc=com" "(objectclass=*)"
+
+root@ubuntu2:~# ldapsearch -x -b "dc=xiaomingldap,dc=com" "(objectclass=*)"
 # extended LDIF
 #
 # LDAPv3
-# base <dc=ldap,dc=xiaoming,dc=com> with scope subtree
+# base <dc=xiaomingldap,dc=com> with scope subtree
 # filter: (objectclass=*)
 # requesting: ALL
 #
 
-# ldap.xiaoming.com
-dn: dc=ldap,dc=xiaoming,dc=com
+# xiaomingldap.com
+dn: dc=xiaomingldap,dc=com
 objectClass: top
 objectClass: dcObject
 objectClass: organization
 o: users
-dc: ldap
+dc: xiaomingldap
 
 # search result
 search: 2
@@ -317,7 +345,7 @@ result: 0 Success
 
 # numResponses: 2
 # numEntries: 1
-$
+root@ubuntu2:~#
 
 
 
