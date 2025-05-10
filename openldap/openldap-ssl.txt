@@ -1,3 +1,19 @@
+openssl req -x509 -new -nodes -keyout myca.key -out myca.crt -subj "/C=US/ST=State/L=City/O=MyCA/OU=IT/CN=MyCA"
+openssl req -new -nodes -keyout ldap.key -out ldap.csr -subj "/C=US/ST=State/L=City/O=Organization/OU=IT/CN=myldap.com"
+openssl x509 -req -in ldap.csr -CA myca.crt -CAkey myca.key -CAcreateserial -out ldap.crt -days 365
+
+
+
+├── ldap.crt
+├── ldap.csr
+├── ldap.key
+├── myca.crt
+└── myca.key
+
+
+
+
+
 
 /etc/default/slapd
 
