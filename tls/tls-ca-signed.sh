@@ -1,19 +1,19 @@
-openssl req -x509 -new -nodes -keyout ca.key -out ca.crt -subj "/C=US/ST=State/L=City/O=MyCA/OU=IT/CN=MyCA"
+openssl req -x509 -new -nodes -keyout myca.key -out myca.crt -subj "/C=US/ST=State/L=City/O=MyCA/OU=IT/CN=MyCA"
 
 
 
-├── ca.crt
-└── ca.key
+├── myca.crt
+└── myca.key
 
 
 
 
 
 openssl req -new -nodes -keyout ldap.key -out ldap.csr \
--subj "/C=US/ST=State/L=City/O=Organization/OU=IT/CN=ldap.example.com"
+-subj "/C=US/ST=State/L=City/O=Organization/OU=IT/CN=xiaomingldap.com"
 
-├── ca.crt
-├── ca.key
+├── myca.crt
+├── myca.key
 ├── ldap.csr
 └── ldap.key
 
@@ -21,12 +21,12 @@ openssl req -new -nodes -keyout ldap.key -out ldap.csr \
 
 
 
-openssl x509 -req -in ldap.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out ldap.crt -days 365
+openssl x509 -req -in ldap.csr -CA myca.crt -CAkey myca.key -CAcreateserial -out ldap.crt -days 365
 
 
-├── ca.crt
-├── ca.key
-├── ca.srl
+├── myca.crt
+├── myca.key
+├── myca.srl
 ├── ldap.crt
 ├── ldap.csr
 └── ldap.key
@@ -34,11 +34,4 @@ openssl x509 -req -in ldap.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out lda
 
 
 
-openssl verify -CAfile ca.crt ldap.crt
-
-
-
-
-
-
-
+openssl verify -CAfile myca.crt ldap.crt
