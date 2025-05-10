@@ -1,0 +1,14 @@
+dn: uid=user1,ou=dept1,dc=xiaomingldap,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+uid: user1
+sn: Doe
+givenName: John
+cn: user1
+displayName: John Doe
+uidNumber: 10000
+gidNumber: 5000
+userPassword: password
+gecos: John Doe
+loginShell: /bin/bash
+homeDirectory: /home/use1
