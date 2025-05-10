@@ -1,17 +1,10 @@
+apt install net-tools
+
+
+
+
+
 netstat -antlup
 
 
 netstat -rn
-
-
-
-
-
-
-
-
-
-
-
-
-
