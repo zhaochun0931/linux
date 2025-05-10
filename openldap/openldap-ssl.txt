@@ -12,6 +12,19 @@ openssl x509 -req -in ldap.csr -CA myca.crt -CAkey myca.key -CAcreateserial -out
 
 
 
+cp myca.crt /usr/local/share/ca-certificates/
+cp myca.key /etc/ssl/private/
+cp ldap.crt /etc/ldap/
+cp ldap.key /etc/ldap/
+
+
+
+update-ca-certificates
+
+
+
+
+
 
 
 
