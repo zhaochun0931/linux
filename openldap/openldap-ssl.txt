@@ -52,6 +52,44 @@ systemctl restart slapd
 
 
 
+# ss -antlup
+Netid               State                Recv-Q               Send-Q                                     Local Address:Port                               Peer Address:Port               Process
+udp                 UNCONN               0                    0                                          127.0.0.53%lo:53                                      0.0.0.0:*                   users:(("systemd-resolve",pid=667,fd=13))
+udp                 UNCONN               0                    0                                    10.211.55.29%enp0s5:68                                      0.0.0.0:*                   users:(("systemd-network",pid=665,fd=15))
+tcp                 LISTEN               0                    4096                                       127.0.0.53%lo:53                                      0.0.0.0:*                   users:(("systemd-resolve",pid=667,fd=14))
+tcp                 LISTEN               0                    128                                              0.0.0.0:22                                      0.0.0.0:*                   users:(("sshd",pid=4970,fd=3))
+tcp                 LISTEN               0                    200                                              0.0.0.0:5432                                    0.0.0.0:*                   users:(("postgres",pid=17443,fd=6))
+tcp                 LISTEN               0                    2048                                             0.0.0.0:389                                     0.0.0.0:*                   users:(("slapd",pid=19122,fd=8))
+tcp                 LISTEN               0                    2048                                             0.0.0.0:636                                     0.0.0.0:*                   users:(("slapd",pid=19122,fd=11))
+tcp                 LISTEN               0                    128                                                 [::]:22                                         [::]:*                   users:(("sshd",pid=4970,fd=4))
+tcp                 LISTEN               0                    200                                                 [::]:5432                                       [::]:*                   users:(("postgres",pid=17443,fd=7))
+tcp                 LISTEN               0                    2048                                                [::]:389                                        [::]:*                   users:(("slapd",pid=19122,fd=9))
+tcp                 LISTEN               0                    2048                                                [::]:636                                        [::]:*                   users:(("slapd",pid=19122,fd=12))
+root@ubuntu1:~#
+
+
+
+
+
+# add the /etc/hosts
+
+127.0.0.1 myldap.com
+
+
+
+
+ldapwhoami -x -ZZ -H ldap://myldap.com
+ldapwhoami -x -H ldaps://myldap.com
+
+# ldapwhoami -x -ZZ -H ldap://myldap.com
+anonymous
+#
+#
+#
+# ldapwhoami -x -H ldaps://myldap.com
+anonymous
+#
+#
 
 
 /usr/local/libexec/slapd -h "ldap:/// ldaps:///"
