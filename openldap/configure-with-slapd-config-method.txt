@@ -373,6 +373,10 @@ ldapadd -x -D cn=admin,dc=myldap,dc=com -f user1.ldif -W
 ldapadd -x -D cn=admin,dc=myldap,dc=com -f user1.ldif -w password
 
 
+ldapmodify -Y EXTERNAL -H ldapi:/// -D "cn=config" -f loglevel.ldif
+
+
+
 ldapsearch -x -LLL -H ldap:/// -b dc=myldap,dc=com
 
 
