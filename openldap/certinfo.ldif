@@ -1,0 +1,9 @@
+dn: cn=config
+add: olcTLSCACertificateFile
+olcTLSCACertificateFile: /etc/ssl/certs/myca.crt
+-
+add: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/ldap/ldap.crt
+-
+add: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/ldap/ldap.key
