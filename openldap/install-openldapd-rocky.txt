@@ -1,2 +1,10 @@
 dnf update -y
 
+dnf install openldap openldap-servers openldap-clients -y
+
+
+
+
+
+
+
