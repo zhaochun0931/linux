@@ -1,3 +1,0 @@
-dn: ou=dept1,dc=myldap,dc=com
-objectClass: organizationalUnit
-ou: dept1
