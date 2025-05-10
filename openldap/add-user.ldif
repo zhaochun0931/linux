@@ -1,4 +1,4 @@
-dn: uid=user1,ou=users,dc=myldap,dc=com
+dn: cn=user1,ou=users,dc=myldap,dc=com
 objectClass: inetOrgPerson
 objectClass: posixAccount
 uid: user1
