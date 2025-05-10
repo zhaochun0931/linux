@@ -9,4 +9,4 @@ uidNumber: 10000
 gidNumber: 5000
 userPassword: password
 loginShell: /bin/bash
-homeDirectory: /home/use1
+homeDirectory: /home/user1
