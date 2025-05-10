@@ -42,6 +42,30 @@ Adminstrator password: admin
 
 
 
+
+
+Configuring slapd
+-----------------
+
+Please enter the password for the admin entry in your LDAP directory.
+
+Administrator password:
+
+Please enter the admin password for your LDAP directory again to verify that you have typed it correctly.
+
+Confirm password:
+
+
+
+
+
+
+
+
+
+
+
+
 After installation, you can reconfigure OpenLDAP:
 
 dpkg-reconfigure slapd
