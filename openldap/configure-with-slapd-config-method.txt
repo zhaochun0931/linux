@@ -73,7 +73,7 @@ NO
  │                                                                                                                  │
  │ DNS domain name:                                                                                                 │
  │                                                                                                                  │
- │ xiaomingldap.com_______________________________________________________________________________________________  │
+ │ myldap.com_______________________________________________________________________________________________        │
  │                                                                                                                  │
  │                                                      <Ok>                                                        │
  │                                                                                                                  │
@@ -81,7 +81,7 @@ NO
 
 
 
-xiaomingldap.com
+myldap.com
 
 
 
@@ -210,15 +210,15 @@ dn: olcDatabase={1}mdb,cn=config
 
 
 
-ldapsearch -x -LLL -H ldap:/// -b dc=xiaomingldap,dc=com
+ldapsearch -x -LLL -H ldap:/// -b dc=myldap,dc=com
 
-# ldapsearch -x -LLL -H ldap:/// -b dc=xiaomingldap,dc=com
-dn: dc=xiaomingldap,dc=com
+# ldapsearch -x -LLL -H ldap:/// -b dc=myldap,dc=com
+dn: dc=myldap,dc=com
 objectClass: top
 objectClass: dcObject
 objectClass: organization
 o: users
-dc: xiaomingldap
+dc: myldap
 
 #
 
@@ -226,10 +226,10 @@ dc: xiaomingldap
 
 
 
-ldapsearch -x -LLL -H ldap:/// -b dc=xiaomingldap,dc=com dn
+ldapsearch -x -LLL -H ldap:/// -b dc=myldap,dc=com dn
 
-# ldapsearch -x -LLL -H ldap:/// -b dc=xiaomingldap,dc=com dn
-dn: dc=xiaomingldap,dc=com
+# ldapsearch -x -LLL -H ldap:/// -b dc=myldap,dc=com dn
+dn: dc=myldap,dc=com
 
 #
 
@@ -252,19 +252,19 @@ anonymous
 
 
 
-ldapwhoami -x -D cn=admin,dc=xiaomingldap,dc=com -W
-ldapwhoami -x -D cn=admin,dc=xiaomingldap,dc=com -w password
+ldapwhoami -x -D cn=admin,dc=myldap,dc=com -W
+ldapwhoami -x -D cn=admin,dc=myldap,dc=com -w password
 
 
 
-# ldapwhoami -x -D cn=admin,dc=xiaomingldap,dc=com -W
+# ldapwhoami -x -D cn=admin,dc=myldap,dc=com -W
 Enter LDAP Password:
-dn:cn=admin,dc=xiaomingldap,dc=com
+dn:cn=admin,dc=myldap,dc=com
 #
 
 
-# ldapwhoami -x -D cn=admin,dc=xiaomingldap,dc=com -w password
-dn:cn=admin,dc=xiaomingldap,dc=com
+# ldapwhoami -x -D cn=admin,dc=myldap,dc=com -w password
+dn:cn=admin,dc=myldap,dc=com
 #
 
 
@@ -319,25 +319,25 @@ When using SASL EXTERNAL via the ldapi:/// transport, the Bind DN becomes a comb
 
 
 
-ldapsearch -x -b "dc=xiaomingldap,dc=com" "(objectclass=*)"
+ldapsearch -x -b "dc=myldap,dc=com" "(objectclass=*)"
 
 
-root@ubuntu2:~# ldapsearch -x -b "dc=xiaomingldap,dc=com" "(objectclass=*)"
+root@ubuntu2:~# ldapsearch -x -b "dc=myldap,dc=com" "(objectclass=*)"
 # extended LDIF
 #
 # LDAPv3
-# base <dc=xiaomingldap,dc=com> with scope subtree
+# base <dc=myldap,dc=com> with scope subtree
 # filter: (objectclass=*)
 # requesting: ALL
 #
 
 # xiaomingldap.com
-dn: dc=xiaomingldap,dc=com
+dn: dc=myldap,dc=com
 objectClass: top
 objectClass: dcObject
 objectClass: organization
 o: users
-dc: xiaomingldap
+dc: myldap
 
 # search result
 search: 2
@@ -362,14 +362,14 @@ root@ubuntu2:~#
 
 
 
-ldapadd -x -D cn=admin,dc=xiaomingldap,dc=com -W -f dept1.ldif
-ldapsearch -x -LLL -H ldap:/// -b dc=xiaomingldap,dc=com
+ldapadd -x -D cn=admin,dc=myldap,dc=com -W -f dept1.ldif
+ldapsearch -x -LLL -H ldap:/// -b dc=myldap,dc=com
 
 
 
 
-ldapadd -x -D cn=admin,dc=xiaomingldap,dc=com -W -f user1.ldif
-ldapsearch -x -LLL -H ldap:/// -b dc=xiaomingldap,dc=com
+ldapadd -x -D cn=admin,dc=myldap,dc=com -W -f user1.ldif
+ldapsearch -x -LLL -H ldap:/// -b dc=myldap,dc=com
 
 
 
@@ -378,12 +378,12 @@ ldapsearch -x -LLL -H ldap:/// -b dc=xiaomingldap,dc=com
 
 
 
-ldapsearch -x -LLL -b dc=xiaomingldap,dc=com '(uid=user1)'
+ldapsearch -x -LLL -b dc=myldap,dc=com '(uid=user1)'
 
 
-ldapsearch -x -D "cn=admin,dc=xiaomingldap,dc=com" -W -b "dc=xiaomingldap,dc=com"
+ldapsearch -x -D "cn=admin,dc=myldap,dc=com" -W -b "dc=myldap,dc=com"
 
-ldapsearch -x -D "cn=admin,dc=xiaomingldap,dc=com" -W -b "dc=xiaomingldap,dc=com" "(uid=user1)"
+ldapsearch -x -D "cn=admin,dc=myldap,dc=com" -W -b "dc=myldap,dc=com" "(uid=user1)"
 
 
 
