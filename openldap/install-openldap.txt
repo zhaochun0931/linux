@@ -56,6 +56,14 @@ Confirm password:
 
 
 
+# the default config file
+
+/etc/default/slapd
+
+
+
+
+
 
 systemctl status slapd.service
 
