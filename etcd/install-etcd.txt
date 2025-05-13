@@ -13,15 +13,9 @@ etcd
 etcdctl version
 
 
-# etcdctl version
-etcdctl version: 3.5.21
-API version: 3.5
-#
+
 
 
 
 etcdctl put greeting "hello"
 etcdctl get greeting
-
-
-
