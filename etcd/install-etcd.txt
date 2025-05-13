@@ -8,6 +8,12 @@ export PATH=/root/etcd-v3.5.21-linux-arm64:$PATH
 
 # start the service
 etcd
+etcd --enable-v2=true --listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://0.0.0.0:2379 
+
+
+
+
+
 
 
 etcdctl version
@@ -19,3 +25,8 @@ etcdctl version
 
 etcdctl put greeting "hello"
 etcdctl get greeting
+
+
+
+
+
