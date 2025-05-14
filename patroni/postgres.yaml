@@ -1,0 +1,39 @@
+scope: pg-cluster
+namespace: /service/
+name: ubuntu1  # Change per node
+
+etcd3:
+  hosts: 0.0.0.0:2379
+
+restapi:
+  listen: 0.0.0.0:8008
+  connect_address: 0.0.0.0:8008  # IP of this node
+
+postgresql:
+  listen: 0.0.0.0:5432
+  connect_address: 0.0.0.0:5432  # IP of this node
+  data_dir: /data1
+  authentication:
+    replication:
+      username: replicator
+      password: password
+    superuser:
+      username: postgres
+      password: password
+  parameters:
+    wal_level: replica
+    hot_standby: "on"
+    max_wal_senders: 10
+    max_replication_slots: 10
+    wal_keep_size: 128
+
+bootstrap:
+  dcs:
+    ttl: 30
+    loop_wait: 10
+    retry_timeout: 10
+    maximum_lag_on_failover: 1048576
+  initdb:
+    - encoding: UTF8
+    - locale: en_US.UTF-8
+    - data-checksums
