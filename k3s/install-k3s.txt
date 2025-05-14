@@ -61,3 +61,12 @@ ubuntu2   Ready    <none>                 11s     v1.32.3+k3s1
 
 
 
+
+
+
+
+/usr/local/bin/k3s-uninstall.sh
+
+
+
+
