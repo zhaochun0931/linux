@@ -8,6 +8,8 @@ System calls are the primary interface between a user-level program and the Linu
 
 
 strace ls
+strace -o /tmp/output ls 
+
 
 
 
