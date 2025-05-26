@@ -1,4 +1,4 @@
-#
+# ubuntu
 
 apt install -y python3-psycopg2
 
@@ -14,7 +14,8 @@ patroni --version
 
 
 
-#
+# redhat
+
 yum install python3-psycopg2
 pip3 install patroni[etcd3]
 
