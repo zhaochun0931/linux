@@ -17,6 +17,11 @@ ip address
 ip address show eth0
 
 
+ip addr show dev eth0
+ip a s eth0
+
+
+
 
 
 
@@ -42,13 +47,10 @@ cat /etc/resolv.conf
 
 
 
-ip address show
-ip address show eth0
-ip addr show dev eth0
-ip a s eth0
-
 
 ip link show
+ip link show eth0
+
 
 
 
