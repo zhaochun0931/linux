@@ -1,5 +1,0 @@
-etcdctl endpoint status
-
-
-
-etcdctl --endpoints=http://172.80.0.165:2379,http://172.80.0.217:2379,http://172.80.0.226:2379 endpoint status --write-out=table
