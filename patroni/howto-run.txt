@@ -1,1 +1,10 @@
 create user replicator with password 'password';
+
+
+
+# create 3-node etcd cluster
+
+
+
+
+
