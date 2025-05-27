@@ -1,39 +1,69 @@
-scope: pg-cluster
+scope: batman
 namespace: /service/
-name: ubuntu1  # Change per node
-
-etcd3:
-  hosts: 0.0.0.0:2379
+name: pg1
 
 restapi:
-  listen: 0.0.0.0:8008
-  connect_address: 0.0.0.0:8008  # IP of this node
+  listen: 127.0.0.1:8009
+  connect_address: 127.0.0.1:8009
 
-postgresql:
-  listen: 0.0.0.0:5432
-  connect_address: 0.0.0.0:5432  # IP of this node
-  data_dir: /data1
-  authentication:
-    replication:
-      username: replicator
-      password: password
-    superuser:
-      username: postgres
-      password: password
-  parameters:
-    wal_level: replica
-    hot_standby: "on"
-    max_wal_senders: 10
-    max_replication_slots: 10
-    wal_keep_size: 128
 
+
+etcd3:
+  hosts:
+  - 10.211.55.29:2379
+  - 10.211.55.30:2379
+  - 10.211.55.31:2379
+
+
+# The bootstrap configuration. Works only when the cluster is not yet initialized.
+# If the cluster is already initialized, all changes in the `bootstrap` section are ignored!
 bootstrap:
+  # This section will be written into Etcd:/<namespace>/<scope>/config after initializing new cluster
+  # and all other cluster members will use it as a `global configuration`.
+  # WARNING! If you want to change any of the parameters that were set up
+  # via `bootstrap.dcs` section, please use `patronictl edit-config`!
   dcs:
     ttl: 30
     loop_wait: 10
     retry_timeout: 10
     maximum_lag_on_failover: 1048576
+    postgresql:
+      use_pg_rewind: true
+      pg_hba:
+      # For kerberos gss based connectivity (discard @.*$)
+      #- host replication replicator 127.0.0.1/32 gss include_realm=0
+      #- host all all 0.0.0.0/0 gss include_realm=0
+        - host replication replicator 127.0.0.1/32 md5
+        - host replication replicator 0.0.0.0/0 md5
+        - host all all 0.0.0.0/0 md5
   initdb:
     - encoding: UTF8
-    - locale: en_US.UTF-8
     - data-checksums
+
+
+
+
+postgresql:
+  listen: 0.0.0.0:5432
+  connect_address: 10.211.55.29:5432
+  data_dir: /data1
+  pgpass: /tmp/pgpass1
+  authentication:
+    replication:
+      username: replicator
+      password: rep-pass
+    superuser:
+      username: postgres
+      password: patroni
+    rewind:  # Has no effect on postgres 10 and lower
+      username: rewind_user
+      password: rewind_password
+  parameters:
+    unix_socket_directories: '/tmp'  # parent directory of data_dir
+
+tags:
+    # failover_priority: 1
+    # sync_priority: 1
+    noloadbalance: false
+    clonefrom: false
+    nostream: false
