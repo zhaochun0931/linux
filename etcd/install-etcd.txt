@@ -1,12 +1,12 @@
-wget https://github.com/etcd-io/etcd/releases/download/v3.5.21/etcd-v3.5.21-linux-amd64.tar.gz
+wget https://github.com/etcd-io/etcd/releases/download/v3.6.0/etcd-v3.6.0-linux-amd64.tar.gz
 
-tar -xzvf etcd-v3.5.21-linux-amd64.tar.gz
+tar -xzvf etcd-v3.6.0-linux-amd64.tar.gz
 
-export PATH=/home/gpadmin/etcd-v3.5.21-linux-amd64:$PATH
+export PATH=/home/gpadmin/etcd-v3.6.0-linux-amd64:$PATH
 
-
+etcd --version
 etcdctl version
-
+etcdutl version
 
 
 
