@@ -1,34 +1,51 @@
-infra0	10.0.1.10	infra0.example.com
-infra1	10.0.1.11	infra1.example.com
-infra2	10.0.1.12	infra2.example.com
+TOKEN=token-01
+CLUSTER_STATE=new
+NAME_1=machine-1
+NAME_2=machine-2
+NAME_3=machine-3
+HOST_1=10.240.0.17
+HOST_2=10.240.0.18
+HOST_3=10.240.0.19
+CLUSTER=${NAME_1}=http://${HOST_1}:2380,${NAME_2}=http://${HOST_2}:2380,${NAME_3}=http://${HOST_3}:2380
 
 
 
-etcd --name infra0 \
---initial-advertise-peer-urls http://10.0.1.10:2380 \
---listen-peer-urls http://10.0.1.10:2380 \
---listen-client-urls http://10.0.1.10:2379,http://127.0.0.1:2379 \
---advertise-client-urls http://10.0.1.10:2379 \
---initial-cluster-token etcd-cluster-1 \
---initial-cluster infra0=http://10.0.1.10:2380,infra1=http://10.0.1.11:2380,infra2=http://10.0.1.12:2380 \
---initial-cluster-state new
+# For machine 1
+THIS_NAME=${NAME_1}
+THIS_IP=${HOST_1}
+etcd --data-dir=data.etcd --name ${THIS_NAME} \
+	--initial-advertise-peer-urls http://${THIS_IP}:2380 --listen-peer-urls http://${THIS_IP}:2380 \
+	--advertise-client-urls http://${THIS_IP}:2379 --listen-client-urls http://${THIS_IP}:2379 \
+	--initial-cluster ${CLUSTER} \
+	--initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
+
+# For machine 2
+THIS_NAME=${NAME_2}
+THIS_IP=${HOST_2}
+etcd --data-dir=data.etcd --name ${THIS_NAME} \
+	--initial-advertise-peer-urls http://${THIS_IP}:2380 --listen-peer-urls http://${THIS_IP}:2380 \
+	--advertise-client-urls http://${THIS_IP}:2379 --listen-client-urls http://${THIS_IP}:2379 \
+	--initial-cluster ${CLUSTER} \
+	--initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
+
+# For machine 3
+THIS_NAME=${NAME_3}
+THIS_IP=${HOST_3}
+etcd --data-dir=data.etcd --name ${THIS_NAME} \
+	--initial-advertise-peer-urls http://${THIS_IP}:2380 --listen-peer-urls http://${THIS_IP}:2380 \
+	--advertise-client-urls http://${THIS_IP}:2379 --listen-client-urls http://${THIS_IP}:2379 \
+	--initial-cluster ${CLUSTER} \
+	--initial-cluster-state ${CLUSTER_STATE} --initial-cluster-token ${TOKEN}
 
 
 
-etcd --name infra1 --initial-advertise-peer-urls http://10.0.1.11:2380 \
---listen-peer-urls http://10.0.1.11:2380 \
---listen-client-urls http://10.0.1.11:2379,http://127.0.0.1:2379 \
---advertise-client-urls http://10.0.1.11:2379 \
---initial-cluster-token etcd-cluster-1 \
---initial-cluster infra0=http://10.0.1.10:2380,infra1=http://10.0.1.11:2380,infra2=http://10.0.1.12:2380 \
---initial-cluster-state new
 
 
-etcd --name infra2 --initial-advertise-peer-urls http://10.0.1.12:2380 \
---listen-peer-urls http://10.0.1.12:2380 \
---listen-client-urls http://10.0.1.12:2379,http://127.0.0.1:2379 \
---advertise-client-urls http://10.0.1.12:2379 \
---initial-cluster-token etcd-cluster-1 \
---initial-cluster infra0=http://10.0.1.10:2380,infra1=http://10.0.1.11:2380,infra2=http://10.0.1.12:2380 \
---initial-cluster-state new
 
+
+
+etcdctl endpoint status
+
+
+
+etcdctl --endpoints=http://172.80.0.165:2379,http://172.80.0.217:2379,http://172.80.0.226:2379 endpoint status --write-out=table
