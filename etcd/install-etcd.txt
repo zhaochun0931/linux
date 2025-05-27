@@ -52,3 +52,7 @@ etcdctl get "" --endpoints=10.211.55.30:2379  --from-key --keys-only
 etcdctl get "" --endpoints=10.211.55.30:2379  --prefix
 
 
+
+
+etcdctl del "" --endpoints=10.211.55.30:2379  --from-key
+
