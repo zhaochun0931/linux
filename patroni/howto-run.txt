@@ -19,6 +19,9 @@ patroni postgres.yaml > patroni.log 2>&1 &
 
 
 
+mkdir /data1
+chown -R postgres:postgres /data1
+chmod 700 /data1
 
 
 
