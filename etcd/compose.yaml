@@ -12,9 +12,7 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
     networks:
-      etcd-net:
-        aliases:
-          - etcd1
+      - postgres-network
 
   etcd2:
     image: gcr.io/etcd-development/etcd:v3.5.21
@@ -29,9 +27,7 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
     networks:
-      etcd-net:
-        aliases:
-          - etcd2
+      - postgres-network
 
   etcd3:
     image: gcr.io/etcd-development/etcd:v3.5.21
@@ -46,10 +42,8 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
     networks:
-      etcd-net:
-        aliases:
-          - etcd3
+      - postgres-network
 
 networks:
-  etcd-net:
+  postgres-network:
     driver: bridge
