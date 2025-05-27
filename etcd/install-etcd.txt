@@ -40,3 +40,14 @@ etcdctl get greeting
 
 
 
+
+
+
+
+
+etcdctl get "" --endpoints=10.211.55.30:2379  --from-key
+
+etcdctl get "" --endpoints=10.211.55.30:2379  --from-key --keys-only
+
+
+
