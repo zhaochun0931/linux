@@ -1,6 +1,6 @@
 scope: batman
 namespace: /service/
-name: pg1
+name: pg0
 
 restapi:
   listen: 127.0.0.1:8009
@@ -29,13 +29,7 @@ bootstrap:
     maximum_lag_on_failover: 1048576
     postgresql:
       use_pg_rewind: true
-      pg_hba:
-      # For kerberos gss based connectivity (discard @.*$)
-      #- host replication replicator 127.0.0.1/32 gss include_realm=0
-      #- host all all 0.0.0.0/0 gss include_realm=0
-      - host replication replicator 127.0.0.1/32 md5
-      - host replication replicator 0.0.0.0/0 md5
-      - host all all 0.0.0.0/0 md5
+
   initdb:
     - encoding: UTF8
     - data-checksums
@@ -48,6 +42,13 @@ postgresql:
   connect_address: 10.211.55.29:5432
   data_dir: /data1
   pgpass: /tmp/pgpass1
+  pg_hba:
+  # For kerberos gss based connectivity (discard @.*$)
+  #- host replication replicator 127.0.0.1/32 gss include_realm=0
+  #- host all all 0.0.0.0/0 gss include_realm=0
+    - host replication replicator 127.0.0.1/32 md5
+    - host replication replicator 0.0.0.0/0 md5
+    - host all all 0.0.0.0/0 md5
   authentication:
     replication:
       username: replicator
