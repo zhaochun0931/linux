@@ -1,0 +1,30 @@
+my_script.sh > output.log 2>&1 &
+
+
+
+
+
+
+
+
+
+| Part   | Meaning                                                                   |
+| ------ | ------------------------------------------------------------------------- |
+| `2>`   | Redirect **standard error (stderr)**.                                     |
+| `2>&1` | Redirect **stderr** to the same location as **standard output (stdout)**. |
+| `&`    | Run the command in the **background**.                                    |
+
+
+
+
+
+
+
+
+This command does 3 things:
+
+Runs my_script.sh.
+
+Redirects both stdout and stderr into output.log.
+
+Runs the command in the background, freeing up the shell.
