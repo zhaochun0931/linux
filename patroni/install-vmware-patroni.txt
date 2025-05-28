@@ -1,0 +1,1 @@
+yum install vmware-postgres-patroni-3.3.3-3.el8.x86_64.rpm
