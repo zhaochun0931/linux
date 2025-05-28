@@ -5,7 +5,7 @@ apt install etcd-server etcd-client -y
 
 
 
-
+/var/lib/etcd
 
 
 
