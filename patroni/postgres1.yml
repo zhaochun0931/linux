@@ -1,6 +1,6 @@
 scope: batman
 namespace: /service/
-name: pg2
+name: pg1
 
 restapi:
   listen: 127.0.0.1:8009
