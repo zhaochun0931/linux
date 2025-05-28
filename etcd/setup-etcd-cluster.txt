@@ -42,8 +42,12 @@ etcd --data-dir=data.etcd --name ${THIS_NAME} \
 
 
 
+or 
+
+set up with the configuration file
 
 
+etcd --config-file etcd.config
 
 
 
@@ -59,3 +63,10 @@ ENDPOINTS=$HOST_1:2379,$HOST_2:2379,$HOST_3:2379
 etcdctl --endpoints=$ENDPOINTS member list
 etcdctl --endpoints=$ENDPOINTS endpoint health 
 etcdctl --endpoints=$ENDPOINTS endpoint status --write-out=table
+
+
+
+
+
+
+
