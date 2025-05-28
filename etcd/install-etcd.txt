@@ -1,5 +1,5 @@
 #
-apt install etcd-server -y
+apt install etcd-server etcd-client -y
 
 
 
