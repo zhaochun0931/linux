@@ -4,11 +4,6 @@ apt install etcd-server etcd-client -y
 
 
 
-# redhat
-
-yum install -y etcd
-
-
 
 
 
