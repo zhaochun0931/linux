@@ -1,6 +1,6 @@
 scope: batman
 namespace: /service/
-name: pg3
+name: pg1
 
 restapi:
   listen: 127.0.0.1:8009
@@ -38,7 +38,7 @@ bootstrap:
 
 postgresql:
   listen: 0.0.0.0:5432
-  connect_address: 10.211.55.31:5432
+  connect_address: 10.211.55.30:5432
   data_dir: /data1
   pgpass: /tmp/pgpass1
   authentication:
