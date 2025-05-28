@@ -1,4 +1,12 @@
+Advanced Packaging Tool
+
 apt is a newer, higher-level command that combines the functionality of several older tools (like apt-get and apt-cache) into a more user-friendly interface.
+
+apt is a high-level tool that uses dpkg underneath but also handles the resolution of dependencies, fetching packages from repositories, and managing package upgrades.
+
+
+
+
 
 
 apt list --installed
