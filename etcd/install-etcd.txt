@@ -56,19 +56,16 @@ etcdctl get greeting
 
 
 
-
-
-
-etcdctl get "" --endpoints=10.211.55.30:2379  --from-key
-
-etcdctl get "" --endpoints=10.211.55.30:2379  --from-key --keys-only
-
-etcdctl get "" --endpoints=10.211.55.30:2379  --prefix
-
-
-
 host1_ip=10.211.55.29
 host2_ip=10.211.55.30
 host3_ip=10.211.55.31
+
+
+etcdctl get "" --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 --from-key
+
+etcdctl get "" --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 --from-key --keys-only
+
+etcdctl get "" --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 --prefix
+
 etcdctl del "" --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 --from-key
 
