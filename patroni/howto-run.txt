@@ -19,9 +19,9 @@ patroni postgres.yaml > patroni.log 2>&1 &
 
 
 
-mkdir /data1
-chown -R postgres:postgres /data1
-chmod 700 /data1
+mkdir /data
+chown -R postgres:postgres /data
+chmod 700 /data
 
 
 
@@ -40,4 +40,10 @@ $ patronictl -c postgres.yaml list
 | pg2    | 10.211.55.30 | Replica | streaming |  2 |         0 |
 | pg3    | 10.211.55.31 | Replica | streaming |  2 |         0 |
 +--------+--------------+---------+-----------+----+-----------+
+
+
+
+
+patronictl -c postgres0.yml switchover
+
 
