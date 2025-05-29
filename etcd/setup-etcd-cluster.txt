@@ -54,9 +54,9 @@ etcd --config-file etcd.config > /tmp/etcd.log 2>&1 &
 
 
 
-HOST_1=172.80.0.217
-HOST_2=172.80.0.226
-HOST_3=172.80.0.165
+HOST_1=10.211.55.29
+HOST_2=10.211.55.30
+HOST_3=10.211.55.31
 ENDPOINTS=$HOST_1:2379,$HOST_2:2379,$HOST_3:2379
 
 etcdctl --endpoints=$ENDPOINTS member list
