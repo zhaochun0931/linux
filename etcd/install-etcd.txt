@@ -69,3 +69,47 @@ etcdctl get "" --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 --
 
 etcdctl del "" --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 --from-key
 
+
+
+
+
+etcdctl --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 member list
+
+etcdctl --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 endpoint health
+
+etcdctl --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 endpoint status
+
+etcdctl --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 endpoint status -w table
+
+
+
+
+
+$ etcdctl --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 endpoint health
+10.211.55.30:2379 is healthy: successfully committed proposal: took = 3.929875ms
+10.211.55.29:2379 is healthy: successfully committed proposal: took = 3.76775ms
+10.211.55.31:2379 is healthy: successfully committed proposal: took = 4.640083ms
+$
+
+
+$ etcdctl --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 endpoint health -w table
++-------------------+--------+------------+-------+
+|     ENDPOINT      | HEALTH |    TOOK    | ERROR |
++-------------------+--------+------------+-------+
+| 10.211.55.29:2379 |   true | 2.456209ms |       |
+| 10.211.55.30:2379 |   true |  2.54275ms |       |
+| 10.211.55.31:2379 |   true | 2.664917ms |       |
++-------------------+--------+------------+-------+
+$
+
+
+
+
+
+$ etcdctl --endpoints=${host1_ip}:2379,${host2_ip}:2379,${host3_ip}:2379 endpoint status
+10.211.55.29:2379, 16b576d34a8a4d8c, 3.6.0, 3.6.0, 20 kB, 16 kB, 20%, 0 B, true, false, 2, 16, 16, , , false
+10.211.55.30:2379, 5b7bed25a08c43d5, 3.6.0, 3.6.0, 20 kB, 16 kB, 20%, 0 B, false, false, 2, 16, 16, , , false
+10.211.55.31:2379, 38d978142c4e65dc, 3.6.0, 3.6.0, 20 kB, 16 kB, 20%, 0 B, false, false, 2, 16, 16, , , false
+$
+
+
