@@ -3,7 +3,7 @@ namespace: /service/
 name: pg2
 
 restapi:
-  listen: 127.0.0.1:8009
+  listen: 0.0.0.0:8009
   connect_address: 10.211.55.30:8009
 
 etcd3:
