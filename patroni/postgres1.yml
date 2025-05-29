@@ -4,7 +4,7 @@ name: pg1
 
 restapi:
   listen: 127.0.0.1:8009
-  connect_address: 127.0.0.1:8009
+  connect_address: 10.211.55.29:8009
 
 
 
@@ -30,17 +30,31 @@ bootstrap:
     postgresql:
       use_pg_rewind: true
 
-
   initdb:
-  - encoding: UTF8
-  - data-checksums
+    - encoding: UTF8
+    - data-checksums
+
+
 
 
 postgresql:
   listen: 0.0.0.0:5432
-  connect_address: 10.211.55.30:5432
-  data_dir: /data1
+  connect_address: 10.211.55.29:5432
+  logging_collector: on
+  log_directory: 'pg_log'
+  log_filename: 'postgresql-%a.log'
+  log_rotation_age: 1d
+  log_rotation_size: 0
+  log_statement: 'ddl'           # or 'all' for full logging
+  log_min_duration_statement: 1000  # log queries longer than 1s
+  log_line_prefix: '%m [%p] %q%u@%d '
+  data_dir: /data
   pgpass: /tmp/pgpass1
+  pg_hba:
+    - local all all trust
+    - host  replication replicator 127.0.0.1/32 md5
+    - host  replication replicator 0.0.0.0/0 md5
+    - host all all 0.0.0.0/0 md5
   authentication:
     replication:
       username: replicator
@@ -52,4 +66,11 @@ postgresql:
       username: rewind_user
       password: rewind_password
   parameters:
-    unix_socket_directories: '.'  # parent directory of data_dir
+    unix_socket_directories: '/tmp'  # parent directory of data_dir
+
+tags:
+    # failover_priority: 1
+    # sync_priority: 1
+    noloadbalance: false
+    clonefrom: false
+    nostream: false
