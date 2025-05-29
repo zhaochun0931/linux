@@ -47,9 +47,8 @@ or
 set up with the configuration file
 
 
-etcd --config-file etcd.config
 
-etcd --config-file etcd.config > etcd.log 2>&1 &
+etcd --config-file etcd.config > /tmp/etcd.log 2>&1 &
 
 
 
