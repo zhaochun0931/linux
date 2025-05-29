@@ -6,14 +6,11 @@ restapi:
   listen: 127.0.0.1:8009
   connect_address: 10.211.55.29:8009
 
-
-
 etcd3:
   hosts:
   - 10.211.55.29:2379
   - 10.211.55.30:2379
   - 10.211.55.31:2379
-
 
 # The bootstrap configuration. Works only when the cluster is not yet initialized.
 # If the cluster is already initialized, all changes in the `bootstrap` section are ignored!
@@ -35,19 +32,9 @@ bootstrap:
     - data-checksums
 
 
-
-
 postgresql:
   listen: 0.0.0.0:5432
   connect_address: 10.211.55.29:5432
-  logging_collector: on
-  log_directory: 'pg_log'
-  log_filename: 'postgresql-%a.log'
-  log_rotation_age: 1d
-  log_rotation_size: 0
-  log_statement: 'ddl'           # or 'all' for full logging
-  log_min_duration_statement: 1000  # log queries longer than 1s
-  log_line_prefix: '%m [%p] %q%u@%d '
   data_dir: /data
   pgpass: /tmp/pgpass1
   pg_hba:
@@ -67,6 +54,14 @@ postgresql:
       password: rewind_password
   parameters:
     unix_socket_directories: '/tmp'  # parent directory of data_dir
+    logging_collector: on
+    log_directory: 'pg_log'
+    log_filename: 'postgresql-%a.log'
+    log_rotation_age: 1d
+    log_rotation_size: 0
+    log_statement: 'ddl'
+    log_min_duration_statement: 1000
+    log_line_prefix: '%m [%p] %q%u@%d'
 
 tags:
     # failover_priority: 1
