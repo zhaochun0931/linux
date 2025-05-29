@@ -45,10 +45,10 @@ postgresql:
   authentication:
     replication:
       username: replicator
-      password: rep-pass
+      password: password
     superuser:
       username: postgres
-      password: patroni
+      password: password
     rewind:  # Has no effect on postgres 10 and lower
       username: rewind_user
       password: rewind_password
