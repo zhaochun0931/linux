@@ -44,6 +44,10 @@ iptables -L
 
 iptables -A INPUT -p tcp --dport <PORT_NUMBER> -j DROP
 
+iptables -A INPUT -s <IP_ADDRESS> -j DROP
+
+
+
 iptables -A INPUT -p tcp ! --dport 22 -j DROP
 
 
