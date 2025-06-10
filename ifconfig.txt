@@ -2,6 +2,10 @@ ifconfig is the traditional utility for network configuration and management on 
 
 
 
+/etc/sysconfig/network-scripts/ifcfg-ens33
+
+
+
 
 
 
@@ -12,6 +16,11 @@ apt install net-tools
 
 
 ifconfig
+ifconfig ens33
+
+
+
+
 
 # show all ethernet interfaces even if down
 ifconfig -a
