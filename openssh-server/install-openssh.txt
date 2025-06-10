@@ -21,6 +21,6 @@ systemctl status sshd
 
 
 
-
+~/.ssh/known_hosts
 
 
