@@ -1,4 +1,3 @@
-# raft.py
 import sys
 import threading
 import time
@@ -9,74 +8,81 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 node_id = sys.argv[1]
-peers = sys.argv[2].split(',')
+peer_arg = sys.argv[2] if len(sys.argv) > 2 else ""
+peers = peer_arg.split(",") if peer_arg else []
 
 state = {
-    'term': 0,
-    'leader': None,
-    'voted_for': None,
-    'is_leader': False
+    "term": 0,
+    "voted_for": None,
+    "is_leader": False,
+    "leader": None
 }
 
-election_timeout = random.randint(5, 10)
-last_heartbeat = time.time()
+lock = threading.Lock()
 
-@app.route('/heartbeat', methods=['POST'])
-def heartbeat():
-    global last_heartbeat
+@app.route("/request_vote", methods=["POST"])
+def request_vote():
     data = request.get_json()
-    state['term'] = max(state['term'], data['term'])
-    state['leader'] = data['leader']
-    last_heartbeat = time.time()
-    return jsonify({'status': 'ok'})
+    with lock:
+        print(f"[{node_id}] Received vote request: {data}")
+        if data["term"] > state["term"]:
+            state["term"] = data["term"]
+            state["voted_for"] = data["candidate_id"]
+            print(f"[{node_id}] Voted for {data['candidate_id']} in term {data['term']}")
+            return jsonify({"vote_granted": True, "term": state["term"]})
+        else:
+            print(f"[{node_id}] Rejected vote for {data['candidate_id']} in term {data['term']}")
+            return jsonify({"vote_granted": False, "term": state["term"]})
 
-@app.route('/vote', methods=['POST'])
-def vote():
-    data = request.get_json()
-    if state['voted_for'] in (None, data['candidate']):
-        state['voted_for'] = data['candidate']
-        return jsonify({'vote_granted': True})
-    return jsonify({'vote_granted': False})
 
-def send_heartbeat():
+def start_election():
+    with lock:
+        state["term"] += 1
+        state["voted_for"] = node_id
+        current_term = state["term"]
+        votes = 1  # self vote
+
+    print(f"[{node_id}] Starting election for term {current_term}")
+    for peer in peers:
+        try:
+            response = requests.post(
+                f"http://{peer}/request_vote",
+                json={"term": current_term, "candidate_id": node_id},
+                timeout=1
+            )
+            if response.ok and response.json().get("vote_granted"):
+                votes += 1
+                print(f"[{node_id}] Got vote from {peer}")
+        except Exception as e:
+            print(f"[{node_id}] Failed to contact {peer}: {e}")
+
+    with lock:
+        if votes > (len(peers) + 1) // 2:
+            state["is_leader"] = True
+            state["leader"] = node_id
+            print(f"[{node_id}] 🎉 Elected leader for term {current_term} with {votes} votes")
+        else:
+            print(f"[{node_id}] Failed to win election (got {votes} votes)")
+
+
+def election_timer():
     while True:
-        if state['is_leader']:
-            for peer in peers:
-                try:
-                    requests.post(f'http://{peer}:5000/heartbeat', json={
-                        'term': state['term'],
-                        'leader': node_id
-                    }, timeout=0.5)
-                except:
-                    pass
-        time.sleep(2)
+        timeout = random.randint(5, 10)
+        print(f"[{node_id}] Waiting {timeout}s before next election attempt")
+        time.sleep(timeout)
 
-def election():
-    global last_heartbeat
-    while True:
-        if time.time() - last_heartbeat > election_timeout:
-            state['term'] += 1
-            state['voted_for'] = node_id
-            votes = 1
-            for peer in peers:
-                try:
-                    r = requests.post(f'http://{peer}:5000/vote', json={
-                        'term': state['term'],
-                        'candidate': node_id
-                    }, timeout=0.5)
-                    if r.json().get('vote_granted'):
-                        votes += 1
-                except:
-                    pass
-            if votes > (len(peers) + 1) // 2:
-                state['is_leader'] = True
-                state['leader'] = node_id
-                print(f"{node_id} is the new leader (term {state['term']})")
+        with lock:
+            if state["is_leader"]:
+                continue
 
-            last_heartbeat = time.time()
-        time.sleep(1)
+        start_election()
 
-if __name__ == '__main__':
-    threading.Thread(target=send_heartbeat, daemon=True).start()
-    threading.Thread(target=election, daemon=True).start()
-    app.run(host='0.0.0.0', port=5000)
+
+def run():
+    print(f"[{node_id}] Starting node with peers: {peers}")
+    threading.Thread(target=election_timer, daemon=True).start()
+    app.run(host="0.0.0.0", port=5000)
+
+
+if __name__ == "__main__":
+    run()
