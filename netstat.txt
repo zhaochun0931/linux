@@ -7,4 +7,6 @@ apt install net-tools
 netstat -antlup
 
 
+netstat -r -n
 netstat -rn
+
