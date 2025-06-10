@@ -1,4 +1,4 @@
 Red Hat Package Manager (RPM)
 
 
-
+rpm -qa
