@@ -2,6 +2,7 @@ services:
   etcd1:
     image: gcr.io/etcd-development/etcd:v3.5.21
     container_name: etcd1
+    hostname: etcd1
     environment:
       - ETCD_NAME=etcd1
       - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd1:2380
@@ -12,11 +13,12 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
     networks:
-      - postgres-network
+      - etcd-network
 
   etcd2:
     image: gcr.io/etcd-development/etcd:v3.5.21
     container_name: etcd2
+    hostname: etcd2
     environment:
       - ETCD_NAME=etcd2
       - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd2:2380
@@ -27,11 +29,12 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
     networks:
-      - postgres-network
+      - etcd-network
 
   etcd3:
     image: gcr.io/etcd-development/etcd:v3.5.21
     container_name: etcd3
+    hostname: etcd3
     environment:
       - ETCD_NAME=etcd3
       - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://etcd3:2380
@@ -42,8 +45,8 @@ services:
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
     networks:
-      - postgres-network
+      - etcd-network
 
 networks:
-  postgres-network:
+  etcd-network:
     driver: bridge
