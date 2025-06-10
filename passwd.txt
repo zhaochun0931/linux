@@ -1,1 +1,9 @@
+passwd username
+
+
+
+
+/etc/passwd
+
+
 
