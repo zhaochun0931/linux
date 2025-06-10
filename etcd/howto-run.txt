@@ -1,0 +1,8 @@
+docker compose up
+
+
+
+
+docker exec etcd1 etcdctl --endpoints=http://localhost:2379 put name xiaoming
+
+docker exec etcd1 etcdctl --endpoints=http://localhost:2379 get name
