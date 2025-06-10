@@ -1,0 +1,6 @@
+addgroup g1
+addgroup g2
+
+
+
+/etc/group
