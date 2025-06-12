@@ -2,3 +2,18 @@ Red Hat Package Manager (RPM)
 
 
 rpm -qa
+
+
+
+
+Most packages are simply installed with the upgrade option, -U, whether the package is already installed or not.
+
+rpm -Uvh /path/to/rpm-package(s)
+
+The -v option generates more verbose output, and -h makes rpm print a progress bar
+
+
+
+
+rpm -qf /usr/bin/nc
+
