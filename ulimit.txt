@@ -1,0 +1,21 @@
+In Linux, an "open file" refers to any file descriptor that a process has opened. 
+
+
+
+
+By default, macOS and Linux often have a per-process FD limit around 256–1024.
+
+
+Step 1: Check current limit
+
+ulimit -n
+
+
+
+
+
+
+Step 2: Temporarily increase it
+
+
+ulimit -n 4096
