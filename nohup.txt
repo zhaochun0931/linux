@@ -8,3 +8,26 @@ nohup command
 
 
 nohup ignores the SIGHUP signal sent when a user logs out.
+
+
+
+
+
+nohup your-command > output.log 2>&1 &
+
+
+
+Breakdown:
+nohup: Makes the command immune to hangups (e.g., when you log out).
+
+your-command: The command you want to run.
+
+>: Redirects stdout to output.log.
+
+2>&1: Redirects stderr to where stdout is going (i.e., to output.log).
+
+&: Runs the command in the background.
+
+
+
+
