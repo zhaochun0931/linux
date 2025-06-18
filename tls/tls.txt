@@ -16,3 +16,36 @@ What this does:
 
 
 
+
+
+
+
+
+
+
+You can avoid the interactive prompts by using the -subj flag:
+
+
+
+openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem \
+  -days 365 -nodes \
+  -subj "/C=US/ST=CA/L=SanFrancisco/O=MyOrg/OU=Dev/CN=localhost"
+
+
+Output Files
+
+key.pem: your private key (keep this secure!)
+
+cert.pem: your self-signed certificate
+
+
+
+
+
+
+
+
+openssl x509 -in cert.pem -text -noout
+
+
+
