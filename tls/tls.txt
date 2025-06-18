@@ -1,0 +1,18 @@
+openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes
+
+
+What this does:
+-x509 – output a self-signed certificate
+
+-newkey rsa:2048 – generate a new 2048-bit RSA key
+
+-keyout key.pem – save private key here
+
+-out cert.pem – save the certificate here
+
+-days 365 – certificate valid for 1 year
+
+-nodes – do not encrypt the private key
+
+
+
