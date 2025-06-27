@@ -1,0 +1,22 @@
+python3 fd.py
+
+
+
+# python3 fd.py
+File descriptor: 3
+#
+
+
+
+
+
+# View open FDs for current shell
+
+ls -al /proc/$$/fd
+
+
+
+
+# Or for a specific process ID (e.g., 1234)
+
+ls -al /proc/1234/fd
