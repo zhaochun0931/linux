@@ -1,3 +1,25 @@
+A file descriptor (FD) is a low-level integer handle used by the operating system (especially Unix-like systems) to reference an open file, socket, pipe, or other I/O resource.
+
+Every process has a file descriptor table, and when a process opens a file (or a socket, pipe, etc.), the OS returns an integer (starting from 0) that refers to it:
+
++------------+-------------------+
+| FD Number  | Meaning           |
++------------+-------------------+
+| 0          | stdin             |
+| 1          | stdout            |
+| 2          | stderr            |
+| 3+         | Other open files  |
++------------+-------------------+
+
+
+
+
+
+
+
+
+
+
 my_script.sh > output.log 2>&1 &
 
 
