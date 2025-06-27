@@ -21,7 +21,11 @@ Every process has a file descriptor table, and when a process opens a file (or a
 ulimit -n
 
 
+increase the fd:
 
+Temporary:
+
+ulimit -n 65535
 
 
 
