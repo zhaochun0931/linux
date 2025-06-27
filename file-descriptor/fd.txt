@@ -18,6 +18,17 @@ Every process has a file descriptor table, and when a process opens a file (or a
 
 
 
+ulimit -n
+
+
+
+
+
+
+
+
+
+
 
 
 my_script.sh > output.log 2>&1 &
