@@ -6,3 +6,13 @@ MTU is the largest size (in bytes) of a packet (or frame) that can be sent in a 
 
 
 
+Why MTU Matters:
+If a packet is larger than the MTU, it must be fragmented (split into smaller pieces), which:
+
+Increases overhead and latency
+
+Can cause problems if intermediate routers or firewalls block fragments
+
+
+
+If Don't Fragment (DF) bit is set and the packet exceeds the MTU, the packet is dropped.
