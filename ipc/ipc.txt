@@ -1,1 +1,15 @@
 Processes need to communicate with each other in many situations. Inter-Process Communication or IPC is a mechanism that allows processes to communicate.
+
+
+
+Signals
+
+Signals are one of the oldest inter-process communication methods used by Unix systems
+
+
+Pipes
+
+Sockets
+
+
+Linux supports three types of interprocess communication mechanisms that first appeared in Unix TM System V (1983). These are message queues, semaphores and shared memory
