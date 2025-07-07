@@ -1,0 +1,8 @@
+MTU stands for Maximum Transmission Unit
+
+
+MTU is the largest size (in bytes) of a packet (or frame) that can be sent in a single transmission unit over a network interface without needing to be fragmented.
+
+
+
+
