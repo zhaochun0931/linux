@@ -1,0 +1,1 @@
+Processes need to communicate with each other in many situations. Inter-Process Communication or IPC is a mechanism that allows processes to communicate.
