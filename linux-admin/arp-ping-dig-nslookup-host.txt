@@ -113,7 +113,4 @@ host www.google.com
 
 
 
-# ping
 
-ping xxx.com
-apt install iputils-ping -y
