@@ -1,0 +1,15 @@
+apt install iputils-ping -y
+
+
+ping www.google.com
+
+
+
+
+ping -s 3000 10.211.55.32
+
+
+ping -D -s 3000 10.211.55.32
+
+
+
