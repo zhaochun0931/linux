@@ -1,0 +1,9 @@
+services:
+  postfix:
+    image: boky/postfix
+    container_name: postfix
+    ports:
+      - "25:25"
+    environment:
+      - SERVER_HOSTNAME=localhost
+    restart: unless-stopped
