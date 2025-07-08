@@ -10,7 +10,9 @@ docker exec -it postfix bash
 
 
 sendmail chun.zhao@broadcom.com
-Subject: Hello from sendmail
-This is a test from sendmail inside Docker.
+
+From: Your Name <yourgmail@gmail.com>
+To: chun.zhao@broadcom.com
+Subject: Test Email
 
 Press Ctrl+D (on an empty line) to end the input and send the email.
