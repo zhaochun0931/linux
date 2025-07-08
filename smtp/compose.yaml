@@ -8,3 +8,18 @@ services:
       - ALLOW_EMPTY_SENDER_DOMAINS=true
       - SERVER_HOSTNAME=localhost
     restart: unless-stopped
+    networks:
+      - mailnet
+
+  alpine-client:
+    image: alpine
+    container_name: alpine-client
+    stdin_open: true
+    tty: true
+    command: sh
+    networks:
+      - mailnet
+
+networks:
+  mailnet:
+    driver: bridge
