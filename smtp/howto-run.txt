@@ -1,8 +1,16 @@
 docker compose up
 
 
+docker exec -it postfix bash
 
 
-docker exec -it alpine-client sh
 
-apk add --no-cache msmtp
+
+
+
+
+sendmail chun.zhao@broadcom.com
+Subject: Hello from sendmail
+This is a test from sendmail inside Docker.
+
+Press Ctrl+D (on an empty line) to end the input and send the email.
