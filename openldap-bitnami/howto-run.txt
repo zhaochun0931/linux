@@ -39,6 +39,11 @@ docker run --rm -d --name openldap \
 
 
 
+# or just run
+
+docker compose up
+
+
 
 
 docker exec -it openldap bash 
