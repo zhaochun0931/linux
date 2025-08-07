@@ -15,6 +15,18 @@ tar -zxvf grafana-enterprise-10.1.1.darwin-amd64.tar.gz
 
 
 
+
+# Ubuntu and Debian(ARM64)
+
+sudo apt-get install -y adduser libfontconfig1 musl
+wget https://dl.grafana.com/enterprise/release/grafana-enterprise_8.2.3_arm64.deb
+sudo dpkg -i grafana-enterprise_8.2.3_arm64.deb
+
+
+
+
+
+
 cd grafana-10.1.1/bin
 ./grafana server
 
