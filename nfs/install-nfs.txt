@@ -40,9 +40,9 @@ vi /etc/exports
 
 
 
-exportfs -v
+exportfs -rav
 
-# exportfs -v
+# exportfs -rav
 /tmp/repository
 		172.80.0.226/32(sync,wdelay,hide,no_subtree_check,sec=sys,rw,secure,root_squash,no_all_squash)
 #
