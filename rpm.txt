@@ -17,3 +17,12 @@ The -v option generates more verbose output, and -h makes rpm print a progress b
 
 rpm -qf /usr/bin/nc
 
+
+
+
+
+
+
+Remove using rpm
+
+sudo rpm -e <package_name>
