@@ -1,0 +1,37 @@
+free
+free -h
+
+free displays the total amount of free and used physical and swap memory in the system,  as well as the buffers and caches used by the kernel. The information is gathered by parsing /proc/meminfo
+
+
+                   total   used   free   shared   buff/cache   available
+Mem:              502     14     21     3        466          437
+Swap:              15      9      6
+
+
+🔹 Columns explained
+total → Total memory (or swap) in the system.
+
+used → Memory currently used by processes (excluding buffers/cache if you use free -h with -/+ buffers/cache).
+
+free → Completely unused RAM (nothing allocated).
+
+shared → Memory shared between processes (e.g., tmpfs, shared memory).
+
+buff/cache → Memory used for filesystem cache & buffers (Linux uses free RAM to cache disk access for speed).
+
+available → How much memory is actually available for new applications (free + reclaimable from cache). This is the most useful column.
+
+🔹 Interpreting your numbers
+Total RAM = 502 GB
+
+Used = 14 GB → actively in use by running programs.
+
+Free = 21 GB → absolutely unused.
+
+Buff/cache = 466 GB → Linux is using most of your RAM to cache files for performance.
+
+Available = 437 GB → that’s the RAM really available for new programs (cache can be dropped anytime).
+
+Swap = 15 GB total, 9 GB used, 6 GB free → Your system is already swapping 9 GB to disk (not ideal if you still have hundreds of GB of available RAM). Might be caused by memory overcommit or long-running processes.
+
