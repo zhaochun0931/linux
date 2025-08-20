@@ -1,0 +1,23 @@
+vmstat 2
+
+
+
+
+In vmstat, look at:
+
+si = swap in
+
+so = swap out
+
+If you see numbers >0, swap is being used.
+
+
+
+
+
+
+
+Linux doesn’t show “swap per process” directly in free or top, but you can drill into /proc to see it.
+
+
+grep VmSwap /proc/*/status 2>/dev/null | sort -k2 -n
