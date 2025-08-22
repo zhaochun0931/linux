@@ -10,16 +10,31 @@ apt is a high-level tool that uses dpkg underneath but also handles the resoluti
 
 
 apt list --installed
+
+apt remove <package-name>
+
+apt purge <package-name>
+
+apt autoremove
+
+
+
+
+
+
+
+
+dpkg -l
 dpkg --get-selections
 
 
 
 
-apt remove <package-name>
+# (modern)
+apt list --installed 
 
 
-apt purge <package-name>
+# (classic, lower-level)
+dpkg -l 
 
 
-
-apt autoremove
