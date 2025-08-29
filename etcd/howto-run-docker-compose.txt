@@ -2,7 +2,13 @@ docker compose up
 
 
 
+docker exec -it etcd1 etcdctl --endpoints=http://etcd1:2379,http://etcd2:2379,http://etcd3:2379 endpoint health
+
+
 
 docker exec etcd1 etcdctl --endpoints=http://localhost:2379 put name xiaoming
 
 docker exec etcd1 etcdctl --endpoints=http://localhost:2379 get name
+
+
+
