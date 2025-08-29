@@ -12,6 +12,9 @@ services:
       - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
+    ports:
+      - "23791:2379"  # client port
+      - "23801:2380"  # peer port
     networks:
       - etcd-network
 
@@ -28,6 +31,9 @@ services:
       - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
+    ports:
+      - "23792:2379"
+      - "23802:2380"
     networks:
       - etcd-network
 
@@ -44,6 +50,9 @@ services:
       - ETCD_INITIAL_CLUSTER=etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380
       - ETCD_INITIAL_CLUSTER_STATE=new
       - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1
+    ports:
+      - "23793:2379"
+      - "23803:2380"
     networks:
       - etcd-network
 
