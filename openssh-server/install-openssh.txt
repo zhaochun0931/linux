@@ -5,6 +5,9 @@ ssh -V
 systemctl restart sshd.service
 systemctl restart sshd
 
+
+systemctl restart ssh.service
+
 systemctl status sshd.service
 systemctl status sshd
 
