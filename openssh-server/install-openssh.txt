@@ -27,9 +27,21 @@ PermitRootLogin yes
 
 ~/.ssh/known_hosts
 
+Stores the fingerprints (host keys) of servers you have connected to before, to prevent man-in-the-middle attacks
+
+
+
 ~/.ssh/authorized_keys
 
+Defines which clients are allowed to log in to this server without a password, using SSH public key authentication.
 
+
+
+ssh-copy-id alice@server1
+
+What happens:
+
+It appends the content of id_rsa.pub to server1:~/.ssh/authorized_keys
 
 
 
