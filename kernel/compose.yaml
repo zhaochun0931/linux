@@ -1,0 +1,9 @@
+services:
+  kernel-builder:
+    build: .
+    container_name: kernel-builder
+    volumes:
+      - ./linux-src:/kernel   # mount kernel source dir
+    working_dir: /kernel
+    tty: true
+    stdin_open: true
