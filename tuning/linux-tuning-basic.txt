@@ -38,3 +38,8 @@ Making the changes permanent
 
 Making these changes permanent is quite easy. Just add the following lines to the /etc/sysctl.conf file or to a new file in /etc/sysctl.d
 
+
+
+# Reload all settings from /etc/sysctl.conf
+sysctl -p
+
