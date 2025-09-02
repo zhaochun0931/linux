@@ -1,0 +1,1 @@
+The /proc filesystem is one of the most critical components of the kernel. It is a virtual filesystem that exists only in memory. 
