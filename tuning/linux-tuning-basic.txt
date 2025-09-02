@@ -40,6 +40,25 @@ Making these changes permanent is quite easy. Just add the following lines to th
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+# In Linux systems, the "open file limit" (also known as ulimit -n) defines the maximum number of file descriptors a process can open at once. 
+
+# Check Current Limit
+ulimit -n
+
+# Temporarily Change the Limit
+ulimit -n 65535
+
 # Reload all settings from /etc/sysctl.conf
 sysctl -p
 
