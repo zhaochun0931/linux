@@ -1,5 +1,13 @@
 mkdir linux-src
 
+https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.16.4.tar.xz
+
+tar -xvf linux-6.16.4.tar.xz -C linux-src
+
+
+
+
+
 
 docker-compose  build
 
@@ -10,9 +18,17 @@ docker compose up
 
 docker exec -it kernel-builder bash
 
+cd linux-6.16.4/
 
 
-https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.16.4.tar.xz
 
 
-tar -xzvf linux-6.16.4.tar.xz
+make defconfig
+make -j$(nproc)
+make modules_install
+make install
+
+
+
+
+
