@@ -1,1 +1,18 @@
+mkdir linux-src
 
+
+docker-compose  build
+
+
+docker compose up
+
+
+
+docker exec -it kernel-builder bash
+
+
+
+https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.16.4.tar.xz
+
+
+tar -xzvf linux-6.16.4.tar.xz
