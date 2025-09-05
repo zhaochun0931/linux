@@ -52,8 +52,35 @@ ps aux
 
 
 # LWP: Lightweight Process (Thread ID)
+
 ps -L -p PID
 
+ps -L -p PID -o pid,tid,pcpu,stat,comm
+
+
+
+
+
+# ps -L -p 40511 -o pid,tid,pcpu,stat,comm
+    PID     TID %CPU STAT COMMAND
+  40511   40511  0.0 Sl+  java
+  40511   40512  0.0 Sl+  java
+  40511   40513  0.0 Sl+  GC task thread#
+  40511   40514  0.0 Sl+  GC task thread#
+  40511   40515  0.0 Sl+  VM Thread
+  40511   40516  0.0 Sl+  Reference Handl
+  40511   40517  0.0 Sl+  Finalizer
+  40511   40518  0.0 Sl+  Signal Dispatch
+  40511   40519  0.0 Sl+  C2 CompilerThre
+  40511   40520  0.0 Sl+  C1 CompilerThre
+  40511   40521  0.0 Sl+  Service Thread
+  40511   40522  0.0 Sl+  VM Periodic Tas
+  40511   40523 99.9 Rl+  InfiniteLoopThr
+  40511   40524  0.0 Sl+  DeadlockThread-
+  40511   40525  0.0 Sl+  DeadlockThread-
+  40511   40526  0.0 Sl+  WaitingThread
+  40511   40553  0.0 Sl+  Attach Listener
+#
 
 
 
