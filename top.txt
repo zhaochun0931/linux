@@ -1,3 +1,19 @@
+top
+
+top -H
+
+
+
+
+
+
+
+
+
+
+
+
+
 Some useful options and keypresses:
 
 q: Quit the top command.
