@@ -14,3 +14,13 @@ apt install build-essential
 
 
 
+gcc hello.c
+
+./a.out
+
+
+
+root@host1:~# gcc hello.c
+root@host1:~# ./a.out
+Hello, Linux memory world!
+root@host1:~#
