@@ -1,0 +1,9 @@
+make
+
+A build automation tool.
+
+Uses a Makefile to describe how to build programs from source files.
+
+Saves time: only recompiles what changed.
+
+
