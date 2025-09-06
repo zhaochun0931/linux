@@ -1,0 +1,65 @@
+TCP Sequence Number (SEQ)
+
+Every byte of data in TCP is numbered.
+
+The sequence number in a TCP segment identifies the position of the first byte of data in that segment relative to the start of the connection.
+
+Example: If a connection starts with SEQ=1000 and the sender sends 100 bytes of data, the next segment will start with SEQ=1100.
+
+👉 Think of it as:
+
+"This segment starts at byte number X of the stream."
+
+
+
+
+🔹 TCP Acknowledgment Number (ACK)
+
+TCP is full-duplex, so both sides send data.
+
+The acknowledgment number tells the peer:
+
+"I have successfully received all bytes up to (N−1). Please send me byte N next."
+
+In other words, the ACK is the next expected byte.
+
+Example:
+
+Receiver gets data up to byte SEQ=2000.
+
+It sends back ACK=2001.
+
+That means: "I got everything up to 2000, now I want 2001 next."
+
+
+
+
+
+🔹 Example Timeline
+
+Client sends data:
+
+Seq=1000, Len=100  →  bytes 1000–1099
+
+
+Server acknowledges:
+
+Ack=1100  →  got everything up to 1099
+
+
+Next client data:
+
+Seq=1100, Len=50   →  bytes 1100–1149
+
+
+Server acknowledges again:
+
+Ack=1150
+
+🔹 How This Works With Retransmission
+
+If a segment is lost (say Seq=1100), the receiver won’t advance its ACK.
+
+It keeps sending Ack=1100 repeatedly → this is a duplicate ACK.
+
+The sender then retransmits the missing data.
