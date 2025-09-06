@@ -35,3 +35,79 @@ TGID → thread group ID (main thread’s PID).
 Check:
 
 ps -o pid,ppid,comm
+
+ps -o pid,ppid,state,comm
+
+
+ps -o pid,ppid,state,comm,cmd
+
+
+
+
+🔹 4. Process Information in /proc
+
+Linux exposes process details via /proc/[pid]/. Example for process 1234:
+
+    /proc/1234/status → human-readable info (UID, memory, threads).
+    
+    /proc/1234/stat → raw metrics (CPU time, priority, state, etc.).
+    
+    /proc/1234/maps → memory layout.
+    
+    /proc/1234/fd/ → open file descriptors.
+    
+    /proc/1234/cmdline → command used to start process.
+    
+    /proc/1234/environ → environment variables.
+
+
+
+
+
+
+
+🔹 8. Threads vs Processes
+
+Linux treats threads as lightweight processes (each has a PID, shares memory with TGID).
+
+Check with:
+
+ps -T -p <pid>
+
+
+All threads share:
+
+    Code
+    
+    Data/Heap
+    
+    File descriptors
+
+Each thread has:
+
+    Own registers
+    
+    Own stack
+
+
+
+🔹 9. File Descriptors
+
+Every process has a file descriptor table:
+
+0 → stdin
+
+1 → stdout
+
+2 → stderr
+
+other files, sockets, pipes.
+
+Check:
+
+ls -l /proc/$$/fd
+
+
+
+
+
