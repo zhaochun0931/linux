@@ -1,0 +1,37 @@
+A Linux process is much more than just “a running program”. It has memory, file descriptors, threads, scheduling info, signals, namespaces, and more.
+
+
+
+
+🔹 1. What is a Process?
+
+An instance of a program in execution.
+
+Identified by PID (Process ID).
+
+Each process has:
+
+    Code (text segment)
+    
+    Data (heap, stack, globals)
+    
+    Open files
+    
+    Execution context (registers, program counter)
+    
+    Kernel structures (task_struct in kernel space)
+
+
+
+
+🔹 2. Process IDs
+
+PID → unique ID for each process.
+
+PPID → parent process ID.
+
+TGID → thread group ID (main thread’s PID).
+
+Check:
+
+ps -o pid,ppid,comm
