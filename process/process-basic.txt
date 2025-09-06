@@ -111,3 +111,86 @@ ls -l /proc/$$/fd
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+🔹 Diagram of fork()
+
+Suppose your program calls:
+
+pid_t pid = fork();
+
+1️⃣ Before fork()
+Parent Process (PID 47226)
++---------------------------+
+| Code Segment (program)    |
+| Data Segment              |
+| Heap                      |
+| Stack                     |
++---------------------------+
+
+
+Only one process exists.
+
+PID = 47226
+
+2️⃣ After fork()
+Parent Process (PID 47226)                  Child Process (PID 47227)
++---------------------------+               +---------------------------+
+| Code Segment (shared)     |               | Code Segment (shared)     |
+| Data Segment (copy)       |               | Data Segment (copy)       |
+| Heap (copy)               |               | Heap (copy)               |
+| Stack (copy)              |               | Stack (copy)              |
++---------------------------+               +---------------------------+
+
+
+Child PID is different (47227)
+
+Parent PID of child = 47226
+
+Code segment is shared (read-only) via copy-on-write
+
+Data, heap, stack are copied (initially via copy-on-write)
+
+3️⃣ After fork(), execution
+if (pid == 0) {
+    // Child
+} else {
+    // Parent
+}
+
+
+Both processes start executing at the next instruction after fork().
+
+Parent sees pid > 0, child sees pid == 0.
+
+They can run independently.
+
+4️⃣ Relationship in ps -ef
+UID       PID    PPID  CMD
+root    47226   43832  ./a.out   <- Parent process
+root    47227   47226  ./a.out   <- Child process
+
+
+PPID shows the parent process ID.
+
+Two separate processes exist simultaneously.
+
+💡 Key point:
+
+fork() creates a new process identical to the parent at the moment of creation.
+
+Each process has its own memory space, so changes in one don’t affect the other.
+
+
