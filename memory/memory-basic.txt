@@ -1,0 +1,24 @@
+1️⃣ Memory Page Basics
+
+Page: smallest unit of memory management in Linux.
+
+Typical page size:
+
+  4 KB (most common)
+  
+  2 MB or 1 GB (huge pages / huge TLB)
+
+All memory allocations are page-aligned internally.
+
+
+
+
+Check page size in Linux:
+
+getconf PAGE_SIZE
+
+
+
+# getconf PAGE_SIZE
+4096
+#
