@@ -1,0 +1,3 @@
+GCC (GNU Compiler Collection)
+
+A compiler that translates C, C++, and other languages into machine code (executables).
