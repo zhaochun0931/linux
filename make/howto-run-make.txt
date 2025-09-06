@@ -1,0 +1,29 @@
+# make
+gcc -Wall -O2 -c hello.c
+gcc -Wall -O2 -o hello hello.o
+#
+
+
+
+
+# ls -al
+total 36
+drwxr-xr-x 2 root root  4096 Sep  6 08:55 .
+drwx------ 6 root root  4096 Sep  6 08:55 ..
+-rwxr-xr-x 1 root root 70312 Sep  6 08:55 hello
+-rw-r--r-- 1 root root    94 Sep  6 08:50 hello.c
+-rw-r--r-- 1 root root  1736 Sep  6 08:55 hello.o
+-rw-r--r-- 1 root root   162 Sep  6 08:55 Makefile
+# ./hello
+Hello, Linux memory world!
+#
+#
+# make clean
+rm -f hello hello.o
+# ls -al
+total 16
+drwxr-xr-x 2 root root 4096 Sep  6 08:56 .
+drwx------ 6 root root 4096 Sep  6 08:55 ..
+-rw-r--r-- 1 root root   94 Sep  6 08:50 hello.c
+-rw-r--r-- 1 root root  162 Sep  6 08:55 Makefile
+#
