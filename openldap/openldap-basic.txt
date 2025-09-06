@@ -5,6 +5,23 @@ In OpenLDAP, a DN (Distinguished Name) is the unique identifier for each entry i
 
 
 
+
+
+Base DN = dc=example,dc=com
+
+Admin DN = cn=admin,dc=example,dc=com
+
+
+
+
+
+
+
+
+
+
+
+
 A DN is like a full path to an object in the LDAP hierarchy — similar to a file path in a filesystem.
 
 Example:
