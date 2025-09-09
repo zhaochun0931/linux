@@ -112,3 +112,31 @@ keystore.jks → contains server private key + cert
 truststore.jks → contains CA cert (to trust clients signed by it)
 
 
+
+
+
+
+
+keytool -importkeystore \
+  -srckeystore keystore.jks \
+  -destkeystore keystore.p12 \
+  -srcstoretype JKS \
+  -deststoretype PKCS12 \
+  -srcstorepass changeit \
+  -deststorepass changeit \
+  -destkeypass changeit \
+  -alias myserver
+
+
+
+keytool -importkeystore \
+  -srckeystore truststore.jks \
+  -destkeystore truststore.p12 \
+  -srcstoretype JKS \
+  -deststoretype PKCS12 \
+  -srcstorepass changeit \
+  -deststorepass changeit
+
+
+  
+
