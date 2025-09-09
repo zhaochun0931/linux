@@ -4,7 +4,6 @@ openssl x509 -req -in ldap.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out lda
 
 
 
-openssl x509 -in ldap.crt -noout -text | grep -A 1 "Subject Alternative Name"
 
 
 
