@@ -101,3 +101,23 @@ root@host1:~#
 
 
 
+
+
+
+
+gcc pmtu-check.c
+
+root@host1:~# ./a.out 172.16.204.136 1473
+Sending 1473 bytes to 172.16.204.136 with DF set...
+sendto: Message too long
+root@host1:~#
+root@host1:~#
+root@host1:~#
+root@host1:~# ./a.out 172.16.204.136 1472
+Sending 1472 bytes to 172.16.204.136 with DF set...
+Sent 1472 bytes successfully.
+root@host1:~#
+
+
+
+
