@@ -48,6 +48,18 @@ Each {} is replaced by a single file.
 
 
 
+find . -type f -name "*.txt" -exec cat {} +
+What happens:
+
+find collects multiple files and runs cat once for as many as possible.
+
+{} is replaced by a list of files.
+
+
+
+
+
+
 
 
 
