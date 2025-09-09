@@ -1,0 +1,31 @@
+What is PMTU?
+
+  PMTU = Path Maximum Transmission Unit
+  
+  It’s the largest packet size (in bytes) that can be sent from source → destination without fragmentation along the path.
+  
+  Each hop (router) has an MTU (e.g., 1500 bytes for Ethernet). The minimum MTU along the route defines the PMTU.
+  
+  If you send packets larger than the PMTU with DF (Don’t Fragment) flag set, routers will drop them and reply with ICMP "Fragmentation Needed", allowing the sender to discover the PMTU.
+
+
+
+
+
+Linux implements Path MTU Discovery (PMTUD) using ICMP. When enabled, the kernel adjusts the packet size to avoid fragmentation.
+
+Check if PMTU discovery is enabled
+
+sysctl net.ipv4.ip_no_pmtu_disc
+
+
+0 = Enabled (normal behavior)
+1 = Disabled (always allow fragmentation)
+
+
+root@host1:~# sysctl net.ipv4.ip_no_pmtu_disc
+net.ipv4.ip_no_pmtu_disc = 0
+root@host1:~#
+
+
+
