@@ -36,6 +36,21 @@ find . -maxdepth 1 -type f
 
 
 
+find . -type f -name "*.txt" -exec cat {} \;
+What happens:
+
+find runs the cat command once per file found.
+
+Each {} is replaced by a single file.
+
+
+
+
+
+
+
+
+
 
 
 
