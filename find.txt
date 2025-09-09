@@ -69,6 +69,15 @@ For each file found, execute the command cat {}:
 
 
 
+You can also use + instead of \; to reduce the number of cat invocations:
+
+find . -type f -iname 1.txt -exec cat {} +
+
+
+This groups multiple files into a single cat call → more efficient.
+
+
+
 
 
 
