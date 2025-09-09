@@ -1,11 +1,3 @@
-Bash offers a built-in time command that displays how long a command takes to execute. The timing is highly
-accurate and can be used on any command.
-
-
-time command1
-
-
-
 
 
 
