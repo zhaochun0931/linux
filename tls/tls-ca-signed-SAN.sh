@@ -1,13 +1,5 @@
-
 openssl req -new -nodes -keyout ldap.key -out ldap.csr -config san.cnf
 openssl x509 -req -in ldap.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out ldap.crt -days 365 -extfile san.cnf -extensions req_ext
-
-
-
-
-
-
-
 
 
 
@@ -58,9 +50,7 @@ IP.1  = 127.0.0.1
 
 
 Now generate key + CSR:
-
 openssl genrsa -out server.key 2048
-
 openssl req -new -key server.key -out server.csr -config san.cnf
 
 3️⃣ Sign Server CSR with CA
