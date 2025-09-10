@@ -22,9 +22,7 @@ openssl req -x509 -new -nodes -key ca.key -sha256 -days 3650 \
 
 
 Now you have:
-
 ca.key (CA private key)
-
 ca.crt (CA cert, trusted root)
 
 
@@ -72,11 +70,8 @@ openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key \
 
 
 You now have:
-
 server.key (private key)
-
 server.crt (signed by CA)
-
 ca.crt (trust anchor)
 
 4️⃣ Verify SANs
