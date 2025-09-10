@@ -76,6 +76,8 @@ openssl pkcs12 -export -in server.crt -inkey server.key \
   -certfile ca.crt -out server.p12 -name myserver \
   -password pass:changeit
 
+
+
 6️⃣ Import into JKS Keystore & Truststore
 # Create keystore from PKCS#12
 keytool -importkeystore \
