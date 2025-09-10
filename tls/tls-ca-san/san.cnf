@@ -11,7 +11,7 @@ ST = State
 L = City
 O = MyCompany
 OU = IT
-CN = example.com  # Primary domain
+CN = gemfire1  # Primary domain
 
 [req_ext]
 subjectAltName = @alt_names
