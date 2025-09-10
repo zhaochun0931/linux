@@ -70,26 +70,34 @@ openssl x509 -in server.crt -text -noout | grep -A1 "Subject Alternative Name"
 
 You should see DNS:myserver.local, DNS:localhost, IP:127.0.0.1.
 
-5️⃣ Convert to PKCS#12 (Java needs this)
-# Bundle key + cert into PKCS#12
-openssl pkcs12 -export -in server.crt -inkey server.key \
-  -certfile ca.crt -out server.p12 -name myserver \
+
+
+
+
+
+openssl pkcs12 -export \
+  -in server.crt \
+  -inkey server.key \
+  -out keystore.p12 \
+  -name gemfire \
+  -CAfile ca.crt \
   -password pass:changeit
 
 
 
-6️⃣ Import into JKS Keystore & Truststore
-# Create keystore from PKCS#12
-keytool -importkeystore \
-  -deststorepass changeit -destkeypass changeit \
-  -destkeystore keystore.jks \
-  -srckeystore server.p12 -srcstoretype PKCS12 \
-  -srcstorepass changeit -alias myserver
 
-# Import CA cert into truststore
-keytool -import -trustcacerts -alias myCA \
-  -file ca.crt -keystore truststore.jks \
-  -storepass changeit -noprompt
+keytool -importcert \
+  -trustcacerts \
+  -alias myca \
+  -file ca.crt \
+  -keystore truststore.p12 \
+  -storetype PKCS12 \
+  -storepass changeit \
+  -noprompt
+
+
+
+
 
 
 ✅ Now you have:
@@ -103,26 +111,6 @@ truststore.jks → contains CA cert (to trust clients signed by it)
 
 
 
-
-keytool -importkeystore \
-  -srckeystore keystore.jks \
-  -destkeystore keystore.p12 \
-  -srcstoretype JKS \
-  -deststoretype PKCS12 \
-  -srcstorepass changeit \
-  -deststorepass changeit \
-  -destkeypass changeit \
-  -alias myserver
-
-
-
-keytool -importkeystore \
-  -srckeystore truststore.jks \
-  -destkeystore truststore.p12 \
-  -srcstoretype JKS \
-  -deststoretype PKCS12 \
-  -srcstorepass changeit \
-  -deststorepass changeit
 
 
   
