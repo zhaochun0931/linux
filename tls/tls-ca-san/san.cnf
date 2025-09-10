@@ -17,6 +17,7 @@ CN = gemfire1  # Primary domain
 subjectAltName = @alt_names
 
 [alt_names]
-DNS.1 = gemfire1-locator.default.svc.cluster.local
-DNS.2 = '*.gemfire1-locator.default.svc.cluster.local'
-DNS.3 = '*.gemfire1-server.default.svc.cluster.local'
+DNS.1 = gemfire1-locator.gemfire.svc.cluster.local
+DNS.2 = '*.gemfire1-locator.gemfire.svc.cluster.local'
+DNS.3 = '*.gemfire1-server.gemfire.svc.cluster.local'
+         
