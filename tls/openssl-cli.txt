@@ -75,5 +75,7 @@ openssl pkeyutl -decrypt -inkey demo.key -in demo.txt.enc -out test.out.txt
 
 openssl x509 -in ca.crt -text -noout
 
+openssl pkcs12 -in keystore.p12 -info -nodes
+
 
 
