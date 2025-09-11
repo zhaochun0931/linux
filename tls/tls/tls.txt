@@ -52,6 +52,25 @@ This command uses the -req option to indicate that the input is a CSR (server.cs
 
 openssl req -x509 -nodes -newkey rsa -keyout server.key -out server.crt
 
+
+-x509
+  the output is a self-signed certificate
+
+-nodes
+  do not encrypt the private key
+
+
+
+
+# You can avoid the interactive prompts by using the -subj flag
+
 openssl req -x509 -nodes -newkey rsa \
 -keyout server.key -out server.crt \
 -subj "/C=US/ST=State/L=City/O=MyOrg/OU=IT/CN=www.example.com"
+
+
+
+
+
+openssl x509 -in cert.pem -text -noout
+
