@@ -67,3 +67,13 @@ openssl pkeyutl -encrypt -in demo.txt -out demo.txt.enc -pubin -inkey demo.pub
 
 # decrypt with the private key
 openssl pkeyutl -decrypt -inkey demo.key -in demo.txt.enc -out test.out.txt
+
+
+
+
+# check the crt
+
+openssl x509 -in ca.crt -text -noout
+
+
+
