@@ -47,9 +47,7 @@ openssl genrsa -out server.key 2048
 openssl req -new -key server.key -out server.csr -config san.cnf
 
 3️⃣ Sign Server CSR with CA
-openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key \
-  -CAcreateserial -out server.crt -days 825 -sha256 \
-  -extensions req_ext -extfile san.cnf
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 825 -sha256 -extensions req_ext -extfile san.cnf
 
 
 You now have:
@@ -88,23 +86,4 @@ keytool -importcert \
   -storepass changeit \
   -noprompt
 
-
-
-
-
-
-✅ Now you have:
-
-keystore.jks → contains server private key + cert
-
-truststore.jks → contains CA cert (to trust clients signed by it)
-
-
-
-
-
-
-
-
-  
 
