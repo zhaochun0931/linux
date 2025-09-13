@@ -194,3 +194,25 @@ fork() creates a new process identical to the parent at the moment of creation.
 Each process has its own memory space, so changes in one don’t affect the other.
 
 
+
+
+
+
+
+
+
+
+
+In Linux, the task_struct is the kernel’s internal C structure that represents a process (or thread). It is the closest thing to the Process Control Block (PCB) in Linux. 
+Every process has one, and the kernel uses it to keep track of everything about that process.
+
+
+
+include/linux/sched.h
+
+
+
+
+
+
+
