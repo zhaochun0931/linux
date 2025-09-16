@@ -1,0 +1,6 @@
+In Linux, the command strings is a utility that extracts and prints printable ASCII (or UTF-8) strings from a binary file.
+
+
+
+
+strings <file>
