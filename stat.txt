@@ -26,3 +26,17 @@ Block size: 4096       Fundamental block size: 4096
 Blocks: Total: 7817692    Free: 5932493    Available: 5528986
 Inodes: Total: 1998848    Free: 1869806
 #
+
+
+
+
+
+Access (atime) → Last time the file was read.
+
+Modify (mtime) → Last time the file content was changed.
+
+Change (ctime) → Last time the file’s metadata (permissions, owner, links) changed.
+
+Birth (btime) → File creation time (only shown if the filesystem supports it, e.g., ext4 with crtime, btrfs, xfs).
+
+
