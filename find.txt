@@ -129,7 +129,18 @@ find . -atime -1
 
 
 
+find /path/to/search -type f -atime N
 
+
+Where N is in days:
+
+  -atime 0 → accessed within the last 24 hours
+  
+  -atime 1 → accessed between 24 and 48 hours ago
+  
+  -atime +7 → accessed more than 7 days ago
+  
+  -atime -7 → accessed within the last 7 days
 
 
 
