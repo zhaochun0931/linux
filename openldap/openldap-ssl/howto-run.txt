@@ -172,4 +172,9 @@ read R BLOCK
 
 export LDAPTLS_REQCERT=never
 ldapsearch -H ldaps://localhost:1636 -x -LLL -s base -b "" "(objectclass=*)"
+ldapsearch -H ldap://localhost:1389 -x -D "cn=admin,dc=example,dc=org" -w "adminpassword" -b "dc=example,dc=org" -ZZ
+
+
+
+
 
