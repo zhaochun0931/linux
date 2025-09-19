@@ -1,8 +1,8 @@
 services:
   openldap-ssl:
     image: bitnami/openldap:latest
-    container_name: node3
-    hostname: node3.local
+    container_name: openldap-ssl
+    hostname: openldap-ssl
     ports:
       - '1389:1389'
       - '1636:1636'
