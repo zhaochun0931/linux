@@ -1,6 +1,23 @@
 docker compose up
 
 
+
+openssl s_client -connect <ldap_server_hostname>:636
+
+
+Replace <ldap_server_hostname> with the LDAP server's fully qualified domain name (FQDN). You must use the FQDN and not the IP address, as the SSL certificate is issued to a specific hostname.
+
+636 is the standard port for LDAPS.
+
+
+
+
+
+
+
+
+
+
 openssl s_client -connect localhost:1636
 
 $ openssl s_client -connect localhost:1636
@@ -138,4 +155,21 @@ SSL-Session:
 read R BLOCK
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export LDAPTLS_REQCERT=never
+ldapsearch -H ldaps://localhost:1636 -x -LLL -s base -b "" "(objectclass=*)"
 
