@@ -30,3 +30,74 @@ After SNAT: 203.0.113.10 → 8.8.8.8
 
 
 When the response comes back to 203.0.113.10, the router maps it back to 192.168.1.100.
+
+
+
+
+
+| Feature   | SNAT                               | DNAT                               |
+| --------- | ---------------------------------- | ---------------------------------- |
+| Changes   | **Source IP**                      | **Destination IP**                 |
+| Direction | Outgoing packets                   | Incoming packets                   |
+| Use case  | Private → Public (Internet access) | Public → Private (Port forwarding) |
+
+
+
+
+
+
+
+
+
+
+
+
+SNAT in Docker – Diagram
++-------------------+
+|   Container       |
+| IP: 172.18.0.2    |
+| Port: 5000        |
++-------------------+
+          |
+          | Outgoing packet
+          v
++-------------------+
+|   Docker Host     |
+| IP: 192.168.1.10  |
++-------------------+
+          |
+          | SNAT: Source IP changed
+          v
++-------------------+
+|     Internet      |
+|  Destination IP: 8.8.8.8 |
++-------------------+
+
+
+
+Explanation
+
+Container sends packet
+
+Source IP = container IP (172.18.0.2)
+
+Destination IP = Internet server (8.8.8.8)
+
+
+
+Docker host applies SNAT
+
+Source IP rewritten to host IP (192.168.1.10)
+
+Keeps track of the mapping: container ↔ host
+
+Packet reaches the Internet
+
+Internet sees the request coming from 192.168.1.10 (host IP)
+
+Response comes back
+
+Docker looks up the mapping and forwards response to the container 172.18.0.2
+
+
+
