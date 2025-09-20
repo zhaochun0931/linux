@@ -105,3 +105,16 @@ Response comes back
 
 
 
+
+
+
+apk add --no-cache curl
+curl ifconfig.me
+curl ifconfig.io
+
+
+
+
+This will print your public IP (the host’s IP).
+
+
