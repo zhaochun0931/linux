@@ -79,25 +79,29 @@ Explanation
 
 Container sends packet
 
-Source IP = container IP (172.18.0.2)
-
-Destination IP = Internet server (8.8.8.8)
+          Source IP = container IP (172.18.0.2)
+          
+          Destination IP = Internet server (8.8.8.8)
 
 
 
 Docker host applies SNAT
 
-Source IP rewritten to host IP (192.168.1.10)
+          Source IP rewritten to host IP (192.168.1.10)
+          
+          Keeps track of the mapping: container ↔ host
 
-Keeps track of the mapping: container ↔ host
+
 
 Packet reaches the Internet
 
-Internet sees the request coming from 192.168.1.10 (host IP)
+          Internet sees the request coming from 192.168.1.10 (host IP)
+
+
 
 Response comes back
 
-Docker looks up the mapping and forwards response to the container 172.18.0.2
+          Docker looks up the mapping and forwards response to the container 172.18.0.2
 
 
 
