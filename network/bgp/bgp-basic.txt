@@ -20,7 +20,13 @@ Key concepts:
 
 
 
+Simplified Example
 
+  AS1 → advertises 10.0.0.0/24 to AS2
+  
+  AS2 → advertises 10.0.0.0/24 to AS3
+
+  Routers learn paths via BGP updates
 
 
 
