@@ -1,0 +1,34 @@
+services:
+  router1:
+    image: frrouting/frr:latest
+    container_name: router1
+    privileged: true
+    platform: linux/amd64       # <- add this line
+    networks:
+      - bgp_lab_net
+    volumes:
+      - ./router1/frr:/etc/frr
+
+  router2:
+    image: frrouting/frr:latest
+    container_name: router2
+    privileged: true
+    platform: linux/amd64
+    networks:
+      - bgp_lab_net
+    volumes:
+      - ./router2/frr:/etc/frr
+
+  router3:
+    image: frrouting/frr:latest
+    container_name: router3
+    privileged: true
+    platform: linux/amd64
+    networks:
+      - bgp_lab_net
+    volumes:
+      - ./router3/frr:/etc/frr
+
+networks:
+  bgp_lab_net:
+    driver: bridge
