@@ -1,3 +1,63 @@
+OpenLDAP is an open-source implementation of the Lightweight Directory Access Protocol (LDAP).
+
+
+
+
+
+DIT (Directory Information Tree)
+
+LDAP organizes data in a hierarchical tree structure.
+
+Top-level is the root, then domains, organizational units (OU), groups, and users.
+
+Example:
+
+dc=example,dc=com
+ ├─ ou=people
+ │   ├─ uid=john
+ │   └─ uid=alice
+ └─ ou=groups
+     └─ cn=admins
+
+
+dc = domain component
+
+ou = organizational unit
+
+uid = user ID
+
+cn = common name (often used for groups)
+
+
+
+
+
+
+b) DN (Distinguished Name)
+
+Every entry has a unique DN, which identifies it in the tree.
+
+Example:
+
+uid=john,ou=people,dc=example,dc=com
+
+
+DN is like a full path to an entry.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 DN: Distinguished Name
 
 In OpenLDAP, a DN (Distinguished Name) is the unique identifier for each entry in the LDAP directory.
