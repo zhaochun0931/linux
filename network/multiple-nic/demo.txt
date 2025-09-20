@@ -1,0 +1,79 @@
+🔹 Step 1: Create two custom Docker networks
+
+We’ll create two bridge networks with different subnets:
+
+docker network create --subnet=172.18.0.0/24 netA
+docker network create --subnet=172.19.0.0/24 netB
+
+
+netA = 172.18.0.0/24
+
+netB = 172.19.0.0/24
+
+🔹 Step 2: Start a container on one network
+
+Run an Alpine container attached to netA first:
+
+docker run -dit --name routerbox --network netA --cap-add=NET_ADMIN alpine sh
+
+
+--cap-add=NET_ADMIN → lets you manage NICs, routing, iptables inside container.
+
+🔹 Step 3: Add second NIC (netB)
+
+Attach it to netB:
+
+docker network connect netB routerbox
+
+
+Now the container has:
+
+eth0 → netA
+
+eth1 → netB
+
+🔹 Step 4: Verify interfaces
+
+Enter the container:
+
+docker exec -it routerbox sh
+ip addr
+
+
+You’ll see something like:
+
+eth0: 172.18.0.2/24
+eth1: 172.19.0.2/24
+
+🔹 Step 5: Add test containers on each network
+
+Run one container on each network to test routing:
+
+docker run -dit --name clientA --network netA alpine sh
+docker run -dit --name clientB --network netB alpine sh
+
+
+clientA has IP in 172.18.0.0/24
+
+clientB has IP in 172.19.0.0/24
+
+🔹 Step 6: Enable routing in routerbox
+
+Inside routerbox:
+
+# enable packet forwarding
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+apk add iptables
+
+
+# optional: add SNAT so traffic from clientA to clientB looks like it came from eth1
+iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+
+🔹 Step 7: Test connectivity
+
+From clientA, install ping and try to reach clientB:
+
+docker exec -it clientA sh
+apk add iputils
+ping 172.19.0.3   # IP of clientB
