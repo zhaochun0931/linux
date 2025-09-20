@@ -10,7 +10,7 @@ echo deb '[signed-by=/usr/share/keyrings/frrouting.gpg]' https://deb.frrouting.o
      $(lsb_release -s -c) $FRRVER | sudo tee -a /etc/apt/sources.list.d/frr.list
 
 # update and install FRR
-sudo apt update && sudo apt install frr frr-pythontools
+sudo apt update && sudo apt install frr frr-pythontools -y
 
 
 
@@ -25,7 +25,11 @@ sudo apt update && sudo apt install frr frr-pythontools
 
 
 
-# up till the frr is successfully installed.
+
+
+
+
+After a fresh install, starting FRR will do nothing. This is because daemons must be explicitly enabled by editing a file in your configuration directory.
 
 
 
