@@ -257,3 +257,26 @@ TCP window scaling is a technique that dynamically increases the TCP window size
 
 
 
+IP address
+
+
+RFC 1918 is an Internet standard (IETF RFC 1918) that defines three blocks of IPv4 addresses for private internal networks – specifically, 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16 – which are not routable on the public internet. 
+
+
+| Range                         | CIDR           | Notes                                                                    |
+| ----------------------------- | -------------- | ------------------------------------------------------------------------ |
+| 10.0.0.0 – 10.255.255.255     | 10.0.0.0/8     | Very large private network (16 million addresses)                        |
+| 172.16.0.0 – 172.31.255.255   | 172.16.0.0/12  | Medium-size private network (1 million addresses)                        |
+| 192.168.0.0 – 192.168.255.255 | 192.168.0.0/16 | Small private network (65,536 addresses), commonly used in home networks |
+
+
+
+
+
+RFC 1918 reserves the following blocks of IP addresses: 
+Class A Range: 10.0.0.0 to 10.255.255.255 (10.0.0.0/8).
+Class B Range: 172.16.0.0 to 172.31.255.255 (172.16.0.0/12).
+Class C Range: 192.168.0.0 to 192.168.255.255 (192.168.0.0/16).
+
+
+
