@@ -11,3 +11,22 @@ Typically used when devices in a private network need to communicate with extern
 
 
 
+2. How SNAT works
+
+Imagine you have a private network:
+
+Private Network: 192.168.1.0/24
+Router/Public IP: 203.0.113.10
+
+
+A device inside (e.g., 192.168.1.100) wants to access the Internet.
+
+
+
+Router rewrites the source IP of the outgoing packet:
+
+Original:   192.168.1.100 → 8.8.8.8
+After SNAT: 203.0.113.10 → 8.8.8.8
+
+
+When the response comes back to 203.0.113.10, the router maps it back to 192.168.1.100.
