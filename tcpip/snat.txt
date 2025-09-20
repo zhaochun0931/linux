@@ -1,0 +1,13 @@
+1. What is SNAT?
+
+SNAT stands for Source Network Address Translation.
+
+It’s a technique used in networking to change the source IP address of outgoing packets.
+
+Typically used when devices in a private network need to communicate with external networks (like the Internet) using a single public IP.
+
+
+
+
+
+
