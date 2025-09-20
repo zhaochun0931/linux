@@ -118,3 +118,39 @@ curl ifconfig.io
 This will print your public IP (the host’s IP).
 
 
+
+
+
+
+
+
+
+
+
+
+DNAT is Destination Network Address Translation
+
+1. What is DNAT?
+
+DNAT changes the destination IP (and/or port) of incoming packets.
+
+In Docker, it’s used for port mapping: exposing container ports to the host.
+
+
+
+
+
+docker run -d -p 8080:80 nginx
+
+External traffic to host:8080 → DNAT to container:80
+
+
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                     NAMES
+351899b992db   nginx     "/docker-entrypoint.…"   6 seconds ago   Up 6 seconds   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   goofy_mayer
+$
+
+curl http://localhost:8080
+
+
+
