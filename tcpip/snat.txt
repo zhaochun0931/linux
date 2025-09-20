@@ -127,6 +127,55 @@ This will print your public IP (the host’s IP).
 
 
 
+Where SNAT mappings are stored
+
+          When SNAT is applied (e.g., by Docker), the kernel must remember the mapping.
+          
+          Otherwise, it couldn’t know which container to send the reply back to.
+          
+          These mappings live in the connection tracking table (conntrack).
+
+
+
+apt install conntrack
+conntrack -L
+
+
+
+
+
+tcp      6 431999 ESTABLISHED src=172.18.0.2 dst=8.8.8.8 sport=35012 dport=53 
+         src=8.8.8.8 dst=203.0.113.10 sport=53 dport=35012 [ASSURED] mark=0 use=1
+
+
+
+Explanation:
+
+          src=172.18.0.2 sport=35012 → original container connection
+          
+          After SNAT, reply goes to dst=203.0.113.10 dport=35012 → host public IP/port
+
+This shows the SNAT mapping table entry.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 DNAT is Destination Network Address Translation
 
