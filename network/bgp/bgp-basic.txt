@@ -1,4 +1,27 @@
-Border Gateway Protocol (BGP) refers to a gateway protocol that enables the internet to exchange routing information between different autonomous systems (AS). 
+BGP = Border Gateway Protocol
+
+  Purpose: BGP is the protocol that routers use to exchange routing information between autonomous systems (ASes) on the Internet.
+  
+  Type: Path-vector protocol (not distance-vector, not link-state).
+
+
+Key concepts:
+
+  Autonomous System (AS): A network or group of networks under a single administrative domain.
+  
+  BGP Peering: Routers establish sessions to exchange routing info.
+  
+  Prefixes: IP ranges that are advertised by one AS to others.
+  
+  Route Selection: Based on AS path, local preference, and other attributes.
+  
+  Where it’s used: Internet backbone, ISPs, large enterprise networks.
+
+
+
+
+
+
 
 
 
