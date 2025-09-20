@@ -3,6 +3,7 @@ curl -s https://deb.frrouting.org/frr/keys.gpg | sudo tee /usr/share/keyrings/fr
 
 # possible values for FRRVER: 
 frr-6 frr-7 frr-8 frr-9 frr-9.0 frr-9.1 frr-10 frr10.0 frr10.1 frr-10.2 frr-10.3 frr-rc frr-stable
+
 # frr-stable will be the latest official stable release. frr-rc is the latest release candidate in beta testing
 FRRVER="frr-stable"
 echo deb '[signed-by=/usr/share/keyrings/frrouting.gpg]' https://deb.frrouting.org/frr \
