@@ -1,0 +1,33 @@
+tcp_rmem and tcp_wmem are kernel parameters in Linux that control the size of the receive and send buffers for TCP sockets. 
+These settings are crucial for network performance, especially in high-bandwidth or high-latency environments. 
+Both parameters contain three integer values that represent the minimum, default, and maximum buffer sizes in bytes.
+
+
+
+sysctl net.ipv4.tcp_rmem
+sysctl net.ipv4.tcp_wmem
+
+
+root@host1:~# sysctl net.ipv4.tcp_rmem
+net.ipv4.tcp_rmem = 4096	131072	6291456
+root@host1:~#
+root@host1:~#
+root@host1:~# sysctl net.ipv4.tcp_wmem
+net.ipv4.tcp_wmem = 4096	16384	4194304
+root@host1:~#
+
+
+
+Breakdown of the example:
+tcp_rmem: Minimum 4KB, Default 256KB, Maximum 4MB.
+tcp_wmem: Minimum 4KB, Default 16KB, Maximum 4MB.
+
+
+
+
+
+
+To set new values, you can use sysctl -w for a temporary change or add them to /etc/sysctl.conf for a permanent change. 
+
+
+
