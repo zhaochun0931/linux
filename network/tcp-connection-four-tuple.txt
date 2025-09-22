@@ -1,0 +1,11 @@
+A TCP connection is uniquely identified by a 4-tuple consisting of two IP addresses and two port numbers. This combination of four values ensures that a single computer can manage multiple simultaneous connections without confusing the traffic for different applications or different servers. 
+
+The four components of the TCP connection tuple are: 
+Source IP Address: The IP address of the device initiating the connection.
+Source Port Number: A dynamically assigned port number on the initiating device.
+Destination IP Address: The IP address of the device receiving the connection.
+Destination Port Number: The port number of the application on the destination device that is receiving the traffic (e.g., port 80 for HTTP). 
+
+
+How the tuple is used
+When a TCP packet arrives at a host, the operating system's networking stack extracts the four values from the packet's IP and TCP headers. It then uses this 4-tuple to look up the corresponding socket in a connection table, allowing it to deliver the packet to the correct application.
