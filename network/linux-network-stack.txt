@@ -1,0 +1,16 @@
+The Linux network stack is composed of several key layers:
+
+1. User Space Layer: This layer is where applications interact with the network stack via the Sockets API. Sockets are treated as file descriptors in Linux, allowing standard file system calls for network communication. 
+2. Transport Layer (Layer 4): This layer handles end-to-end communication using protocols like TCP for reliable delivery and UDP for low-latency, connectionless communication. 
+3. Network Layer (Layer 3): Also known as the Internet Layer, this layer is responsible for routing and forwarding packets using the IP protocol (IPv4 and IPv6). It also includes the Netfilter framework for packet filtering and firewall management. 
+4. Data Link Layer (Layer 2): This layer manages communication between directly connected nodes by framing IP packets and using MAC addresses. 
+5. Physical Layer (Layer 1): This is the lowest layer, dealing with the physical transmission of data bits via the network interface card (NIC) and its drivers. 
+
+
+
+
+
+
+Data flow through the stack
+Receiving data: Data arrives at the NIC and is processed through various kernel mechanisms like DMA, IRQ, and NAPI. The data moves up through the protocol layers and is eventually queued in a socket's receive buffer for the application to read. 
+Sending data: Data originates from an application's system call and is processed down through the network stack layers. Each layer adds its respective header (TCP/UDP, IP, Ethernet) before the data is transmitted by the NIC onto the network medium.
