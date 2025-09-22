@@ -14,3 +14,29 @@ The Linux network stack is composed of several key layers:
 Data flow through the stack
 Receiving data: Data arrives at the NIC and is processed through various kernel mechanisms like DMA, IRQ, and NAPI. The data moves up through the protocol layers and is eventually queued in a socket's receive buffer for the application to read. 
 Sending data: Data originates from an application's system call and is processed down through the network stack layers. Each layer adds its respective header (TCP/UDP, IP, Ethernet) before the data is transmitted by the NIC onto the network medium.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The kernel and network device driver interact with each other via interrupt. when data arrives at the network device, it signals a CPU hardware interrupt request(IRQ) to trigger the handler execution. 
+When an IRQ handler is executed by the Linux kernel, it runs at a very, very high priority and often blocks additional IRQs from being generated. As such, IRQ handlers in device drivers must execute as quickly as possible and defer all long-running work to execute outside of this context. This is why the Soft IRQ(implemented by Linux kernel threads ksoftirqd) system exists.
+
+
+
+After the packets arrive at NIC,
+
+the NIC driver writes frames to RAM via DMA
+the NIC generates a hardware interrupt request to the CPU to indicate data arrived
+CPU calls the interrupt handler registered by the NIC driver, the interrupt handler executes a few instructions and generates a soft IRQ then releases the CPU.
+ksoftirqd(one per CPU) receives soft IRQ, and calls registered poll to pull packets off the ring buffer and deliver them upward to protocol layers.
