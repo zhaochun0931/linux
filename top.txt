@@ -101,3 +101,108 @@ T for stopped (either by a signal or a debugger).
 %MEM: The percentage of RAM being used by the process.
 TIME+: The total CPU time the process has consumed since it started.
 COMMAND: The name of the command running (or the executable).
+
+
+
+
+
+
+
+
+let’s do a step-by-step reconciliation of what top shows (RES) vs what JVM reports (NativeMemoryTracking).
+
+🔹 Step 1. Find your Java process
+ps -ef | grep java
+
+
+or directly:
+
+top -p <pid>
+
+
+Take note of PID and RES (Resident memory).
+
+Example:
+
+  PID USER   PR NI VIRT   RES   SHR S %CPU %MEM COMMAND
+12345 java   20  0 20g   12g   1g  S  100  60  java
+
+
+Here, RSS (RES) = 12 GB.
+
+🔹 Step 2. Enable Native Memory Tracking (NMT)
+
+When starting Java, add:
+
+-XX:NativeMemoryTracking=summary
+
+
+If your JVM is already running without this flag, you won’t see breakdowns.
+(If possible, restart with the flag.)
+
+🔹 Step 3. Dump JVM native memory
+
+Run:
+
+jcmd <pid> VM.native_memory summary
+
+
+Example output:
+
+Native Memory Tracking:
+
+Total: reserved=20480MB, committed=12200MB
+-                 Java Heap (reserved=8192MB, committed=4096MB)
+-                     Class (reserved=1200MB, committed=1200MB)
+-                    Thread (reserved=800MB, committed=800MB)
+-                      Code (reserved=512MB, committed=512MB)
+-                        GC (reserved=2048MB, committed=2048MB)
+-                  Compiler (reserved=256MB, committed=256MB)
+-                  Internal (reserved=384MB, committed=384MB)
+-                   Symbol (reserved=100MB, committed=100MB)
+-    Native Memory Tracking (reserved=8MB, committed=8MB)
+-               Arena Chunk (reserved=700MB, committed=700MB)
+
+🔹 Step 4. Reconcile with top
+
+top said: 12 GB RSS
+
+NMT said: committed=12200MB
+
+✅ They match! (RES ≈ committed)
+
+Breakdown:
+
+Java Heap = 4 GB (inside JVM reports low heap usage)
+
+Class/Metaspace = 1.2 GB
+
+Threads = 0.8 GB
+
+GC structures = 2 GB
+
+Code cache, compiler, etc. = ~1.2 GB
+
+Native buffers (Arena) = 0.7 GB
+
+→ Adds up to 12 GB (what top shows).
+
+So even though the heap is 4 GB, the process reserves many extra areas, which explains the high %MEM.
+
+🔹 Step 5. Optional: Inspect at OS level
+
+If you don’t have NMT, you can peek with pmap:
+
+pmap -x <pid> | less
+
+
+Look for sections like:
+
+[heap]
+
+anon (thread stacks, arenas, malloc)
+
+mapped .so libraries
+
+✅ That’s how you reconcile %MEM from top with actual JVM usage.
+The key idea: RSS = Heap + Non-heap (Metaspace, CodeCache, Stacks, Direct Buffers, GC, JNI, etc.)
