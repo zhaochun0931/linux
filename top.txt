@@ -108,6 +108,39 @@ COMMAND: The name of the command running (or the executable).
 
 
 
+For a Java process, the Resident Set Size (RSS) and Java Heap memory are two different views of memory usage:
+RSS is the operating system's view of how much physical RAM the entire Java process is currently occupying.
+Java Heap is the Java Virtual Machine's (JVM) view of the memory it is managing for Java application objects. 
+The Java heap is a subset of the total memory used by the Java process. The RSS will always be greater than or equal to the heap size. 
+
+Here is a detailed breakdown of the differences:
+RSS (Operating System View)
+Definition: The total amount of physical memory (RAM) that the Java process is using. This includes all memory allocated for the JVM, not just the heap.
+What it includes:
+Java Heap: The memory managed by the Garbage Collector.
+Metaspace: Stores class metadata, including methods and fields.
+Thread Stacks: Each thread has its own stack memory.
+Code Cache: The memory where the Just-In-Time (JIT) compiler stores compiled machine code.
+Native Memory: Any off-heap memory allocated by the JVM for internal use or by native libraries through the Java Native Interface (JNI).
+Control: RSS is managed by the operating system. You cannot directly control it with JVM options, but you can control its components (like the heap and metaspace) which in turn affect the total RSS.
+Behavior: RSS can be deceiving because it over-counts memory shared between processes, such as shared libraries. Also, a Java process might reserve a large chunk of memory upfront, but its RSS only grows as the process actually uses and touches that memory. 
+Java Heap (JVM View)
+Definition: The dedicated memory pool within the Java process where all objects created by a running Java application are stored.
+What it includes: Only the objects created by your Java application code.
+Control: The heap size is controlled by JVM command-line options such as -Xms (initial size) and -Xmx (maximum size).
+Behavior:
+Garbage Collection: The JVM's Garbage Collector automatically manages the heap, reclaiming memory from objects that are no longer in use.
+Memory Leaks: If a Java application object is never released, it can cause a memory leak, leading to an OutOfMemoryError even if the total process RSS is still within system limits.
+GC Pauses: A very large heap can increase the pause times during garbage collection, which can affect application performance.
+
+
+
+
+
+
+
+
+
 
 let’s do a step-by-step reconciliation of what top shows (RES) vs what JVM reports (NativeMemoryTracking).
 
