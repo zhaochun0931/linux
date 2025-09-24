@@ -206,3 +206,77 @@ mapped .so libraries
 
 ✅ That’s how you reconcile %MEM from top with actual JVM usage.
 The key idea: RSS = Heap + Non-heap (Metaspace, CodeCache, Stacks, Direct Buffers, GC, JNI, etc.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+🔹 top Columns (Linux)
+
+VIRT (Virtual Memory Size)
+
+Total address space reserved by the process.
+
+Includes heap, thread stacks, code cache, shared libs, and even memory-mapped files.
+
+Maps to JVM “Reserved” memory (but not 1:1, since OS + libraries also add overhead).
+
+RES (Resident Set Size)
+
+The portion of VIRT that is actually committed in RAM (backed by physical memory).
+
+Maps to JVM “Committed” memory.
+
+SHR (Shared Memory)
+
+Part of RES that is shared with other processes (e.g., shared libraries, kernel mappings).
+
+JVM doesn’t report this explicitly, but it shows up in RES.
+
+🔹 Example with your numbers
+
+top snapshot:
+
+PID USER      VIRT    RES    SHR S  %MEM COMMAND
+86790 root   3143980 124160 22920 S   3.1 java
+
+
+VIRT = 3143980 KB ≈ 3.0 GB
+→ JVM reserved space + shared libs + mmap files.
+→ Matches NMT Reserved ~ 1.9 GB (plus OS overhead).
+
+RES = 124160 KB ≈ 121 MB
+→ JVM committed memory (plus some native).
+→ Matches NMT Committed ~ 160 MB (close, depending on timing + accounting).
+
+SHR = 22920 KB ≈ 22 MB
+→ Mostly shared libc, JVM libs, etc.
+
+🔹 Takeaway
+
+VIRT = Reserved (upper bound)
+
+RES = Committed (real RAM used)
+
+SHR = Shared part of RES
+
+That’s why:
+
+JVM heap might be only 14 MB committed,
+
+But top shows 121 MB RES — because threads, code cache, class metadata, and other JVM internals are also committed.
