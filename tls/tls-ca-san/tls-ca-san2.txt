@@ -12,29 +12,22 @@
 
 
 # Generate CA private key
-openssl genrsa -out ca.key 4096
+openssl genrsa -out cakey.pem 4096
+
 
 # Create self-signed CA certificate (valid 10 years)
-openssl req -x509 -new -nodes -key ca.key -sha256 -days 3650 -out ca.crt -subj "/C=US/ST=CA/L=SanFrancisco/O=MyOrg/OU=IT/CN=MyRootCA"
+openssl req -x509 -new -nodes -key cakey.pem -sha256 -days 3650 -out cacrt.pem -subj "/C=US/ST=CA/L=SanFrancisco/O=MyOrg/OU=IT/CN=MyRootCA"
 
 
 
 Now you have:
 
-ca.key (CA private key)
+cakey.pem (CA private key)
+cacrt.pem (CA cert, trusted root)
 
-ca.crt (CA cert, trusted root)
+-rw-r--r--@ 1 zchun  staff   2.0K Sep 25 06:46 cacrt.pem
+-rw-------@ 1 zchun  staff   3.2K Sep 25 06:45 cakey.pem
 
-
-
-
-
-
-
-
-
-
-# Up till now, the ca.crt and the ca.key are successfully generated.
 
 
 
