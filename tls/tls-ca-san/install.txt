@@ -1,9 +1,9 @@
 1️⃣ Create your CA
 # Generate CA private key
-openssl genrsa -out ca.key 4096
+openssl genrsa -out ca-key.pem 4096
 
 # Create self-signed CA certificate
-openssl req -x509 -new -nodes -key ca.key -sha256 -days 3650 -out ca.crt -subj "/C=US/ST=CA/L=SanFrancisco/O=MyOrg/OU=IT/CN=MyRootCA"
+openssl req -x509 -new -nodes -key ca-key.pem -sha256 -days 3650 -out ca-crt.pem -subj "/C=US/ST=CA/L=SanFrancisco/O=MyOrg/OU=IT/CN=MyRootCA"
 
 
 Now you have:
