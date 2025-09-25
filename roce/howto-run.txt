@@ -5,10 +5,15 @@ apt-get install build-essential cmake gcc libudev-dev libnl-3-dev libnl-route-3-
 
 2. Install rxe_cfg tool
 git clone https://github.com/linux-rdma/rdma-core.git
-cd rdma-core/build
-cmake ..
-make
-sudo make install
+cd rdma-core
+bash build.sh
+
+
+
+
+
+
+
 
 
 Now you have the rxe_cfg script.
