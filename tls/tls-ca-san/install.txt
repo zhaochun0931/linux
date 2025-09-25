@@ -6,9 +6,12 @@ openssl genrsa -out ca-key.pem 4096
 openssl req -x509 -new -nodes -key ca-key.pem -sha256 -days 3650 -out ca-crt.pem -subj "/C=US/ST=CA/L=SanFrancisco/O=MyOrg/OU=IT/CN=MyRootCA"
 
 
-Now you have:
-ca.key (CA private key)
-ca.crt (CA cert, trusted root)
+-rw-r--r--@ 1 zchun  staff   2.0K Sep 25 06:49 ca-crt.pem
+-rw-------@ 1 zchun  staff   3.2K Sep 25 06:49 ca-key.pem
+
+
+
+
 
 
 
