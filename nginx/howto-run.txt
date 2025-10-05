@@ -1,3 +1,12 @@
 docker compose up
 
 
+├── compose.yaml
+├── html
+│   └── index.html
+├── logs
+│   ├── access.log
+│   └── error.log
+└── nginx
+    └── conf.d
+        └── default.conf
