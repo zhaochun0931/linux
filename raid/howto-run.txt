@@ -1,0 +1,97 @@
+apt install -y mdadm 
+
+
+
+
+
+
+🧪 Step 1: Create Virtual “Disks”
+
+Create a working directory:
+
+mkdir -p ~/raid_test
+cd ~/raid_test
+
+
+Create 3 fake 100 MB disk files:
+
+sudo dd if=/dev/zero of=disk1.img bs=1M count=100
+sudo dd if=/dev/zero of=disk2.img bs=1M count=100
+sudo dd if=/dev/zero of=disk3.img bs=1M count=100
+
+
+Map them to loop devices:
+
+sudo losetup -fP disk1.img
+sudo losetup -fP disk2.img
+sudo losetup -fP disk3.img
+
+
+Check mapping:
+
+sudo losetup -a
+
+
+You should see something like:
+
+/dev/loop0: [2065]:12345 (/home/user/raid_test/disk1.img)
+...
+
+
+
+  
+🧩 Step 2: Create a RAID Array
+
+Example: RAID 5
+
+sudo mdadm --create /dev/md0 --level=5 --raid-devices=3 /dev/loop0 /dev/loop1 /dev/loop2
+
+
+Check build progress:
+
+watch cat /proc/mdstat
+
+
+
+  
+🧾 Step 3: Create a Filesystem and Mount It
+sudo mkfs.ext4 /dev/md0
+sudo mkdir -p /mnt/raid
+sudo mount /dev/md0 /mnt/raid
+df -h /mnt/raid
+
+
+You now have a working RAID 5 array mounted at /mnt/raid.
+
+
+
+  
+🔍 Step 4: Test Redundancy (Optional)
+
+Simulate a disk failure:
+
+sudo mdadm --fail /dev/md0 /dev/loop2
+sudo mdadm --remove /dev/md0 /dev/loop2
+cat /proc/mdstat
+
+
+Re-add it (simulate disk replacement):
+
+sudo mdadm --add /dev/md0 /dev/loop2
+
+
+Watch rebuild progress again:
+
+watch cat /proc/mdstat
+
+
+
+  
+🧹 Step 5: Cleanup
+
+When you’re done:
+
+sudo umount /mnt/raid
+sudo mdadm --stop /dev/md0
+sudo losetup -D
+sudo rm disk*.img
