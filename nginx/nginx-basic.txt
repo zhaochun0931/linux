@@ -1,0 +1,184 @@
+⚙️ 1. Master Process
+
+🧵 2. Worker Processes
+
+Each worker is single-threaded but can handle many concurrent connections via asynchronous, event-driven I/O.
+
+
+
+
+📄 3. Configuration Files
+
+Main file: /etc/nginx/nginx.conf
+
+Includes:
+
+/etc/nginx/conf.d/*.conf
+
+/etc/nginx/sites-enabled/*
+
+
+
+
+
+🌐 4. HTTP Module
+
+Role: Handles all HTTP/HTTPS traffic.
+
+Directive examples: server, location, proxy_pass, root, rewrite
+
+
+
+
+
+
+
+
+🔁 5. Upstream Module
+
+Role: Defines backend (upstream) servers for proxying and load balancing.
+
+Example:
+
+upstream backend {
+    server app1:8080;
+    server app2:8080;
+}
+
+server {
+    location / {
+        proxy_pass http://backend;
+    }
+}
+
+
+
+
+🧩 6. Event Module
+
+Role: Manages Nginx’s asynchronous event-driven model.
+
+
+
+Example:
+
+events {
+    worker_connections 1024;
+    use epoll;
+}
+
+
+
+🔒 7. Stream Module (TCP/UDP)
+
+Role: Enables Nginx to handle non-HTTP traffic such as databases, MQTT, or custom TCP protocols.
+
+Example:
+
+stream {
+    server {
+        listen 3306;
+        proxy_pass db_backend;
+    }
+}
+
+
+
+
+
+💾 8. Caching and Buffering System
+
+Role: Improves performance by storing frequently accessed responses.
+
+Modules: proxy_cache, fastcgi_cache, uwsgi_cache, etc.
+
+Example:
+
+proxy_cache_path /data/nginx/cache keys_zone=mycache:10m;
+
+
+
+
+
+📊 9. Logging System
+
+Access log: Logs every request.
+
+Error log: Logs warnings, errors, and debugging info.
+
+Customizable: Format via the log_format directive.
+
+
+
+
+
+🔧 10. Optional Modules
+
+Dynamic modules extend functionality:
+
+ngx_http_ssl_module → TLS/SSL
+
+ngx_http_gzip_module → Compression
+
+ngx_http_rewrite_module → URL rewriting
+
+ngx_http_stub_status_module → Monitoring
+
+
+
+
+
+
+
+
+
+
+
+
+
+docker run -d -it --rm --name mynginx -p 8888:80 nginx
+
+docker port nginx
+
+curl localhost:8888
+
+
+
+
+
+
+
+
+
+docker exec -it mynginx bash
+
+
+
+
+nginx -v
+nginx -V
+
+
+# check nginx configuration file
+nginx -t
+
+# nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+#
+
+
+nginx -s reload
+
+
+
+
+
+
+
+/etc/nginx/nginx.conf
+
+/usr/share/nginx/html/index.html
+
+
+
