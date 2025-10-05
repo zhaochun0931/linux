@@ -1,1 +1,21 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_server
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Mount your custom configuration
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      # Optional: static site or test files
+      - ./html:/usr/share/nginx/html
+      # Optional: logs
+      - ./logs:/var/log/nginx
+    restart: always
+    networks:
+      - nginx_network
 
+networks:
+  nginx_network:
+    driver: bridge
