@@ -1,0 +1,7 @@
+wget https://github.com/prometheus/prometheus/releases/download/v3.6.0/prometheus-3.6.0.linux-arm64.tar.gz
+
+tar xvfz prometheus-3.6.0.linux-arm64.tar.gz
+cd prometheus-3.6.0.linux-arm64
+
+
+
