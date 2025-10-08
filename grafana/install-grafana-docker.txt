@@ -9,6 +9,25 @@ docker run -d -p 3000:3000 --name=grafana --rm grafana/grafana-enterprise
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # install locally
 wget https://dl.grafana.com/enterprise/release/grafana-enterprise-10.1.1.darwin-amd64.tar.gz
 tar -zxvf grafana-enterprise-10.1.1.darwin-amd64.tar.gz
