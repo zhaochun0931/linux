@@ -1,0 +1,19 @@
+version: "3"
+services:
+  sender:
+    image: alpine
+    privileged: true
+    container_name: sender
+    command: sh -c "apk add iproute2 iputils tcpdump && sleep infinity"
+    networks:
+      - testnet
+
+  receiver:
+    image: nginx:alpine
+    container_name: receiver
+    networks:
+      - testnet
+
+networks:
+  testnet:
+    driver: bridge
