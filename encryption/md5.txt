@@ -33,3 +33,26 @@ $ md5  *conf
 MD5 (pg_hba.conf) = bd000986b1fe47abb47f553002c62ea4
 MD5 (postgresql.conf) = 80d81d5cf053e39e85fcbec50f031919
 $
+
+
+
+
+
+
+
+1️⃣ MD5 authentication
+
+Method: Password-based authentication using MD5 hashing.
+
+How it works:
+
+  Server sends a random salt to the client.
+  
+  Client hashes the password with the salt using MD5.
+  
+  Server compares the hash with the stored hash in pg_authid.
+
+
+
+
+
