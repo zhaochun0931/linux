@@ -25,3 +25,11 @@ $ md5sum  *conf
 bd000986b1fe47abb47f553002c62ea4  pg_hba.conf
 80d81d5cf053e39e85fcbec50f031919  postgresql.conf
 $
+
+
+
+
+$ md5  *conf
+MD5 (pg_hba.conf) = bd000986b1fe47abb47f553002c62ea4
+MD5 (postgresql.conf) = 80d81d5cf053e39e85fcbec50f031919
+$
