@@ -1,0 +1,27 @@
+MD5 algorithm, a one-way cryptographic hash function. 
+
+
+The MD5 algorithm processes any input, such as a file or text string, and produces a fixed-length, 32-character hexadecimal output called a "hash" or "checksum". 
+The MD5 hash for any specific file or string will always be the same. For example, the hash for the word "hello" is always 5d41402abc4b2a76b9719d911017c592. 
+The hash is useful because even a tiny change in the original input will produce a completely different hash value. 
+
+
+
+How MD5 is used
+
+Checking data integrity:
+  A common use for MD5 is to verify that a downloaded file has not been corrupted during transfer. 
+  Many websites provide the MD5 checksum for files, which you can compare with the checksum of your downloaded copy. If they match, the file is intact.
+
+
+Generating unique IDs: It can be used to create unique identifiers for data in databases and software development. 
+
+
+
+
+
+
+$ md5sum  *conf
+bd000986b1fe47abb47f553002c62ea4  pg_hba.conf
+80d81d5cf053e39e85fcbec50f031919  postgresql.conf
+$
