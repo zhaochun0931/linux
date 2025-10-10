@@ -1,0 +1,24 @@
+Suppose we send packets:
+
+Seq=1  (Sent)
+Seq=2  (Sent)
+Seq=3  (Sent)
+
+
+Receiver gets only packets 1 and 3 (packet 2 lost).
+It sends duplicate ACKs for Seq=2 three times.
+
+Sender sees:
+
+ACK 2
+ACK 2
+ACK 2
+
+
+→ triggers Fast Retransmit → retransmits Seq=2.
+
+
+
+
+
+
