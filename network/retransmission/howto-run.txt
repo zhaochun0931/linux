@@ -1,0 +1,15 @@
+docker compose up
+
+
+
+docker exec -it nginx sh
+
+
+
+while true
+  do
+  curl -s -o /dev/null nginx:80
+  sleep 1
+  done
+
+
