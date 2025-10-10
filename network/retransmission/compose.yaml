@@ -8,9 +8,9 @@ services:
     networks:
       - testnet
 
-  receiver:
+  nginx:
     image: nginx:alpine
-    container_name: receiver
+    container_name: nginx
     networks:
       - testnet
 
