@@ -1,0 +1,9 @@
+2️⃣ SCRAM-SHA-256 authentication
+
+Method: Password-based authentication using SCRAM (Salted Challenge Response Authentication Mechanism) with SHA-256.
+
+How it works:
+
+Server stores a salted SHA-256 hash of the password.
+
+Client and server perform a challenge-response protocol, never sending the password in clear or just MD5.
