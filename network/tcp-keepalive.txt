@@ -1,0 +1,53 @@
+TCP Keepalive is a mechanism used by the Transmission Control Protocol (TCP) to check whether a connection is still alive (i.e., the peer is still reachable and responsive), even when there is no data being transmitted.
+
+🔍 Why it exists
+
+TCP connections can stay open indefinitely. If one side crashes, loses network connectivity, or silently goes offline, the other side may not know — because TCP by default does not automatically detect idle dead connections.
+The keepalive mechanism helps detect such dead peers and close the connection gracefully.
+
+
+
+⚙️ How it works
+
+Once TCP keepalive is enabled on a socket:
+
+If a TCP connection has been idle for a configured period (no data sent or received),
+
+The kernel sends a keepalive probe packet to the peer (usually an empty ACK),
+
+If the peer responds (ACKs the probe), the connection is still alive,
+
+If no response is received after a number of retries, the connection is assumed dead, and the socket is closed.
+
+
+
+
+
+
+
+🧠 Key parameters
+
+Typical Linux TCP keepalive settings (viewable with sysctl -a | grep keepalive):
+
+
+
+| Parameter              | Meaning                                  | Default (Linux)        |
+| ---------------------- | ---------------------------------------- | ---------------------- |
+| `tcp_keepalive_time`   | Idle time before sending first probe     | 7200 seconds (2 hours) |
+| `tcp_keepalive_intvl`  | Interval between probes                  | 75 seconds             |
+| `tcp_keepalive_probes` | Number of failed probes before giving up | 9 probes               |
+
+
+
+That means by default:
+
+TCP will wait 2 hours of inactivity,
+
+Then send a probe every 75 seconds,
+
+And if no reply after 9 probes (~11 minutes later), it closes the connection.
+
+So it can take ~2 hours and 11 minutes to detect a dead peer unless you tune these values.
+
+
+
