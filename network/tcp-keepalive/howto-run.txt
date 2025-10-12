@@ -13,7 +13,6 @@ docker compose up -d
 
 docker exec -it tcp-server sh
 
-apk add --no-cache tcpdump
 
 tcpdump -n -i any tcp port 12345
 
