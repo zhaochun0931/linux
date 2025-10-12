@@ -1,0 +1,31 @@
+Packet forwarding (routing) is disabled by default, with the value of ip_forward set to 0. By setting it to 1, packet forwarding is immediately enabled.
+
+
+
+
+
+
+
+
+
+
+
+cat /proc/sys/net/ipv4/ip_forward
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+
+
+
+
+
+
+
+
+
+
+
+To make this change permanent, you must add that value to the /etc/sysctl.conf fi le, so it appears as follows:
+
+net.ipv4.ip_forward = 1
+
