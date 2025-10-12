@@ -36,3 +36,11 @@ Closing: You say "Goodbye" and hang up, ending the connection.
 
 This differs from a UDP socket, which is more like sending a postcard—it is faster but offers no guarantee that the message will be delivered or received in the right order.
 
+
+
+
+
+
+
+How the tuple is used
+When a TCP packet arrives at a host, the operating system's networking stack extracts the four values from the packet's IP and TCP headers. It then uses this 4-tuple to look up the corresponding socket in a connection table, allowing it to deliver the packet to the correct application.
