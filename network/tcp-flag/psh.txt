@@ -1,0 +1,49 @@
+the PSH flag (short for “Push”) in TCP often confuses people, but it’s quite simple once you understand what it really signals.
+
+
+🧠 What the PSH Flag Means
+
+TCP is a byte-stream protocol — data is sent as a continuous stream of bytes, not as discrete “messages.”
+However, sometimes the sender wants the receiver to process the data immediately instead of waiting for the buffer to fill up.
+
+That’s what the PSH (Push) flag is for.
+
+Definition:
+The PSH flag tells the receiver’s TCP stack:
+“Deliver this data to the application right away — don’t wait for more.”
+
+
+
+
+
+🔬 Without and With PSH
+🔹 Without PSH
+
+TCP may buffer received bytes in the kernel until:
+
+The buffer is full, or
+
+The application reads from the socket
+
+So, if small packets arrive, the receiver’s app might not see them immediately.
+
+🔹 With PSH
+
+The sender sets the PSH flag to say:
+
+“Hey, I’ve finished sending a chunk of meaningful data — please flush it to the app layer now.”
+
+Then, the receiver’s TCP stack immediately delivers the bytes to the app (like your recv() call in Python).
+
+📡 Typical Use in Real Life
+
+When you use send() or sendall() in Python for small messages (like "Hello 1"), the kernel usually sets the PSH flag automatically at the end of each write.
+
+
+⚠️ Common Misunderstandings
+
+PSH ≠ urgent — it doesn’t mean “priority” or “faster delivery.” It just means “flush this to the app now.”
+
+It’s not guaranteed per application write — the OS TCP stack may coalesce or split data differently.
+
+PSH doesn’t affect reliability or ordering — only how quickly data reaches the receiving process.
