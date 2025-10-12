@@ -1,0 +1,38 @@
+A TCP socket is a programming interface that serves as one endpoint of a two-way, network communication link between two applications. 
+It uses the Transmission Control Protocol (TCP) to ensure that data is delivered reliably, in order, and without errors.
+
+
+How a TCP socket works
+
+A TCP socket is created and managed by the operating system for an application, allowing it to "plug into" a network. A complete TCP connection, which provides a reliable stream of data, is identified by a "4-tuple" of information:
+Source IP address
+Source port number
+Destination IP address
+Destination port number
+
+The general flow of a TCP socket communication looks like this:
+Server side: The server application creates a socket, binds it to a specific port number on its machine, and enters a listening state, waiting for client requests.
+Client side: The client application creates a socket and initiates a connection to the server's IP address and port.
+The handshake: Before any data is exchanged, TCP performs a "three-way handshake" to establish a connection. This process synchronizes sequence numbers between the client and server.
+Data transfer: Once the connection is established, both the client and server can send and receive a reliable stream of data through their respective sockets.
+Closing the connection: When the communication is complete, both the client and server close their sockets to terminate the connection and free up resources.
+
+
+Key features of TCP sockets
+Connection-oriented: A persistent connection is established and maintained for the duration of the data exchange.
+Reliable: TCP guarantees that all data will arrive correctly and in the proper order. It does this by requiring the receiver to acknowledge received packets and re-transmitting any data that is lost or corrupted.
+Stream-based: Data is treated as a continuous stream of bytes rather than as individual packets. The operating system handles the segmentation of this stream for transmission.
+Error-checked: The protocol performs thorough error-checking to ensure data integrity.
+
+
+
+Analogy: A reliable phone call
+A simple analogy for a TCP socket is a phone call:
+Handshake: You dial a number and wait for the other person to answer ("Hello?").
+Connection: You have an established, two-way channel for your conversation.
+Reliability: If you miss something the other person says, you can ask them to repeat it.
+Closing: You say "Goodbye" and hang up, ending the connection.
+
+
+This differs from a UDP socket, which is more like sending a postcard—it is faster but offers no guarantee that the message will be delivered or received in the right order.
+
