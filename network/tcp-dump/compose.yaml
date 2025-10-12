@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: ./server
+    container_name: tcp_server
+    networks:
+      - tcpnet
+    command: python server.py
+    cap_add:
+      - NET_ADMIN  # allows tcpdump if needed
+
+  client:
+    build:
+      context: ./client
+    container_name: tcp_client
+    networks:
+      - tcpnet
+    command: python client.py
+
+networks:
+  tcpnet:
+    driver: bridge
