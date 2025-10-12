@@ -7,7 +7,7 @@ services:
     working_dir: /app
     volumes:
       - ./server:/app
-    command: python3 server.py
+    command: sh -c "apk add --no-cache tcpdump && python3 server.py"
     networks:
       - keepalive-net
     sysctls:
@@ -31,4 +31,3 @@ services:
 
 networks:
   keepalive-net:
-
