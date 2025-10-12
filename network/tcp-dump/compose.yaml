@@ -2,23 +2,29 @@ version: "3.9"
 
 services:
   server:
-    build:
-      context: ./server.py
+    image: python:3.12-alpine
     container_name: tcp_server
     networks:
       - tcpnet
-    command: python server.py
     cap_add:
-      - NET_ADMIN  # allows tcpdump if needed
+      - NET_ADMIN  # needed for tcpdump
+    volumes:
+      - ./server.py:/app/server.py
+      - ./capture:/capture
+    working_dir: /app
+    command: sh -c "apk add --no-cache tcpdump bash && tcpdump -i any tcp port 12345 -w /capture/tcp_flow.pcap & python server.py"
 
   client:
-    build:
-      context: ./client.py
+    image: python:3.12-alpine
     container_name: tcp_client
     networks:
       - tcpnet
-    command: python client.py
+    volumes:
+      - ./client.py:/app/client.py
+    working_dir: /app
+    command: sh -c "python client.py"
 
 networks:
   tcpnet:
     driver: bridge
+
