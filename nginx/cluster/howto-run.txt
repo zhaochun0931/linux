@@ -1,6 +1,3 @@
-docker compose up
-
-
 ├── compose.yaml
 ├── html
 │   └── index.html
@@ -10,3 +7,11 @@ docker compose up
 └── nginx
     └── conf.d
         └── default.conf
+
+
+
+docker compose up
+
+
+
+
