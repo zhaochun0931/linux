@@ -3,7 +3,7 @@ version: "3.9"
 services:
   server:
     build:
-      context: ./server
+      context: ./server.py
     container_name: tcp_server
     networks:
       - tcpnet
@@ -13,7 +13,7 @@ services:
 
   client:
     build:
-      context: ./client
+      context: ./client.py
     container_name: tcp_client
     networks:
       - tcpnet
