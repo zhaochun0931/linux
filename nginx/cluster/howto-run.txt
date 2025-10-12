@@ -10,7 +10,7 @@
 
 
 
-mkdir {html,logs,nginx/config.d}
+mkdir -p {html,logs,nginx/config.d}
 
 docker compose up
 
