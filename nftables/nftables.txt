@@ -1,0 +1,57 @@
+nftables
+
+
+NFTables (or nf_tables) is the modern packet filtering framework in the Linux kernel. It is the successor to the older iptables system and provides a more flexible, efficient, and unified way to manage firewalls, network address translation (NAT), and other packet manipulation tasks. 
+
+
+Key concepts
+Packet filtering framework: A tool that inspects network packets traveling through the Linux kernel and applies rules to them. It can accept, drop, or modify packets based on specific criteria.
+Successor to iptables: Nftables was developed to overcome the limitations of the older iptables, ip6tables, arptables, and ebtables utilities by consolidating their functions into a single system.
+nft utility: Users interact with the nftables framework via the nft command-line tool, which has a more consistent and readable syntax than the separate utilities it replaced. 
+
+
+
+
+
+
+
+The nftables framework classifies packets and it is the successor to the iptables, ip6tables, arptables, ebtables, and ipset utilities.
+
+nft --version
+
+
+
+# add table
+nft add table ip table-name
+nft delete table table-name
+
+
+# add chain
+nft add chain ip table-name chain-name '{ type filter hook input priority 0; }'
+nft delete chain table-name chain-name
+
+
+'ip' specifies that the table is for IPv4.
+'type filter' specifies that this chain will filter packets.
+'hook input' specifies that this chain will process incoming packets.
+'priority 0' defines the priority of the hook.
+
+
+
+
+
+
+
+
+
+# add rule
+nft add rule ip table-name chain-name tcp dport 22 accept
+nft delete rule ip table-name chain-name handle 1
+
+
+# list rule
+nft -a list ruleset
+
+
+# save 
+nft list ruleset > /etc/sysconfig/nftables.conf
