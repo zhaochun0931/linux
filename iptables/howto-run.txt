@@ -105,3 +105,16 @@ The sender knows the ping was explicitly rejected.
 
 
 
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+REJECT     icmp --  anywhere             anywhere             icmp echo-request reject-with icmp-port-unreachable
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+
+
+
+
