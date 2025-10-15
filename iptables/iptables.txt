@@ -1,3 +1,54 @@
+iptables is the classic and powerful way to set up a firewall in Linux.
+
+It allows you to define detailed rules that control what network traffic is allowed or blocked — based on IP, port, protocol, interface, connection state, etc.
+
+
+
+
+
+🔹 1. What iptables Is
+
+iptables is a user-space utility that interacts with the Linux kernel’s Netfilter framework.
+It controls packet filtering and NAT (Network Address Translation).
+
+Each rule you add goes into a table, which has chains that represent points in packet processing.
+
+
+
+
+
+
+🔹 2. The Basic Concepts
+Tables
+
+| Table      | Purpose                                                   |
+| ---------- | --------------------------------------------------------- |
+| `filter`   | Default table — handles packet filtering (allow/deny)     |
+| `nat`      | Network Address Translation (port forwarding, masquerade) |
+| `mangle`   | Packet modification (TTL, QoS, etc.)                      |
+| `raw`      | Exempt packets from connection tracking                   |
+| `security` | SELinux-related rules                                     |
+
+
+
+
+
+
+Chains
+
+| Chain         | Trigger point                                       |
+| ------------- | --------------------------------------------------- |
+| `INPUT`       | Incoming packets to the local machine               |
+| `OUTPUT`      | Outgoing packets from the local machine             |
+| `FORWARD`     | Packets routed through the host (not for local use) |
+| `PREROUTING`  | Before routing decision (useful in NAT)             |
+| `POSTROUTING` | After routing decision (useful in NAT)              |
+
+
+
+
+
+
 iptables -> firewalld -> nftables
 
 
