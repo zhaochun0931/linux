@@ -1,0 +1,36 @@
+docker compose up
+
+
+docker exec -it myalpine1 sh
+
+
+# the ping command should work
+ping myalpine2
+
+
+
+# go to the myalpine2
+
+docker exec -it myalpine2 sh
+
+
+
+
+
+🔹 Option 1: Drop pings silently (no reply)
+iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+
+
+The system will ignore incoming pings.
+From the sender’s side, it looks like the host is unreachable (no reply at all).
+
+
+
+
+🔹 Option 2: Reject pings politely (send an error back)
+iptables -A INPUT -p icmp --icmp-type echo-request -j REJECT
+
+
+The system replies with “ICMP Destination Unreachable”.
+
+The sender knows the ping was explicitly rejected.
