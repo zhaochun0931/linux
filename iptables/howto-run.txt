@@ -9,6 +9,24 @@ ping myalpine2
 
 
 
+
+05:37:41.770055 lo    In  IP (tos 0x0, ttl 64, id 42991, offset 0, flags [DF], proto UDP (17), length 55)
+    localhost.55248 > 127.0.0.11.47765: [bad udp cksum 0xfe40 -> 0xdc3d!] UDP, length 27
+05:37:41.770134 lo    In  IP (tos 0x0, ttl 64, id 42992, offset 0, flags [DF], proto UDP (17), length 55)
+    localhost.55248 > 127.0.0.11.47765: [bad udp cksum 0xfe40 -> 0xbfc6!] UDP, length 27
+05:37:41.770583 lo    In  IP (tos 0x0, ttl 64, id 52, offset 0, flags [DF], proto UDP (17), length 80)
+    127.0.0.11.53 > localhost.55248: [bad udp cksum 0xfe59 -> 0x5323!] 53782 q: A? myalpine2. 1/0/0 myalpine2. [10m] A 192.168.32.3 (52)
+05:37:41.770624 lo    In  IP (tos 0x0, ttl 64, id 53, offset 0, flags [DF], proto UDP (17), length 55)
+    127.0.0.11.53 > localhost.55248: [bad udp cksum 0xfe40 -> 0xf9a6!] 54157 q: AAAA? myalpine2. 0/0/0 (27)
+05:37:41.770949 eth0  Out IP (tos 0x0, ttl 64, id 54302, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 37, seq 0, length 64
+05:37:41.771032 eth0  In  IP (tos 0x0, ttl 64, id 58454, offset 0, flags [none], proto ICMP (1), length 84)
+    myalpine2.iptables_demo-network > myalpine1: ICMP echo reply, id 37, seq 0, length 64
+
+
+
+
+
 # go to the myalpine2
 
 docker exec -it myalpine2 sh
@@ -26,6 +44,27 @@ From the sender’s side, it looks like the host is unreachable (no reply at all
 
 
 
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 23, length 64
+05:34:05.601860 eth0  Out IP (tos 0x0, ttl 64, id 45908, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 24, length 64
+05:34:06.605961 eth0  Out IP (tos 0x0, ttl 64, id 46016, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 25, length 64
+05:34:07.610541 eth0  Out IP (tos 0x0, ttl 64, id 46441, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 26, length 64
+05:34:08.616877 eth0  Out IP (tos 0x0, ttl 64, id 47105, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 27, length 64
+05:34:09.618199 eth0  Out IP (tos 0x0, ttl 64, id 47803, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 28, length 64
+05:34:10.619105 eth0  Out IP (tos 0x0, ttl 64, id 48074, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 29, length 64
+05:34:11.620209 eth0  Out IP (tos 0x0, ttl 64, id 48372, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 30, length 64
+05:34:12.621751 eth0  Out IP (tos 0x0, ttl 64, id 48468, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 31, length 64
+
+
+
+
 
 🔹 Option 2: Reject pings politely (send an error back)
 iptables -A INPUT -p icmp --icmp-type echo-request -j REJECT
@@ -34,3 +73,35 @@ iptables -A INPUT -p icmp --icmp-type echo-request -j REJECT
 The system replies with “ICMP Destination Unreachable”.
 
 The sender knows the ping was explicitly rejected.
+
+
+
+05:40:07.893001 eth0  Out IP (tos 0x0, ttl 64, id 47616, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 38, seq 55, length 64
+05:40:07.893046 eth0  In  IP (tos 0xc0, ttl 64, id 29107, offset 0, flags [none], proto ICMP (1), length 112)
+    myalpine2.iptables_demo-network > myalpine1: ICMP myalpine2.iptables_demo-network protocol 1 port 7265 unreachable, length 92
+	IP (tos 0x0, ttl 64, id 47616, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 38, seq 55, length 64
+05:40:07.973138 lo    In  IP (tos 0x0, ttl 64, id 12045, offset 0, flags [DF], proto UDP (17), length 71)
+    localhost.55488 > 127.0.0.11.47765: [bad udp cksum 0xfe50 -> 0xf7f8!] UDP, length 43
+05:40:07.975246 lo    In  IP (tos 0x0, ttl 64, id 46130, offset 0, flags [DF], proto UDP (17), length 141)
+    127.0.0.11.53 > localhost.55488: [bad udp cksum 0xfe96 -> 0x6c0e!] 10044 q: PTR? 3.32.168.192.in-addr.arpa. 1/0/0 3.32.168.192.in-addr.arpa. [10m] PTR myalpine2.iptables_demo-network. (113)
+05:40:08.082849 lo    In  IP (tos 0x0, ttl 64, id 12090, offset 0, flags [DF], proto UDP (17), length 69)
+    localhost.35397 > 127.0.0.11.47765: [bad udp cksum 0xfe4e -> 0x1b74!] UDP, length 41
+05:40:08.095107 lo    In  IP (tos 0x0, ttl 64, id 46218, offset 0, flags [DF], proto UDP (17), length 69)
+    127.0.0.11.53 > localhost.35397: [bad udp cksum 0xfe4e -> 0x5551!] 22707 NXDomain q: PTR? 11.0.0.127.in-addr.arpa. 0/0/0 (41)
+05:40:08.894114 eth0  Out IP (tos 0x0, ttl 64, id 48513, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 38, seq 56, length 64
+05:40:08.894178 eth0  In  IP (tos 0xc0, ttl 64, id 29369, offset 0, flags [none], proto ICMP (1), length 112)
+    myalpine2.iptables_demo-network > myalpine1: ICMP myalpine2.iptables_demo-network protocol 1 port 31001 unreachable, length 92
+	IP (tos 0x0, ttl 64, id 48513, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 38, seq 56, length 64
+05:40:09.899789 eth0  Out IP (tos 0x0, ttl 64, id 49095, offset 0, flags [DF], proto ICMP (1), length 84)
+    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 38, seq 57, length 64
+05:40:09.899922 eth0  In  IP (tos 0xc0, ttl 64, id 29557, offset 0, flags [none], proto ICMP (1), length 112)
+    myalpine2.iptables_demo-network > myalpine1: ICMP myalpine2.iptables_demo-network protocol 1 port 6848 unreachable, length 92
+
+
+
+
+
