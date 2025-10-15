@@ -19,6 +19,16 @@ services:
     networks:
       - demo-network  # Optional: custom network if required
 
+  myalpine3:
+    image: alpine:latest
+    container_name: myalpine3
+    hostname: myalpine3
+    user: root
+    privileged: true
+    command: sh -c "apk update && apk add iptables && sleep 24h"  # Install iptables and keep the container running
+    networks:
+      - demo-network  # Optional: custom network if required
+
 networks:
   demo-network:
     driver: bridge  # Default driver
