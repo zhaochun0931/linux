@@ -22,3 +22,32 @@ getconf PAGE_SIZE
 # getconf PAGE_SIZE
 4096
 #
+
+
+
+
+
+
+🧩 1️⃣ Fundamental Concepts
+🔹 Virtual Memory (VM)
+
+Every process in Linux sees its own virtual address space, e.g. 4 GB on 32-bit or 128 TB on 64-bit systems.
+This abstraction:
+
+Simplifies programming (each process starts at address 0x0)
+
+Provides isolation (processes can’t access each other’s memory)
+
+Allows paging and swapping
+
+
+
+🔹 Pages
+
+The smallest unit of memory management.
+
+Most x86_64 systems use 4 KB pages, though large pages (2 MB, 1 GB) exist.
+
+Every virtual memory area (VMA) is mapped by page tables that connect:
+
+Virtual Address → Physical Frame
