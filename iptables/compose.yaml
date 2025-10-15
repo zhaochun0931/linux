@@ -5,7 +5,7 @@ services:
     hostname: myalpine1
     user: root
     privileged: true
-    command: sh -c "apk update && apk add iptables && sleep 24h"  # Install iptables and keep the container running
+    command: sh -c "apk update && apk add iptables tcpdump && sleep 24h"  # Install iptables and keep the container running
     networks:
       - demo-network  # Optional: custom network if required
 
@@ -15,7 +15,7 @@ services:
     hostname: myalpine2
     user: root
     privileged: true
-    command: sh -c "apk update && apk add iptables && sleep 24h"  # Install iptables and keep the container running
+    command: sh -c "apk update && apk add iptables tcpdump && sleep 24h"  # Install iptables and keep the container running
     networks:
       - demo-network  # Optional: custom network if required
 
@@ -25,7 +25,7 @@ services:
     hostname: myalpine3
     user: root
     privileged: true
-    command: sh -c "apk update && apk add iptables && sleep 24h"  # Install iptables and keep the container running
+    command: sh -c "apk update && apk add iptables tcpdump && sleep 24h"  # Install iptables and keep the container running
     networks:
       - demo-network  # Optional: custom network if required
 
