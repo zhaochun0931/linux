@@ -28,3 +28,45 @@ docker compose up
    20   5.025103 192.168.16.2 → 192.168.16.3 TCP 72 37764 → 12345 [FIN, ACK] Seq=36 Ack=36 Win=64256 Len=0 TSval=1885061383 TSecr=1844673394
    21   5.025399 192.168.16.3 → 192.168.16.2 TCP 72 12345 → 37764 [FIN, ACK] Seq=36 Ack=37 Win=65280 Len=0 TSval=1844674396 TSecr=1885061383
    22   5.025543 192.168.16.2 → 192.168.16.3 TCP 72 37764 → 12345 [ACK] Seq=37 Ack=37 Win=64256 Len=0 TSval=1885061384 TSecr=1844674396
+
+
+
+
+
+
+
+
+
+
+/app # strace -tt -e trace=network python3 /app/client.py
+07:13:50.425479 socket(AF_INET, SOCK_STREAM|SOCK_CLOEXEC, IPPROTO_IP) = 3
+07:13:53.427513 socket(AF_INET, SOCK_DGRAM|SOCK_CLOEXEC|SOCK_NONBLOCK, IPPROTO_IP) = 4
+07:13:53.427827 bind(4, {sa_family=AF_INET, sin_port=htons(0), sin_addr=inet_addr("0.0.0.0")}, 16) = 0
+07:13:53.428370 sendto(4, "\307\1\1\0\0\1\0\0\0\0\0\0\6server\0\0\1\0\1", 24, MSG_NOSIGNAL, {sa_family=AF_INET, sin_port=htons(53), sin_addr=inet_addr("127.0.0.11")}, 16) = 24
+07:13:53.429785 recvmsg(4, {msg_name={sa_family=AF_INET, sin_port=htons(53), sin_addr=inet_addr("127.0.0.11")}, msg_namelen=16, msg_iov=[{iov_base="\307\1\201\200\0\1\0\1\0\0\0\0\6server\0\0\1\0\1\6server\0"..., iov_len=4800}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, 0) = 46
+07:13:53.430813 connect(3, {sa_family=AF_INET, sin_port=htons(12345), sin_addr=inet_addr("192.168.80.3")}, 16) = 0
+Sending: Hello 0
+07:13:53.432241 sendto(3, "Hello 0", 7, 0, NULL, 0) = 7
+07:13:53.432815 recvfrom(3, "Hello 0", 1024, 0, NULL, NULL) = 7
+Received: Hello 0
+Sending: Hello 1
+07:13:54.435385 sendto(3, "Hello 1", 7, 0, NULL, 0) = 7
+07:13:54.435716 recvfrom(3, "Hello 1", 1024, 0, NULL, NULL) = 7
+Received: Hello 1
+Sending: Hello 2
+07:13:55.436824 sendto(3, "Hello 2", 7, 0, NULL, 0) = 7
+07:13:55.437233 recvfrom(3, "Hello 2", 1024, 0, NULL, NULL) = 7
+Received: Hello 2
+Sending: Hello 3
+07:13:56.439693 sendto(3, "Hello 3", 7, 0, NULL, 0) = 7
+07:13:56.440370 recvfrom(3, "Hello 3", 1024, 0, NULL, NULL) = 7
+Received: Hello 3
+Sending: Hello 4
+07:13:57.444568 sendto(3, "Hello 4", 7, 0, NULL, 0) = 7
+07:13:57.446519 recvfrom(3, "Hello 4", 1024, 0, NULL, NULL) = 7
+Received: Hello 4
+07:13:58.464672 +++ exited with 0 +++
+/app #
+/app #
+
+
