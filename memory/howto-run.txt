@@ -1,0 +1,22 @@
+gcc page.c
+
+./a.out
+
+
+
+# ./a.out
+Page size: 4096 bytes
+
+Virtual and Physical Address Mapping:
+------------------------------------
+Page 0:
+  Virtual: 0xabf457318000
+  Physical: 0x13745e000
+Page 1:
+  Virtual: 0xabf457319000
+  Physical: 0x158023000
+Page 2:
+  Virtual: 0xabf45731a000
+  Physical: 0x130b18000
+#
+  
