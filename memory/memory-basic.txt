@@ -13,6 +13,27 @@ All memory allocations are page-aligned internally.
 
 
 
+
+In Linux, a page is the smallest unit of memory management used by both hardware and the kernel.
+
+💡 Think of memory (RAM) as a book, and each page as one sheet of that book.
+
+Linux doesn’t manage individual bytes or words of memory — it manages pages.
+
+
+
+🧮 2️⃣ Typical size of a page
+
+Most systems: 4 KB (4096 bytes)
+
+Large / huge pages: 2 MB or 1 GB (for performance, fewer TLB lookups)
+
+
+
+
+
+
+
 Check page size in Linux:
 
 getconf PAGE_SIZE
@@ -22,6 +43,25 @@ getconf PAGE_SIZE
 # getconf PAGE_SIZE
 4096
 #
+
+
+
+
+
+
+
+cat /proc/meminfo | grep -i page
+
+
+
+
+
+
+
+
+
+
+
 
 
 
