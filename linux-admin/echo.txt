@@ -1,6 +1,0 @@
-echo hello world
-echo 'hello world'
-echo "hello world"
-
-
-echo -e "hello \n world"

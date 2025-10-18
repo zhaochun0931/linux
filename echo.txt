@@ -1,0 +1,19 @@
+Single Quotes (' ') provide strong quoting; they preserve the literal value of every character within them. No shell expansions occur.
+
+Double Quotes (" ") provide weak quoting; they preserve the literal value of most characters but still allow certain shell expansions to be interpreted, specifically $, `, and \ (when used to escape another special character or a newline). 
+
+
+
+
+
+
+
+
+
+
+echo hello world
+echo 'hello world'
+echo "hello world"
+
+
+echo -e "hello \n world"
