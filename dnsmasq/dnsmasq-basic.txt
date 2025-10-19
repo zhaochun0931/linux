@@ -1,0 +1,3 @@
+🧩 What is dnsmasq?
+
+dnsmasq is a lightweight DNS forwarder and DHCP server often used in local or containerized networks.
