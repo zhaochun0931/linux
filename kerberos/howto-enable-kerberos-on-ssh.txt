@@ -5,3 +5,29 @@ You can enable Kerberos authentication for a specific host by editing your user'
 cd ~/.ssh/
 touch config
 
+
+
+
+
+
+
+# ssh server
+
+
+/etc/ssh/sshd_config
+
+
+GSSAPIAuthentication yes
+GSSAPICleanupCredentials yes
+#GSSAPIStrictAcceptorCheck yes
+GSSAPIKeyExchange yes
+
+
+
+
+systemctl restart ssh.service
+
+
+
+
+
