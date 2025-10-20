@@ -114,6 +114,16 @@ klist
 
 
 
+
+# kvno user2@EXAMPLE.COM
+user2@EXAMPLE.COM: kvno = 1
+#
+
+
+
+
+
+
 # Verify Authentication
 
 On the Kerberos server machine, run the following command:
