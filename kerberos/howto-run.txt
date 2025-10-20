@@ -16,3 +16,83 @@ docker compose up
 
 
 
+
+docker exec -it kerberos-kdc bash
+
+kadmin.local
+listprincs
+
+
+
+
+
+
+
+
+
+$ docker exec -it kerberos-kdc bash
+root@kdc:/# kadmin.local
+Authenticating as principal root/admin@EXAMPLE.COM with password.
+kadmin.local:
+kadmin.local:
+kadmin.local:
+kadmin.local:  listprincs
+K/M@EXAMPLE.COM
+admin/admin@EXAMPLE.COM
+alice@EXAMPLE.COM
+kadmin/admin@EXAMPLE.COM
+kadmin/changepw@EXAMPLE.COM
+krbtgt/EXAMPLE.COM@EXAMPLE.COM
+kadmin.local:
+kadmin.local:
+kadmin.local:
+kadmin.local:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+docker exec -it kerberos-client bash
+
+
+kinit alice
+# password: alicepass
+
+klist
+
+
+
+
+
+
+
+root@client:/# kinit alice
+Password for alice@EXAMPLE.COM:
+root@client:/#
+root@client:/#
+root@client:/#
+root@client:/# klist
+Ticket cache: FILE:/tmp/krb5cc_0
+Default principal: alice@EXAMPLE.COM
+
+Valid starting     Expires            Service principal
+10/20/25 04:51:43  10/20/25 14:51:43  krbtgt/EXAMPLE.COM@EXAMPLE.COM
+	renew until 10/21/25 04:51:43
+root@client:/#
+
+
+
+
+
+
+
