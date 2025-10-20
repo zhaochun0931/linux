@@ -1,0 +1,33 @@
+networks:
+  kerberos-net:
+    driver: bridge
+
+services:
+  kdc:
+    build: ./kdc
+    container_name: kerberos-kdc
+    hostname: kdc.example.com
+    networks:
+      - kerberos-net
+    ports:
+      - "1088:88/udp"
+      - "749:749"
+    environment:
+      REALM: EXAMPLE.COM
+    volumes:
+      - ./kdc/krb5.conf:/etc/krb5.conf
+    command: bash -c "krb5kdc && kadmind && sleep infinity"
+    restart: unless-stopped
+
+  client:
+    build: ./client
+    container_name: kerberos-client
+    hostname: client.example.com
+    networks:
+      - kerberos-net
+    depends_on:
+      - kdc
+    volumes:
+      - ./client/krb5.conf:/etc/krb5.conf
+    command: sleep infinity
+
