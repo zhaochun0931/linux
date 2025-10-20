@@ -1,0 +1,35 @@
+🧩 What is Kerberos?
+
+Kerberos is a network authentication protocol based on secret-key cryptography.
+It was designed by MIT and is widely used in:
+
+Enterprise environments (Active Directory)
+
+Hadoop / Kafka / PostgreSQL clusters
+
+Secure Linux SSO environments
+
+
+
+
+🧠 Concept
+
+Kerberos relies on a trusted third-party — the Key Distribution Center (KDC) — which issues tickets proving a user’s identity.
+
+
+
+
+⚙️ Simplified Flow
+
+User → KDC (AS-REQ): “Hi, I’m alice.”
+
+KDC → User (AS-REP): “Here’s a Ticket Granting Ticket (TGT).”
+
+User → KDC (TGS-REQ): “I’d like to access service X using my TGT.”
+
+KDC → User (TGS-REP): “Here’s a service ticket for X.”
+
+User → Service: Presents the ticket, service trusts it.
+
+
+Everything is encrypted — passwords never go over the wire.
