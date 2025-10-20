@@ -1,0 +1,7 @@
+2. Configure the SSH Client (Client Side)
+You can enable Kerberos authentication for a specific host by editing your user's SSH configuration file (~/.ssh/config) or the system-wide file (/etc/ssh/ssh_config): 
+
+
+cd ~/.ssh/
+touch config
+
