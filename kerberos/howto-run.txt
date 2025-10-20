@@ -1,3 +1,16 @@
+├── client
+│   ├── Dockerfile
+│   └── krb5.conf
+├── compose.yaml
+└── kdc
+    ├── Dockerfile
+    ├── kadm5.acl
+    ├── kdc.conf
+    └── krb5.conf
+
+
+
+
 docker compose up
 
 
