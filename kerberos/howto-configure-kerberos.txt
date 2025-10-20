@@ -56,6 +56,38 @@ systemctl restart krb5-admin-server
 
 
 
+
+
+
+
+
+
+
+
+kadmin.local -q "addprinc -pw password username"
+
+
+kadmin.local -q "listprincs"
+
+
+
+
+
+root@kdc:/# kadmin.local -q "addprinc -pw password username"
+Authenticating as principal root/admin@EXAMPLE.COM with password.
+No policy specified for username@EXAMPLE.COM; defaulting to no policy
+Principal "username@EXAMPLE.COM" created.
+root@kdc:/#
+
+
+
+
+
+
+
+
+
+
 # install Kerberos Client
 apt install krb5-user -y
 
