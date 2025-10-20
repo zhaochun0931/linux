@@ -27,6 +27,11 @@ krb5_newrealm
 kadmin.local
 
 
+
+
+# go to kdc and create user
+
+
 # add the principal name kuser
 
 addprinc kuser
@@ -66,6 +71,13 @@ systemctl restart krb5-admin-server
 
 kadmin.local -q "addprinc -pw password username"
 
+kadmin.local -q "addprinc -pw password user1"
+
+kadmin.local -q "addprinc -pw password user2"
+
+kadmin.local -q "addprinc -pw password user3"
+
+
 
 kadmin.local -q "listprincs"
 
@@ -97,7 +109,7 @@ apt install krb5-user -y
 
 # authenticate to the Kerberos server and obtain a ticket from it with the following command:
 
-kinit kuser
+kinit user1
 klist
 
 
