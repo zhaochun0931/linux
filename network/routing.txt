@@ -1,3 +1,27 @@
+🧩 What’s a Router
+
+A router is a network device that forwards packets between different networks.
+
+✅ In simple terms:
+
+A switch connects devices within one local network (LAN).
+
+A router connects different networks, such as:
+
+Your home LAN → the Internet (WAN)
+
+Two company subnets → through a backbone
+
+Containers or VMs on separate networks → via routing rules
+
+
+
+
+
+
+
+
+
 Only hosts with multiple network addresses can perform routing. The most basic routing operation is forwarding, which forwards packets received on one network interface to another network interface.
 
 
