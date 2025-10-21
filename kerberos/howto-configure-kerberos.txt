@@ -216,7 +216,7 @@ kadmin.local:
 
 # generate the krb5.keytab
 
-kadmin.local -q "ktadd -k /tmp/krb5.keytab user2@EXAMPLE.COM"
+kadmin.local -q "ktadd -k /tmp/krb5.keytab user1@EXAMPLE.COM"
 
 
 
