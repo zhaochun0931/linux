@@ -88,3 +88,19 @@ docker exec host2 ping -c 2 172.19.0.3
 
   
 You should now see successful replies 🎯
+
+
+
+
+
+
+💡 Optional: Verify in Router
+
+To confirm traffic flows through the router:
+
+docker exec -it router tcpdump -i any icmp
+
+
+Then ping between hosts again — you’ll see packets passing through.
+
+
