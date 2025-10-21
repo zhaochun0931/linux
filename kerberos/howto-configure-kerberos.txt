@@ -1,3 +1,39 @@
+# add new user
+
+
+kadmin.local -q "addprinc -pw password username"
+
+kadmin.local -q "addprinc -pw password user1"
+
+kadmin.local -q "addprinc -pw password user2"
+
+kadmin.local -q "addprinc -pw password user3"
+
+
+
+kadmin.local -q "listprincs"
+
+kadmin.local -q "getprinc alice"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /etc/hosts
 
 
@@ -69,20 +105,7 @@ systemctl restart krb5-admin-server
 
 
 
-kadmin.local -q "addprinc -pw password username"
 
-kadmin.local -q "addprinc -pw password user1"
-
-kadmin.local -q "addprinc -pw password user2"
-
-kadmin.local -q "addprinc -pw password user3"
-
-
-
-kadmin.local -q "listprincs"
-
-
-kadmin.local -q "getprinc alice"
 
 
 
