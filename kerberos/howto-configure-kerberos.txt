@@ -12,7 +12,7 @@ kadmin.local -q "addprinc -pw password user3"
 
 kadmin.local -q "listprincs"
 
-kadmin.local -q "getprinc alice"
+kadmin.local -q "getprinc user1"
 
 
 
