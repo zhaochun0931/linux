@@ -13,6 +13,29 @@ A certificate authority (CA)
 
 
 
+
+
+
+Certificate formats
+
+There are two encoding formats for certificates:
+  • Privacy Enhanced Mail (PEM): These are human-readable and in Base64-encoded ASCII format.
+  • Distinguished Encoding Rules (DER): These are encoded in a more compact binary format, and not human readable.
+
+To install a certificate in the trust store it must be in PEM format. A PEM certificate starts with the line ----BEGIN CERTIFICATE----.
+
+
+
+
+
+
+
+
+
+
+
+
+
 Certificates can be saved in various formats.
 
 Privacy-Enhanced Mail
