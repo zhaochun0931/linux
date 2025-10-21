@@ -19,6 +19,40 @@ Containers or VMs on separate networks → via routing rules
 
 
 
+🧭 Example
+
+Let’s say you have:
+
+| Device | IP                        | Network        |
+| ------ | ------------------------- | -------------- |
+| PC1    | 192.168.1.10              | 192.168.1.0/24 |
+| PC2    | 192.168.2.10              | 192.168.2.0/24 |
+| Router | 192.168.1.1 + 192.168.2.1 | Both networks  |
+
+
+
+
+Here the router has two network interfaces — one in each subnet — and routes packets between them.
+
+So:
+
+PC1 sends packet to 192.168.2.10
+
+It sees destination is outside its own subnet → sends to gateway (router) 192.168.1.1
+
+Router forwards to 192.168.2.10
+
+PC2 replies the same way
+
+
+
+
+
+
+
+
+
+
 
 
 
