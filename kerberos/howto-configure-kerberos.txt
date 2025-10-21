@@ -258,3 +258,14 @@ klist
 
 
 
+
+
+
+
+
+sudo rm -rf /etc/krb5kdc/*
+sudo rm -rf /var/lib/krb5kdc/*
+sudo apt purge krb5-kdc krb5-admin-server krb5-user -y
+sudo apt install krb5-kdc krb5-admin-server krb5-user -y
+sudo krb5_newrealm
+
