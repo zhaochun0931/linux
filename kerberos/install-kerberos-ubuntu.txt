@@ -48,13 +48,22 @@ root@host1:~#
 
 root@host1:~# sudo kadmin.local
 Authenticating as principal root/admin@example.com with password.
-kadmin.local:  addprinc xman/admin
-No policy specified for xman/admin@example.com; defaulting to no policy
-Enter password for principal "xman/admin@example.com":
-Re-enter password for principal "xman/admin@example.com":
-Principal "xman/admin@example.com" created.
+kadmin.local:  addprinc user1/admin
+No policy specified for user1/admin@example.com; defaulting to no policy
+Enter password for principal "user1/admin@example.com":
+Re-enter password for principal "user1/admin@example.com":
+Principal "user1/admin@example.com" created.
+kadmin.local:
+kadmin.local:
 kadmin.local:  quit
-root@host1:~#
+#
 
+
+
+
+systemctl restart krb5-admin-server.service
+
+
+kinit user1/admin
 
 
