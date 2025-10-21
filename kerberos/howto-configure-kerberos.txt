@@ -1,6 +1,5 @@
 # add new user
 
-
 kadmin.local -q "addprinc -pw password username"
 
 kadmin.local -q "addprinc -pw password user1"
@@ -14,6 +13,50 @@ kadmin.local -q "addprinc -pw password user3"
 kadmin.local -q "listprincs"
 
 kadmin.local -q "getprinc alice"
+
+
+
+
+
+
+
+kinit user1
+
+KRB5_TRACE=/dev/stderr kinit user1
+
+
+root@host1:~# KRB5_TRACE=/dev/stderr kinit user1
+[7121] 1761043409.428531: Getting initial credentials for user1@EXAMPLE.COM
+[7121] 1761043409.428532: Error loading plugin module pkinit: 2/unable to load plugin [/usr/lib/aarch64-linux-gnu/krb5/plugins/preauth/pkinit.so]: /usr/lib/aarch64-linux-gnu/krb5/plugins/preauth/pkinit.so: cannot open shared object file: No such file or directory
+[7121] 1761043409.428534: Sending unauthenticated request
+[7121] 1761043409.428535: Sending request (183 bytes) to EXAMPLE.COM
+[7121] 1761043409.428536: Resolving hostname host1
+[7121] 1761043409.428537: Sending initial UDP request to dgram 127.0.1.1:88
+[7121] 1761043409.428538: Received answer (795 bytes) from dgram 127.0.1.1:88
+[7121] 1761043409.428539: Sending DNS URI query for _kerberos.EXAMPLE.COM.
+[7121] 1761043410.410000: No URI records found
+[7121] 1761043410.410001: Sending DNS SRV query for _kerberos-master._udp.EXAMPLE.COM.
+[7121] 1761043413.563709: Sending DNS SRV query for _kerberos-master._tcp.EXAMPLE.COM.
+[7121] 1761043416.698037: No SRV records found
+[7121] 1761043416.698038: Response was not from primary KDC
+[7121] 1761043416.698039: Processing preauth types: PA-ETYPE-INFO2 (19)
+[7121] 1761043416.698040: Selected etype info: etype aes256-cts, salt "EXAMPLE.COMuser1", params ""
+[7121] 1761043416.698041: Produced preauth for next request: (empty)
+[7121] 1761043416.698042: Getting AS key, salt "EXAMPLE.COMuser1", params ""
+Password for user1@EXAMPLE.COM:
+[7121] 1761043419.412307: AS key obtained from gak_fct: aes256-cts/B56A
+[7121] 1761043419.412308: Decrypted AS reply; session key is: aes256-cts/72EF
+[7121] 1761043419.412309: FAST negotiation: available
+[7121] 1761043419.412310: Resolving unique ccache of type MEMORY
+[7121] 1761043419.412311: Initializing MEMORY:C6pv6Ys with default princ user1@EXAMPLE.COM
+[7121] 1761043419.412312: Storing config in MEMORY:C6pv6Ys for krbtgt/EXAMPLE.COM@EXAMPLE.COM: fast_avail: yes
+[7121] 1761043419.412313: Storing user1@EXAMPLE.COM -> krb5_ccache_conf_data/fast_avail/krbtgt\/EXAMPLE.COM\@EXAMPLE.COM@X-CACHECONF: in MEMORY:C6pv6Ys
+[7121] 1761043419.412314: Storing user1@EXAMPLE.COM -> krbtgt/EXAMPLE.COM@EXAMPLE.COM in MEMORY:C6pv6Ys
+[7121] 1761043419.412315: Moving ccache MEMORY:C6pv6Ys to FILE:/tmp/krb5cc_0
+[7121] 1761043419.412316: Destroying ccache MEMORY:C6pv6Ys
+root@host1:~#
+root@host1:~#
+
 
 
 
