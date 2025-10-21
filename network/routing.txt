@@ -1,9 +1,16 @@
 Only hosts with multiple network addresses can perform routing. The most basic routing operation is forwarding, which forwards packets received on one network interface to another network interface.
 
 
+
+
+
 Routing is the process of forwarding packets based on the packet source address, the packet destination address, and other relevant information.
 A route is the path taken by a packet. 
 A router is a host or device that performs routing.
+
+
+
+
 
 
 static and dynamic routing
