@@ -1,0 +1,90 @@
+docker compose up
+
+
+
+docker exec router ip addr
+
+
+11: eth0@if881: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether 2e:f8:e9:72:c8:05 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.19.0.2/16 brd 172.19.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+12: eth1@if884: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether 0a:68:d1:66:80:0f brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.18.0.3/16 brd 172.18.255.255 scope global eth1
+       valid_lft forever preferred_lft forever
+
+
+
+
+
+
+
+docker exec host1 ip addr
+
+
+11: eth0@if883: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether 3a:f6:85:df:35:4b brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.19.0.3/16 brd 172.19.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+
+
+
+
+
+
+docker exec host2 ip addr
+
+
+11: eth0@if882: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether b6:f5:ab:60:85:7e brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.18.0.2/16 brd 172.18.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+
+
+
+
+
+
+
+# On host1
+docker exec host1 ip route add 172.18.0.0/16 via 172.19.0.2
+
+# On host2
+docker exec host2 ip route add 172.19.0.0/16 via 172.18.0.3
+
+
+  
+
+docker exec host1 ip route
+
+default via 172.19.0.1 dev eth0
+172.18.0.0/16 via 172.19.0.2 dev eth0
+172.19.0.0/16 dev eth0 proto kernel scope link src 172.19.0.3
+
+
+
+
+
+docker exec host2 ip route
+
+default via 172.18.0.1 dev eth0
+172.18.0.0/16 dev eth0 proto kernel scope link src 172.18.0.2
+172.19.0.0/16 via 172.18.0.3 dev eth0
+
+
+
+
+🧩 Test Routing
+
+From host1:
+
+docker exec host1 ping -c 2 172.18.0.2
+
+
+From host1:
+
+docker exec host2 ping -c 2 172.19.0.3
+
+  
+You should now see successful replies 🎯
