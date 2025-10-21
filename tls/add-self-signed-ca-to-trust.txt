@@ -1,9 +1,51 @@
 # add the self signed certificat ca to trust store in Ubuntu linx
 
-# On Ubuntu/Debian:
 
-cp myca.crt /usr/local/share/ca-certificates/
+
+Answer the questions asked after executing the command. When asked to input a commonName (CN), it should match the hostname of the server.
+
+openssl req -x509 -new -nodes -keyout local-ca.key -out local-ca.crt
+
+
+
+
+
+• Install the CA certificate package
+sudo apt-get install -y ca-certificates
+
+
+
+
+
+
+
+• Copy your certificate to the local CA certificates directory
+
+cp local-ca.crt /usr/local/share/ca-certificates/
+
+
+
+• Add the certificate to your trust store
+
 update-ca-certificates
+
+
+
+• Verify that your certificate is in pem format
+sudo ls /etc/ssl/certs/ | grep local-ca
+
+
+
+
+
+It is important that the certificate file has the .crt extension, otherwise it will not be processed.
+
+
+
+
+
+
+
 
 
 
