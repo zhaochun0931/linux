@@ -32,7 +32,10 @@ sudo krb5_newrealm
 
 
 Let’s create our first principal. Since there is no principal create yet, we need to use kadmin.local, which uses a local UNIX socket to talk to the KDC, and requires root privileges:
+
 sudo kadmin.local
+addprinc user1
+
 
 
 root@host1:~# sudo kadmin.local
@@ -45,6 +48,9 @@ Principal "user1@example.com" created.
 kadmin.local:  quit
 root@host1:~#
 
+
+sudo kadmin.local
+addprinc user1/admin
 
 root@host1:~# sudo kadmin.local
 Authenticating as principal root/admin@example.com with password.
@@ -62,6 +68,21 @@ kadmin.local:  quit
 
 
 systemctl restart krb5-admin-server.service
+
+nc -vz localhost 88
+nc -vz localhost 749
+
+
+
+root@host1:~# nc -vz localhost 88
+Connection to localhost (127.0.0.1) 88 port [tcp/kerberos] succeeded!
+root@host1:~#
+root@host1:~#
+root@host1:~# nc -vz localhost 749
+Connection to localhost (127.0.0.1) 749 port [tcp/kerberos-adm] succeeded!
+root@host1:~#
+
+
 
 
 kinit user1/admin
