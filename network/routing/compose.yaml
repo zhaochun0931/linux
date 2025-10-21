@@ -1,0 +1,50 @@
+services:
+  router:
+    image: ubuntu:22.04
+    container_name: router
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - net1
+      - net2
+    command: >
+      bash -c "
+      apt-get update &&
+      apt-get install -y iproute2 iputils-ping tcpdump &&
+      sysctl -w net.ipv4.ip_forward=1 &&
+      echo 'Router forwarding enabled' &&
+      tail -f /dev/null
+      "
+
+  host1:
+    image: ubuntu:22.04
+    container_name: host1
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - net1
+    command: >
+      bash -c "
+      apt-get update &&
+      apt-get install -y iproute2 iputils-ping &&
+      sleep infinity
+      "
+
+  host2:
+    image: ubuntu:22.04
+    container_name: host2
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - net2
+    command: >
+      bash -c "
+      apt-get update &&
+      apt-get install -y iproute2 iputils-ping &&
+      sleep infinity
+      "
+
+# Let Docker assign subnets dynamically (no static ranges)
+networks:
+  net1:
+  net2:
