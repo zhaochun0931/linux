@@ -1,2 +1,60 @@
+#
 apt install krb5-kdc krb5-admin-server -y
+
+
+
+# ls -al /etc/krb5*
+-rw-r--r-- 1 root root 2152 Oct 20 07:25 /etc/krb5.conf
+-rw------- 1 root root  134 Oct 20 07:17 /etc/krb5.keytab
+
+/etc/krb5kdc:
+total 20
+drwx------   2 root root 4096 Oct 21 07:32 .
+drwxr-xr-x 121 root root 4096 Oct 21 07:31 ..
+-rw-r--r--   1 root root  336 Oct 21 07:32 kadm5.acl
+-rw-r--r--   1 root root  508 Oct 21 07:31 kdc.conf
+-rw-------   1 root root   76 Oct 21 07:32 stash
+
+
+
+
+
+# create the new realm with the kdb5_newrealm utility:
+sudo krb5_newrealm
+
+
+# Configure the Kerberos server
+
+
+
+
+
+
+
+Let’s create our first principal. Since there is no principal create yet, we need to use kadmin.local, which uses a local UNIX socket to talk to the KDC, and requires root privileges:
+sudo kadmin.local
+
+
+root@host1:~# sudo kadmin.local
+Authenticating as principal root/admin@example.com with password.
+kadmin.local:  addprinc user1
+No policy specified for user1@example.com; defaulting to no policy
+Enter password for principal "user1@example.com":
+Re-enter password for principal "user1@example.com":
+Principal "user1@example.com" created.
+kadmin.local:  quit
+root@host1:~#
+
+
+root@host1:~# sudo kadmin.local
+Authenticating as principal root/admin@example.com with password.
+kadmin.local:  addprinc xman/admin
+No policy specified for xman/admin@example.com; defaulting to no policy
+Enter password for principal "xman/admin@example.com":
+Re-enter password for principal "xman/admin@example.com":
+Principal "xman/admin@example.com" created.
+kadmin.local:  quit
+root@host1:~#
+
+
 
