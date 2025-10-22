@@ -1,0 +1,18 @@
+🏛️ What is FIPS?
+
+FIPS are U.S. government standards published by NIST (National Institute of Standards and Technology).
+They define requirements for computer systems used by U.S. federal agencies — mainly around security and interoperability.
+
+🔐 In the context of Linux and cryptography
+
+When you hear “FIPS mode” in Linux, OpenSSL, or kernel settings, it refers to:
+
+FIPS 140-2 (or 140-3) — a standard specifying the security requirements for cryptographic modules.
+
+This means:
+
+Only approved cryptographic algorithms (like AES, SHA-256, RSA) can be used.
+
+Random number generation, encryption, and hashing must follow certified implementations.
+
+Software or hardware that implements cryptography must be validated by NIST.
