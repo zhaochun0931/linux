@@ -1,0 +1,18 @@
+🧱 What is Netfilter
+
+Netfilter is a packet filtering framework built into the Linux kernel.
+It provides hooks inside the network stack that allow kernel modules to inspect, modify, accept, drop, or redirect packets.
+
+You can think of it as the engine behind:
+
+🔥 iptables
+
+🧱 nftables
+
+🐳 Docker’s built-in NAT and bridge networking
+
+🔐 Linux firewalls, NAT gateways, connection tracking, etc.
+
+
+
+
