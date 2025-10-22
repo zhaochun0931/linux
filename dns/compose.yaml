@@ -1,0 +1,33 @@
+services:
+  dns-server:
+    image: internetsystemsconsortium/bind9:9.18
+    container_name: dns-server
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    volumes:
+      - ./zones:/etc/bind/zones
+    command: ["-f", "-g"] # run in foreground
+    networks:
+      - dns-net
+
+  client1:
+    image: ubuntu:22.04
+    container_name: dns-client1
+    privileged: true
+    command: bash -c "apt update && apt install -y dnsutils curl iputils-ping tcpdump iproute2 && sleep infinity"
+    networks:
+      - dns-net
+
+  client2:
+    image: ubuntu:22.04
+    container_name: dns-client2
+    privileged: true
+    command: bash -c "apt update && apt install -y dnsutils curl iputils-ping tcpdump iproute2 && sleep infinity"
+    networks:
+      - dns-net
+
+
+networks:
+  dns-net:
+    driver: bridge
