@@ -15,9 +15,6 @@ mkdir xxx
 chmod 777 xxx
 
 
-cat << done >> /etc/exports
-/root/xxx *(rw,sync,no_subtree_check)
-done
 
 
 
@@ -30,6 +27,9 @@ done
 You can configure the directories to be exported by adding them to the /etc/exports file
 
 
+cat << done >> /etc/exports
+/root/xxx *(rw,sync,no_subtree_check)
+done
 
 
 Apply the new config via:
@@ -46,7 +46,7 @@ sudo exportfs -a
 apt install nfs-common -y
 
 mkdir /root/yyy
-mount host1:/root/xxx /root/yyy
+mount NFS-SERVER:/root/xxx /root/yyy
 
 
 
@@ -86,15 +86,7 @@ For NFS to work, the following ports need to be open:
 
 exportfs -rav
 
-# exportfs -rav
-/tmp/repository
-		172.80.0.226/32(sync,wdelay,hide,no_subtree_check,sec=sys,rw,secure,root_squash,no_all_squash)
-#
 
 
 
-
-
-# nfs client
-sudo mount 172.80.0.217:/tmp/repository/ /tmp/repository/
 
