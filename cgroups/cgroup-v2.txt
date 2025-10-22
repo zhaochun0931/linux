@@ -1,6 +1,13 @@
 apt install cgroup-tools -y
 
 
+stat -fc %T /sys/fs/cgroup/
+
+# stat -fc %T /sys/fs/cgroup/
+cgroup2fs
+#
+
+
 cgcreate -g cpu:/testgroup
 
 tree /sys/fs/cgroup/testgroup
