@@ -1,0 +1,4 @@
+docker compose up
+
+
+docker exec -it dns-client1 dig @dns-server www.google.com
