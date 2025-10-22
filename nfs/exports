@@ -1,1 +1,2 @@
 /tmp/repository 172.80.0.226/32(rw,sync,no_subtree_check)
+/root/xxx       *(sync,no_subtree_check)
