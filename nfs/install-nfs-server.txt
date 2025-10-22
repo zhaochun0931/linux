@@ -1,3 +1,57 @@
+# server
+
+sudo apt install nfs-kernel-server
+
+
+
+sudo systemctl start nfs-kernel-server.service
+
+
+
+
+
+
+# client
+
+apt install nfs-common
+
+
+
+
+
+
+
+# how to configure
+
+You can configure the directories to be exported by adding them to the /etc/exports file
+
+
+
+
+Apply the new config via:
+sudo exportfs -a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # install nfs-utils on both server and client side
 
 yum install nfs-utils -y
