@@ -1,12 +1,19 @@
 apt install cgroup-tools -y
 
 
+
+🧰 3. Example for cgroup v2
+
+
 stat -fc %T /sys/fs/cgroup/
 
 # stat -fc %T /sys/fs/cgroup/
 cgroup2fs
 #
 
+
+
+# Create a test cgroup
 
 cgcreate -g cpu:/testgroup
 
@@ -74,3 +81,28 @@ tree /sys/fs/cgroup/testgroup
 ├── pids.events
 ├── pids.max
 └── pids.peak
+
+
+
+# Set CPU limit (format: <max> <period>)
+# 20000/100000 = 20% CPU limit
+echo "20000 100000" | sudo tee /sys/fs/cgroup/testgroup/cpu.max
+
+
+
+
+# Add a process into the cgroup
+echo $$ | sudo tee /sys/fs/cgroup/testgroup/cgroup.procs
+
+
+✅ Now the shell process (your current terminal) is limited to 20% CPU usage.
+
+You can test it:
+
+yes > /dev/null &
+top
+
+
+You’ll see it capped around 20% CPU.
+
+
