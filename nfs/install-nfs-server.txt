@@ -1,10 +1,22 @@
 # server
 
-sudo apt install nfs-kernel-server
+sudo apt install nfs-kernel-server -y
 
 
 
 sudo systemctl start nfs-kernel-server.service
+
+sudo systemctl status nfs-kernel-server.service
+
+
+
+mkdir xxx
+
+cat << done >> /etc/exports
+/root/xxx *(sync,no_subtree_check)
+done
+
+
 
 
 
@@ -13,7 +25,7 @@ sudo systemctl start nfs-kernel-server.service
 
 # client
 
-apt install nfs-common
+apt install nfs-common -y
 
 
 
