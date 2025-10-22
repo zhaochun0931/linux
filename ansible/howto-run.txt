@@ -4,3 +4,7 @@ docker compose up
 docker exec -it ansible bash
 
 ansible --version
+
+ansible localhost -m ping
+
+
