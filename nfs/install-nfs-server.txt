@@ -12,20 +12,12 @@ sudo systemctl status nfs-kernel-server.service
 
 mkdir xxx
 
+chmod 777 xxx
+
+
 cat << done >> /etc/exports
-/root/xxx *(sync,no_subtree_check)
+/root/xxx *(rw,sync,no_subtree_check)
 done
-
-
-
-
-
-
-
-
-# client
-
-apt install nfs-common -y
 
 
 
@@ -49,24 +41,17 @@ sudo exportfs -a
 
 
 
+# client
+
+apt install nfs-common -y
+
+mkdir /root/yyy
+mount host1:/root/xxx /root/yyy
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-# install nfs-utils on both server and client side
-
-yum install nfs-utils -y
 
 
 
@@ -93,13 +78,6 @@ For NFS to work, the following ports need to be open:
 
 
 
-
-
-
-vi /etc/exports
-
-
-/tmp/repository client_ip/32(rw,sync,no_subtree_check)
 
 
 
