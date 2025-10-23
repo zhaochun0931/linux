@@ -19,3 +19,19 @@ find — file name filtering
 
 
 
+🧠 Regex Syntax Basics
+
+| Symbol  | Meaning               | Example                                      |      |                                    |
+| ------- | --------------------- | -------------------------------------------- | ---- | ---------------------------------- |
+| `.`     | Any single character  | `c.t` matches `cat`, `cot`, `cut`            |      |                                    |
+| `*`     | 0 or more repetitions | `lo*l` matches `ll`, `lol`, `loool`          |      |                                    |
+| `+`     | 1 or more repetitions | `lo+l` matches `lol`, `lool` (but not `ll`)  |      |                                    |
+| `?`     | 0 or 1 repetition     | `colou?r` matches `color` or `colour`        |      |                                    |
+| `^`     | Start of line         | `^Hello` matches lines starting with “Hello” |      |                                    |
+| `$`     | End of line           | `world$` matches lines ending in “world”     |      |                                    |
+| `[]`    | Character class       | `[aeiou]` matches any vowel                  |      |                                    |
+| `[^ ]`  | Negated class         | `[^0-9]` matches any non-digit               |      |                                    |
+| `()`    | Grouping              | `(abc)+` matches one or more `abc` sequences |      |                                    |
+| `       | `                     | OR                                           | `cat | dog` matches either “cat” or “dog” |
+| `{m,n}` | Range                 | `a{2,4}` matches `aa`, `aaa`, `aaaa`         |      |                                    |
+| `\`     | Escape special chars  | `\$` matches `$` literally                   |      |                                    |
