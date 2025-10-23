@@ -1,0 +1,10 @@
+services:
+  cpu_tester:ker Desktop   o View Config   w Enable Watch
+    image: ubuntu:24.04
+    container_name: cpu_test
+    command: ["bash", "-c", "apt update >/dev/null 2>&1 && apt install -y stress-ng >/dev/null 2>&1 && stress-ng --cpu 1 --timeout 60s"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"   # Limit to 30% of one CPU
+    tty: true
