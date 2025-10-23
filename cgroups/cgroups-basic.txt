@@ -18,6 +18,26 @@ Used by default in newer Linux distributions (e.g., RHEL 8+, Ubuntu 20.04+).
 
 
 
+
+🧩 Step 0 — Check your cgroup version
+
+# mount | grep cgroup
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot)
+#
+
+
+If you see multiple entries like cgroup on /sys/fs/cgroup/memory, cgroup on /sys/fs/cgroup/cpu → you’re on v1.
+
+
+
+
+
+
+
+
+
+
+
 To check which version is in use:
 
 stat -fc %T /sys/fs/cgroup/
