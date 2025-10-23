@@ -1,4 +1,5 @@
 🧠 1. Basic Syntax
+
 if [ condition ]; then
     # commands if true
 else
@@ -13,6 +14,14 @@ if [ "$USER" = "root" ]; then
 else
     echo "You are not root"
 fi
+
+
+
+
+
+💡 3. Using Double Brackets
+
+[[ ... ]] is more powerful — it allows regex, pattern matching, and no need to quote variables usually.
 
 
 
