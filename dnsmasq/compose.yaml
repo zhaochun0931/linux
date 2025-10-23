@@ -1,0 +1,32 @@
+services:
+  dnsmasq:
+    image: jpillora/dnsmasq
+    container_name: dnsmasq
+    command:
+      - --log-facility=-
+      - --no-resolv
+      - --cache-size=1000
+      - --server=8.8.8.8
+      - --address=/myapp.local/10.10.10.100
+      - --log-queries
+    networks:
+      testnet:
+        ipv4_address: 10.10.10.2
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+
+  client:
+    image: busybox
+    container_name: dns-client
+    command: sh -c "sleep infinity"
+    networks:
+      testnet:
+        ipv4_address: 10.10.10.3
+
+networks:
+  testnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.10.0/24
