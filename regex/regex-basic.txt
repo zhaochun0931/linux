@@ -1,0 +1,21 @@
+🧩 What is a Regular Expression (regex)?
+
+A regular expression (often abbreviated regex or regexp) is a pattern used to match text — for searching, extracting, replacing, or validating strings.
+
+In Linux, regex is heavily used in tools like:
+
+
+
+grep — search for text patterns
+
+sed — stream editor (substitute, replace)
+
+awk — pattern scanning and processing
+
+perl — powerful text manipulation
+
+find — file name filtering
+
+
+
+
