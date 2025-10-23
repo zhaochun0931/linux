@@ -1,0 +1,29 @@
+services:
+  cpu_low:
+    build: .
+    container_name: cpu_low
+    tty: true
+    command: >
+      bash -c "
+      echo 'Starting low CPU container (20% limit)...' &&
+      stress-ng --cpu 1 --timeout 60s &
+      sleep 3 &&
+      pidstat -u 1
+      "
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+
+  cpu_high:
+    build: .
+    container_name: cpu_high
+    tty: true
+    command: >
+      bash -c "
+      echo 'Starting high CPU container (unlimited)...' &&
+      stress-ng --cpu 1 --timeout 60s &
+      sleep 3 &&
+      pidstat -u 1
+      "
+
