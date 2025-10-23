@@ -24,6 +24,12 @@ fi
 [[ ... ]] is more powerful — it allows regex, pattern matching, and no need to quote variables usually.
 
 
+if [[ $var == "abc" || $var == "xyz" ]]; then
+    echo "var is abc or xyz"
+fi
+
+
+
 
 
 🧠 Pro Tip:
