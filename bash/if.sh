@@ -13,3 +13,11 @@ if [ "$USER" = "root" ]; then
 else
     echo "You are not root"
 fi
+
+
+
+
+🧠 Pro Tip:
+
+Always put spaces around brackets [ and ].
+These are actually separate commands, not part of the shell syntax.
