@@ -106,3 +106,33 @@ top
 You’ll see it capped around 20% CPU.
 
 
+
+
+
+
+
+
+
+
+
+
+🧩 5. How Docker uses this
+
+Docker automatically sets these when you specify:
+
+deploy:
+  resources:
+    limits:
+      cpus: "0.2"
+
+
+On a cgroup v2 host, that turns into:
+
+cpu.max = 20000 100000
+
+
+On cgroup v1, it becomes:
+
+cpu.cfs_quota_us = 20000
+cpu.cfs_period_us = 100000
+
