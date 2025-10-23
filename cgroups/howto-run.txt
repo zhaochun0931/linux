@@ -1,0 +1,23 @@
+docker compose up
+
+docker exec -it cpu_test bash
+
+
+
+cat /sys/fs/cgroup/cpu.max
+
+cat /sys/fs/cgroup/cpu.weight
+
+
+
+
+root@f41f4913a6fa:/# cat /sys/fs/cgroup/cpu.max
+30000 100000
+root@f41f4913a6fa:/#
+root@f41f4913a6fa:/#
+root@f41f4913a6fa:/#
+root@f41f4913a6fa:/# cat /sys/fs/cgroup/cpu.weight
+100
+root@f41f4913a6fa:/#
+
+
