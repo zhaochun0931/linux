@@ -33,6 +33,42 @@ $
 
 
 
+
+
+
+Swap Control
+
+Enable or disable swap:
+
+sudo swapon /dev/sdX
+sudo swapoff /dev/sdX
+
+
+Adjust swap tendency:
+
+cat /proc/sys/vm/swappiness
+sudo sysctl -w vm.swappiness=10
+
+
+0 = avoid swap
+
+100 = aggressively use swap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 swappiness is a kernel parameter that controls how aggressively Linux uses swap space.
 
 It’s a value between 0 and 100:
