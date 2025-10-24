@@ -8,3 +8,14 @@ ansible --version
 ansible localhost -m ping
 
 
+
+
+ssh-keygen -t rsa
+
+sshpass -p ansible ssh-copy-id -o StrictHostKeyChecking=no ansible@node1
+sshpass -p ansible ssh-copy-id -o StrictHostKeyChecking=no ansible@node2
+
+
+
+
+
