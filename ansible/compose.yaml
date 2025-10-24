@@ -1,18 +1,54 @@
 services:
   ansible:
+    image: ubuntu-ansible:latest
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ansible 
+    container_name: ansible
+    hostname: ansible
     tty: true
     stdin_open: true
-    command: /bin/bash
-    volumes:
-      - ./data:/data
     networks:
       - ubuntu-net
+    ports:
+      - "2221:22"
+    volumes:
+      - ./data:/data
 
+  node1:
+    image: ubuntu-ansible:latest
+    container_name: node1
+    hostname: node1
+    tty: true
+    stdin_open: true
+    networks:
+      - ubuntu-net
+    ports:
+      - "2222:22"
+
+  node2:
+    image: ubuntu-ansible:latest
+    container_name: node2
+    hostname: node2
+    tty: true
+    stdin_open: true
+    networks:
+      - ubuntu-net
+    ports:
+      - "2223:22"
+
+
+  node3:
+    image: ubuntu-ansible:latest
+    container_name: node3
+    hostname: node3
+    tty: true
+    stdin_open: true
+    networks:
+      - ubuntu-net
+    ports:
+      - "2224:22"
+      
 networks:
   ubuntu-net:
     driver: bridge
-
