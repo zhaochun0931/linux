@@ -31,6 +31,20 @@ fi
 
 
 
+🚀 8. With Command Exit Codes
+
+You can use if directly with commands — no brackets:
+
+if ping -c1 8.8.8.8 &>/dev/null; then
+    echo "Network OK"
+else
+    echo "Network down"
+fi
+
+
+
+
+
 
 🧠 Pro Tip:
 
