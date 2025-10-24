@@ -1,3 +1,13 @@
+🧠 1. The Core Concepts
+
+Linux memory management is virtual memory–based, meaning every process thinks it has a large, contiguous address space.
+Underneath, the kernel maps these virtual pages to physical RAM (and swap).
+
+
+
+
+
+
 1️⃣ Memory Page Basics
 
 Page: smallest unit of memory management in Linux.
