@@ -1,22 +1,23 @@
-FROM python:3
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
 
-# Install Python, pip, and common utilities
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    curl \
-    vim \
-    net-tools \
-    iputils-ping \
-    iproute2 \
-    dnsutils \
-    sshpass \
-    git \
-    && pip3 install --no-cache-dir ansible \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+# Install required packages
+RUN apt update && \
+    apt install -y openssh-server sudo python3 iputils-ping sshpass vim ansible && \
+    rm -rf /var/lib/apt/lists/* && \
+    mkdir /var/run/sshd
 
-WORKDIR /data
-CMD ["/bin/bash"]
+# Create ansible user
+RUN useradd -m -s /bin/bash ansible && \
+    echo "ansible:ansible" | chpasswd && \
+    usermod -aG sudo ansible && \
+    echo "ansible ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
+    ssh-keygen -t rsa
 
+# Expose SSH port
+EXPOSE 22
+
+# Start SSH by default
+CMD ["/usr/sbin/sshd", "-D"]
