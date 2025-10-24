@@ -16,7 +16,7 @@ sshpass -p ansible ssh-copy-id -o StrictHostKeyChecking=no ansible@node1
 sshpass -p ansible ssh-copy-id -o StrictHostKeyChecking=no ansible@node2
 
 
-ansible -i hosts node_group -m ping
+ansible -i hosts.ini node_group -m ping
 
 
 
