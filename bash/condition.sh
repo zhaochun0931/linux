@@ -71,3 +71,55 @@ Or, with double brackets:
 
 
 
+
+
+🧩 1. test Command
+
+test is an external command (a binary usually located at /usr/bin/test) used to evaluate expressions.
+
+
+If the condition is true, the exit code is 0; if false, it’s 1.
+You can check it via $?.
+
+
+
+
+
+
+
+🧱 2. [ ] — test with shell syntax sugar
+
+[ ] is just a synonym for test, but implemented as a shell builtin.
+They behave the same, except that you must add spaces inside the brackets.
+
+
+
+❗ Common pitfalls:
+
+You need spaces after [ and before ]
+
+You must quote variables to avoid syntax errors:
+
+[ "$var" = "foo" ]
+
+
+
+
+
+🧠 3. [[ ]] — modern Bash conditional expression
+
+[[ ... ]] is a Bash keyword (not an external command or simple builtin).
+It offers enhanced syntax and safety, and is recommended for Bash scripts.
+
+Advantages:
+
+✅ No need to quote variables (safe from word-splitting)
+✅ Supports pattern matching (==, !=, =~)
+✅ Supports logical operators &&, || directly inside
+
+Example:
+
+name="xiaoming"
+if [[ $name == xiao* ]]; then
+  echo "Pattern match works!"
+fi
