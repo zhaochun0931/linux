@@ -1,0 +1,160 @@
+🧱 Final Goal Topology
+[testns]
+ ├─ veth-ns  → 192.168.100.2
+ │
+ │ (veth pair)
+ │
+ └─ veth-host (on host) → br0 (bridge) → eth0 → Internet
+
+
+You’ll end up with full Internet access from testns.
+
+🧰 Step-by-Step Setup
+1️⃣ Clean up old setup (optional but recommended)
+sudo ip netns del testns 2>/dev/null
+sudo ip link del veth-host 2>/dev/null
+sudo ip link del br0 2>/dev/null
+sudo rm -rf /var/run/netns/testns
+sudo mkdir -p /var/run/netns
+
+2️⃣ Create a new namespace
+sudo ip netns add testns
+ip netns list
+
+
+3️⃣ Create a veth pair
+sudo ip link add veth-host type veth peer name veth-ns
+
+
+This creates two connected interfaces.
+
+4️⃣ Move one end into the namespace
+sudo ip link set veth-ns netns testns
+
+
+Now:
+
+veth-host → host
+
+veth-ns → inside namespace
+
+5️⃣ Create and configure the bridge on host
+sudo ip link add name br0 type bridge
+sudo ip addr add 192.168.100.1/24 dev br0
+sudo ip link set br0 up
+
+
+Attach the host side of veth to the bridge:
+
+sudo ip link set veth-host master br0
+sudo ip link set veth-host up
+
+
+
+6️⃣ Configure the namespace network
+
+Assign IP and bring interfaces up inside testns:
+
+sudo ip netns exec testns ip addr add 192.168.100.2/24 dev veth-ns
+sudo ip netns exec testns ip link set veth-ns up
+sudo ip netns exec testns ip link set lo up
+
+
+Add default route:
+
+sudo ip netns exec testns ip route add default via 192.168.100.1
+
+7️⃣ Enable IP forwarding on the host
+sudo sysctl -w net.ipv4.ip_forward=1
+
+
+Make it permanent (optional):
+
+echo "net.ipv4.ip_forward=1" | sudo tee -a /etc/sysctl.conf
+
+8️⃣ Add NAT (MASQUERADE) for outbound traffic
+
+Find your Internet interface (e.g. eth0, ens33, enp0s3, etc.):
+
+ip route get 8.8.8.8 | awk '{print $5}'
+
+
+# ip route get 8.8.8.8 | awk '{print $5}'
+ens33
+
+#
+
+
+
+Assume it’s ens33. Then:
+
+sudo iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o ens33 -j MASQUERADE
+
+
+
+
+9️⃣ Test connectivity
+
+Inside the namespace:
+
+# should succeed (bridge)
+sudo ip netns exec testns ping -c 2 192.168.100.1
+
+# should succeed (Internet)
+sudo ip netns exec testns ping -c 2 8.8.8.8     
+
+
+✅ If both work — success!
+Your namespace now has Internet access just like a Docker container.
+
+
+
+
+
+
+
+
+
+
+
+
+
+[root@data75 ~]# sudo ip netns exec testns bash
+[root@data75 ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+22: veth-ns@if23: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether f2:ee:5b:8c:95:01 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 192.168.100.2/24 scope global veth-ns
+       valid_lft forever preferred_lft forever
+    inet6 fe80::f0ee:5bff:fe8c:9501/64 scope link
+       valid_lft forever preferred_lft forever
+[root@data75 ~]# ip route
+default via 192.168.100.1 dev veth-ns
+192.168.100.0/24 dev veth-ns proto kernel scope link src 192.168.100.2
+[root@data75 ~]#
+[root@data75 ~]#
+[root@data75 ~]#
+[root@data75 ~]# ping -c 2 192.168.100.1
+PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
+64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=0.172 ms
+64 bytes from 192.168.100.1: icmp_seq=2 ttl=64 time=0.139 ms
+
+--- 192.168.100.1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1049ms
+rtt min/avg/max/mdev = 0.139/0.155/0.172/0.020 ms
+[root@data75 ~]#
+[root@data75 ~]#
+[root@data75 ~]# ping -c 2 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=107 time=7.21 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=107 time=7.68 ms
+
+--- 8.8.8.8 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 7.207/7.441/7.676/0.249 ms
+[root@data75 ~]#
