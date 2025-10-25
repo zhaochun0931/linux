@@ -1,0 +1,137 @@
+In Linux, a namespace is a powerful kernel feature that isolates system resources for different processes — allowing multiple processes (or containers) to run as if they each have their own independent instance of the system.
+
+
+
+Network namespaces (netns) in Linux allow you to create isolated network environments within a single host. Each namespace has its own set of network interfaces, routing tables, and firewall rules, which can be very useful for containerization, testing, or isolating network configurations.
+
+
+
+| Namespace   | Kernel Flag       | What It Isolates                                   | Example Command                               |
+| ----------- | ----------------- | -------------------------------------------------- | --------------------------------------------- |
+| **Mount**   | `CLONE_NEWNS`     | Mount points (filesystem view)                     | `unshare -m /bin/bash`                        |
+| **PID**     | `CLONE_NEWPID`    | Process IDs                                        | `unshare -p --fork /bin/bash`                 |
+| **Network** | `CLONE_NEWNET`    | Network interfaces, routing tables, iptables, etc. | `unshare -n /bin/bash`                        |
+| **UTS**     | `CLONE_NEWUTS`    | Hostname and NIS domain name                       | `unshare -u /bin/bash`                        |
+| **IPC**     | `CLONE_NEWIPC`    | System V IPC and POSIX message queues              | `unshare -i /bin/bash`                        |
+| **User**    | `CLONE_NEWUSER`   | User and group IDs mapping                         | `unshare -U /bin/bash`                        |
+| **Cgroup**  | `CLONE_NEWCGROUP` | Cgroup root (control groups hierarchy)             | `unshare -C /bin/bash`                        |
+| **Time**    | `CLONE_NEWTIME`   | System clock and boot time offsets                 | `unshare --time /bin/bash` (since kernel 5.6) |
+
+
+
+🧠 Example: Simple Namespace Isolation
+
+
+
+Now inside that shell:
+
+
+🧱 1. What You Did
+
+sudo unshare -p -n --fork /bin/bash
+
+
+This created:
+
+A new PID namespace (-p)
+
+A new network namespace (-n)
+
+And forked into a new process (--fork)
+
+So inside the shell you opened, you’re now “PID 1” of a tiny new system that only sees itself.
+
+
+
+The ps relies on /proc, which lists processes — but your new PID namespace doesn’t automatically get its own /proc mounted.
+
+✅ Fix: Mount /proc in the namespace
+
+Inside your unshare shell, run:
+
+mount -t proc proc /proc
+
+
+
+
+
+root@host1:~# ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   7312  3968 pts/1    S    00:27   0:00 /bin/bash
+root          14  0.0  0.1  10716  4096 pts/1    R+   00:31   0:00 ps aux
+root@host1:~#
+
+
+
+
+
+
+So in this namespace, your /bin/bash is PID 1, like an init process in a container.
+
+
+
+
+
+
+🌐 3. Why ip link show Only Shows lo
+
+Because your new network namespace is completely isolated — it starts with only the loopback interface (lo), and it’s down by default.
+
+You can bring it up:
+
+ip link set lo up
+
+
+Now you can ping 127.0.0.1 successfully — but you still have no external connectivity (no eth0, etc.) unless you manually connect it (e.g., using a veth pair).
+
+
+
+
+
+ip link show
+
+
+root@host1:~# ip link show
+1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+root@host1:~#
+root@host1:~#
+
+
+
+
+
+
+🧩 4. Why hostname Didn’t Change
+
+You didn’t create a UTS namespace, so the hostname is still the same as the host.
+If you add -u, you’ll isolate the hostname too:
+
+sudo unshare -p -n -u --fork /bin/bash
+hostname newname
+
+
+Now hostname inside shows newname, but the host still shows host1.
+
+
+
+
+You’ve created a tiny isolated world inside your Linux system — similar to what Docker or Kubernetes does under the hood!
+
+
+
+
+
+
+
+| Command                    | Purpose                  | Result                            |
+| -------------------------- | ------------------------ | --------------------------------- |
+| `unshare -p -n`            | New PID & Net namespaces | Isolated PID space and no network |
+| `mount -t proc proc /proc` | Fixes ps error           | Enables `ps aux`                  |
+| `ip link set lo up`        | Activates loopback       | `ping 127.0.0.1` works            |
+| `unshare -u`               | Adds UTS namespace       | Allows different hostname         |
+
+
+
+
+
