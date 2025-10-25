@@ -1,0 +1,105 @@
+👏 Let’s walk through how to connect your unshared network namespace to the host or another namespace — exactly what Docker does behind the scenes with veth pairs and bridges.
+
+
+
+
+🧱 Goal
+
+We’ll:
+
+Create a new network namespace manually.
+
+Add a veth pair — one end inside the namespace, one end on the host.
+
+Bring both sides up and test connectivity with ping.
+
+
+
+
+
+
+
+
+🧰 Step-by-Step Setup
+
+
+1️⃣ Create a new namespace
+
+Instead of using unshare, we can make a persistent namespace for easier testing:
+
+sudo ip netns add testns
+
+ip netns list
+
+This creates a network namespace at /var/run/netns/testns.
+
+
+
+
+2️⃣ Create a veth pair
+
+A veth pair acts like a virtual cable: packets sent into one appear on the other.
+
+sudo ip link add veth-host type veth peer name veth-ns
+
+
+Now you have two interfaces:
+
+veth-host (for the host side)
+
+veth-ns (will go into the namespace)
+
+
+
+
+3️⃣ Move one end into the namespace
+sudo ip link set veth-ns netns testns
+
+
+Now:
+
+On the host, you have veth-host
+
+Inside testns, you have veth-ns
+
+
+
+
+4️⃣ Assign IP addresses
+
+On the host:
+sudo ip addr add 192.168.0.1/24 dev veth-host
+sudo ip link set veth-host up
+
+
+Inside the namespace:
+sudo ip netns exec testns ip addr add 192.168.0.2/24 dev veth-ns
+sudo ip netns exec testns ip link set veth-ns up
+sudo ip netns exec testns ip link set lo up
+
+
+
+
+
+5️⃣ Test connectivity
+
+From the host:
+
+ping -c 5 192.168.0.2
+
+
+From the namespace:
+
+sudo ip netns exec testns ping -c 5 192.168.0.1
+
+
+✅ You should see successful pings both ways — that means the namespace and host are connected via a private virtual link.
+
+
+
+
+
+
+
+
+
