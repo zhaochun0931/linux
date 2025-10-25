@@ -1,0 +1,121 @@
+     ┌──────────┐        ┌────────────┐        ┌──────────┐
+     │  ns1     │<--veth-│   bridge   │--veth->│  ns2     │
+     │10.0.0.11 │        │br0:10.0.0.1│        │10.0.0.12 │
+     └──────────┘        └────────────┘        └──────────┘
+                                  │
+                               (NAT to Internet)
+
+
+
+
+
+
+🧩 Step 1 — Create two namespaces
+sudo ip netns add ns1
+sudo ip netns add ns2
+
+
+Check:
+
+sudo ip netns list
+
+
+
+
+
+🔌 Step 2 — Create a bridge and veth pairs
+
+We’ll make one veth pair per namespace.
+
+sudo ip link add veth-ns1 type veth peer name veth-br1
+sudo ip link add veth-ns2 type veth peer name veth-br2
+
+
+Create a bridge br0:
+
+sudo ip link add name br0 type bridge
+
+
+Add bridge interfaces:
+
+sudo ip link set br0 up
+sudo ip addr add 10.0.0.1/24 dev br0
+sudo ip link set veth-br1 master br0
+sudo ip link set veth-br2 master br0
+sudo ip link set veth-br1 up
+sudo ip link set veth-br2 up
+
+🌍 Step 3 — Move veth peers into namespaces
+sudo ip link set veth-ns1 netns ns1
+sudo ip link set veth-ns2 netns ns2
+
+⚙️ Step 4 — Configure interfaces in each namespace
+🟢 ns1
+sudo ip netns exec ns1 ip addr add 10.0.0.11/24 dev veth-ns1
+sudo ip netns exec ns1 ip link set veth-ns1 up
+sudo ip netns exec ns1 ip link set lo up
+sudo ip netns exec ns1 ip route add default via 10.0.0.1
+
+🔵 ns2
+sudo ip netns exec ns2 ip addr add 10.0.0.12/24 dev veth-ns2
+sudo ip netns exec ns2 ip link set veth-ns2 up
+sudo ip netns exec ns2 ip link set lo up
+sudo ip netns exec ns2 ip route add default via 10.0.0.1
+
+🧪 Step 5 — Test connectivity
+
+Ping between namespaces:
+
+sudo ip netns exec ns1 ping -c 2 10.0.0.12
+sudo ip netns exec ns2 ping -c 2 10.0.0.11
+
+
+✅ Should both succeed.
+
+🌐 Step 6 — Enable Internet access via NAT
+
+Enable IP forwarding:
+
+echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
+
+
+Add NAT rule:
+
+sudo iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -j MASQUERADE
+
+
+Now test from ns1 or ns2:
+
+sudo ip netns exec ns1 ping -c 3 8.8.8.8
+sudo ip netns exec ns2 ping -c 3 1.1.1.1
+
+
+✅ Internet access should now work.
+
+🧰 Step 7 — Try a demo service
+
+Run a web server in ns1:
+
+sudo ip netns exec ns1 python3 -m http.server 8080 &
+
+
+From ns2, test it:
+
+sudo ip netns exec ns2 curl 10.0.0.11:8080
+
+
+You should see:
+
+Directory listing for /
+
+
+
+
+🧹 Step 8 — Clean up
+
+When finished:
+
+sudo ip netns del ns1
+sudo ip netns del ns2
+sudo ip link del br0
+sudo iptables -t nat -D POSTROUTING -s 10.0.0.0/24 -j MASQUERADE
