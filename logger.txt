@@ -2,6 +2,15 @@ logger test
 
 
 
+# ubuntu
 tail -f /var/log/syslog
+
+
+
+
+# redhat
+tail -f /var/log/messages
+
+
 
 May 11 00:29:37 g11 root: test
