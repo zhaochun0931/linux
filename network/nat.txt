@@ -170,6 +170,49 @@ This shows the SNAT mapping table entry.
 
 
 
+🧩 Lab 3: NAT and Internet Access
+
+🧱 Goal: Let your “private” namespace reach the Internet via your host.
+
+sudo ip netns add client
+sudo ip link add vethc type veth peer name vethc-host
+sudo ip link set vethc netns client
+
+# Assign IPs
+sudo ip -n client addr add 192.168.100.2/24 dev vethc
+sudo ip addr add 192.168.100.1/24 dev vethc-host
+
+sudo ip -n client link set vethc up
+sudo ip link set vethc-host up
+sudo ip -n client link set lo up
+
+# Enable IP forwarding on host
+sudo sysctl -w net.ipv4.ip_forward=1
+
+# Set default route for client
+sudo ip -n client route add default via 192.168.100.1
+
+# Masquerade (NAT) on the host
+sudo iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -j MASQUERADE
+
+# Test external ping
+sudo ip netns exec client ping -c 2 8.8.8.8
+
+
+✅ Result: You’ve just simulated a NAT gateway (like your home router).
+The namespace client is now browsing through your host’s real Internet.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
