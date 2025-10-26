@@ -30,6 +30,47 @@ export EDITOR=vi
 
 
 
+🧭 Option 2 — Add sudo rights manually (CentOS / RHEL / Fedora)
+
+Those use the wheel group instead of sudo:
+
+sudo usermod -aG wheel bob
+
+
+Then check:
+
+groups bob
+
+
+You should see:
+
+bob : bob wheel
+
+Verify:
+
+If wheel is not enabled in /etc/sudoers, open it safely using visudo:
+
+sudo visudo
+
+
+Then make sure this line is uncommented:
+
+%wheel  ALL=(ALL)       ALL
+
+
+Save and exit.
+
+
+
+
+
+
+
+
+
+
+
+
 🧭 Option 3 — Grant sudo to a specific user (fine-grained)
 
 If you don’t want to use groups:
