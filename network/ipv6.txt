@@ -1,0 +1,23 @@
+🧾 Enable IPv6 in a namespace
+
+
+
+sudo ip netns add v6test
+sudo ip link add veth0 type veth peer name veth1
+sudo ip link set veth0 up
+sudo ip link set veth1 netns v6test
+
+sudo ip -n v6test link set lo up
+sudo ip -n v6test addr add fd00::1/64 dev veth1
+sudo ip -n v6test link set veth1 up
+
+
+sudo ip netns exec v6test ping6 fd00::1
+
+
+
+
+
+# clean up
+
+sudo ip netns delete v6test
