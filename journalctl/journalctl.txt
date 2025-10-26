@@ -1,0 +1,24 @@
+🧩 What is journalctl
+
+Purpose: View and query the systemd journal, which stores logs from:
+
+Kernel (dmesg)
+
+System services (systemd, nginx, docker, etc.)
+
+User applications (if they log to stdout/stderr)
+
+Storage: Logs are usually in binary format, located in:
+
+/run/log/journal/ → volatile (lost on reboot)
+
+/var/log/journal/ → persistent
+
+
+Unlike plain text logs in /var/log/syslog or /var/log/messages, journalctl can filter by time, service, priority, or boot session.
+
+
+
+
+
+
