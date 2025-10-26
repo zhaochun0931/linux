@@ -1,0 +1,17 @@
+# Create a new namespace (isolated network stack)
+sudo ip netns add host1
+
+# Assign a veth pair (virtual Ethernet cable)
+sudo ip link add veth0 type veth peer name veth0-host1
+sudo ip link set veth0-host1 netns host1
+
+# Assign IP addresses
+sudo ip addr add 10.0.0.1/24 dev veth0
+sudo ip -n host1 addr add 10.0.0.2/24 dev veth0-host1
+
+# Bring interfaces up
+sudo ip link set veth0 up
+sudo ip -n host1 link set veth0-host1 up
+
+# Test connectivity
+sudo ip netns exec host1 ping -c 2 10.0.0.1
