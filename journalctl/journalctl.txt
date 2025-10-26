@@ -65,9 +65,11 @@ sudo journalctl -p err
 sudo journalctl -p warning
 
 
-🔹 Priority levels:
+Priority levels:
 
 emerg, alert, crit, err, warning, notice, info, debug
+
+
 
 🔹 Filter by boot
 
