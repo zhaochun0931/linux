@@ -1,19 +1,30 @@
-useradd -m username
-
-sudo useradd -m -s /bin/bash newuser
+useradd user1
 
 
--m creates the home directory.
-
--s specifies the user’s shell
-
-
-
-# useradd xiaoming
-# 
-# su - xiaoming
+# su - user1
 su: warning: cannot change directory to /home/xiaoming: No such file or directory
 xiaoming@gf1:/root$
+
+
+
+
+
+
+# -m Create the user's home directory if it does not exist. 
+
+useradd -m user2
+
+
+
+# -s specifies the user’s shell
+
+useradd -m -s /bin/bash user3
+
+
+
+
+
+
 
 
 useradd is a low-level utility that directly interfaces with system configuration files.  It performs minimal setup by creating a new user account but does not handle some of the additional setup tasks by default. After creating the account with useradd, you might need to run additional commands to set a password 
