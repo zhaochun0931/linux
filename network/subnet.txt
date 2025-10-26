@@ -66,3 +66,7 @@ Host1 ↔ Router ↔ Host2 — all isolated in your machine.
 
 
 
+
+ip -all netns delete
+
+
