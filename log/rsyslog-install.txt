@@ -1,3 +1,9 @@
+Most modern Linux distributions actually use a new-and-improved daemon called rsyslog. rsyslog is capable of forwarding logs to remote servers.
+
+
+
+
+
 #install
   
 add-apt-repository ppa:adiscon/v8-stable
