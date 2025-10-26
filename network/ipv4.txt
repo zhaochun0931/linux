@@ -29,3 +29,6 @@ sudo ip netns exec host1 ping -c 2 10.0.0.1
 
 
 
+
+# clean up 
+ip -all netns delete
