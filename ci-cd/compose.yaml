@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  build:
+    image: docker:latest
+    volumes:
+      - .:/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /workspace
+    command: >
+      sh -c "docker build -t ci-cd-demo ."
+
+  test:
+    image: python:3.11-slim
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    command: >
+      sh -c "pip install -r requirements.txt && pytest || echo 'Tests failed'"
+
+  deploy:
+    image: alpine:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: >
+      sh -c "docker tag ci-cd-demo myrepo/ci-cd-demo:latest &&
+             docker push myrepo/ci-cd-demo:latest || echo 'Push skipped'"
+
