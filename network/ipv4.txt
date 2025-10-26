@@ -1,3 +1,11 @@
+🧩 Lab 1: IP Addressing and Interfaces
+
+🧱 Goal: Understand how IPv4 addresses are attached to interfaces.
+
+
+
+
+
 # Create a new namespace (isolated network stack)
 sudo ip netns add host1
 
@@ -15,3 +23,9 @@ sudo ip -n host1 link set veth0-host1 up
 
 # Test connectivity
 sudo ip netns exec host1 ping -c 2 10.0.0.1
+
+
+✅ Result: You just created two “machines” connected by a virtual cable — both using IPv4.
+
+
+
