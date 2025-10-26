@@ -21,4 +21,64 @@ Unlike plain text logs in /var/log/syslog or /var/log/messages, journalctl can f
 
 
 
+🔹 Basic Usage
+
+🔹 View the entire journal
+
+journalctl
+
+
+
+
+journalctl -f
+
+journalctl -n 100
+
+
+
+
+
+🔹 Filter by service
+
+sudo journalctl -u ssh
+sudo journalctl -u docker
+
+
+-u = systemd unit (service)
+
+
+
+
+
+
+
+
+
+🔹 Filter by time
+
+sudo journalctl --since "2025-10-25 09:00" --until "2025-10-25 10:00"
+
+
+🔹 Filter by priority
+
+sudo journalctl -p err
+sudo journalctl -p warning
+
+
+🔹 Priority levels:
+
+emerg, alert, crit, err, warning, notice, info, debug
+
+🔹 Filter by boot
+
+sudo journalctl -b       # current boot
+sudo journalctl -b -1    # previous boot
+
+
+🔹 Output formats
+
+sudo journalctl -o short  # default
+sudo journalctl -o json    # JSON output
+sudo journalctl -o cat     # only message text
+
 
