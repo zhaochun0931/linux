@@ -1,3 +1,19 @@
+| Feature       | IPv4                        | IPv6                            |
+| ------------- | --------------------------- | ------------------------------- |
+| Address size  | 32-bit (e.g. `192.168.1.1`) | 128-bit (e.g. `2001:db8::1`)    |
+| Address count | ~4.3 billion                | ~3.4×10³⁸ (virtually unlimited) |
+| Header size   | Variable                    | Fixed (simpler)                 |
+| Fragmentation | Done by routers             | Done only by sender             |
+| Broadcast     | Supported                   | Replaced by multicast           |
+| NAT           | Common                      | Typically not needed            |
+| Autoconfig    | DHCPv4                      | SLAAC (stateless) or DHCPv6     |
+| Security      | Optional                    | IPsec built in                  |
+| Loopback      | `127.0.0.1`                 | `::1`                           |
+
+
+
+
+
 🧾 Enable IPv6 in a namespace
 
 
