@@ -1,0 +1,13 @@
+🧠 What Is TCP Flow Control?
+
+Flow control is how TCP prevents a fast sender from overwhelming a slow receiver.
+
+It ensures that the sender only transmits as much data as the receiver can handle.
+
+
+
+⚙️ The Key Mechanism: The Receive Window (rwnd)
+
+Each TCP segment includes a window size field that tells the sender:
+
+“You may send this many bytes beyond my last ACK before you must stop and wait.”
