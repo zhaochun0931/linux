@@ -36,3 +36,26 @@ Think of it as awk for the kernel — it lets you write one-liner scripts to wat
 
 
 
+
+
+
+sudo apt update
+sudo apt install bpftrace -y
+
+
+
+
+
+
+sudo bpftrace -e '
+kprobe:tcp_sendmsg {
+  printf("TCP send: pid=%d comm=%s\n", pid, comm);
+}'
+
+
+
+
+
+
+
+
