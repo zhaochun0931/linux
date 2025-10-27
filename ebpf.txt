@@ -1,0 +1,17 @@
+🧠 What Is eBPF?
+
+eBPF (extended Berkeley Packet Filter) is a powerful Linux kernel technology that lets you run custom programs safely inside the kernel — without changing kernel code or loading kernel modules.
+
+It’s like having a programmable hook inside the Linux kernel.
+
+
+
+🧩 The Idea in One Sentence
+
+eBPF lets you attach small, sandboxed programs to events (like network packets, syscalls, or TCP retransmits), so you can observe, trace, or modify kernel behavior dynamically.
+
+
+
+
+
+
