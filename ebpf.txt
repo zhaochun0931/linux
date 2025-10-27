@@ -15,3 +15,24 @@ eBPF lets you attach small, sandboxed programs to events (like network packets, 
 
 
 
+🔧 What Is bpftrace?
+
+bpftrace is a high-level tracing tool built on top of eBPF.
+Think of it as awk for the kernel — it lets you write one-liner scripts to watch what’s happening inside the kernel in real time.
+
+
+
+
+
+| Feature  | eBPF                              | bpftrace                       |
+| -------- | --------------------------------- | ------------------------------ |
+| Type     | Low-level kernel bytecode         | High-level scripting interface |
+| Language | C / LLVM bytecode                 | Simple DSL like awk            |
+| Use Case | Performance, networking, security | Tracing, debugging             |
+| Example  | attach to TCP function            | print TCP events easily        |
+
+
+
+
+
+
