@@ -11,3 +11,25 @@ It ensures that the sender only transmits as much data as the receiver can handl
 Each TCP segment includes a window size field that tells the sender:
 
 “You may send this many bytes beyond my last ACK before you must stop and wait.”
+
+
+
+💡 Flow Control vs Congestion Control
+
+| Concept                | Controls                      | Purpose           |
+| ---------------------- | ----------------------------- | ----------------- |
+| **Flow Control**       | *Receiver buffer size (rwnd)* | Protects receiver |
+| **Congestion Control** | *Network congestion (cwnd)*   | Protects network  |
+
+
+
+
+Both limit how much unacknowledged data can be sent:
+
+Effective Window = min(rwnd, cwnd)
+
+
+
+
+
+
