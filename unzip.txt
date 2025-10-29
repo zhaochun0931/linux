@@ -1,2 +1,1 @@
-unzip 1.zip -d new-directory
-
+unzip file.zip -d /path/to/dir
