@@ -4,11 +4,11 @@ docker compose up --build
 docker ps
 
 $ docker ps
-CONTAINER ID   IMAGE         COMMAND       CREATED          STATUS          PORTS     NAMES
-1c59f3bfac71   linux-node5   "/bin/bash"   24 seconds ago   Up 23 seconds             node5
-7f918c27348e   linux-node2   "/bin/bash"   24 seconds ago   Up 23 seconds             node2
-aa9f9caa20b8   linux-node1   "/bin/bash"   24 seconds ago   Up 23 seconds             node1
-0f896ef20038   linux-node4   "/bin/bash"   24 seconds ago   Up 23 seconds             node4
-c60ffd76789d   linux-node3   "/bin/bash"   24 seconds ago   Up 23 seconds             node3
+CONTAINER ID   IMAGE         COMMAND               CREATED         STATUS        PORTS     NAMES
+1b90bc2a6852   linux-node4   "/usr/sbin/sshd -D"   3 minutes ago   Up 1 second             node4
+a86d45407857   linux-node2   "/usr/sbin/sshd -D"   3 minutes ago   Up 1 second             node2
+cf105a8742c4   linux-node5   "/usr/sbin/sshd -D"   3 minutes ago   Up 1 second             node5
+d1ff7541dbb0   linux-node1   "/usr/sbin/sshd -D"   3 minutes ago   Up 1 second             node1
+5499e7be350c   linux-node3   "/usr/sbin/sshd -D"   3 minutes ago   Up 1 second             node3
 $
 
