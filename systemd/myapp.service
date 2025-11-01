@@ -4,7 +4,7 @@ After=network.target
 
 
 [Service]
-ExecStart=/root/myapp.sh
+ExecStart=/usr/local/bin/myapp.sh
 
 [Install]
 WantedBy=multi-user.target
