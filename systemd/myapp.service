@@ -1,5 +1,5 @@
 [Unit]
-Description=My Awesome App
+Description=My App
 After=network.target
 
 
