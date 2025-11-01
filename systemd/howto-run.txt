@@ -16,3 +16,10 @@ systemctl status myapp
 
 journalctl -u myapp.service -f
 
+
+
+# journalctl -u myapp.service -f
+-- Logs begin at Sat 2025-10-25 11:59:29 EDT. --
+Nov 01 10:27:54 data75 myapp.sh[3243685]: the current time is: Sat Nov  1 10:27:54 EDT 2025
+Nov 01 10:27:55 data75 myapp.sh[3243685]: the current time is: Sat Nov  1 10:27:55 EDT 2025
+
