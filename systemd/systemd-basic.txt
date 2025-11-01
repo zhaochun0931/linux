@@ -5,7 +5,26 @@ In simple terms:
 systemd is the thing that starts everything on your Linux system — and manages it while it's running.
 
 
-Replaces older systems like SysVinit and Upstart.
+Replaces older systems like SysV init and Upstart.
+
+
+
+
+Systemd is a system and service manager for Linux operating systems. It is designed to be backwards compatible with SysV init scripts, and provides a number of features such as parallel startup of system
+services at boot time, on-demand activation of daemons, or dependency-based service control logic. In Red Hat Enterprise Linux 7, systemd replaces Upstart as the default init system.
+Systemd introduces the concept of systemd units. These units are represented by unit configuration files located in one of the following directories listed.
+
+/usr/lib/systemd/system/
+/run/systemd/system/
+/etc/systemd/system/
+
+
+
+
+
+
+
+
 
 
 
