@@ -1,9 +1,5 @@
-FROM ubuntu:24.04
+FROM ubuntu:latest
 
-# Prevent interactive prompts
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Update package index and install common tools
 RUN apt-get update && apt-get install -y \
     curl \
     vim \
@@ -15,10 +11,14 @@ RUN apt-get update && apt-get install -y \
     less \
     htop \
     procps \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    openssh-server \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    && mkdir /var/run/sshd
 
-# Default working directory
-WORKDIR /root
+# Only create user if not exists
+RUN id -u ubuntu &>/dev/null || useradd -m -s /bin/bash ubuntu && \
+    echo "ubuntu:ubuntu" | chpasswd && \
+    usermod -aG sudo ubuntu
 
-CMD ["/bin/bash"]
-
+USER root
+CMD ["/usr/sbin/sshd", "-D"]
