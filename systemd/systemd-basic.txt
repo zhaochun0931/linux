@@ -13,21 +13,3 @@ Replaces older systems like SysVinit and Upstart.
 Built-in logging (journald)
 
 
-
-
-
-
-touch /etc/systemd/system/myapp.service
-
-
-systemctl daemon-reload
-systemctl start myapp
-systemctl status myapp
-
-
-
-
-
-journalctl -u myapp.service -f
-
-
