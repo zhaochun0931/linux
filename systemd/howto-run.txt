@@ -1,5 +1,10 @@
 touch /etc/systemd/system/myapp.service
 
+mv myapp.sh /usr/local/bin/
+
+chmod +x /usr/local/bin/myapp.sh
+
+
 
 systemctl daemon-reload
 systemctl start myapp
