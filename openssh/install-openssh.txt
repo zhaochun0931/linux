@@ -31,7 +31,9 @@ After a certain amount of data has been transmitted using a given key and algori
 
 
 
-
+Authentication
+Once the transport layer has constructed a secure tunnel to pass information between the two systems, the server tells the client the different authentication methods supported, such as using a private keyencoded signature or typing a password. The client then tries to authenticate itself to the server using one of these supported methods.
+SSH servers and clients can be configured to allow different types of authentication, which gives each side the optimal amount of control. The server can decide which encryption methods it supports based on its security model, and the client can choose the order of authentication methods to attempt from the available options.
 
 
 
