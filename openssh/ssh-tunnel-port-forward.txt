@@ -1,0 +1,16 @@
+Port forwarding works by mapping a local port on the client to a remote port on the server. SSH can map any port from the server to any port on the client.
+
+
+
+
+
+ssh -L local_port:remote_address:remote_port user@jumbox_ssh_server
+
+
+ssh -L local_address:local_port:remote_address:remote_port user@jumbox_ssh_server
+
+
+
+ssh -l username host
+
+
