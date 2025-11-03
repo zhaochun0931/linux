@@ -1,1 +1,6 @@
 yum install net-snmp net-snmp-libs net-snmp-utils
+
+
+
+
+systemctl start snmpd.service
