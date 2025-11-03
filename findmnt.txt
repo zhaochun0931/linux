@@ -1,0 +1,6 @@
+findmnt
+
+
+The findmnt command allows you to display a list of currently mounted file systems.
+
+
