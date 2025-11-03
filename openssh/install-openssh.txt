@@ -8,6 +8,39 @@ Two varieties of SSH currently exist: version 1, and newer version 2. The OpenSS
 
 
 
+Transport Layer
+The primary role of the transport layer is to facilitate safe and secure communication between the two hosts at the time of authentication and during subsequent communication. The transport layer accomplishes this by handling the encryption and decryption of data, and by providing integrity protection of data packets as they are sent and received. The transport layer also provides compression, speeding the transfer of information.
+Once an SSH client contacts a server, key information is exchanged so that the two systems can correctly construct the transport layer. The following steps occur during this exchange:
+
+
+Keys are exchanged
+The public key encryption algorithm is determined
+The symmetric encryption algorithm is determined
+The message authentication algorithm is determined
+The hash algorithm is determined
+
+
+During the key exchange, the server identifies itself to the client with a unique host key. If the client has never communicated with this particular server before, the server’s host key is unknown to the client and it does not connect. OpenSSH gets around this problem by accepting the server’s host key. This is done after the user is notified and has both accepted and verified the new host key. In subsequent connections, the server’s host key is checked against the saved version on the client, providing confidence that the client is indeed communicating with the intended server. If, in the future, the host key no longer matches, the user must remove the client’s saved version before a connection can occur.
+
+
+
+SSH is designed to work with almost any kind of public key algorithm or encoding format. After an initial key exchange creates a hash value used for exchanges and a shared secret value, the two systems immediately begin calculating new keys and algorithms to protect authentication and future data sent over the connection.
+After a certain amount of data has been transmitted using a given key and algorithm (the exact amount depends on the SSH implementation), another key exchange occurs, generating another set of hash values and a new shared secret value. Even if an attacker is able to determine the hash and shared secret value, this information is only useful for a limited period of time.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 apt update
 apt install -y openssh-server
 ssh -V
