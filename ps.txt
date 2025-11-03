@@ -43,6 +43,17 @@ This version of ps accepts several kinds of options:
 
 
 
+
+ps ax
+
+For each listed process, the ps ax command displays the process ID (PID), the terminal that is associated with it (TTY), the current status (STAT), the cumulated CPU time (TIME), and the name of the executable file (COMMAND).
+
+
+
+
+
+
+
 ps -ef
 ps -aux
 ps -f -u username
