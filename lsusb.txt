@@ -1,0 +1,4 @@
+The lsusb command allows you to display information about USB buses and devices that are attached to them.
+
+lsusb
+
