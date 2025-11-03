@@ -85,6 +85,19 @@ PermitRootLogin yes
 
 
 
+System-wide SSH configuration information is stored in the /etc/ssh/ directory
+User-specific SSH configuration information is stored in ~/.ssh/ within the user’s home directory
+
+
+
+
+
+
+
+
+
+
+
 ~/.ssh/known_hosts
 
 Stores the fingerprints (host keys) of servers you have connected to before, to prevent man-in-the-middle attacks
