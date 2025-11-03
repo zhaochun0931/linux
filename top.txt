@@ -1,3 +1,8 @@
+The top command displays a real-time list of processes that are running on the system. It also displays additional information about the system uptime, current CPU and memory usage, or total number of running processes, and allows you to perform actions such as sorting the list or killing a process.
+
+
+
+
 top
 
 top -H
