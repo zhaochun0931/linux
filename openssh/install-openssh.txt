@@ -39,6 +39,21 @@ SSH servers and clients can be configured to allow different types of authentica
 
 
 
+Channels
+After a successful authentication over the SSH transport layer, multiple channels are opened via a technique called multiplexing[1]. Each of these channels handles communication for different terminal sessions and for forwarded X11 sessions.
+
+Both clients and servers can create a new channel. Each channel is then assigned a different number on each end of the connection. When the client attempts to open a new channel, the clients sends the channel number along with the request. This information is stored by the server and is used to direct communication to that channel. This is done so that different types of sessions do not affect one another and so that when a given session ends, its channel can be closed without disrupting the primary SSH connection.
+
+Channels also support flow-control, which allows them to send and receive data in an orderly fashion. In this way, data is not sent over the channel until the client receives a message that the channel is open.
+
+The client and server negotiate the characteristics of each channel automatically, depending on the type of service the client requests and the way the user is connected to the network. This allows great flexibility in handling different types of remote connections without having to change the basic infrastructure of the protocol.
+
+
+
+
+
+
+
 
 
 
