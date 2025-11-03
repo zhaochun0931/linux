@@ -51,6 +51,12 @@ For each listed process, the ps ax command displays the process ID (PID), the te
 
 
 
+ps aux
+
+Apart from the information provided by the ps ax command, ps aux displays the effective user name of the process owner (USER), the percentage of the CPU (%CPU) and memory (%MEM) usage, the virtual memory size in kilobytes (VSZ), the non-swapped physical memory size in kilobytes (RSS), and the time or date the process was started.
+
+
+
 
 
 
