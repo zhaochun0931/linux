@@ -1,5 +1,10 @@
 The df command allows you to display a detailed report on the system’s disk space usage.
 
 
+By default, the df command shows the partition size in 1 kilobyte blocks and the amount of used and available disk space in kilobytes.
+
+
+df
+
 
 df -h
