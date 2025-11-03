@@ -4,3 +4,15 @@ yum install net-snmp net-snmp-libs net-snmp-utils
 
 
 systemctl start snmpd.service
+
+
+
+
+
+
+snmpwalk -v2c -c public localhost system
+
+
+
+
+By default, the sysName object is set to the host name.
