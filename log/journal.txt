@@ -3,7 +3,7 @@ The Journal is a component of systemd that is responsible for viewing and manage
 Logging data is collected, stored, and processed by the Journal’s journald service.
 
 
-
+To access the journal logs, use the journalctl tool.
 
 
 
