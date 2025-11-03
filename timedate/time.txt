@@ -1,3 +1,10 @@
+A real-time clock (RTC), commonly referred to as a hardware clock, (typically an integrated circuit on the system board) that is completely independent of the current state of the operating system and runs even when the computer is shut down.
+
+A system clock, also known as a software clock, that is maintained by the kernel and its initial value is based on the real-time clock. Once the system is booted and the system clock is initialized, the system clock is completely independent of the real-time clock.
+
+
+
+
 Bash offers a built-in time command that displays how long a command takes to execute. The timing is highly accurate and can be used on any command.
 
 
