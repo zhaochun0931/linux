@@ -1,0 +1,1 @@
+echo hello world > /tmp/myjob.log 2>&1 | at now + 1 minute
