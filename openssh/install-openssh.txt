@@ -3,7 +3,7 @@ Because these older applications do not encrypt passwords transmitted between th
 
 
 
-
+Two varieties of SSH currently exist: version 1, and newer version 2. The OpenSSH suite under Red Hat Enterprise Linux 7 uses SSH version 2, which has an enhanced key exchange algorithm not vulnerable to the known exploit in version 1. In Red Hat Enterprise Linux 7, the OpenSSH suite does not support version 1 connections.
 
 
 
