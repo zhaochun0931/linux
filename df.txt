@@ -1,1 +1,5 @@
+The df command allows you to display a detailed report on the system’s disk space usage.
+
+
+
 df -h
