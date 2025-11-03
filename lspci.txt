@@ -1,0 +1,5 @@
+The lspci command allows you to display information about PCI buses and devices that are attached to them.
+
+
+
+lspci
