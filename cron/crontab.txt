@@ -1,0 +1,35 @@
+Cron is a service that enables you to schedule running a task, often called a job, at regular times.
+
+Users specify cron jobs in cron table files, also called crontab files. These files are then read by the crond service, which executes the jobs.
+
+
+# ps -ef | egrep -i cron
+root        1065       1  0 Jun27 ?        00:00:41 /usr/sbin/crond -n
+#
+
+
+The root user uses the cron table in /etc/crontab, or, preferably, creates a cron table file in /etc/cron.d/.
+
+
+
+
+
+1. Choose:
+
+in which minutes of an hour to execute the job. For example, use 0,10,20,30,40,50 or 0/10 to specify every 10 minutes of an hour.
+in which hours of a day to execute the job. For example, use 17-20 to specify time from 17:00 to 20:59.
+in which days of a month to execute the job. For example, use 15 to specify 15th day of a month.
+in which months of a year to execute the job. For example, use Jun,Jul,Aug or 6,7,8 to specify the summer months of the year.
+in which days of the week to execute the job. For example, use * for the job to execute independently of the day of week.
+
+Combine the chosen values into the time specification. The above example values result into this specification:
+0,10,20,30,40,50 17-20 15 Jun,Jul,Aug *
+
+2. Specify the user. The job will execute as if run by this user. For example, use root.
+
+3. Specify the command to execute. For example, use /usr/local/bin/my-script.sh
+
+4. Put the above specifications into a single line:
+
+0,10,20,30,40,50 17-20 15 Jun,Jul,Aug * root /usr/local/bin/my-script.sh
+  
