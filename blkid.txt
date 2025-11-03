@@ -1,0 +1,16 @@
+The blkid command allows you to display low-level information about available block devices. It requires root privileges, therefore non-root users should use the lsblk command.
+
+
+
+
+blkid
+
+
+/dev/sda1: UUID="E3FB-E909" BLOCK_SIZE="512" TYPE="vfat" PARTLABEL="EFI System Partition" PARTUUID="bab63662-1f9b-46d0-a7f9-9431b49aeb80"
+/dev/sda2: UUID="2ce365b4-585c-4315-a50a-7137c2636ce2" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="a61f54c5-fdc8-4fad-9283-5b7b1b1ee5cc"
+/dev/sda3: UUID="KZ2gKt-M9en-loyN-8Fbw-Ni4N-46wc-qSOV0C" TYPE="LVM2_member" PARTUUID="10366873-402c-4e1f-b2d0-726823e2ebc4"
+/dev/mapper/rl-root: UUID="f7168d7d-e6d6-4d02-acc9-38e44d79103e" BLOCK_SIZE="512" TYPE="xfs"
+/dev/mapper/rl-swap: UUID="caf1510e-18d9-48d9-8c0c-d203a41be3b2" TYPE="swap"
+/dev/mapper/rl-home: UUID="b13030e6-e8df-4c3b-a06c-fbb549689a5c" BLOCK_SIZE="512" TYPE="xfs"
+
+
