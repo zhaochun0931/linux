@@ -32,4 +32,27 @@ Combine the chosen values into the time specification. The above example values 
 4. Put the above specifications into a single line:
 
 0,10,20,30,40,50 17-20 15 Jun,Jul,Aug * root /usr/local/bin/my-script.sh
+
+
+
+
+
+
+Put the shell script into one of the following directories:
+/etc/cron.hourly/
+/etc/cron.daily/
+/etc/cron.weekly/
+/etc/cron.monthly/
+
+
+
+drwxr-xr-x.  2 root root        39 Dec 15  2024 cron.d
+drwxr-xr-x.  2 root root        23 Dec 15  2024 cron.daily
+drwxr-xr-x.  2 root root        22 Dec 15  2024 cron.hourly
+drwxr-xr-x.  2 root root         6 May 18  2021 cron.monthly
+-rw-r--r--.  1 root root       451 May 18  2021 crontab
+drwxr-xr-x.  2 root root         6 May 18  2021 cron.weekly
+
+
+
   
