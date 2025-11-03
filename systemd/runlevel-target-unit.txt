@@ -1,0 +1,63 @@
+Previous versions of Red Hat Enterprise Linux, which were distributed with SysV init or Upstart, implemented a predefined set of runlevels that represented specific modes of operation. These runlevels were numbered from 0 to 6 and were defined by a selection of system services to be run when a particular runlevel was enabled by the system administrator. 
+
+In Red Hat Enterprise Linux 7, the concept of runlevels has been replaced with systemd targets . Systemd targets are represented by target units. Target units end with the .target file extension and their only purpose is to group together other systemd units through a chain of dependencies.
+
+
+
+
+
+
+
+🧠 1. The Old Way — Runlevels (SysVinit)
+
+In classic SysV-based Linux systems (e.g., old Ubuntu, CentOS 6):
+
+The system booted into a runlevel, a number representing a system state.
+
+Each runlevel defined which services were running (by executing scripts in /etc/rc.d/rcN.d/).
+
+| Runlevel | Meaning                      | Typical State                    |
+| -------- | ---------------------------- | -------------------------------- |
+| 0        | Halt                         | System shutdown                  |
+| 1        | Single-user mode             | Maintenance shell, no networking |
+| 2        | Multi-user (no NFS)          | Often default in Debian          |
+| 3        | Multi-user (full networking) | Text mode login                  |
+| 4        | Unused                       | Custom                           |
+| 5        | Graphical                    | GUI login (X11, GDM, etc.)       |
+| 6        | Reboot                       | Restart system                   |
+
+
+
+
+
+
+
+
+⚙️ 2. The Modern Way — Target Units (systemd)
+
+Systemd replaced runlevels with target units, which are special kinds of systemd units that group services together to reach a desired system state.
+
+A target = “a collection of units” (services, sockets, mounts, etc.)
+
+Example: multi-user.target replaces “runlevel 3”
+
+| Target              | Replaces Runlevel | Purpose                                                                                  |
+| ------------------- | ----------------- | ---------------------------------------------------------------------------------------- |
+| `poweroff.target`   | 0                 | Shut down                                                                                |
+| `rescue.target`     | 1                 | Single-user mode                                                                         |
+| `multi-user.target` | 3                 | Multi-user, no GUI                                                                       |
+| `graphical.target`  | 5                 | Multi-user + GUI                                                                         |
+| `reboot.target`     | 6                 | Restart system                                                                           |
+| `default.target`    | —                 | The default boot target (usually a symlink to `multi-user.target` or `graphical.target`) |
+
+
+
+
+
+
+💡 6. Summary
+
+Runlevels = old, numeric system states in SysVinit
+Targets = modern, named, flexible dependency groups in systemd
+
+
