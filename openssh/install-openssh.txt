@@ -1,3 +1,13 @@
+The ssh program is designed to replace older, less secure terminal applications used to log in to remote hosts, such as telnet or rsh. A related program called scp replaces older programs designed to copy files between hosts, such as rcp. 
+Because these older applications do not encrypt passwords transmitted between the client and the server, avoid them whenever possible. Using secure methods to log in to remote systems decreases the risks for both the client system and the remote host.
+
+
+
+
+
+
+
+
 apt update
 apt install -y openssh-server
 ssh -V
