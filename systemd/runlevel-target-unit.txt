@@ -61,3 +61,23 @@ Runlevels = old, numeric system states in SysVinit
 Targets = modern, named, flexible dependency groups in systemd
 
 
+
+
+
+
+
+🧭 Runlevels vs. Systemd Targets
+
+| **Runlevel** | **Systemd Target**                | **Description**                                          | **Typical Use Case**                  | **Command (systemd)**                 |
+| :----------: | :-------------------------------- | :------------------------------------------------------- | :------------------------------------ | :------------------------------------ |
+|     **0**    | `poweroff.target`                 | System halt / shutdown                                   | Powering off the machine              | `systemctl isolate poweroff.target`   |
+|     **1**    | `rescue.target`                   | Single-user mode, minimal environment, maintenance shell | Troubleshooting / recovery            | `systemctl isolate rescue.target`     |
+|     **2**    | `multi-user.target` *(Debian)*    | Multi-user, non-graphical (network + basic services)     | Servers, text-only environment        | `systemctl isolate multi-user.target` |
+|     **3**    | `multi-user.target`               | Multi-user mode with networking                          | Common for headless servers           | `systemctl isolate multi-user.target` |
+|     **4**    | *(custom)* or `multi-user.target` | Undefined / user-defined                                 | Rarely used; can define custom target | `systemctl isolate custom.target`     |
+|     **5**    | `graphical.target`                | Multi-user + graphical login (X11 / Wayland)             | Desktop environments                  | `systemctl isolate graphical.target`  |
+|     **6**    | `reboot.target`                   | Reboot system                                            | Restarting the system                 | `systemctl isolate reboot.target`     |
+
+
+
+
