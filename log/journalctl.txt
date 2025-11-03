@@ -1,3 +1,14 @@
+The Journal is a component of systemd that is responsible for viewing and management of log files. It can be used in parallel, or in place of a traditional syslog daemon, such as rsyslogd.
+
+Logging data is collected, stored, and processed by the Journal’s journald service.
+
+
+
+
+
+
+
+
 🧩 What is journalctl
 
 Purpose: View and query the systemd journal, which stores logs from:
