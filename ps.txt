@@ -4,6 +4,8 @@ A process is an instance of a program with an associated processor environment (
 
 
 
+The ps command allows you to display information about running processes. It produces a static list, that is, a snapshot of what is running when you execute the command.
+
 
 
 
