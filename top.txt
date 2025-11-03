@@ -1,6 +1,10 @@
 The top command displays a real-time list of processes that are running on the system. It also displays additional information about the system uptime, current CPU and memory usage, or total number of running processes, and allows you to perform actions such as sorting the list or killing a process.
 
 
+For each listed process, the top command displays the process ID (PID), the effective user name of the process owner (USER), the priority (PR), the nice value (NI), the amount of virtual memory the process uses (VIRT), the amount of non-swapped physical memory the process uses (RES), the amount of shared memory the process uses (SHR), the process status field S), the percentage of the CPU (%CPU) and memory (%MEM) usage, the cumulated CPU time (TIME+), and the name of the executable file (COMMAND).
+
+
+
 
 
 top
