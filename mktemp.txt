@@ -1,0 +1,38 @@
+mktemp is a Linux/Unix command used to safely create a temporary file or directory with a unique name, avoiding name collisions and race conditions.
+
+🧩 Basic Usage
+mktemp
+
+
+This will create a temporary file, like:
+
+/tmp/tmp.P7s4Fg0aLm
+
+
+It prints the file path to stdout and creates the file at the same time.
+
+🧰 Common Options
+| Option            | Meaning                                               |
+| ----------------- | ----------------------------------------------------- |
+| `-d`              | Create a **directory** instead of a file              |
+| `-p DIR`          | Use a specific **parent directory** instead of `/tmp` |
+| `-t TEMPLATE`     | Use a **template name prefix** (ending with `XXXXXX`) |
+| `--suffix=SUFFIX` | Add a suffix to the name (GNU mktemp only)            |
+
+
+
+
+
+
+
+# mktemp -d
+/tmp/tmp.kxpH0ZC1p1
+# 
+
+
+
+
+# mktemp -d -p /opt
+/opt/tmp.rCPXHIWYq6
+#
+
