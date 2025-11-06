@@ -1,4 +1,55 @@
+✅ useradd → low-level, script-friendly, minimal.
+✅ adduser → high-level, human-friendly, interactive wrapper.
+
+
+
+
+
 useradd user1
+
+
+✅ By default, the useradd command creates a locked user account. To unlock the account, run the following command as root to assign a password:
+
+passwd username
+
+
+
+passwd --status xiaoming1
+passwd -S xiaoming1
+
+
+
+# passwd --status xiaoming1
+xiaoming1 LK 2025-11-05 0 99999 7 -1 (Password locked.)
+#
+#
+# passwd --status xiaoming2
+xiaoming2 LK 2025-11-05 0 99999 7 -1 (Password locked.)
+# passwd -S xiaoming1
+xiaoming1 LK 2025-11-05 0 99999 7 -1 (Password locked.)
+#
+
+
+
+
+
+
+
+✅ Check /etc/shadow
+
+sudo grep "^username:" /etc/shadow
+
+
+testuser:!$6$XyP...:19888:0:99999:7:::
+
+
+Explanation of the second field:
+
+If it starts with ! or *, the account is locked.
+
+If it’s a valid hash (e.g., $6$...), it’s active.
+
+
 
 
 # su - user1
