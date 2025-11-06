@@ -1,0 +1,28 @@
+the Linux timeout command is used to run another command with a time limit, and --kill-after is an optional flag that controls what happens if the process doesn’t stop gracefully.
+
+
+👉 This runs ping google.com for 10 seconds, then sends SIGTERM (default) to stop it.
+
+timeout 10s ping google.com
+
+
+
+
+
+
+
+# date; timeout 10s ping www.google.com; date
+Thu Nov  6 06:26:51 UTC 2025
+PING www.google.com (192.178.218.105) 56(84) bytes of data.
+64 bytes from yuiadtq-in-f105.1e100.net (12.78.1.10): icmp_seq=1 ttl=101 time=2.84 ms
+64 bytes from yuiadtq-in-f105.1e100.net (12.78.1.10): icmp_seq=2 ttl=101 time=2.69 ms
+64 bytes from yuiadtq-in-f105.1e100.net (12.78.1.10): icmp_seq=3 ttl=101 time=2.68 ms
+64 bytes from yuiadtq-in-f105.1e100.net (12.78.1.10): icmp_seq=4 ttl=101 time=2.72 ms
+64 bytes from yuiadtq-in-f105.1e100.net (12.78.1.10): icmp_seq=5 ttl=101 time=2.67 ms
+64 bytes from yuiadtq-in-f105.1e100.net (12.78.1.10): icmp_seq=6 ttl=101 time=2.67 ms
+64 bytes from yuiadtq-in-f105.1e100.net (12.78.1.10): icmp_seq=7 ttl=101 time=2.77 ms
+64 bytes from yuiadtq-in-f105.1e100.net (12.78.1.10): icmp_seq=8 ttl=101 time=2.80 ms
+64 bytes from yuiadtq-in-f105.1e100.net (12.78.1.10): icmp_seq=9 ttl=101 time=2.92 ms
+64 bytes from yuiadtq-in-f105.1e100.net (12.78.1.10): icmp_seq=10 ttl=101 time=2.62 ms
+Thu Nov  6 06:27:01 UTC 2025
+root@test:~#
