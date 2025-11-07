@@ -14,6 +14,78 @@ the shadow passwords provided by the shadow-utils package to enhance the securit
 
 
 
+✅ Step 1: Read configuration defaults
+Before doing anything, useradd reads:
+
+/etc/login.defs → default UID/GID ranges, home dir base, password aging
+
+/etc/default/useradd → default shell, home directory policy, skeleton path
+
+
+✅ Step 2: Choose UID, GID, and group
+
+useradd finds the next available UID (usually ≥ 1000 for normal users).
+
+Then it:
+
+Creates a new group with the same name (unless -N is used)
+
+Adds an entry to /etc/group and /etc/gshadow
+
+
+✅ Step 3: Add entry to /etc/passwd
+
+A new line is added to /etc/passwd:
+
+alice:x:1001:1001::/home/alice:/bin/bash
+
+
+✅ Step 4: Add entry to /etc/shadow
+
+A locked password entry is added:
+
+alice:!:19888:0:99999:7:::
+
+
+! means the account is locked until a password is set via passwd.
+
+
+✅ Step 5: Create home directory (if -m specified)
+
+If you use -m:
+
+Creates /home/alice
+
+Copies files from /etc/skel (default skeleton directory)
+
+Sets ownership:
+
+chown alice:alice /home/alice
+chmod 700 /home/alice
+
+
+If you omit -m, the user exists but has no home directory.
+
+
+✅  Step 6: (Optional) Create mail spool
+
+If CREATE_MAIL_SPOOL=yes in /etc/login.defs, it creates /var/mail/alice.
+
+
+
+
+✅ Step 7: Apply shell and expiration settings
+
+If you specify:
+
+-s /bin/bash → sets login shell
+
+-e or -f → sets account expiration date
+
+-c → adds a comment (e.g. “Alice Smith”)
+
+
+
 
 
 
