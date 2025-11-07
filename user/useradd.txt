@@ -8,6 +8,19 @@ Each user is associated with a unique numerical identification number called a u
 the shadow passwords provided by the shadow-utils package to enhance the security of system authentication files
 
 
+/etc/passwd
+
+/etc/shadow
+
+
+
+
+
+
+
+
+
+
 
 
 useradd user1
