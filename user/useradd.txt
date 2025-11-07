@@ -3,7 +3,7 @@
 
 
 
-
+Each user is associated with a unique numerical identification number called a user ID (UID). Likewise, each group is associated with a group ID (GID).
 
 useradd user1
 
