@@ -1,0 +1,23 @@
+Install dependencies
+
+
+dnf install git python3-devel libffi-devel gcc openssl-devel python3-libselinux
+
+
+
+
+
+
+Create a virtual environment and activate it:
+
+python3 -m venv /path/to/venv
+source /path/to/venv/bin/activate
+
+The virtual environment should be activated before running any commands that depend on packages installed in it.
+
+
+
+
+Ensure the latest version of pip is installed:
+
+pip install -U pip
