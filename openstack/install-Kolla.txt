@@ -1,9 +1,13 @@
 Install dependencies
 
 
-dnf install git python3-devel libffi-devel gcc openssl-devel python3-libselinux
+sudo apt update
+sudo apt install git python3-dev libffi-dev gcc libssl-dev libdbus-glib-1-dev -y
 
 
+sudo apt install python3-venv
+
+python3 --version
 
 
 
@@ -21,3 +25,14 @@ The virtual environment should be activated before running any commands that dep
 Ensure the latest version of pip is installed:
 
 pip install -U pip
+
+
+
+
+
+
+Install Kolla-ansible
+
+Install kolla-ansible and its dependencies using pip.
+
+pip install git+https://opendev.org/openstack/kolla-ansible@master
