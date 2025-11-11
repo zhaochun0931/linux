@@ -114,3 +114,65 @@ OS Version: Ubuntu 24.04 noble
 2025-11-11 12:31:41.727 | stack.sh completed in 1266 seconds.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+source openrc admin admin
+openstack service list
+
+
+$ openstack service list
++----------------------------------+-------------+----------------+
+| ID                               | Name        | Type           |
++----------------------------------+-------------+----------------+
+| 27fcd6f4835e4c63b835fa82251fe510 | keystone    | identity       |
+| 491e4349c0fa41beb6fadaa97f94f43c | cinder      | block-storage  |
+| acc54226ba0b48caa5c15baa851de51a | nova        | compute        |
+| b79d9215d9d144a682d137dbc9ff8c58 | neutron     | network        |
+| b86a5348254c40f0b8df82b3fe312a88 | nova_legacy | compute_legacy |
+| d357268b956347dbbfc96ef20f4ca2ef | placement   | placement      |
+| d3ec8dd38ca342a697c6829898d12b27 | glance      | image          |
++----------------------------------+-------------+----------------+
+$
+
+
+
+openstack keypair create --public-key ~/.ssh/id_rsa.pub mykey
+
+
+openstack network list
+
+
+
+openstack image list
+
+
+$ openstack image list
++--------------------------------------+--------------------------+--------+
+| ID                                   | Name                     | Status |
++--------------------------------------+--------------------------+--------+
+| 518381ee-cae4-4a6f-845a-a03e95ef2bb4 | cirros-0.6.3-x86_64-disk | active |
++--------------------------------------+--------------------------+--------+
+$
+
+
+
+openstack server create \
+--image cirros-0.6.3-x86_64-disk \
+--flavor m1.tiny \
+--network private \
+--key-name mykey \
+myfirstvm
+
+
+
+
