@@ -1,0 +1,97 @@
+🧩 1. Expand the disk at hypervisor/cloud level
+
+
+If you’re on VMware, VirtualBox, or a cloud provider (AWS, Azure, etc.), increase the disk size to your desired new capacity (e.g., from 30 GB → 60 GB).
+
+Then verify inside the VM:
+
+lsblk
+
+
+You’ll see something like:
+
+NAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+nvme0n1                   259:0    0   60G  0 disk
+├─nvme0n1p1               259:1    0  512M  0 part /boot/efi
+└─nvme0n1p2               259:2    0   30G  0 part
+  └─ubuntu--vg-ubuntu--lv 253:0    0   30G  0 lvm  /
+
+
+Note that the disk grew to 60 GB, but the partition /dev/nvme0n1p2 is still 30 GB.
+
+
+
+
+
+
+⚙️ 2. Resize the partition
+
+Use growpart (simple) or parted (manual).
+
+Option A: Using growpart (recommended)
+sudo growpart /dev/nvme0n1 2
+
+
+This grows partition #2 to fill all available space.
+
+Then verify:
+
+lsblk
+
+
+You should now see /dev/nvme0n1p2 with the full size.
+
+
+
+
+
+
+🧱 3. Resize the LVM Physical Volume (PV)
+sudo pvresize /dev/nvme0n1p2
+
+
+Check:
+
+sudo pvdisplay
+
+
+You should see the new free space reflected in the volume group.
+
+
+
+🧮 4. Extend the Logical Volume (LV)
+
+Find your logical volume name:
+
+sudo lvdisplay
+
+
+Then expand it to use all available free space:
+
+sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+
+
+
+🗃️ 5. Resize the filesystem
+
+If your filesystem is ext4:
+
+sudo resize2fs /dev/ubuntu-vg/ubuntu-lv
+
+
+If xfs:
+
+sudo xfs_growfs /
+
+
+
+
+
+✅ 6. Verify final size
+df -h /
+
+
+Example:
+
+Filesystem                         Size  Used Avail Use%
+/dev/mapper/ubuntu--vg-ubuntu--lv   60G   15G   45G  25%
