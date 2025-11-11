@@ -1,0 +1,32 @@
+🚀 What Is OSPF?
+
+OSPF (Open Shortest Path First) is a link-state routing protocol used within an Autonomous System (AS) — typically inside enterprise or datacenter networks.
+
+It dynamically discovers network topology and computes the shortest path between routers using Dijkstra’s algorithm.
+
+
+| Concept                              | Description                                                                              |
+| ------------------------------------ | ---------------------------------------------------------------------------------------- |
+| **Link-State Advertisements (LSAs)** | Messages used to share topology info between routers.                                    |
+| **Area**                             | Logical grouping of routers; all must have the same area ID (e.g. Area 0 = backbone).    |
+| **Router ID**                        | Unique 32-bit ID (like an IP address) that identifies the router.                        |
+| **Hello Protocol**                   | Used to discover and maintain neighbor relationships.                                    |
+| **Cost**                             | Metric assigned to interfaces (lower = better). Computed from bandwidth or manually set. |
+| **SPF Algorithm**                    | Dijkstra’s algorithm — computes shortest path tree to all destinations.                  |
+
+
+
+
+
+
+🚀 How It Works
+
+Routers send Hello packets to find OSPF neighbors.
+
+Once neighbors are established, they exchange LSAs.
+
+Each router builds a link-state database (LSDB) — a map of the entire area.
+
+Each router independently computes the shortest path tree using Dijkstra.
+
+The resulting routing table is installed in the kernel routing table.
