@@ -11,7 +11,9 @@ git clone https://opendev.org/openstack/devstack
 cd devstack
 
 
-# create the local.conf
+# create the local.conf, This is the minimum required config to get started with DevStack.
+
+
 
 
 Start the install
