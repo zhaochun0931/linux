@@ -2,7 +2,12 @@ docker compose up
 
 
 
+
 docker exec router ip addr
+docker exec router ip addr show eth0
+docker exec router ip addr show eth1
+
+docker exec router ip addr show dev eth0
 
 
 11: eth0@if881: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
@@ -19,8 +24,8 @@ docker exec router ip addr
 
 
 
-
-docker exec host1 ip addr
+docker exec host1 ip addr show
+docker exec host1 ip addr show eth0
 
 
 11: eth0@if883: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
@@ -32,8 +37,8 @@ docker exec host1 ip addr
 
 
 
-
-docker exec host2 ip addr
+docker exec host2 ip addr show
+docker exec host2 ip addr show eth0
 
 
 11: eth0@if882: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
