@@ -11,5 +11,8 @@ git clone https://opendev.org/openstack/devstack
 cd devstack
 
 
+# create the local.conf
+
+
 Start the install
 ./stack.sh
