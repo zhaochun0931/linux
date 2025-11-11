@@ -1,0 +1,30 @@
+🧩 What is LVM?
+
+LVM (Logical Volume Manager) is a storage abstraction layer built into Linux.
+It sits between physical storage devices (like disks and partitions) and filesystems, letting you manage disk space flexibly — far beyond what static partitions allow.
+
+
+Traditional disk layout:
+
+Disk → Partition → Filesystem
+
+
+
+
+
+
+With LVM:
+
+Disk → PV (Physical Volume)
+   ↓
+Volume Group (VG)
+   ↓
+Logical Volume (LV)
+   ↓
+Filesystem (e.g., ext4, xfs)
+
+
+
+
+This extra layer lets you resize, move, and combine storage dynamically — without rebooting or repartitioning.
+
