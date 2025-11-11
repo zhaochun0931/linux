@@ -18,3 +18,99 @@ cd devstack
 
 Start the install
 ./stack.sh
+
+
+
+
+
+
+
+
+
+=========================
+DevStack Component Timing
+ (times are in seconds)
+=========================
+wait_for_service      17
+async_wait           177
+osc                  297
+apt-get              269
+test_with_retry        0
+dbsync                10
+pip_install          126
+apt-get-update        13
+run_process           44
+git_timed            215
+-------------------------
+Unaccounted time      98
+=========================
+Total runtime        1266
+
+=================
+ Async summary
+=================
+ Time spent in the background minus waits: 501 sec
+ Elapsed time: 1266 sec
+ Time if we did everything serially: 1767 sec
+ Speedup:  1.39573
+
+
+Post-stack database query stats:
++------------+-----------+-------+
+| db         | op        | count |
++------------+-----------+-------+
+| keystone   | SELECT    | 20970 |
+| keystone   | INSERT    |    92 |
+| keystone   | UPDATE    |     7 |
+| neutron    | DESCRIBE  |     4 |
+| neutron    | CREATE    |   259 |
+| neutron    | SHOW      |    31 |
+| neutron    | SELECT    |  6087 |
+| neutron    | INSERT    |   848 |
+| neutron    | UPDATE    |   368 |
+| neutron    | ALTER     |   101 |
+| neutron    | DROP      |    47 |
+| nova_api   | SELECT    |    61 |
+| nova_cell1 | SELECT    |    63 |
+| nova_cell0 | SELECT    |    36 |
+| nova_cell0 | INSERT    |     7 |
+| neutron    | DELETE    |    32 |
+| placement  | SELECT    |    18 |
+| placement  | INSERT    |    70 |
+| placement  | SET       |     1 |
+| nova_cell0 | UPDATE    |     7 |
+| cinder     | SELECT    |    55 |
+| cinder     | INSERT    |     5 |
+| cinder     | UPDATE    |     3 |
+| placement  | UPDATE    |     3 |
+| glance     | INSERT    |    14 |
+| glance     | SELECT    |    27 |
+| glance     | UPDATE    |     2 |
+| nova_api   | SAVEPOINT |    12 |
+| nova_api   | INSERT    |    24 |
+| nova_api   | RELEASE   |    12 |
+| nova_cell1 | INSERT    |     4 |
+| nova_cell1 | UPDATE    |    25 |
+| cinder     | DELETE    |     1 |
++------------+-----------+-------+
+
+
+
+This is your host IP address: 10.1.0.10
+This is your host IPv6 address: ::1
+Horizon is now available at http://10.1.0.10/dashboard
+Keystone is serving at http://10.1.0.10/identity/
+The default users are: admin and demo
+The password: secret
+
+Services are running under systemd unit files.
+For more information see:
+https://docs.openstack.org/devstack/latest/systemd.html
+
+DevStack Version: 2026.1
+Change: 1a059f699d066ab2381434a0566635ffb90e507d Merge "Add support for trixie and platform job" 2025-11-11 09:57:03 +0000
+OS Version: Ubuntu 24.04 noble
+
+2025-11-11 12:31:41.727 | stack.sh completed in 1266 seconds.
+
+
