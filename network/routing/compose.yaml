@@ -2,6 +2,7 @@ services:
   router:
     image: ubuntu:22.04
     container_name: router
+    hostname: router
     cap_add:
       - NET_ADMIN
     networks:
@@ -19,6 +20,7 @@ services:
   host1:
     image: ubuntu:22.04
     container_name: host1
+    hostname: host1
     cap_add:
       - NET_ADMIN
     networks:
@@ -33,6 +35,7 @@ services:
   host2:
     image: ubuntu:22.04
     container_name: host2
+    hostname: host2
     cap_add:
       - NET_ADMIN
     networks:
