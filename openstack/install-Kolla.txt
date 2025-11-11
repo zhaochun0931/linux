@@ -36,3 +36,17 @@ Install Kolla-ansible
 Install kolla-ansible and its dependencies using pip.
 
 pip install git+https://opendev.org/openstack/kolla-ansible@master
+
+
+
+
+sudo mkdir -p /etc/kolla
+sudo chown $USER:$USER /etc/kolla
+
+
+cp -r /path/to/venv/share/kolla-ansible/etc_examples/kolla/* /etc/kolla
+
+cp /path/to/venv/share/kolla-ansible/ansible/inventory/all-in-one .
+
+
+kolla-ansible install-deps
