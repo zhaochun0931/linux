@@ -50,3 +50,10 @@ cp /path/to/venv/share/kolla-ansible/ansible/inventory/all-in-one .
 
 
 kolla-ansible install-deps
+
+
+
+kolla-genpwd
+
+
+
