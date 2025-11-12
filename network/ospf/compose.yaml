@@ -1,0 +1,85 @@
+services:
+  # --- Routers running FRRouting ---
+  router1:
+    image: frrouting/frr:latest
+    container_name: router1
+    hostname: router1
+    privileged: true
+    networks:
+      - net_r1r2
+      - net_r1h1
+      - net_r1h2
+    volumes:
+      - ./frr/r1/frr.conf:/etc/frr/frr.conf
+      - ./frr/r1/daemons:/etc/frr/daemons
+    tty: true
+    command: /bin/bash -c "/usr/lib/frr/frrinit.sh start && tail -f /dev/null"
+
+  router2:
+    image: frrouting/frr:latest
+    container_name: router2
+    hostname: router2
+    privileged: true
+    networks:
+      - net_r1r2
+      - net_r2r3
+      - net_r2h2
+    volumes:
+      - ./frr/r2/frr.conf:/etc/frr/frr.conf
+      - ./frr/r2/daemons:/etc/frr/daemons
+    tty: true
+    depends_on:
+      - router1
+    command: /bin/bash -c "/usr/lib/frr/frrinit.sh start && tail -f /dev/null"
+
+  router3:
+    image: frrouting/frr:latest
+    container_name: router3
+    hostname: router3
+    privileged: true
+    networks:
+      - net_r2r3
+      - net_r3h3
+    volumes:
+      - ./frr/r3/frr.conf:/etc/frr/frr.conf
+      - ./frr/r3/daemons:/etc/frr/daemons
+    tty: true
+    depends_on:
+      - router2
+    command: /bin/bash -c "/usr/lib/frr/frrinit.sh start && tail -f /dev/null"
+
+  # --- Hosts ---
+  host1:
+    image: ubuntu:22.04
+    container_name: host1
+    hostname: host1
+    tty: true
+    command: /bin/bash
+    networks:
+      - net_r1h1
+
+  host2:
+    image: ubuntu:22.04
+    container_name: host2
+    hostname: host2
+    tty: true
+    command: /bin/bash
+    networks:
+      - net_r1h2
+
+  host3:
+    image: ubuntu:22.04
+    container_name: host3
+    hostname: host3
+    tty: true
+    command: /bin/bash
+    networks:
+      - net_r3h3
+
+networks:
+  net_r1r2:
+  net_r2r3:
+  net_r1h1:
+  net_r1h2:
+  net_r2h2:
+  net_r3h3:
