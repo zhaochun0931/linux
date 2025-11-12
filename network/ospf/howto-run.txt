@@ -1,5 +1,8 @@
-git clone https://github.com/FRRouting/frr.git
+docker compose up
 
-cd frr
 
-./docker/alpine/build.sh
+
+docker exec -it router1 vtysh
+
+show ip ospf neighbor
+show ip route ospf
