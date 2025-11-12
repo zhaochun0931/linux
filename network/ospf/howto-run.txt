@@ -25,12 +25,71 @@ exit
 
 router ospf
 network 172.23.0.0/16 area 0
-network 172.21.0.3/16 area 0
-network 172.18.0.2/16 area 0
+network 172.21.0.0/16 area 0
+network 172.18.0.0/16 area 0
 exit
 
 
 
+
+
+
+
+
+docker exec -it router2 vtysh
+
+
+configure terminal
+
+interface eth0
+ip address 172.18.0.3/16
+no shutdown
+exit
+
+interface eth1
+ip address 172.20.0.2/16
+no shutdown
+exit
+
+interface eth2
+ip address 172.19.0.2/16
+no shutdown
+exit
+
+
+
+router ospf
+network 172.20.0.0/16 area 0
+network 172.19.0.0/16 area 0
+network 172.18.0.0/16 area 0
+exit   
+
+
+
+
+
+
+docker exec -it router3 vtysh
+
+configure terminal
+
+interface eth0
+ip address 172.19.0.3/16
+no shutdown
+exit
+
+interface eth1
+ip address 172.22.0.3/16
+no shutdown
+exit
+
+
+
+
+router ospf
+network 172.22.0.0/16 area 0
+network 172.19.0.0/16 area 0
+exit
 
 
 
