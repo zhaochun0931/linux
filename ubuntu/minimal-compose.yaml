@@ -1,0 +1,15 @@
+services:
+  ubuntu:
+    image: ubuntu:latest
+    container_name: ubuntu-latest
+    tty: true
+    stdin_open: true
+    command: /bin/bash
+    volumes:
+      - ./data:/data     # optional mount for persistence
+    networks:
+      - ubuntu-net
+
+networks:
+  ubuntu-net:
+    driver: bridge
