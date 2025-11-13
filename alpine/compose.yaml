@@ -1,0 +1,13 @@
+services:
+  alpine:
+    image: alpine:latest
+    container_name: alpine-latest
+    tty: true
+    stdin_open: true
+    command: /bin/sh
+    networks:
+      - alpine-net
+
+networks:
+  alpine-net:
+    driver: bridge
