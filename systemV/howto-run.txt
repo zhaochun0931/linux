@@ -68,3 +68,19 @@ Semaphore incremented (unlocked)
 
 
 
+
+gcc msg-writer.c -o msg-writer
+gcc msg-reader.c -o msg-reader
+./msg-writer
+./msg-reader
+
+
+# ./msg-writer
+Message sent: Hello from System V message queue
+#
+
+
+
+# ./msg-reader
+Message received: Hello from System V message queue
+#
