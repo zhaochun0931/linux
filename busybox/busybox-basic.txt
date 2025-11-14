@@ -1,0 +1,10 @@
+BusyBox and GNU Coreutils provide similar Linux commands, but they are designed with opposite goals.
+
+
+🪶 1. BusyBox = Minimal + Lightweight
+BusyBox is called the "Swiss Army Knife for Linux" — it packs many basic commands into one small binary.
+
+
+💪 2. GNU Coreutils = Full-featured + Complete
+
+GNU Coreutils is the official GNU implementation of Linux commands.
