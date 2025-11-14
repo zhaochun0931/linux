@@ -1,0 +1,22 @@
+System V (SysV) is a version of the UNIX operating system originally developed by AT&T in the early 1980s.
+
+
+
+🔹 2. System V in Linux Today
+
+Linux adopted several System V concepts, particularly in process control, IPC, and init scripts
+
+
+
+
+
+🔹 System V IPC (Inter-Process Communication)
+
+| IPC Type       | SysV Mechanism               | Notes                                     |
+| -------------- | ---------------------------- | ----------------------------------------- |
+| Shared memory  | `shmget`, `shmat`, `shmdt`   | Allows processes to share memory segments |
+| Semaphores     | `semget`, `semop`, `semctl`  | Synchronize access to shared resources    |
+| Message queues | `msgget`, `msgsnd`, `msgrcv` | Send messages between processes           |
+
+
+
