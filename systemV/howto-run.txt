@@ -36,3 +36,35 @@ key        semid      owner      perms      nsems
 # ./shm-reader
 Data read from shared memory: Hello from Writer (System V IPC)
 #
+
+
+
+
+
+
+
+
+
+gcc sem-demo.c -o sem-demo
+
+
+# ./sem-demo
+Semaphore created with value 1
+Semaphore decremented (locked)
+Semaphore incremented (unlocked)
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
