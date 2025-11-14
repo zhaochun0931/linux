@@ -1,0 +1,38 @@
+gcc shm-writer.c -o shm-writer
+gcc shm-reader.c -o shm-reader
+
+
+
+./shm-writer
+./shm-reader
+
+
+
+# ./shm-writer
+Data written to shared memory: Hello from Writer (System V IPC)
+#
+
+
+
+ipcs
+
+
+# ipcs
+
+------ Message Queues --------
+key        msqid      owner      perms      used-bytes   messages
+
+------ Shared Memory Segments --------
+key        shmid      owner      perms      bytes      nattch     status
+0xffffffff 2          root       666        1024       0
+
+------ Semaphore Arrays --------
+key        semid      owner      perms      nsems
+
+#
+
+
+  
+# ./shm-reader
+Data read from shared memory: Hello from Writer (System V IPC)
+#
