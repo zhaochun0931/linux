@@ -1,5 +1,8 @@
 BusyBox and GNU Coreutils provide similar Linux commands, but they are designed with opposite goals.
 
+BusyBox is a single small executable that provides many common Linux command-line utilities in a compact, lightweight form.
+
+
 
 🪶 1. BusyBox = Minimal + Lightweight
 BusyBox is called the "Swiss Army Knife for Linux" — it packs many basic commands into one small binary.
