@@ -1,0 +1,13 @@
+gcc server.c -o server
+gcc client.c -o client
+
+
+
+# In one terminal
+./server
+
+# In another terminal
+./client
+
+
+
