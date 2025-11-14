@@ -1,0 +1,14 @@
+GNU Coreutils is a collection of essential command-line programs that form the basic utilities of most GNU/Linux systems.
+These are the standard versions of tools like ls, cp, mv, grep, cat, and many more.
+
+
+
+
+  
+✅ What GNU Coreutils Contains
+
+GNU Coreutils is divided into three major groups:
+
+1. File Utilities (file and directory operations)
+2. Text Utilities (text processing)
+3. Shell Utilities (miscellaneous everyday commands)
