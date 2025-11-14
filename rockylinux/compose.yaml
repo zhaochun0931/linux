@@ -1,0 +1,10 @@
+services:
+  rocky:
+    image: rockylinux:9
+    container_name: rocky-test
+    hostname: rocky-test
+    command: /bin/bash
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./data:/data
