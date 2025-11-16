@@ -11,3 +11,15 @@ Explanation:
 -shared: Creates a .so shared object
 
 Output: libmylib.so
+
+
+
+
+
+gcc main.c -L. -lmylib -o main
+./main
+
+
+
+export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
+./main
