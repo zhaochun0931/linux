@@ -91,3 +91,19 @@ It may run concurrently with the parent.
 Parent can wait for it using wait() or waitpid().
 
 Resources (like files) may be shared or copied-on-write.
+
+
+
+
+
+
+| Aspect           | fork()                   | exec()                     | system()                      |
+| ---------------- | ------------------------ | -------------------------- | ----------------------------- |
+| Creates new PID  | ✅                        | ❌ (same PID)               | ✅                             |
+| Runs new program | ❌ (same code as parent)  | ✅ (replaces process image) | ✅ (via `/bin/sh`)             |
+| Parent affected  | Can wait for child       | No                         | Can wait                      |
+| Typical usage    | Create process hierarchy | Run a new program          | Quick shell command execution |
+
+
+
+
