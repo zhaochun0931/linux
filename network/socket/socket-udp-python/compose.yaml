@@ -1,0 +1,22 @@
+services:
+  server:
+    image: python:3.11-slim
+    container_name: udp-server
+    hostname: udp-server
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    command: python -u udp-server.py
+    ports:
+      - "5005:5005/udp"
+
+  client:
+    image: python:3.11-slim
+    container_name: udp-client
+    hostname: udp-client
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    command: python udp-client.py
+    depends_on:
+      - server
