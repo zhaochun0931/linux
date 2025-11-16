@@ -1,0 +1,67 @@
+In Linux, a library is a collection of precompiled code (functions, classes, system calls, utilities) that programs can use.
+Libraries make programs smaller, faster to build, and easier to maintain.
+
+
+✔ Types of Libraries in Linux
+
+Linux mainly uses two types of libraries:
+
+1️⃣ Static Library (.a)
+
+File extension: .a (archive)
+
+
+
+2️⃣ Shared Library (.so)
+
+File extension: .so (shared object)
+
+
+
+
+
+
+
+gcc test.c -static -o app.a -lm
+
+
+
+gcc test.c -o app.so -lm
+
+
+
+-rwxr-xr-x  1 root root 642408 Nov 16 12:55 app.a
+-rwxr-xr-x  1 root root  70656 Nov 16 12:55 app.so
+
+
+# file app.*
+app.a:  ELF 64-bit LSB executable, ARM aarch64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=574f3496381177de3747aa1d7eca7c5689d3685d, for GNU/Linux 3.7.0, not stripped
+app.so: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=619ff40ede660e2f49b680db3e6e8a6f5cd6b5ea, for GNU/Linux 3.7.0, not stripped
+
+
+
+
+
+
+
+✔ Library Naming Convention (Very Important)
+
+Shared libraries typically follow this pattern:
+
+lib<name>.so.<major>.<minor>
+
+
+
+Check library dependencies using:
+ldd <binary>
+
+
+
+# ldd /bin/ls
+	linux-vdso.so.1 (0x0000fe0f6363b000)
+	libselinux.so.1 => /lib/aarch64-linux-gnu/libselinux.so.1 (0x0000fe0f63570000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000fe0f633b0000)
+	/lib/ld-linux-aarch64.so.1 (0x0000fe0f635fe000)
+	libpcre2-8.so.0 => /lib/aarch64-linux-gnu/libpcre2-8.so.0 (0x0000fe0f63300000)
+#
+
