@@ -24,13 +24,26 @@ int main() {
         exit(1);
     } else {
         // Parent process
-        wait(NULL);
-        printf("Parent after child (fork+exec) finished\n");
+        int status;
+        waitpid(pid, &status, 0);  // wait for fork+exec child
+        printf("Parent after fork+exec child finished\n");
 
         // --- system() example ---
         printf("Parent will run 'echo Hello via system'\n");
-        int ret = system("echo Hello via system");
-        printf("system() returned: %d\n", ret);
+
+        pid_t system_pid = fork();
+        if (system_pid == 0) {
+            // This is the child that system() would create
+            printf("system() child PID: %d, parent PID: %d\n", getpid(), getppid());
+            execl("/bin/sh", "sh", "-c", "echo Hello via system", (char *)NULL);
+            perror("execl failed");
+            exit(1);
+        } else if (system_pid > 0) {
+            waitpid(system_pid, &status, 0);
+            printf("system() child finished, parent PID: %d\n", getpid());
+        } else {
+            perror("fork for system() failed");
+        }
     }
 
     return 0;
