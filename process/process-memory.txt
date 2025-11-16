@@ -1,0 +1,69 @@
+ps aux
+
+
+
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root      583778  0.0  0.2  17256  9728 pts/0    S+   05:02   0:00 python3 mytime.py
+
+
+✅
+
+RSS (Resident Set Size) – actual physical memory used.
+
+VSZ (Virtual Memory Size) – total virtual address space, including swapped-out and mapped files.
+
+
+
+
+
+
+top -p <PID>
+
+
+cat /proc/<PID>/maps
+
+
+
+
+pmap -x <PID>
+
+
+# pmap -x 583778
+583778:   python3 mytime.py
+Address           Kbytes     RSS   Dirty Mode  Mapping
+0000000000400000    6196    3816       0 r-x-- python3.12
+0000000000a1f000       4       4       4 r---- python3.12
+0000000000a20000    1452    1260    1104 rw--- python3.12
+0000000000b8b000      16       8       8 rw---   [ anon ]
+000000002efa4000     900     872     872 rw---   [ anon ]
+0000ead1ce39e000    2440    1560    1560 rw---   [ anon ]
+0000ead1ce600000    2988     404       0 r---- locale-archive
+0000ead1ce900000    1636    1280       0 r-x-- libc.so.6
+0000ead1cea99000      80       0       0 ----- libc.so.6
+0000ead1ceaad000      12      12      12 r---- libc.so.6
+0000ead1ceab0000       8       8       8 rw--- libc.so.6
+0000ead1ceab2000      48      16      16 rw---   [ anon ]
+0000ead1ceac0000     156      64       0 r-x-- libexpat.so.1.9.1
+0000ead1ceae7000      92       0       0 ----- libexpat.so.1.9.1
+0000ead1ceafe000       8       8       8 r---- libexpat.so.1.9.1
+0000ead1ceb00000       4       4       4 rw--- libexpat.so.1.9.1
+0000ead1ceb10000     104      64       0 r-x-- libz.so.1.3
+0000ead1ceb2a000      84       0       0 ----- libz.so.1.3
+0000ead1ceb3f000       4       4       4 r---- libz.so.1.3
+0000ead1ceb40000       4       4       4 rw--- libz.so.1.3
+0000ead1ceb50000     532      64       0 r-x-- libm.so.6
+0000ead1cebd5000     104       0       0 ----- libm.so.6
+0000ead1cebef000       4       4       4 r---- libm.so.6
+0000ead1cebf0000       4       4       4 rw--- libm.so.6
+0000ead1cebfe000     156     156       0 r-x-- ld-linux-aarch64.so.1
+0000ead1cec2a000      24      16      16 rw---   [ anon ]
+0000ead1cec30000      28      28       0 r--s- gconv-modules.cache
+0000ead1cec37000       8       8       8 rw---   [ anon ]
+0000ead1cec39000       8       0       0 r----   [ anon ]
+0000ead1cec3b000       4       4       0 r-x--   [ anon ]
+0000ead1cec3c000       8       8       8 r---- ld-linux-aarch64.so.1
+0000ead1cec3e000       8       8       8 rw--- ld-linux-aarch64.so.1
+0000ffffe1906000     132      64      64 rw---   [ stack ]
+---------------- ------- ------- -------
+total kB           17256    9752    3716
+#
