@@ -18,3 +18,48 @@ echo "hello fifo" > mypipe
 Terminal 2 (reader):
 
 cat mypipe
+
+
+
+
+
+
+
+
+
+PIPE (Anonymous)
+
+[ Parent Process ]
+        |
+    pipe()
+        |
+[ Child Process ]
+
+Only these two can use it.
+
+
+
+
+
+
+
+
+
+
+FIFO (Named Pipe)
+
+       filesystem
+     /             \
+ writer          reader
+  |                 |
+echo > myfifo   cat myfifo
+
+
+
+Any process can attach.
+
+
+
+
+
+
