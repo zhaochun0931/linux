@@ -173,3 +173,98 @@ Child exits, parent resumes.
 
 
 
+
+
+
+
+Parent Process (PID=1000)
+│
+├── fork() → Child Process (PID=1001)
+│       ├─ Runs same code as parent initially
+│       └─ exec("ls") → replaces memory, still PID=1001
+│
+└── system("echo Hello") 
+        ├─ Internally fork() → Child Process (PID=1002)
+        │       └─ execl("/bin/sh -c echo Hello") → runs command
+        └─ Child exits → system() returns to parent
+
+
+
+Legend
+
+fork(): Creates a new process with a new PID.
+
+exec(): Replaces a process’s memory with a new program (PID stays the same).
+
+system(): Convenience function that does fork + exec internally, then waits for the child.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Step 0: Initial Parent Process
+Parent PID=1000
+Code: main()
+
+Step 1: fork()
+Parent PID=1000             Child PID=1001
+Code: main()                Code: main()  (starts at fork() return)
+fork() returns child PID     fork() returns 0
+
+Step 2: Child executes exec()
+Parent PID=1000             Child PID=1001
+Code: main()                Code replaced by 'ls'
+                            (exec replaces memory, still PID=1001)
+
+Step 3: Parent calls system("echo Hello")
+Parent PID=1000
+Code: system("echo Hello")
+
+Step 4: system() internally forks
+Parent PID=1000             Child PID=1002
+Code: waiting inside system Code: /bin/sh -c "echo Hello"
+
+Step 5: system() child executes command
+Parent PID=1000             Child PID=1002
+Code: waiting               Code: prints "Hello"
+
+Step 6: system() child exits
+Parent PID=1000             Child PID=1002
+Code: resumes after system() Child terminated
+
+Step 7: Parent continues
+Parent PID=1000
+Code: continues main()
+
+
+✅ Key points from this flow:
+
+fork() creates a new PID; parent and child run concurrently.
+
+exec() replaces the child process memory without changing PID.
+
+system() is just fork + exec + wait in one call.
+
+Parent can continue or wait depending on your code (wait() or system()).
+
+
+
+
+
+
+
+
+
+
+
+
