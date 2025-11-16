@@ -1,0 +1,93 @@
+When a new process is created in Linux (or most Unix-like systems), a series of well-defined steps happens at the kernel level. Let me break it down carefully and clearly:
+
+1. Forking a process
+
+System call used: fork() (or clone() internally in Linux).
+
+What happens:
+
+The kernel allocates a new process descriptor (task_struct).
+
+The new process gets a unique PID.
+
+It inherits almost all attributes from the parent:
+
+Open file descriptors
+
+Memory space (copy-on-write)
+
+Environment variables
+
+Signal handlers
+
+The new process starts execution from the point where fork() returns.
+
+fork() returns 0 in the child, and child PID in the parent.
+
+Example:
+
+pid_t pid = fork();
+if(pid == 0) {
+    printf("Child process\n");
+} else {
+    printf("Parent process, child PID = %d\n", pid);
+}
+
+2. Replacing the process image
+
+System call used: exec() family (execl, execvp, etc.).
+
+What happens:
+
+The child process replaces its entire memory image with a new program.
+
+Code, data, heap, and stack are replaced.
+
+The PID remains the same, but it now runs a different program.
+
+If exec() fails, the old program continues.
+
+Example:
+
+char *args[] = {"ls", "-l", NULL};
+execvp("ls", args);  // replaces current process with 'ls'
+
+3. Using system()
+
+system() is a higher-level wrapper that does:
+
+fork() a new child process.
+
+The child process runs /bin/sh -c "your command".
+
+The parent waits for the child to finish.
+
+Effectively, it’s like doing fork + exec + wait in one call.
+
+4. Kernel internals
+
+The scheduler decides when the new process runs.
+
+Processes are managed as task_struct structures in the kernel.
+
+Each process has:
+
+PID (process ID)
+
+PPID (parent PID)
+
+Open files table
+
+Memory map
+
+CPU registers saved during context switch
+
+5. What you observe
+
+The new process gets a unique PID.
+
+It may run concurrently with the parent.
+
+Parent can wait for it using wait() or waitpid().
+
+Resources (like files) may be shared or copied-on-write.
