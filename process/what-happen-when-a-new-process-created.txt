@@ -107,3 +107,69 @@ Resources (like files) may be shared or copied-on-write.
 
 
 
+
+
+
+
+Time -->
+Parent PID=1000
+|
+| fork()
+v
+Parent PID=1000                Child PID=1001
+|                              |
+|                              |  (child starts at same code point as parent)
+|                              |  printf("Child running")
+| wait()                       |
+v                              v
+Parent continues               exec("ls")
+|                              |
+|                              |  (memory replaced, now running 'ls')
+|                              |
+v                              v
+Parent PID=1000                Child PID=1001
+|                              |
+| system("echo Hello")         |
+|                              |
+|                              fork() inside system()
+|                              Child PID=1002
+|                              |
+|                              execl("/bin/sh", "-c", "echo Hello")
+|                              Hello printed
+|                              exit()
+v
+system() returns to parent
+Parent PID=1000
+
+
+
+Explanation
+
+fork()
+
+Creates a new child PID=1001.
+
+Child is an exact copy of parent (memory, file descriptors, etc.).
+
+Parent can continue or wait for the child.
+
+exec()
+
+Replaces child’s memory with a new program (e.g., ls).
+
+PID remains the same (1001), but code/data are replaced.
+
+Parent still PID=1000, waits if desired.
+
+system()
+
+Parent calls system().
+
+Internally does fork() → new PID=1002.
+
+Child runs /bin/sh -c "echo Hello".
+
+Child exits, parent resumes.
+
+
+
