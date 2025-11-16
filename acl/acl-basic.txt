@@ -14,6 +14,28 @@ touch test.txt
 
 setfacl -m u:username:rw test.txt
 
+
+ls -l will show a + if ACL exists:
+
 -rw-rw-r--+ 1 root root 0 Nov 16 12:42 test.txt
 
 
+The + means: this file has extended ACL entries.
+
+
+
+
+
+getfacl test.txt
+
+# getfacl test.txt
+# file: test.txt
+# owner: root
+# group: root
+user::rw-
+user:xman:rw-
+group::r--
+mask::rw-
+other::r--
+
+#
