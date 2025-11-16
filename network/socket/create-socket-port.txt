@@ -1,0 +1,87 @@
+✅ When a Socket Program Opens a Socket — Which Port Is Used?
+
+A socket goes through three steps:
+
+1. socket() — No port yet
+
+When you call:
+
+int fd = socket(AF_INET, SOCK_STREAM, 0);
+
+
+A file descriptor (fd) is created, but:
+
+❌ No IP assigned
+❌ No port assigned
+❌ Not visible in netstat or ss
+
+It is just a file descriptor, not a network endpoint.
+
+
+
+
+2. bind() — The program chooses a port
+Case A — Server specifies the port
+
+If the program calls:
+
+struct sockaddr_in addr = {
+    .sin_family = AF_INET,
+    .sin_addr.s_addr = INADDR_ANY,
+    .sin_port = htons(8080)
+};
+bind(fd, (struct sockaddr*)&addr, sizeof(addr));
+
+
+Then it uses port 8080.
+
+✔ Explicit
+✔ Constant
+✔ Visible in ss -ltnp
+
+Case B — Client does NOT specify a port
+
+Most clients do not call bind().
+
+Example:
+
+connect(fd, (struct sockaddr*)&server, sizeof(server));
+
+
+In this case:
+
+🔥 Linux auto-assigns an ephemeral port
+
+Linux chooses a free port from:
+
+/proc/sys/net/ipv4/ip_local_port_range
+
+
+Check your system:
+
+cat /proc/sys/net/ipv4/ip_local_port_range
+
+
+Usually:
+
+32768 60999
+
+
+So client sockets use something like:
+
+client → port 34712
+server → port 80
+
+
+
+
+3. After connect() — Port becomes visible
+
+The assigned ephemeral port becomes visible:
+
+ss -ntp
+
+
+Example output:
+
+ESTAB 0 0 192.168.1.10:34712 93.184.216.34:80 users:(("client",pid=1234))
