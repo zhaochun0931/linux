@@ -1,0 +1,51 @@
+A pipeline connects the output of one program to the input of another program using the | operator.
+
+
+
+In Linux, everything that a program prints goes to file descriptor 1 (stdout).
+
+A pipeline redirects that stdout into the stdin (file descriptor 0) of the next program.
+
+
+
+
+
+
+🧩 Under the hood — how pipelines actually work
+
+When you run:
+
+cmd1 | cmd2
+
+
+The shell does this internally:
+
+1. Create a pipe → this gives 2 file descriptors:
+
+fd[0] = read end
+
+fd[1] = write end
+
+
+
+2. fork() child for cmd1
+
+duplicate fd[1] to stdout (fd 1)
+
+close unused ends
+
+exec() cmd1
+
+
+
+3. fork() child for cmd2
+
+duplicate fd[0] to stdin (fd 0)
+
+close unused ends
+
+exec() cmd2
+
+
+
+4. Shell closes both ends and waits for both processes.
