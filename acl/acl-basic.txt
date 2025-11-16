@@ -5,6 +5,45 @@ Most distros (Ubuntu, Debian, CentOS, Rocky, AlmaLinux, Fedora) no longer show a
 
 
 
+Linux normally supports only 3 permission sets:
+
+| Entity | Permissions |
+| ------ | ----------- |
+| Owner  | rwx         |
+| Group  | rwx         |
+| Others | rwx         |
+
+
+
+
+
+But what if you want:
+
+give user Alice read access
+
+give user Bob write access
+
+give group testers read/write
+
+
+while keeping the default owner/group permissions?
+
+→ This is where POSIX ACL helps.
+
+ACL allows you to assign permissions per user and per group, in addition to default permissions.
+
+
+
+
+
+
+
+
+
+
+
+
+
 touch test.txt
 -rw-r--r-- 1 root root 0 Nov 16 12:42 test.txt
 
