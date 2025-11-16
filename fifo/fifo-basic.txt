@@ -1,0 +1,20 @@
+Both pipes and FIFOs (named pipes) allow one-way data streaming between processes using a kernel buffer.
+
+
+
+
+mkfifo mypipe
+
+
+prw-r--r--  1 root root     0 Nov 16 12:29 mypipe
+
+
+Terminal 1 (writer):
+
+echo "hello fifo" > mypipe
+
+
+
+Terminal 2 (reader):
+
+cat mypipe
