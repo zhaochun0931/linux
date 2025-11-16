@@ -1,0 +1,53 @@
+✅ What Are Socket Send & Receive Buffers in Linux?
+
+Every TCP/UDP socket in Linux has two kernel-managed buffers:
+
+1️⃣ Receive Buffer (rmem)
+
+The receive buffer stores incoming packets until your application reads them using:
+
+recv()
+
+read()
+
+recvfrom()
+
+If the receive buffer is full:
+
+Linux drops incoming packets (UDP)
+
+TCP performs flow-control → remote sender slows down
+
+
+
+2️⃣ Send Buffer (wmem)
+
+The send buffer stores outbound data after your application calls:
+
+send()
+
+write()
+
+Your program may think data was “sent,” but actually:
+
+It’s placed into the kernel send buffer
+
+The kernel sends it later (depending on congestion, TCP rules)
+
+If the send buffer is full:
+
+send() blocks (or returns EAGAIN for non-blocking sockets)
+
+
+
+
+
+
+🔍 How Big Are These Buffers by Default?
+
+Check current buffer limits:
+
+sysctl net.core.rmem_default
+sysctl net.core.wmem_default
+sysctl net.core.rmem_max
+sysctl net.core.wmem_max
