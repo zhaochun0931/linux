@@ -1,0 +1,19 @@
+ACL (Access Control List) in Linux is an extended permission system that allows you to give fine-grained permissions to files and directories beyond the standard owner / group / others model.
+
+Most distros (Ubuntu, Debian, CentOS, Rocky, AlmaLinux, Fedora) no longer show acl explicitly in the mount options, because it is the default kernel behavior.
+
+
+
+
+touch test.txt
+-rw-r--r-- 1 root root 0 Nov 16 12:42 test.txt
+
+
+
+
+
+setfacl -m u:username:rw test.txt
+
+-rw-rw-r--+ 1 root root 0 Nov 16 12:42 test.txt
+
+
