@@ -31,3 +31,14 @@ $
 awk 'NR>=10 && NR<=20' filename
 NR: A built-in variable in awk that represents the current line number.
 NR>=10 && NR<=20: Specifies the range of lines to be printed.
+
+
+
+
+
+
+
+awk '$1 ~ /M/ { print $1 }' file
+
+
+awk '$1 ~ /M/ && $1 !~ /abc/ { print $1 }' file
