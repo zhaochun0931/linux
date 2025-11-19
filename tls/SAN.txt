@@ -1,0 +1,41 @@
+✅ With SAN (Subject Alternative Name)
+
+A certificate with SAN includes an extension listing all valid hostnames/IPs the certificate may be used for.
+
+Example SAN values:
+
+DNS: example.com
+
+DNS: www.example.com
+
+IP: 10.0.0.1
+
+IP: 127.0.0.1
+
+
+
+✔ What happens
+
+Modern TLS clients (browsers, curl, Java, Go, Python, RabbitMQ, etc.) only check SAN, not CN.
+
+If you connect to example.com, the client looks in the SAN list and verifies the match.
+
+If SAN is correct → TLS handshake succeeds.
+
+
+
+✔ Why it matters
+
+Since RFC 2818 (2000s) and fully enforced since Chrome 58 / OpenSSL 1.1.x, the CN is ignored for hostname verification.
+
+
+
+
+
+
+
+
+openssl req -new -x509 -days 365 -nodes \
+  -key server.key -out server.crt \
+  -subj "/CN=example.com" \
+  -addext "subjectAltName=DNS:example.com,DNS:www.example.com,IP:10.0.0.1"
