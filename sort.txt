@@ -2,3 +2,9 @@ sort -k 3 -t ":" -n /etc/passwd
 
 
 
+
+
+
+sort -h file
+
+sort -h understands K, M, G, T, so it sorts them numerically regardless of the suffix.
