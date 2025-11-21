@@ -105,7 +105,19 @@ tree /usr/local/etc/slapd.d
 
 ✅ Start SLAPD
 
-/usr/local/libexec/slapd -F /usr/local/etc/slapd.d
+
+/usr/local/libexec/slapd -F /usr/local/etc/slapd.d -h "ldap:/// ldapi:///"
+
+
+ldap:/// → listen on TCP port 389
+ldapi:/// → listen on Unix socket for SASL EXTERNAL binds
+
+
+
+
+
+
+
 
 
 
