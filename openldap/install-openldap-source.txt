@@ -1,0 +1,32 @@
+# install
+
+
+wget https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.6.10.tgz
+
+tar -xvf openldap-2.6.10.tgz
+
+cd openldap-2.6.10/
+
+
+./configure
+
+make depend
+
+make
+
+make install
+
+
+
+
+Everything should now be installed under /usr/local
+
+
+
+
+
+
+
+
+
+
