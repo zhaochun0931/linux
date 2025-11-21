@@ -11,9 +11,7 @@ cd openldap-2.6.10/
 ./configure
 
 make depend
-
 make
-
 make install
 
 
