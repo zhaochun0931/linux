@@ -2,6 +2,7 @@
 
 apt update
 apt install build-essential -y
+apt install libsasl2-dev -y
 
 
 wget https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.6.10.tgz
