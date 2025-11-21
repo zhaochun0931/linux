@@ -116,6 +116,30 @@ ldapi:/// → listen on Unix socket for SASL EXTERNAL binds
 
 
 
+ps aux | grep slapd
+ss -antlup | egrep -i slapd
+
+
+# ps aux | grep slapd
+root        9383  0.0  0.1 1076456 5188 ?        Ssl  11:44   0:00 /usr/local/libexec/slapd -F /usr/local/etc/slapd.d -h ldap:/// ldapi:///
+root        9565  0.0  0.0   6140  2048 pts/0    S+   11:44   0:00 grep slapd
+#
+
+
+# ss -antlup | egrep -i slapd
+tcp   LISTEN 0      2048                 0.0.0.0:389        0.0.0.0:*    users:(("slapd",pid=476261,fd=7))
+tcp   LISTEN 0      2048                    [::]:389           [::]:*    users:(("slapd",pid=476261,fd=8))
+#
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -172,15 +196,6 @@ or
 
 
 
-
-
-ss -antlup | egrep -i slapd
-
-
-# ss -antlup | egrep -i slapd
-tcp   LISTEN 0      2048                 0.0.0.0:389        0.0.0.0:*    users:(("slapd",pid=476261,fd=7))
-tcp   LISTEN 0      2048                    [::]:389           [::]:*    users:(("slapd",pid=476261,fd=8))
-#
 
 
 
