@@ -8,19 +8,25 @@ wget https://www.openldap.org/software/download/OpenLDAP/openldap-release/openld
 
 tar -xvf openldap-2.6.10.tgz
 
-cd openldap-2.6.10/
 
+
+cd openldap-2.6.10/
 
 ./configure
 
 make depend
+
 make
+
 make install
 
 
 
 
-Everything should now be installed under /usr/local
+
+
+
+✅ Everything should now be installed under /usr/local
 
 
 
@@ -52,7 +58,7 @@ slaptest -u
 
 ✅ configure
 
-ls -al  /usr/local/etc/openldap/slapd.ldif
+ls -al /usr/local/etc/openldap/slapd.ldif
 
 
 Be sure to replace <MY-DOMAIN> and <COM> with the appropriate domain components of your domain name. For example, for example.com, use
