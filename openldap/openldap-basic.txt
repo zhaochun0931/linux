@@ -54,11 +54,24 @@ DN is like a full path to an entry.
 
 
 
+🔴 Root DN (Directory Manager DN / Admin DN)
+
+The Root DN is the administrator account for the database.
+
+cn=admin,dc=example,dc=com
 
 
-✅ baseDN
 
-✅ rootDN
+
+🔴 Base DN (Base Distinguished Name)
+
+The Base DN is the top-level entry of your LDAP directory where your data (users, groups, OUs) is stored.
+
+dc=example,dc=com
+
+
+✅ Base DN
+
 
 
 
