@@ -84,7 +84,7 @@ ls -al /etc/default/slapd
 
 
 
-
+ldapsearch -Y EXTERNAL -H ldapi://%2Fvar%2Frun%2Fslapd%2Fldapi -b olcDatabase={1}mdb,cn=config
 
 
 
