@@ -11,21 +11,9 @@ Attributes hold the actual data, such as the user's name or email address.
 
 Installing slapd (the Stand-alone LDAP Daemon) creates a minimal working configuration with a top level entry, and an administrator’s Distinguished Name (DN).
 
-In particular, it creates a database instance that you can use to store your data. However, the suffix (or base DN) of this instance will be determined from the domain name of the host. If you want something different, you can change it right after the installation (before it contains any useful data).
-
+In particular, it creates a database instance that you can use to store your data. However, the suffix (or base DN) of this instance will be determined from the domain name of the host. 
 
 This guide will use a database suffix of dc=example,dc=com
-
-
-
-
-
-
-
-
-
-
-
 
 
 
