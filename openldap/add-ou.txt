@@ -37,3 +37,10 @@ ldapsearch -x -H ldap://localhost:389 \
   "(objectClass=*)" dn
 
 
+
+✅ 4. Test user login (bind test)
+
+ldapwhoami -x -H ldap://localhost:389 \
+  -D "uid=john,ou=people,dc=example,dc=com" \
+  -w 'password'
+
