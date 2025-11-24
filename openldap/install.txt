@@ -40,7 +40,33 @@ Confirm password:
 
 
 
+✅ check openladap service
 systemctl status slapd.service
+
+
+
+# systemctl status slapd.service
+● slapd.service - LSB: OpenLDAP standalone server (Lightweight Directory Access Protocol)
+     Loaded: loaded (/etc/init.d/slapd; generated)
+    Drop-In: /usr/lib/systemd/system/slapd.service.d
+             └─slapd-remain-after-exit.conf
+     Active: active (running) since Mon 2025-11-24 10:19:30 UTC; 1min 9s ago
+       Docs: man:systemd-sysv-generator(8)
+    Process: 2371 ExecStart=/etc/init.d/slapd start (code=exited, status=0/SUCCESS)
+      Tasks: 3 (limit: 978)
+     Memory: 5.2M (peak: 5.5M)
+        CPU: 34ms
+     CGroup: /system.slice/slapd.service
+             └─2378 /usr/sbin/slapd -h "ldap:/// ldapi:///" -g openldap -u openldap -F /etc/ldap/slapd.d
+
+Nov 24 10:19:29 test systemd[1]: Starting slapd.service - LSB: OpenLDAP standalone server (Lightweight Directory Acces>
+Nov 24 10:19:30 test slapd[2371]:  * Starting OpenLDAP slapd
+Nov 24 10:19:30 test slapd[2377]: @(#) $OpenLDAP: slapd 2.6.7+dfsg-1~exp1ubuntu8.2 (Dec  9 2024 02:50:18) $
+                                          Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Nov 24 10:19:30 test slapd[2378]: slapd starting
+Nov 24 10:19:30 test slapd[2371]:    ...done.
+Nov 24 10:19:30 test systemd[1]: Started slapd.service - LSB: OpenLDAP standalone server (Lightweight Directory Access>
+#
 
 
 
@@ -59,9 +85,6 @@ ls -al /etc/default/slapd
 
 
 
-After installation, you can reconfigure OpenLDAP:
-
-dpkg-reconfigure slapd
 
 
 
@@ -74,6 +97,16 @@ slapd -V
 
 
 ✅ install successfully
+
+
+
+
+
+
+After installation, you can reconfigure OpenLDAP:
+
+dpkg-reconfigure slapd
+
 
 
 
