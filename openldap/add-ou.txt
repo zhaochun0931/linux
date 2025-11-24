@@ -1,1 +1,7 @@
-ldapadd -x -H ldap://localhost:389 -D "cn=admin,dc=example,dc=com" -w 'password' -f base-ou.ldif
+ldapadd -x -H ldap://localhost:389 -D "cn=admin,dc=example,dc=com" -w '<password>' -f base-ou.ldif
+
+
+
+
+
+ldapadd -x -H ldap://localhost:389 -D "cn=admin,dc=example,dc=com" -w '<password>' -f user-john.ldif
