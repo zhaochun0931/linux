@@ -56,6 +56,10 @@ DN is like a full path to an entry.
 
 
 
+✅ baseDN
+
+✅ rootDN
+
 
 
 DN: Distinguished Name
