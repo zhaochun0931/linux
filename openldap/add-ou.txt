@@ -5,3 +5,35 @@ ldapadd -x -H ldap://localhost:389 -D "cn=admin,dc=example,dc=com" -w '<password
 
 
 ldapadd -x -H ldap://localhost:389 -D "cn=admin,dc=example,dc=com" -w '<password>' -f user-john.ldif
+
+
+
+
+✅ 1. List ALL entries in your LDAP (full tree)
+
+ldapsearch -x -H ldap://localhost:389 \
+  -D "cn=admin,dc=example,dc=com" \
+  -w 'password' \
+  -b "dc=example,dc=com"
+
+
+
+
+✅ 2. List only users (posixAccount)
+
+ldapsearch -x -H ldap://localhost:389 \
+  -D "cn=admin,dc=example,dc=com" \
+  -w 'password' \
+  -b "dc=example,dc=com" \
+  "(objectClass=posixAccount)" uid cn dn
+
+
+✅ 3. List users under ou=people
+
+ldapsearch -x -H ldap://localhost:389 \
+  -D "cn=admin,dc=example,dc=com" \
+  -w 'password' \
+  -b "ou=people,dc=example,dc=com" \
+  "(objectClass=*)" dn
+
+
