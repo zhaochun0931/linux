@@ -21,3 +21,18 @@ config get log*
 
 info
 INFO
+
+
+
+
+
+
+
+
+
+
+$ nc localhost 6379
+auth password
++OK
+ping
++PONG
