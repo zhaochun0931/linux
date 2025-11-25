@@ -1,0 +1,9 @@
+services:
+  redis:
+    image: redis:8   # latest stable Redis 8
+    container_name: my-redis
+    ports:
+      - "6379:6379"   # map host port 6379 to container
+    volumes:
+      - ./data:/data   # persist Redis data to ./data folder on host
+    command: ["redis-server", "--appendonly", "yes"]
