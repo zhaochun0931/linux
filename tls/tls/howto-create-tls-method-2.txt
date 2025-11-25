@@ -1,2 +1,9 @@
 # or just create both the private key and CSR with a single command
 openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr
+
+
+
+# sign with the private key
+openssl x509 -req -in server.csr -signkey server.key -out server.crt
+
+
