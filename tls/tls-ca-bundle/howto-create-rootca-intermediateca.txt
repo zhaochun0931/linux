@@ -14,88 +14,93 @@
 
 
 
-mkdir -p rootCA intermediateCA server
+mkdir -p root inter server client
 
 
 
 ✅ 1. Create Root CA
 
-openssl genrsa -out rootCA/rootCA.key 4096
+openssl genrsa -out root/root.key 4096
 
 openssl req -x509 -new -nodes \
-  -key rootCA/rootCA.key \
+  -key root/root.key \
   -sha256 -days 3650 \
-  -out rootCA/rootCA.crt \
-  -subj "/CN=RootCA"
+  -subj "/C=US/ST=CA/O=DemoRootCA/CN=Demo Root CA" \
+  -out root/root.crt
 
 
 
 
 ✅ 2. Create Intermediate CA
 
-openssl genrsa -out intermediateCA/intermediate.key 4096
+
+openssl genrsa -out inter/inter.key 4096
 
 openssl req -new \
-  -key intermediateCA/intermediate.key \
-  -out intermediateCA/intermediate.csr \
-  -subj "/CN=IntermediateCA"
+  -key inter/inter.key \
+  -subj "/C=US/ST=CA/O=DemoIntermediateCA/CN=Demo Intermediate CA" \
+  -out inter/inter.csr
 
 
-Now sign the intermediate CSR with the root CA:
+# Now sign the intermediate CSR with the root CA:
+
 
 openssl x509 -req \
-  -in intermediateCA/intermediate.csr \
-  -CA rootCA/rootCA.crt -CAkey rootCA/rootCA.key \
+  -in inter/inter.csr \
+  -CA root/root.crt -CAkey root/root.key \
   -CAcreateserial \
-  -out intermediateCA/intermediate.crt \
-  -days 1825 -sha256
+  -out inter/inter.crt \
+  -days 3650 -sha256 \
+  -extfile <(printf "basicConstraints=CA:TRUE,pathlen:0\nauthorityKeyIdentifier=keyid,issuer\nsubjectKeyIdentifier=hash\nkeyUsage=critical,keyCertSign,cRLSign")
 
 
-intermediate.crt → signed by root
-
-
-
-
-
-Optional: create full chain file:
-
-cat intermediateCA/intermediate.crt rootCA/rootCA.crt > intermediateCA/ca-chain.crt
 
 
 
 
 ✅ 3. Create Server Certificate
 
-openssl genrsa -out server/server.key 2048
 
+openssl genrsa -out server/server.key 2048
 
 openssl req -new \
   -key server/server.key \
-  -out server/server.csr \
-  -subj "/CN=localhost"
-
-
-Sign the server CSR using the intermediate CA:
+  -subj "/C=US/ST=CA/O=DemoServer/CN=localhost" \
+  -out server/server.csr
 
 openssl x509 -req \
   -in server/server.csr \
-  -CA intermediateCA/ca-chain.crt \
-  -CAkey intermediateCA/intermediate.key \
+  -CA inter/inter.crt -CAkey inter/inter.key \
   -CAcreateserial \
   -out server/server.crt \
-  -days 825 -sha256
-
-
-Server cert is now signed by Intermediate CA
+  -days 825 -sha256 \
+  -extfile <(printf "basicConstraints=CA:FALSE\nauthorityKeyIdentifier=keyid,issuer\nsubjectKeyIdentifier=hash\nkeyUsage=digitalSignature,keyEncipherment\nextendedKeyUsage=serverAuth\nsubjectAltName=DNS:localhost")
 
 
 
 
-Clients can trust it if they trust the Root CA
+cat server/server.crt inter/inter.crt > server/server-chain.crt
 
-Optional: create server full chain:
 
-cat server/server.crt intermediateCA/ca-chain.crt rootCA/rootCA.crt > server/server-fullchain.crt
+
+✅ 4. Create Client Certificate
+
+openssl genrsa -out client/client.key 2048
+openssl req -new \
+  -key client/client.key \
+  -subj "/C=US/ST=CA/O=DemoClient/CN=client" \
+  -out client/client.csr
+
+openssl x509 -req \
+  -in client/client.csr \
+  -CA inter/inter.crt -CAkey inter/inter.key \
+  -CAcreateserial \
+  -out client/client.crt \
+  -days 365 \
+  -sha256 \
+  -extfile <(printf "extendedKeyUsage=clientAuth\nsubjectKeyIdentifier=hash\nauthorityKeyIdentifier=keyid,issuer")
+
+
 
 
 
@@ -103,22 +108,35 @@ cat server/server.crt intermediateCA/ca-chain.crt rootCA/rootCA.crt > server/ser
 ✅ Resulting Files
 
 
-├── intermediateCA
-│   ├── ca-chain.crt
-│   ├── intermediate.crt
-│   ├── intermediate.csr
-│   ├── intermediate.key
-│   └── intermediate.srl
-├── rootCA
-│   ├── rootCA.crt
-│   ├── rootCA.key
-│   └── rootCA.srl
+├── client
+│   ├── client.crt
+│   ├── client.csr
+│   └── client.key
+├── inter
+│   ├── inter.crt
+│   ├── inter.csr
+│   ├── inter.key
+│   └── inter.srl
+├── root
+│   ├── root.crt
+│   ├── root.key
+│   └── root.srl
 └── server
-    ├── server-fullchain.crt
+    ├── server-chain.crt
     ├── server.crt
     ├── server.csr
     └── server.key
 
 
 
+
+terminal one:
+
+openssl s_server -accept 4433 -cert server/server-chain.crt -key server/server.key -CAfile inter/inter.crt -Verify 1
+
+
+
+another terminal:
+
+openssl s_client -connect localhost:4433 -CAfile root/root.crt -cert client/client.crt -key client/client.key
   
