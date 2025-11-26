@@ -38,7 +38,7 @@ openssl req -x509 -new -nodes \
 
 
 
-⭐ STEP 2 — Create server certificate signed by Root CA
+🚀 STEP 2 — Create server certificate signed by Root CA
 
 openssl genrsa -out server.key 2048
 
@@ -56,7 +56,9 @@ openssl x509 -req \
   -days 365 -sha256 \
   -extfile <(printf "subjectAltName=DNS:localhost")
 
-⭐ STEP 3 — Create client certificate signed by Root CA
+
+
+🚀 STEP 3 — Create client certificate signed by Root CA
 
 openssl genrsa -out client.key 2048
 
@@ -75,7 +77,10 @@ openssl x509 -req \
   -days 365 -sha256 \
   -extfile <(printf "extendedKeyUsage=clientAuth")
 
-⭐ STEP 4 — Start the TLS server (requires client cert)
+
+
+
+🚀 STEP 4 — Start the TLS server (requires client cert)
 
 Terminal #1:
 
@@ -93,7 +98,10 @@ Meaning:
 
 Server trusts only certificates signed by root.crt
 
-⭐ STEP 5 — Connect as client using mTLS
+
+
+
+🚀 STEP 5 — Connect as client using mTLS
 
 Terminal #2:
 
@@ -106,7 +114,17 @@ openssl s_client \
 
 
 
-🎉 Expected successful output
+curl -v https://localhost:8443 \
+  --cert client.crt \
+  --key client.key \
+  --cacert root.crt
+
+
+
+
+
+
+🚀 Expected successful output
 
 At the bottom you must see:
 
