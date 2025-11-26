@@ -1,0 +1,108 @@
+mkdir -p rootCA intermediateCA server
+
+
+
+✅ 1. Create Root CA
+
+openssl genrsa -out rootCA/rootCA.key 4096
+
+openssl req -x509 -new -nodes \
+  -key rootCA/rootCA.key \
+  -sha256 -days 3650 \
+  -out rootCA/rootCA.crt \
+  -subj "/CN=RootCA"
+
+
+
+
+✅ 2. Create Intermediate CA
+
+openssl genrsa -out intermediateCA/intermediate.key 4096
+
+openssl req -new \
+  -key intermediateCA/intermediate.key \
+  -out intermediateCA/intermediate.csr \
+  -subj "/CN=IntermediateCA"
+
+
+Now sign the intermediate CSR with the root CA:
+
+openssl x509 -req \
+  -in intermediateCA/intermediate.csr \
+  -CA rootCA/rootCA.crt -CAkey rootCA/rootCA.key \
+  -CAcreateserial \
+  -out intermediateCA/intermediate.crt \
+  -days 1825 -sha256
+
+
+intermediate.crt → signed by root
+
+
+
+
+
+Optional: create full chain file:
+
+cat intermediateCA/intermediate.crt rootCA/rootCA.crt > intermediateCA/ca-chain.crt
+
+
+
+
+✅ 3. Create Server Certificate
+
+openssl genrsa -out server/server.key 2048
+
+
+openssl req -new \
+  -key server/server.key \
+  -out server/server.csr \
+  -subj "/CN=localhost"
+
+
+Sign the server CSR using the intermediate CA:
+
+openssl x509 -req \
+  -in server/server.csr \
+  -CA intermediateCA/ca-chain.crt \
+  -CAkey intermediateCA/intermediate.key \
+  -CAcreateserial \
+  -out server/server.crt \
+  -days 825 -sha256
+
+
+Server cert is now signed by Intermediate CA
+
+
+
+
+Clients can trust it if they trust the Root CA
+
+Optional: create server full chain:
+
+cat server/server.crt intermediateCA/ca-chain.crt rootCA/rootCA.crt > server/server-fullchain.crt
+
+
+
+  
+✅ Resulting Files
+
+
+├── intermediateCA
+│   ├── ca-chain.crt
+│   ├── intermediate.crt
+│   ├── intermediate.csr
+│   ├── intermediate.key
+│   └── intermediate.srl
+├── rootCA
+│   ├── rootCA.crt
+│   ├── rootCA.key
+│   └── rootCA.srl
+└── server
+    ├── server-fullchain.crt
+    ├── server.crt
+    ├── server.csr
+    └── server.key
+
+
+
+  
