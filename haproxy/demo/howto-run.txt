@@ -1,0 +1,13 @@
+├── compose.yaml
+├── haproxy.cfg
+├── web1
+│   └── index.html
+└── web2
+    └── index.html
+
+
+
+docker compose up
+
+
+curl localhost:8080
