@@ -83,3 +83,59 @@ $
 
 
 
+
+
+
+
+
+
+✅ 5. Start TLS server using OpenSSL
+Terminal 1:
+
+openssl s_server \
+  -cert myserver.crt \
+  -key myserver.key \
+  -CAfile myca.crt \
+  -accept 8443 \
+  -verify 1
+
+
+Meaning:
+
+-cert: server certificate
+
+-key: server private key
+
+-CAfile: CA trusted by the server
+
+-verify 1: require client to present a cert (optional)
+
+
+
+
+
+
+🔥 If you only want server-side TLS (no client cert):
+
+openssl s_server -cert myserver.crt -key myserver.key -accept 8443
+
+
+
+
+
+✅ 6. Open another terminal and test using OpenSSL client
+Terminal 2:
+
+openssl s_client \
+  -connect localhost:8443 \
+  -CAfile myca.crt
+
+
+You should see in the output:
+
+Verify return code: 0 (ok)
+
+
+
+
+Now you can type text and the server will echo it.
