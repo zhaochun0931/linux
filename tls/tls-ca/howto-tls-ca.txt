@@ -15,6 +15,9 @@ myserver.csr
 myserver.key
 
 
+
+
+
 ✅ sign the server.key with custom CA
 
 openssl x509 -req -in myserver.csr -CA myca.crt -CAkey myca.key -CAcreateserial -out myserver.crt -days 365
@@ -26,3 +29,49 @@ openssl x509 -req -in myserver.csr -CA myca.crt -CAkey myca.key -CAcreateserial 
 ✅
 
 openssl verify -CAfile myca.crt myserver.crt
+
+
+
+
+
+✅ Show certificate information
+
+openssl x509 -in myserver.crt -text -noout
+
+
+
+
+
+
+
+✅ Check whether a private key matches a certificate
+Get modulus of cert:
+openssl x509 -noout -modulus -in myserver.crt | openssl md5
+
+Get modulus of key:
+openssl rsa -noout -modulus -in myserver.key | openssl md5
+
+
+
+If the MD5 hashes are identical → they match.
+
+
+
+
+
+$
+$ openssl x509 -noout -modulus -in myserver.crt | openssl md5
+MD5(stdin)= 572c9556065390c1074dcd0cf666082a
+$
+$
+$ openssl rsa -noout -modulus -in myserver.key | openssl md5
+MD5(stdin)= 572c9556065390c1074dcd0cf666082a
+$
+$
+
+
+
+
+
+
+
