@@ -1,0 +1,144 @@
+here is a complete working setup for mutual TLS (mTLS) using OpenSSL.
+
+You will:
+
+Create a CA
+
+Create a server cert signed by the CA
+
+Create a client cert signed by the same CA
+
+Run an OpenSSL TLS server that requires client certificates
+
+Test with a correct client cert (works)
+
+Test with no client cert (fails)
+
+All commands are copy-paste ready.
+
+
+
+
+
+✅ 1. Prepare directories
+mkdir ca server client
+
+
+
+
+
+✅ 2. Create CA (Certificate Authority)
+CA private key
+
+openssl genrsa -out ca/ca.key
+
+
+
+CA certificate
+
+openssl req -x509 -new -nodes \
+  -key ca/ca.key \
+  -sha256 -days 3650 \
+  -out ca/ca.crt \
+  -subj "/CN=MyTestCA"
+
+
+
+✅ 3. Create Server Key + CSR
+openssl genrsa -out server/server.key 2048
+
+openssl req -new \
+  -key server/server.key \
+  -out server/server.csr \
+  -subj "/CN=localhost"
+
+
+
+
+
+✅ 4. Sign Server Certificate with CA
+openssl x509 -req \
+  -in server/server.csr \
+  -CA ca/ca.crt -CAkey ca/ca.key \
+  -CAcreateserial \
+  -out server/server.crt \
+  -days 365 -sha256
+
+
+
+
+✅ 5. Create Client Key + CSR
+openssl genrsa -out client/client.key 2048
+
+openssl req -new \
+  -key client/client.key \
+  -out client/client.csr \
+  -subj "/CN=myclient"
+
+
+
+  
+✅ 6. Sign Client Certificate with CA
+openssl x509 -req \
+  -in client/client.csr \
+  -CA ca/ca.crt -CAkey ca/ca.key \
+  -CAserial ca/ca.srl \
+  -out client/client.crt \
+  -days 365 -sha256
+
+
+
+
+
+You now have everything:
+
+├── ca
+│   ├── ca.crt
+│   ├── ca.key
+│   └── ca.srl
+├── client
+│   ├── client.crt
+│   ├── client.csr
+│   └── client.key
+└── server
+    ├── server.crt
+    ├── server.csr
+    └── server.key
+
+
+
+
+✅ 7. Start OpenSSL TLS server requiring client certificates
+Terminal 1:
+
+openssl s_server \
+  -cert server/server.crt \
+  -key server/server.key \
+  -CAfile ca/ca.crt \
+  -verify 1 \
+  -accept 8443
+
+
+-verify 1 → require client certificate and validate it against CA.
+
+
+
+
+✅ 8. Test: Correct Client Certificate (SUCCESS)
+Terminal 2:
+
+openssl s_client \
+  -connect localhost:8443 \
+  -cert client/client.crt \
+  -key client/client.key \
+  -CAfile ca/ca.crt
+
+
+Expected output:
+
+Verify return code: 0 (ok)
+
+
+You can now type and the server echoes back your text.
+
+  
