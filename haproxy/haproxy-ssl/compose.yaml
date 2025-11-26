@@ -1,0 +1,29 @@
+services:
+  haproxy:
+    image: haproxy:2.9
+    container_name: haproxy
+    ports:
+      - "443:443"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - ./certs/server.pem:/usr/local/etc/haproxy/certs/server.pem:ro
+    depends_on:
+      - web1
+      - web2
+
+  web1:
+    image: python:3.11-slim
+    container_name: web1
+    command: python3 -m http.server 8000
+    working_dir: /app
+    volumes:
+      - ./web1:/app
+
+  web2:
+    image: python:3.11-slim
+    container_name: web2
+    command: python3 -m http.server 8000
+    working_dir: /app
+    volumes:
+      - ./web2:/app
+
