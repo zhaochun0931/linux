@@ -1,0 +1,122 @@
+mTLS (Mutual TLS) is a security protocol that enhances standard TLS (Transport Layer Security) by requiring both the client and server to authenticate each other. Here’s a detailed overview:
+
+What is mTLS?
+Mutual TLS (mTLS) is an extension of TLS (which is used to secure communication between clients and servers) that adds an extra layer of authentication. In a typical TLS setup, the server presents a certificate to the client, and the client verifies the server's identity. In mTLS, both the client and the server authenticate each other using their respective certificates.
+
+
+
+
+
+How mTLS Works
+
+Server Authentication:
+The server presents its certificate to the client.
+The client verifies the server's certificate against trusted certificate authorities (CAs).
+
+Client Authentication:
+The client also presents its certificate to the server.
+The server verifies the client's certificate against its list of trusted CAs.
+
+
+
+
+
+
+
+
+mkdir mtls
+cd mtls
+
+openssl genrsa -out root.key 4096
+
+openssl req -x509 -new -nodes \
+  -key root.key \
+  -sha256 -days 3650 \
+  -subj "/C=US/ST=CA/O=RootCA/CN=Root CA" \
+  -out root.crt
+
+
+
+
+⭐ STEP 2 — Create server certificate signed by Root CA
+
+openssl genrsa -out server.key 2048
+
+
+openssl req -new -key server.key \
+  -subj "/C=US/ST=CA/O=Server/CN=localhost" \
+  -out server.csr
+
+2.3 Signed certificate (with SAN)
+openssl x509 -req \
+  -in server.csr \
+  -CA root.crt -CAkey root.key \
+  -CAcreateserial \
+  -out server.crt \
+  -days 365 -sha256 \
+  -extfile <(printf "subjectAltName=DNS:localhost")
+
+⭐ STEP 3 — Create client certificate signed by Root CA
+
+openssl genrsa -out client.key 2048
+
+
+openssl req -new \
+  -key client.key \
+  -subj "/C=US/ST=CA/O=Client/CN=client" \
+  -out client.csr
+
+3.3 Signed certificate (clientAuth usage)
+openssl x509 -req \
+  -in client.csr \
+  -CA root.crt -CAkey root.key \
+  -CAcreateserial \
+  -out client.crt \
+  -days 365 -sha256 \
+  -extfile <(printf "extendedKeyUsage=clientAuth")
+
+⭐ STEP 4 — Start the TLS server (requires client cert)
+
+Terminal #1:
+
+openssl s_server \
+  -accept 8443 \
+  -cert server.crt \
+  -key server.key \
+  -CAfile root.crt \
+  -Verify 1
+
+
+Meaning:
+
+-Verify 1 → REQUIRE client certificate
+
+Server trusts only certificates signed by root.crt
+
+⭐ STEP 5 — Connect as client using mTLS
+
+Terminal #2:
+
+openssl s_client \
+  -connect localhost:8443 \
+  -CAfile root.crt \
+  -cert client.crt \
+  -key client.key
+
+
+
+
+🎉 Expected successful output
+
+At the bottom you must see:
+
+Verify return code: 0 (ok)
+
+
+This confirms:
+
+server certificate verified (client trusts it)
+
+client certificate verified (server trusts it)
+
+This is mutual authentication → mutual TLS.
