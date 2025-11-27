@@ -100,27 +100,10 @@ dnf install openldap-clients
 
 
 
-ldapwhoami -H ldap://data74:1389 -D "cn=user01,ou=users,dc=example,dc=com" -w password01
-ldapwhoami -h data74:1389 -D "cn=user01,ou=users,dc=example,dc=com" -w password01
+ldapwhoami -H ldap://localhost:389 -D "cn=user1,ou=people,dc=example,dc=com" -w password
+ldapwhoami -H ldap://localhost:389 -D "uid=user1,ou=people,dc=example,dc=com" -w password
 
-
-
-
-
-
-
-docker run --detach --rm --name mariadb-galera \
-    --network my-network \
-    --env MARIADB_ROOT_PASSWORD=root-password \
-    --env MARIADB_GALERA_MARIABACKUP_PASSWORD=backup-password \
-    --env MARIADB_USER=customuser \
-    --env MARIADB_DATABASE=customdatabase \
-    --env MARIADB_ENABLE_LDAP=yes \
-    --env LDAP_URI=ldap://openldap:1389 \
-    --env LDAP_BASE=dc=example,dc=org \
-    --env LDAP_BIND_DN=cn=admin,dc=example,dc=org \
-    --env LDAP_BIND_PASSWORD=adminpassword \
-    bitnami/mariadb-galera:latest
+ldapwhoami -h localhost:389 -D "uid=user1,ou=people,dc=example,dc=com" -w password
 
 
 
@@ -132,7 +115,10 @@ docker run --detach --rm --name mariadb-galera \
 
 
 
-docker inspect openldap | egrep -i ipaddress
+
+
+
+
 
 
 
