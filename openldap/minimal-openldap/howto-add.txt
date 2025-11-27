@@ -38,3 +38,27 @@ adding new entry "ou=groups,dc=example,dc=com"
 ✅ 3. Verify OU added
 ldapsearch -x -H ldap://localhost:389 \
   -b "dc=example,dc=com" "objectClass=organizationalUnit"
+
+
+
+
+
+
+✅ 4. Add the user with ldapadd
+
+ldapadd -x \
+  -H ldap://localhost:389 \
+  -D "cn=admin,dc=example,dc=com" \
+  -w password \
+  -f user.ldif
+
+
+
+
+adding new entry "uid=user1,ou=people,dc=example,dc=com"
+
+
+✅ 5. Verify user added
+
+ldapsearch -x -H ldap://localhost:389 \
+  -b "dc=example,dc=com" "(uid=testuser)"
