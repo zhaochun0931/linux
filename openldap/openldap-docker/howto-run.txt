@@ -1,0 +1,17 @@
+docker compose down -v
+docker compose up --build
+
+
+
+docker exec -it ubuntu-openldap \
+  ldapwhoami -x -D "uid=testuser,ou=people,dc=example,dc=com" -w password
+
+
+
+
+docker exec -it ubuntu-openldap ldapwhoami -x -D "cn=admin,dc=example,dc=com" -w password
+
+
+
+docker exec -it ubuntu-openldap ldapsearch -x -b "dc=example,dc=com"
+
