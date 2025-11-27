@@ -58,7 +58,25 @@ ldapadd -x \
 adding new entry "uid=user1,ou=people,dc=example,dc=com"
 
 
+
+
 ✅ 5. Verify user added
 
 ldapsearch -x -H ldap://localhost:389 \
   -b "dc=example,dc=com" "(uid=testuser)"
+
+
+
+
+
+
+
+
+✅ 6. Test user
+
+ldapwhoami -H ldap://localhost:389 -D "cn=user1,ou=people,dc=example,dc=com" -w password
+
+ldapwhoami -H ldap://localhost:389 -D "uid=user1,ou=people,dc=example,dc=com" -w password
+
+
+
