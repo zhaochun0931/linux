@@ -1,0 +1,22 @@
+services:
+  haproxy:
+    image: haproxy:2.9
+    container_name: haproxy
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - node1
+      - node2
+
+  node1:
+    build: ./app
+    container_name: node1
+    hostname: node1
+
+  node2:
+    build: ./app
+    container_name: node2
+    hostname: node2
+

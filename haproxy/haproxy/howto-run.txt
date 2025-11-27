@@ -1,0 +1,17 @@
+├── app
+│   ├── Dockerfile
+│   └── main.go
+├── compose.yaml
+├── haproxy.cfg
+└── howto-run.txt
+
+
+
+
+
+
+
+
+docker compose up
+
+curl  http://localhost
