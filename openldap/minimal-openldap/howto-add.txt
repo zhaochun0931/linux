@@ -1,0 +1,40 @@
+✅ 1. Create an LDIF file (ou.ldif)
+
+Example for base DN: dc=example,dc=com
+
+
+You can add any OUs you want.
+
+
+
+
+✅ 2. Add the OU with ldapadd
+ldapadd -x \
+  -H ldap://localhost:389 \
+  -D "cn=admin,dc=example,dc=com" \
+  -w password \
+  -f ou.ldif
+
+
+Parameters:
+
+-x → simple bind
+
+-H → LDAP URL
+
+-D → Bind DN (admin DN)
+
+-w → Password
+
+-f → Your LDIF file
+
+If successful, you will see:
+
+adding new entry "ou=people,dc=example,dc=com"
+adding new entry "ou=groups,dc=example,dc=com"
+
+
+
+✅ 3. Verify OU added
+ldapsearch -x -H ldap://localhost:389 \
+  -b "dc=example,dc=com" "objectClass=organizationalUnit"
