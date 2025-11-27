@@ -14,4 +14,7 @@
 
 docker compose up
 
-curl  http://localhost
+curl  http://localhost:8080
+
+
+
