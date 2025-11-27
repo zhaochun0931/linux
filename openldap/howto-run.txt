@@ -100,13 +100,6 @@ dnf install openldap-clients
 
 
 
-ldapwhoami -H ldap://localhost:389 -D "cn=user1,ou=people,dc=example,dc=com" -w password
-ldapwhoami -H ldap://localhost:389 -D "uid=user1,ou=people,dc=example,dc=com" -w password
-
-ldapwhoami -h localhost:389 -D "uid=user1,ou=people,dc=example,dc=com" -w password
-
-
-
 
 
 
