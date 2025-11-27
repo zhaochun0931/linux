@@ -1,9 +1,15 @@
+mkdir certs
+cd certs
+
+
+
+
+
 ✅ generate CA private key and cert in a single command
 
 openssl req -x509 -new -nodes -keyout myca.key -out myca.crt -subj "/C=US/ST=State/L=City/O=MyCA/OU=IT/CN=myca.com"
 
-myca.crt
-myca.key
+
 
 
 
@@ -19,8 +25,7 @@ openssl x509 -in myca.crt -text -noout
 
 openssl req -new -nodes -keyout myserver.key -out myserver.csr -subj "/C=US/ST=State/L=City/O=Organization/OU=IT/CN=myserver.com"
 
-myserver.csr
-myserver.key
+
 
 
 
@@ -29,6 +34,21 @@ myserver.key
 ✅ sign the server.key with custom CA
 
 openssl x509 -req -in myserver.csr -CA myca.crt -CAkey myca.key -CAcreateserial -out myserver.crt -days 365
+
+
+
+
+
+
+certs/
+├── myca.crt
+├── myca.key
+├── myca.srl
+├── myserver.crt
+├── myserver.csr
+└── myserver.key
+
+1 directory, 6 files
 
 
 
