@@ -1,0 +1,46 @@
+NUMA stands for Non-Uniform Memory Access. It’s a computer memory design used in multi-processor systems to improve performance.
+
+
+
+Here’s a clear breakdown:
+
+🚀 What NUMA Means
+
+In a NUMA system, CPU cores are grouped into nodes.
+
+Each node has local memory attached directly to it.
+
+Accessing local memory is faster than accessing memory attached to a different node (remote memory).
+
+So memory access speed is non-uniform → hence the name.
+
+
+
+
+
+
+🚀 Why NUMA Exists
+
+Traditional SMP (Symmetric Multi-Processing) has all CPUs sharing the same memory.
+
+As the number of CPUs grows, memory contention becomes a bottleneck.
+
+NUMA scales better because each CPU node accesses its own memory first.
+
+
+
+
+
+
+
+numactl --hardware
+
+# numactl --hardware
+available: 1 nodes (0)
+node 0 cpus: 0
+node 0 size: 898 MB
+node 0 free: 328 MB
+node distances:
+node   0
+  0:  10
+#
