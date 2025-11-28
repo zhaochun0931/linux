@@ -1,0 +1,71 @@
+traceroute shows the path your packet takes across routers from your machine to a destination.
+It works by manipulating the TTL (Time To Live) field in IP packets and listening for ICMP Time Exceeded and ICMP Echo Reply messages.
+
+Below is a clear explanation.
+
+🧠 How traceroute works (step-by-step)
+🔹 1. A packet has a TTL value
+
+TTL = “Time To Live”
+
+Every router that forwards the packet decreases TTL by 1
+
+When TTL becomes 0, the router drops the packet and replies with:
+
+ICMP Time Exceeded
+
+
+Traceroute uses this behavior.
+
+🔹 2. Step 1: Send packets with TTL = 1
+
+Traceroute sends a packet like this:
+
+TTL = 1
+
+
+The first router reduces TTL to 0, drops it, and responds:
+
+ICMP Time Exceeded (from Router #1)
+
+
+Traceroute prints:
+
+1  192.168.1.1  2.3 ms
+
+🔹 3. Step 2: Send packets with TTL = 2
+
+Now traceroute sends:
+
+TTL = 2
+
+
+Router 1 decrements to 1 → forwards
+
+Router 2 decrements to 0 → drops packet → sends ICMP response
+
+Traceroute prints:
+
+2  10.0.0.1  5.6 ms
+
+🔹 4. Step 3: TTL = 3, 4, 5...
+
+Traceroute increases TTL until it reaches the destination.
+
+Each router on the path sends:
+
+ICMP Time Exceeded
+
+
+Traceroute prints hop-by-hop results.
+
+🔹 5. When it reaches the destination
+
+The destination does not send “time exceeded”, it sends:
+
+ICMP Echo Reply (Linux/Unix)
+or
+UDP Port Unreachable (traditional traceroute)
+
+
+At this point, traceroute stops.
