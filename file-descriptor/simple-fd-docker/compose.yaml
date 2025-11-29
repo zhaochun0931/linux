@@ -1,0 +1,25 @@
+services:
+
+  server:
+    build: ./server
+    container_name: fd-server
+    hostname: server
+    networks:
+      - fdnet
+    ports:
+      - "8080:8080"
+
+  client:
+    build: ./client
+    depends_on:
+      - server
+    networks:
+      - fdnet
+    scale: 50  # <-- 50 clients (docker-compose v2 plugin supports it)
+    deploy:
+      mode: replicated
+      replicas: 50
+
+networks:
+  fdnet:
+
