@@ -1,0 +1,59 @@
+javac Server.java
+
+java Server
+
+
+2️⃣ Open a second terminal → check FD count
+
+Find Java PID:
+
+ps aux | grep Server
+
+
+Example output:
+
+root   1234  java Server
+
+
+Now check file descriptors:
+
+ls -l /proc/1234/fd | wc -l
+
+
+You might see something like:
+
+20
+
+
+This is before clients connect.
+
+
+
+
+
+
+
+
+2️⃣ Open a second terminal → check FD count
+
+Find Java PID:
+
+ps aux | grep Server
+
+
+Example output:
+
+root   1234  java Server
+
+
+Now check file descriptors:
+
+ls -l /proc/1234/fd | wc -l
+
+
+You might see something like:
+
+20
+
+
+This is before clients connect.
