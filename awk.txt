@@ -1,7 +1,45 @@
 awk option 'pattern {action}' FileName
 
 
+✅ Basic examples
+1. Print the first column
+awk '{print $1}' file.txt
 
+2. Print column 1 and 3
+awk '{print $1, $3}' file.txt
+
+3. Only show lines containing "error"
+awk '/error/ {print}'
+
+4. Filter and print if column 2 > 100
+awk '$2 > 100 {print $0}'
+
+✅ How AWK works (simple explanation)
+
+AWK reads text line by line.
+For each line:
+
+It splits the line into fields ($1, $2, $3, …)
+
+It executes your AWK script on that line
+
+It prints the result
+
+Default field separator = spaces or tabs
+
+
+
+
+
+🔥 Useful quick tricks
+1. Count lines
+awk 'END {print NR}' file.txt
+
+2. Sum a column
+awk '{sum += $2} END {print sum}' file.txt
+
+3. Change delimiter (example: CSV)
+awk -F',' '{print $2}' file.csv
 
 
 
