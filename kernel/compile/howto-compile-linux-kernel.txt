@@ -1,4 +1,6 @@
-apt install build-essential libncurses-dev bison flex libssl-dev libelf-dev bc git qemu-system-x86 qemu-utils -y
+apt install build-essential libncurses-dev bison flex libssl-dev libelf-dev bc git -y
+
+apt install qemu-system-x86 qemu-utils -y
 
 
 
@@ -18,32 +20,6 @@ cd /root/linux-src/linux-6.17.9
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-docker-compose  build
-
-
-docker compose up
-
-
-
-docker exec -it kernel-builder bash
-
-cd linux-6.16.4/
-
-
-
-
 make defconfig
 make -j$(nproc)
 make modules_install
@@ -51,5 +27,4 @@ make install
 
 
 
-
-
+Kernel: arch/x86/boot/bzImage is ready  (#1)
