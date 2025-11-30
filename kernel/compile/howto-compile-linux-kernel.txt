@@ -1,4 +1,7 @@
-apt install build-essential -y
+apt install build-essential libncurses-dev bison flex libssl-dev libelf-dev bc git qemu-system-x86 qemu-utils -y
+
+
+
 
 
 
