@@ -1,0 +1,78 @@
+✅
+apt install busybox-static
+
+
+
+✅
+mkdir -p /tmp/rootfs/{bin,sbin,etc,proc,sys,usr/{bin,sbin}}
+
+
+✅
+cp /bin/busybox /tmp/rootfs/bin/
+
+
+
+
+✅
+cd /tmp/rootfs/bin
+
+for cmd in sh ls mount echo cat dmesg sleep ps uname; do
+    ln -s busybox $cmd
+done
+
+
+
+
+✅
+cat > /tmp/rootfs/init <<'EOF'
+#!/bin/sh
+# Mount virtual filesystems
+mount -t proc none /proc
+mount -t sysfs none /sys
+
+# Print welcome message
+echo "Welcome to BusyBox initramfs"
+
+# Start shell
+exec /bin/sh
+EOF
+
+
+
+
+chmod +x /tmp/rootfs/init
+
+
+✅ 6. Pack into initramfs
+cd /tmp/rootfs
+find . | cpio -H newc -o | gzip > /tmp/initramfs-busybox.cpio.gz
+
+
+
+
+✅ 7. Boot in QEMU
+qemu-system-x86_64 \
+    -kernel /root/linux-src/linux-6.17.9/arch/x86/boot/bzImage \
+    -initrd /tmp/initramfs-busybox.cpio.gz \
+    -m 512M \
+    -nographic \
+    -append "console=ttyS0 init=/init"
+
+
+
+
+
+
+
+  ✅
+  1. If using -nographic (serial console)
+
+Press Ctrl + A followed by X
+
+Steps:
+
+Hold Ctrl and press A (Ctrl+A) → enters QEMU command mode
+
+Press X → exits QEMU immediately
+
+Alternative: Ctrl+C won’t quit; it just sends interrupt to guest shell.
