@@ -1,9 +1,0 @@
-docker build -t myrepo2025/myweb .
-
-
-docker push myrepo2025/myweb
-
-
-
-
-
