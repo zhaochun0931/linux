@@ -1,0 +1,2 @@
+The system-wide TCP socket buffers temporarily store data that the kernel has received or should send. 
+Both net.ipv4.tcp_rmem (read) and net.ipv4.tcp_wmem (write) socket buffer kernel settings contain three settings: A minimum, default, and maximum value.
