@@ -1,0 +1,85 @@
+tcp_wmem is a Linux kernel parameter that controls the TCP send buffer sizes.
+It defines how much data the kernel can buffer for outgoing TCP packets for each socket.
+
+It is the write-side counterpart of tcp_rmem.
+
+
+
+📌 tcp_wmem — meaning
+
+Check current values:
+
+sysctl net.ipv4.tcp_wmem
+
+
+Typical output:
+
+net.ipv4.tcp_wmem = 4096 16384 4194304
+
+
+These three values mean:
+
+| Position | Name        | Meaning                             |
+| -------- | ----------- | ----------------------------------- |
+| 1        | **min**     | Minimum TCP send buffer size        |
+| 2        | **default** | Default send buffer for new sockets |
+| 3        | **max**     | Maximum auto-tuned send buffer size |
+
+
+
+
+
+
+📦 1. Minimum buffer (min)
+
+The minimum allowed send buffer.
+
+Necessary for very low-bandwidth or slow connections.
+
+Typical: 4096 bytes (4 KB)
+
+📦 2. Default buffer (default)
+
+The send buffer assigned at socket creation.
+
+Typical: 16 KB
+
+This can grow dynamically depending on traffic.
+
+📦 3. Maximum buffer (max)
+
+The largest buffer size the kernel's autotuning can grow to.
+
+Crucial for high-speed networks.
+
+Typical: 4 MB
+But for high-speed links (10GbE+), it should be larger.
+
+
+
+
+
+
+
+
+❗ Relationship with net.core.wmem_max
+
+System-wide hard limit:
+
+sysctl net.core.wmem_max
+
+
+If tcp_wmem max > wmem_max, Linux will silently cap it to wmem_max.
+
+So for large send buffers:
+
+sysctl -w net.core.wmem_max=16777216
+sysctl -w net.ipv4.tcp_wmem="4096 16384 16777216"
+
+
+Max = 16 MB.
+
+
+
+
+
