@@ -1,0 +1,17 @@
+✅ What is wmem_default?
+
+wmem_default is the default write (send) buffer size for every newly created socket in Linux.
+
+It applies to all protocols (TCP, UDP, raw sockets, etc.)
+
+It sets the initial kernel send buffer size for a socket
+
+Units: bytes
+
+Example value:
+
+cat /proc/sys/net/core/wmem_default
+212992
+
+
+Means: every new socket starts with a 212 KB send buffer.
