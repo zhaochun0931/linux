@@ -128,6 +128,46 @@ tcp_rmem = [ min, default, max ]
 
 
 
+📌 How they interact (important)
+When a TCP socket is created:
+
+It starts with:
+
+rmem_default
+wmem_default
+
+
+Then TCP overrides or expands using:
+
+tcp_rmem default  (read)
+tcp_wmem default  (write)
+
+
+During traffic, Linux auto-tunes between:
+
+tcp_{rmem,wmem} min → max
+
+🧠 Example timeline for a TCP connection
+📍 Step 1 — New socket created
+
+Receive buffer = rmem_default
+Send buffer = wmem_default
+
+📍 Step 2 — TCP protocol handler starts
+
+Kernel applies tcp_rmem default and tcp_wmem default.
+
+Often these are bigger than rmem/wmem defaults.
+
+📍 Step 3 — Auto-tuning during connection
+
+TCP adjusts the buffer dynamically up to tcp_rmem max / tcp_wmem max.
+
+rmem_default and wmem_default do not apply anymore.
+
+
+
+
 
 
 The socket buffer, or "SKB", is the most fundamental data structure in the Linux networking code. Every packet sent or received is handled using this data structure.
