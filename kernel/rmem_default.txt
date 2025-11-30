@@ -1,0 +1,41 @@
+rmem_default is a Linux kernel system-wide setting that defines the default receive buffer size for all new sockets, regardless of protocol (TCP, UDP, RAW, UNIX, etc.).
+
+It is part of:
+
+net.core.rmem_default
+
+
+
+
+
+📌 What does rmem_default do?
+
+When any socket is created in Linux:
+
+TCP socket
+
+UDP socket
+
+UNIX domain socket
+
+raw / kernel socket
+
+
+
+
+The initial receive buffer size is set to:
+
+rmem_default
+
+
+You can check it:
+
+sysctl net.core.rmem_default
+
+
+Typical value:
+
+212992   (≈208 KB)
+
+
+This is the default receive buffer before protocol-specific tuning happens.
