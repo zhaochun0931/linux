@@ -1,0 +1,22 @@
+tcp_rmem is a Linux kernel parameter that controls the TCP receive buffer sizes.
+It defines how much data the kernel can buffer for incoming TCP packets for each socket.
+
+This directly affects performance, throughput, and memory usage.
+
+
+sysctl net.ipv4.tcp_rmem
+
+
+Typical output:
+
+net.ipv4.tcp_rmem = 4096 87380 6291456
+
+
+| Position | Name        | Meaning                                 |
+| -------- | ----------- | --------------------------------------- |
+| 1        | **min**     | Minimum TCP receive buffer size         |
+| 2        | **default** | Default buffer size for new TCP sockets |
+| 3        | **max**     | Maximum auto-tuned receive buffer size  |
+
+
+
