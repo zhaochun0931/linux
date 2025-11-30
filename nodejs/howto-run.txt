@@ -2,7 +2,6 @@ docker build -t myweb .
 
 docker image build -t myweb .
 
-docker build -t myrepo2025/myweb .
 
 
 
@@ -11,4 +10,3 @@ docker login -u xman1111
 
 docker tag myweb xman1111/myweb
 
-docker push xman1111/myweb
