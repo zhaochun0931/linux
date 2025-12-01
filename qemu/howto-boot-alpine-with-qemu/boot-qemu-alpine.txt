@@ -1,4 +1,22 @@
-wget https://dl-cdn.alpinelinux.org/alpine/v3.22/releases/x86_64/alpine-standard-3.22.2-x86_64.iso
+wget https://dl-cdn.alpinelinux.org/alpine/v3.22/releases/x86_64/alpine-virt-3.22.2-x86_64.iso
 
 
 
+
+
+mkdir /tmp/alpine-iso
+
+mount -o loop alpine-virt-3.22.2-x86_64.iso /tmp/alpine-iso
+
+
+ls /tmp/alpine-iso/boot/
+
+
+
+qemu-system-x86_64 \
+    -m 1024 \
+    -hda alpine.qcow2 \
+    -kernel /tmp/alpine-iso/boot/vmlinuz-virt \
+    -initrd /tmp/alpine-iso/boot/initramfs-virt \
+    -append "root=/dev/sda console=ttyS0" \
+    -nographic
