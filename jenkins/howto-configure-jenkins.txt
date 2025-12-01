@@ -1,0 +1,5 @@
+System Configuration
+-> Tools
+    -> JDK installations
+    -> Git installations
+    -> Maven installations
