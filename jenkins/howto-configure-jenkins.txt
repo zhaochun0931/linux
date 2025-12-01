@@ -3,3 +3,12 @@ System Configuration
     -> JDK installations
     -> Git installations
     -> Maven installations
+
+
+
+
+
+Execute shell
+
+
+echo "hello world"
