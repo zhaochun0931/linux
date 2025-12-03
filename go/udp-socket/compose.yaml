@@ -1,0 +1,33 @@
+services:
+  udp-server:
+    build: ./app/server
+    container_name: udp-server
+    networks:
+      - mynet
+    ports:
+      - "9000:9000/udp"
+
+  udp-client:
+    build: ./app/client
+    container_name: udp-client
+    networks:
+      - mynet
+    depends_on:
+      - udp-server
+
+
+
+  busybox:
+    image: busybox:latest
+    container_name: busybox-test
+    hostname: busybox-test
+    user: root                   # run as superuser
+    stdin_open: true             # keep stdin open
+    tty: true                    # allocate a pseudo-TTY
+    command: sh                 # launch an interactive shell
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    driver: bridge
