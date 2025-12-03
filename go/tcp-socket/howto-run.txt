@@ -1,0 +1,10 @@
+docker compose up --build
+
+
+
+curl localhost:8080
+
+$ curl localhost:8080
+Hello from 9a9040d8ed21
+$
+

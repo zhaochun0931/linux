@@ -1,0 +1,32 @@
+services:
+  server:
+    build: ./app/server
+    container_name: tcp-server
+    hostname: tcp-server
+    networks:
+      - mynet
+    ports:
+      - "9000:9000"
+
+  client:
+    build: ./app/client
+    container_name: tcp-client
+    networks:
+      - mynet
+    depends_on:
+      - server
+
+  busybox:
+    image: busybox:latest
+    container_name: busybox-test
+    hostname: busybox-test
+    user: root                   # run as superuser
+    stdin_open: true             # keep stdin open
+    tty: true                    # allocate a pseudo-TTY
+    command: sh                 # launch an interactive shell
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    driver: bridge
