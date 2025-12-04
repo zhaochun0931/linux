@@ -1,3 +1,112 @@
+TCP retransmission is the mechanism TCP uses to guarantee reliability.
+When data is sent but the sender does not receive an acknowledgment (ACK), TCP will retransmit that data.
+
+
+
+
+🔁 What is TCP Retransmission?
+
+TCP retransmission means:
+
+If the receiver does not ACK the data, the sender will resend it.
+
+TCP assumes the packet was lost, delayed, or corrupted.
+
+
+
+
+
+🚨 When does retransmission happen?
+
+TCP retransmits data in three main cases:
+
+1. Timeout (RTO — Retransmission Timeout)
+
+If the sender sends a packet but doesn't receive ACK before timeout, it resends the packet.
+
+Example:
+
+Sender → Receiver
+Seq=1000 Len=500
+
+If no ACK after RTO:
+
+Sender retransmits →
+Seq=1000 Len=500 (retransmitted)
+
+TCP keeps increasing the timeout each time (exponential backoff):
+
+
+| Attempt | Wait Time |
+| ------- | --------- |
+| 1st RTO | 1 × base  |
+| 2nd RTO | 2 × base  |
+| 3rd RTO | 4 × base  |
+| ...     | ...       |
+
+
+
+
+
+2. Fast Retransmit (3 Duplicate ACKs)
+
+If the receiver gets out-of-order packets (missing one packet), it sends duplicate ACKs.
+
+Example:
+
+Receiver expects ACK=1500, but gets later packets:
+
+ACK 1500
+
+ACK 1500 (dup)
+
+ACK 1500 (dup)
+
+ACK 1500 (dup)
+
+Once sender receives 3 duplicate ACKs, it performs fast retransmit:
+
+→ Immediately resend the missing packet without waiting for timeout.
+
+This is faster than RTO and is part of TCP congestion control (Reno, CUBIC).
+
+3. Selective Acknowledgment (SACK) Retransmission
+
+If SACK is enabled (most systems today), receiver says:
+
+“I got these blocks, but this block is missing.”
+
+Example SACK option:
+
+ACK=1500 SACK=[2000-2500] [2500-3000]
+
+
+Meaning:
+
+"I have 2000–3000"
+
+"I am missing 1500–2000"
+
+Sender retransmits only missing segments.
+
+
+
+| Mechanism                        | Trigger                  | Speed          |
+| -------------------------------- | ------------------------ | -------------- |
+| **Timeout retransmission (RTO)** | No ACK before timeout    | Slow           |
+| **Fast retransmit**              | 3 duplicate ACKs         | Fast           |
+| **SACK-based retransmission**    | Missing blocks specified | Most efficient |
+
+
+
+
+
+
+
+
+
+
+
 Suppose we send packets:
 
 Seq=1  (Sent)
