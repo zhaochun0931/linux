@@ -1,0 +1,81 @@
+In TCP, ACK stands for Acknowledgment.
+
+It is a fundamental part of how TCP ensures reliable, ordered, and loss-free data delivery.
+
+✅ What is an ACK in TCP?
+
+An ACK is a control flag in the TCP header that tells the sender:
+
+“I received your data up to this sequence number.”
+
+Every TCP segment contains a sequence number and often includes an ACK number.
+
+
+
+🎯 Why do we need ACK in TCP?
+
+TCP ensures reliability. ACKs help with:
+
+✓ 1. Confirming delivery
+
+If a sender transmits data:
+
+Seq = 1000
+Length = 500 bytes
+
+
+The receiver sends:
+
+ACK = 1500
+
+
+Meaning:
+
+“I received bytes 1000–1499. Send the next bytes starting at 1500.”
+
+✓ 2. Retransmission when packets are lost
+
+If the sender does not receive an ACK within a timeout (RTO):
+
+→ It retransmits the data.
+
+✓ 3. Flow control (using window size)
+
+ACKs include the window size, telling the sender how much more data it can send.
+
+✓ 4. Congestion control (TCP Reno, CUBIC, etc.)
+
+Duplicate ACKs (e.g., ACK=1500 repeated) indicate packet loss.
+
+
+
+📌 Where is ACK in the TCP header?
+
+TCP has flags, and ACK is one of them:
+
+URG | ACK | PSH | RST | SYN | FIN
+
+
+ACK is set for almost all packets after the initial SYN.
+
+
+
+
+📡 Example of TCP handshake with ACK
+3-way handshake:
+
+1️⃣ Client → Server
+SYN, Seq=100
+
+2️⃣ Server → Client
+SYN-ACK, Seq=300, Ack=101
+
+3️⃣ Client → Server
+ACK, Seq=101, Ack=301
+
+Now the connection is established.
+
+🧠 In simple words:
+
+📌 ACK is how TCP says “I got your message.”
+📌 Used for reliability, flow control, congestion control, and ordering.
