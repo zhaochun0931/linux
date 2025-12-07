@@ -1,41 +1,37 @@
 docker compose up
 
 
+
+🚀 open one terminal
 docker exec -it myalpine1 sh
 
 
-# the ping command should work
-ping myalpine2
-
-
-
-
-05:37:41.770055 lo    In  IP (tos 0x0, ttl 64, id 42991, offset 0, flags [DF], proto UDP (17), length 55)
-    localhost.55248 > 127.0.0.11.47765: [bad udp cksum 0xfe40 -> 0xdc3d!] UDP, length 27
-05:37:41.770134 lo    In  IP (tos 0x0, ttl 64, id 42992, offset 0, flags [DF], proto UDP (17), length 55)
-    localhost.55248 > 127.0.0.11.47765: [bad udp cksum 0xfe40 -> 0xbfc6!] UDP, length 27
-05:37:41.770583 lo    In  IP (tos 0x0, ttl 64, id 52, offset 0, flags [DF], proto UDP (17), length 80)
-    127.0.0.11.53 > localhost.55248: [bad udp cksum 0xfe59 -> 0x5323!] 53782 q: A? myalpine2. 1/0/0 myalpine2. [10m] A 192.168.32.3 (52)
-05:37:41.770624 lo    In  IP (tos 0x0, ttl 64, id 53, offset 0, flags [DF], proto UDP (17), length 55)
-    127.0.0.11.53 > localhost.55248: [bad udp cksum 0xfe40 -> 0xf9a6!] 54157 q: AAAA? myalpine2. 0/0/0 (27)
-05:37:41.770949 eth0  Out IP (tos 0x0, ttl 64, id 54302, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 37, seq 0, length 64
-05:37:41.771032 eth0  In  IP (tos 0x0, ttl 64, id 58454, offset 0, flags [none], proto ICMP (1), length 84)
-    myalpine2.iptables_demo-network > myalpine1: ICMP echo reply, id 37, seq 0, length 64
+🚀 the ping command should work
+ping -c 3 myalpine2
+ping -c 3 myalpine3
 
 
 
 
 
-# go to the myalpine2
+
+
+
+
+
+
+🚀 open another terminal
 
 docker exec -it myalpine2 sh
 
 
 
+iptables -L
 
 
-🔹 Option 1: Drop pings silently (no reply)
+🚀 Option 1: Drop pings silently (no reply)
+
+
 iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
 
 
@@ -44,29 +40,33 @@ From the sender’s side, it looks like the host is unreachable (no reply at all
 
 
 
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 23, length 64
-05:34:05.601860 eth0  Out IP (tos 0x0, ttl 64, id 45908, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 24, length 64
-05:34:06.605961 eth0  Out IP (tos 0x0, ttl 64, id 46016, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 25, length 64
-05:34:07.610541 eth0  Out IP (tos 0x0, ttl 64, id 46441, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 26, length 64
-05:34:08.616877 eth0  Out IP (tos 0x0, ttl 64, id 47105, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 27, length 64
-05:34:09.618199 eth0  Out IP (tos 0x0, ttl 64, id 47803, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 28, length 64
-05:34:10.619105 eth0  Out IP (tos 0x0, ttl 64, id 48074, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 29, length 64
-05:34:11.620209 eth0  Out IP (tos 0x0, ttl 64, id 48372, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 30, length 64
-05:34:12.621751 eth0  Out IP (tos 0x0, ttl 64, id 48468, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 29, seq 31, length 64
+/ # tcpdump -i any icmp
+tcpdump: WARNING: any: That device doesn't support promiscuous mode
+(Promiscuous mode not supported on the "any" device)
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes
+12:21:22.875302 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 110, length 64
+12:21:22.875345 eth0  In  IP myalpine2.iptable-load-balance_demo-network > myalpine1: ICMP echo reply, id 31, seq 110, length 64
+12:21:23.875772 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 111, length 64
+12:21:23.875825 eth0  In  IP myalpine2.iptable-load-balance_demo-network > myalpine1: ICMP echo reply, id 31, seq 111, length 64
+12:21:24.876669 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 112, length 64
+12:21:25.877443 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 113, length 64
+12:21:26.879037 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 114, length 64
+12:21:27.879375 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 115, length 64
+12:21:28.880408 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 116, length 64
+12:21:29.881393 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 117, length 64
+12:21:30.882898 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 118, length 64
+12:21:31.884574 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 119, length 64
 
 
 
 
 
-🔹 Option 2: Reject pings politely (send an error back)
+
+
+
+
+🚀 Option 2: Reject pings politely (send an error back)
 iptables -A INPUT -p icmp --icmp-type echo-request -j REJECT
 
 
@@ -76,30 +76,40 @@ The sender knows the ping was explicitly rejected.
 
 
 
-05:40:07.893001 eth0  Out IP (tos 0x0, ttl 64, id 47616, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 38, seq 55, length 64
-05:40:07.893046 eth0  In  IP (tos 0xc0, ttl 64, id 29107, offset 0, flags [none], proto ICMP (1), length 112)
-    myalpine2.iptables_demo-network > myalpine1: ICMP myalpine2.iptables_demo-network protocol 1 port 7265 unreachable, length 92
-	IP (tos 0x0, ttl 64, id 47616, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 38, seq 55, length 64
-05:40:07.973138 lo    In  IP (tos 0x0, ttl 64, id 12045, offset 0, flags [DF], proto UDP (17), length 71)
-    localhost.55488 > 127.0.0.11.47765: [bad udp cksum 0xfe50 -> 0xf7f8!] UDP, length 43
-05:40:07.975246 lo    In  IP (tos 0x0, ttl 64, id 46130, offset 0, flags [DF], proto UDP (17), length 141)
-    127.0.0.11.53 > localhost.55488: [bad udp cksum 0xfe96 -> 0x6c0e!] 10044 q: PTR? 3.32.168.192.in-addr.arpa. 1/0/0 3.32.168.192.in-addr.arpa. [10m] PTR myalpine2.iptables_demo-network. (113)
-05:40:08.082849 lo    In  IP (tos 0x0, ttl 64, id 12090, offset 0, flags [DF], proto UDP (17), length 69)
-    localhost.35397 > 127.0.0.11.47765: [bad udp cksum 0xfe4e -> 0x1b74!] UDP, length 41
-05:40:08.095107 lo    In  IP (tos 0x0, ttl 64, id 46218, offset 0, flags [DF], proto UDP (17), length 69)
-    127.0.0.11.53 > localhost.35397: [bad udp cksum 0xfe4e -> 0x5551!] 22707 NXDomain q: PTR? 11.0.0.127.in-addr.arpa. 0/0/0 (41)
-05:40:08.894114 eth0  Out IP (tos 0x0, ttl 64, id 48513, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 38, seq 56, length 64
-05:40:08.894178 eth0  In  IP (tos 0xc0, ttl 64, id 29369, offset 0, flags [none], proto ICMP (1), length 112)
-    myalpine2.iptables_demo-network > myalpine1: ICMP myalpine2.iptables_demo-network protocol 1 port 31001 unreachable, length 92
-	IP (tos 0x0, ttl 64, id 48513, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 38, seq 56, length 64
-05:40:09.899789 eth0  Out IP (tos 0x0, ttl 64, id 49095, offset 0, flags [DF], proto ICMP (1), length 84)
-    myalpine1 > myalpine2.iptables_demo-network: ICMP echo request, id 38, seq 57, length 64
-05:40:09.899922 eth0  In  IP (tos 0xc0, ttl 64, id 29557, offset 0, flags [none], proto ICMP (1), length 112)
-    myalpine2.iptables_demo-network > myalpine1: ICMP myalpine2.iptables_demo-network protocol 1 port 6848 unreachable, length 92
+tcpdump -i any icmp
+
+
+
+/ # tcpdump -i any icmp
+tcpdump: WARNING: any: That device doesn't support promiscuous mode
+(Promiscuous mode not supported on the "any" device)
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes
+12:19:32.660944 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 0, length 64
+12:19:32.661033 eth0  In  IP myalpine2.iptable-load-balance_demo-network > myalpine1: ICMP myalpine2.iptable-load-balance_demo-network protocol 1 port 11166 unreachable, length 92
+12:19:33.663399 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 1, length 64
+12:19:33.663484 eth0  In  IP myalpine2.iptable-load-balance_demo-network > myalpine1: ICMP myalpine2.iptable-load-balance_demo-network protocol 1 port 22610 unreachable, length 92
+12:19:34.664741 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 2, length 64
+12:19:34.664854 eth0  In  IP myalpine2.iptable-load-balance_demo-network > myalpine1: ICMP myalpine2.iptable-load-balance_demo-network protocol 1 port 55816 unreachable, length 92
+12:19:35.669831 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 3, length 64
+12:19:35.669915 eth0  In  IP myalpine2.iptable-load-balance_demo-network > myalpine1: ICMP myalpine2.iptable-load-balance_demo-network protocol 1 port 38321 unreachable, length 92
+12:19:36.671239 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 4, length 64
+12:19:36.671415 eth0  In  IP myalpine2.iptable-load-balance_demo-network > myalpine1: ICMP myalpine2.iptable-load-balance_demo-network protocol 1 port 56680 unreachable, length 92
+12:19:37.671893 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 5, length 64
+12:19:37.672006 eth0  In  IP myalpine2.iptable-load-balance_demo-network > myalpine1: ICMP myalpine2.iptable-load-balance_demo-network protocol 1 port 61986 unreachable, length 92
+12:19:38.672728 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 6, length 64
+12:19:38.672837 eth0  In  IP myalpine2.iptable-load-balance_demo-network > myalpine1: ICMP myalpine2.iptable-load-balance_demo-network protocol 1 port 23772 unreachable, length 92
+12:19:39.674048 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 7, length 64
+12:19:39.674132 eth0  In  IP myalpine2.iptable-load-balance_demo-network > myalpine1: ICMP myalpine2.iptable-load-balance_demo-network protocol 1 port 58259 unreachable, length 92
+12:19:40.680357 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 8, length 64
+12:19:40.680438 eth0  In  IP myalpine2.iptable-load-balance_demo-network > myalpine1: ICMP myalpine2.iptable-load-balance_demo-network protocol 1 port 60215 unreachable, length 92
+12:19:41.680948 eth0  Out IP myalpine1 > myalpine2.iptable-load-balance_demo-network: ICMP echo request, id 31, seq 9, length 64
+12:19:41.681065 eth0  In  IP myalpine2.iptable-load-balance_demo-network > myalpine1: ICMP myalpine2.iptable-load-balance_demo-network protocol 1 port 23282 unreachable, length 92
+
+
+
+
+
 
 
 
@@ -114,7 +124,3 @@ target     prot opt source               destination
 
 Chain OUTPUT (policy ACCEPT)
 target     prot opt source               destination
-
-
-
-
