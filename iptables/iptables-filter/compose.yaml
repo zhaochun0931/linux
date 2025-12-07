@@ -3,7 +3,6 @@ services:
     image: alpine:latest
     container_name: myalpine1
     hostname: myalpine1
-    user: root
     privileged: true
     command: sh -c "apk update && apk add iptables tcpdump && sleep 24h"  # Install iptables, tcpdump and keep the container running
     networks:
