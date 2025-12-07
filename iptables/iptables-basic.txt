@@ -2,17 +2,6 @@ The Linux kernel includes the Netfilter subsystem, which is used to manipulate o
 
 
 
-
-
-
-iptables is the classic and powerful way to set up a firewall in Linux.
-
-It allows you to define detailed rules that control what network traffic is allowed or blocked — based on IP, port, protocol, interface, connection state, etc.
-
-
-
-
-
 🔹 1. What iptables Is
 
 iptables is a user-space utility that interacts with the Linux kernel’s Netfilter framework.
