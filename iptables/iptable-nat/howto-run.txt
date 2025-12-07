@@ -1,0 +1,26 @@
+docker compose up
+
+
+
+
+docker exec -it iptables-lb sh
+
+iptables -t nat -L -n -v
+
+
+
+iptables -t nat -N mylb
+
+iptables -t nat -A mylb -p tcp --dport 8080 -m statistic --mode random --probability 0.33 -j DNAT --to-destination 172.27.0.2:8080
+
+iptables -t nat -A mylb -p tcp --dport 8080 -m statistic --mode random --probability 0.50 -j DNAT --to-destination 172.27.0.3:8080
+
+iptables -t nat -A mylb -p tcp --dport 8080 -j DNAT --to-destination 172.27.0.4:8080
+
+
+      # PREROUTING to catch incoming traffic
+iptables -t nat -A PREROUTING -p tcp --dport 8080 -j mylb
+
+
+      # MASQUERADE to fix return routing
+iptables -t nat -A POSTROUTING -j MASQUERADE
