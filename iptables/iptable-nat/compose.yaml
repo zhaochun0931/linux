@@ -1,0 +1,32 @@
+services:
+  lb:
+    image: alpine:3.20
+    container_name: iptables-lb
+    privileged: true      # REQUIRED for iptables
+    ports:
+      - "8080:8080"       # client → LB → backends
+    command: sh -c "apk update && apk add iptables tcpdump curl && sleep 24h"
+    networks:
+      - demo-network
+
+  backend1:
+    image: luksa/kubia:latest
+    container_name: backend1
+    networks:
+      - demo-network
+
+  backend2:
+    image: luksa/kubia:latest
+    container_name: backend2
+    networks:
+      - demo-network
+
+  backend3:
+    image: luksa/kubia:latest
+    container_name: backend3
+    networks:
+      - demo-network
+
+networks:
+  demo-network:
+    driver: bridge  # Default driver
