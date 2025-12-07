@@ -40,6 +40,73 @@ Tables
 
 
 
+✅ Filter table (default table)
+
+INPUT → packets destined to the local machine
+
+OUTPUT → packets originating from the local machine
+
+FORWARD → packets passing through the machine (routing/forwarding)
+
+This is the table that handles firewall rules by default.
+
+
+
+✅ NAT table (for Network Address Translation)
+
+PREROUTING → packets before routing, used for DNAT (destination NAT)
+
+POSTROUTING → packets after routing, used for SNAT / MASQUERADE
+
+OUTPUT → packets originating locally, used for local NAT
+
+
+✅ Mangle table (for packet modification / QoS)
+
+PREROUTING
+
+POSTROUTING
+
+INPUT
+
+OUTPUT
+
+FORWARD
+
+
+✅ Raw table (for connection tracking bypass)
+
+PREROUTING
+
+OUTPUT
+
+
+✅ Security table (for SELinux / AppArmor, optional)
+
+INPUT
+
+OUTPUT
+
+FORWARD
+
+
+
+
+✅ Quick Summary
+
+| Table    | Built-in chains                                 | Purpose                    |
+| -------- | ----------------------------------------------- | -------------------------- |
+| filter   | INPUT, FORWARD, OUTPUT                          | Firewall rules             |
+| nat      | PREROUTING, POSTROUTING, OUTPUT                 | DNAT/SNAT                  |
+| mangle   | PREROUTING, POSTROUTING, INPUT, OUTPUT, FORWARD | Packet modifications / QoS |
+| raw      | PREROUTING, OUTPUT                              | Connection tracking bypass |
+| security | INPUT, OUTPUT, FORWARD                          | SELinux / AppArmor rules   |
+
+
+
+
+
+
 
 Chains
 
