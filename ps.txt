@@ -43,18 +43,29 @@ This version of ps accepts several kinds of options:
 
 
 
-
+🚀
 ps ax
 
 For each listed process, the ps ax command displays the process ID (PID), the terminal that is associated with it (TTY), the current status (STAT), the cumulated CPU time (TIME), and the name of the executable file (COMMAND).
 
 
 
+🚀
 
 ps aux
 
 Apart from the information provided by the ps ax command, ps aux displays the effective user name of the process owner (USER), the percentage of the CPU (%CPU) and memory (%MEM) usage, the virtual memory size in kilobytes (VSZ), the non-swapped physical memory size in kilobytes (RSS), and the time or date the process was started.
 
+
+
+🚀
+
+
+ps auxww
+
+
+
+ww = unlimited width
 
 
 
