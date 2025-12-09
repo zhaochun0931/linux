@@ -8,13 +8,7 @@ openssl req -x509 -new -nodes \
 
 
 
-  
-  
-  
-  
-  
-  
-  
+
 
   
 
@@ -40,3 +34,20 @@ openssl req -new -key client.key -out client.csr -config openssl-client.cnf
 openssl x509 -req -in client.csr \
   -CA ca.crt -CAkey ca.key -CAcreateserial \
   -out client.crt -days 365
+
+
+
+
+
+
+
+
+
+
+
+🚀 open a terminal
+go run server.go
+
+
+🚀 open another terminal
+go run client.go
