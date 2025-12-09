@@ -22,3 +22,75 @@ Client verifies server certificate.
 Server verifies client certificate.
 
 Both sides prove their identity → “mutual”.
+
+
+
+
+
+
+
+
+🔐 How does mTLS work?
+1️⃣ A Certificate Authority (CA) signs both:
+
+server.crt
+
+client.crt
+
+Both certificates trust the same CA (or CA chain).
+
+2️⃣ Client → Server:
+
+Client sends ClientHello + supported TLS features.
+
+3️⃣ Server → Client:
+
+Server sends:
+
+server.crt
+
+proof of private key (TLS handshake)
+
+Client verifies:
+
+Is the certificate signed by the CA?
+
+Does the hostname match the SAN?
+
+Is the certificate valid?
+
+4️⃣ Server requests client certificate:
+
+Server: “Please send your cert.”
+
+Client sends:
+
+client.crt
+
+proof of private key
+
+Server verifies:
+
+cert signed by same CA
+
+contains allowed Extended Key Usage (EKU)
+
+allowed subject (if configured)
+
+📌 mTLS Requirements
+✔ Server certificate
+Extended Key Usage: TLS Web Server Authentication
+
+✔ Client certificate
+Extended Key Usage: TLS Web Client Authentication
+
+✔ Server must require client cert:
+
+Nginx: ssl_verify_client on;
+
+Golang: ClientAuth: tls.RequireAndVerifyClientCert
+
+RabbitMQ: ssl_options.verify = verify_peer
+
+
+
