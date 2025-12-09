@@ -1,0 +1,24 @@
+Mutual TLS (mTLS) is a security mechanism where both the client and the server authenticate each other using TLS certificates.
+
+It’s like HTTPS, but two-way:
+
+
+🚀
+TLS (normal HTTPS):
+
+Client verifies server certificate.
+
+Server does NOT verify client certificate.
+
+Only the server proves its identity.
+
+
+
+🚀
+mTLS (mutual TLS):
+
+Client verifies server certificate.
+
+Server verifies client certificate.
+
+Both sides prove their identity → “mutual”.
