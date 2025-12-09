@@ -1,0 +1,21 @@
+services:
+  server:
+    build: ./server
+    container_name: mtls-server
+    ports:
+      - "8443:8443"
+    volumes:
+      - ./certs//ca.crt:/certs/ca.crt
+      - ./certs//server.crt:/certs/server.crt
+      - ./certs/server.key:/certs/server.key
+
+  client:
+    build: ./client
+    container_name: mtls-client
+    depends_on:
+      - server
+    volumes:
+      - ./certs/ca.crt:/certs/ca.crt
+      - ./certs/client.crt:/certs/client.crt
+      - ./certs/client.key:/certs/client.key
+
