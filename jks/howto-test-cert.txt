@@ -11,3 +11,13 @@ openssl s_server \
 openssl s_client \
   -connect localhost:8443 \
   -CAfile ca.crt
+
+
+
+
+
+or 
+
+curl -v --cacert ca.crt https://localhost:8443
+
+
