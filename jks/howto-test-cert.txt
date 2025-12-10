@@ -47,3 +47,14 @@ or
 curl -v --cacert ca.crt https://localhost:8443
 
 
+
+
+
+
+javac TestClient.java
+
+java TestClient
+
+
+
+
