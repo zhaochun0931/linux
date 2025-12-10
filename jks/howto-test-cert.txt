@@ -1,3 +1,29 @@
+✅ Start a TLS server using your server certificate
+
+
+openssl s_server \
+  -cert server.crt \
+  -key server.key \
+  -accept 8443 \
+  -www
+
+
+
+
+
+
+If it says:
+
+ACCEPT
+
+
+then the server started successfully.
+
+
+
+
+
+
 openssl s_server \
   -cert server.crt \
   -key server.key \
