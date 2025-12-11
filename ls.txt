@@ -21,3 +21,6 @@ do
 echo $i
 done
 
+
+
+ls -al /{server|locator}.log
