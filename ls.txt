@@ -23,4 +23,4 @@ done
 
 
 
-ls -al /{server|locator}.log
+ls -al ./{server|locator}.log
