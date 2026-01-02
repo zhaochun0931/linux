@@ -1,0 +1,7 @@
+✅
+
+PyTorch is an open-source deep learning framework used to build, train, and deploy neural networks—especially popular in research, AI startups, and production ML systems.
+
+In short
+
+PyTorch = Python + Tensors + Automatic Differentiation + GPU acceleration
