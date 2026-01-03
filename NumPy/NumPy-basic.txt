@@ -1,0 +1,20 @@
+NumPy (Numerical Python) is the core library for fast numerical computing in Python.
+
+Almost everything in scientific Python (pandas, SciPy, PyTorch, scikit-learn) is built on top of it.
+
+
+
+✅ Core idea: ndarray
+
+NumPy’s main object is the N-dimensional array (ndarray).
+
+
+
+
+✅ Why NumPy is FAST
+
+Data stored in contiguous memory
+
+Implemented in C
+
+Uses vectorization (no Python loops)
