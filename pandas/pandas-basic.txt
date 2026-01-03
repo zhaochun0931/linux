@@ -1,0 +1,7 @@
+pandas is a Python data analysis and data manipulation library.
+Think of it as Excel + SQL + NumPy, but programmable and much more powerful.
+
+
+
+✅
+It is not a deep learning library (that’s PyTorch / TensorFlow), but it’s often used before ML to prepare data.
