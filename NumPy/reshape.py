@@ -11,3 +11,9 @@ print(b)
 
 c = a.reshape(3,2)
 print(c)
+
+
+
+d = np.arange(24)
+e = d.reshape(2, 3, 4)
+print(e)
