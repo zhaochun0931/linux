@@ -56,6 +56,18 @@ apt autoremove
 
 
 
+✅
+To upgrade your system, first update your package index and then perform the upgrade – as follows:
+
+sudo apt update
+sudo apt upgrade
+
+
+
+
+
+
+
 
 dpkg -l
 dpkg --get-selections
