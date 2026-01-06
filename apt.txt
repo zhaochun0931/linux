@@ -9,6 +9,22 @@ apt is a high-level tool that uses dpkg underneath but also handles the resoluti
 
 
 
+✅
+Update the package index
+
+
+The APT package index is a database of available packages from the repositories defined in the /etc/apt/sources.list file and in the /etc/apt/sources.list.d directory. 
+
+
+
+/etc/apt/sources.list
+
+/etc/apt/sources.list.d
+
+
+# Ubuntu sources have moved to /etc/apt/sources.list.d/ubuntu.sources
+
+
 
 
 
@@ -20,10 +36,18 @@ apt is a high-level tool that uses dpkg underneath but also handles the resoluti
 
 apt list --installed
 
+
+✅
 apt remove <package-name>
 
+
+✅
 apt purge <package-name>
 
+Adding the --purge option to apt remove will remove the package configuration files as well.
+
+
+✅
 apt autoremove
 
 
@@ -39,8 +63,6 @@ dpkg --get-selections
 
 
 
-# (modern)
-apt list --installed 
 
 
 # (classic, lower-level)
