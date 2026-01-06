@@ -5,4 +5,8 @@ Debian Package Manager
 dpkg is a low-level tool for handling individual .deb packages
 
 
-  
+dpkg is a package manager for Debian-based systems. It can install, remove, and build packages, but unlike other package management systems, it cannot automatically download and install packages – or their dependencies.
+
+
+
+dpkg -l
