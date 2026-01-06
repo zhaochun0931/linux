@@ -1,4 +1,4 @@
-🧩 1. Expand the disk at hypervisor/cloud level
+✅ 1. Expand the disk at hypervisor/cloud level
 
 
 If you’re on VMware, VirtualBox, or a cloud provider (AWS, Azure, etc.), increase the disk size to your desired new capacity (e.g., from 30 GB → 60 GB).
@@ -24,7 +24,7 @@ Note that the disk grew to 60 GB, but the partition /dev/nvme0n1p2 is still 30 G
 
 
 
-⚙️ 2. Resize the partition
+✅ 2. Resize the partition
 
 Use growpart (simple) or parted (manual).
 
@@ -46,7 +46,7 @@ You should now see /dev/nvme0n1p2 with the full size.
 
 
 
-🧱 3. Resize the LVM Physical Volume (PV)
+✅ 3. Resize the LVM Physical Volume (PV)
 sudo pvresize /dev/nvme0n1p2
 
 
@@ -59,7 +59,7 @@ You should see the new free space reflected in the volume group.
 
 
 
-🧮 4. Extend the Logical Volume (LV)
+✅ 4. Extend the Logical Volume (LV)
 
 Find your logical volume name:
 
@@ -72,7 +72,7 @@ sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
 
 
 
-🗃️ 5. Resize the filesystem
+✅ 5. Resize the filesystem
 
 If your filesystem is ext4:
 
