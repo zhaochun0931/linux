@@ -1,0 +1,3 @@
+insert a blank line after every line
+
+sed 'G' filename
