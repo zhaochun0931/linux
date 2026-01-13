@@ -1,3 +1,7 @@
 insert a blank line after every line
 
 sed 'G' filename
+
+
+
+G appends a newline and the hold space (empty by default), resulting in a blank line after each line.
