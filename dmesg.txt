@@ -1,0 +1,43 @@
+dmesg is a Linux diagnostic command that shows kernel messages — especially about hardware, drivers, networking, and security events.
+
+
+  
+🔍 What dmesg shows
+
+It prints messages from the kernel ring buffer
+
+
+
+
+
+  
+
+dmesg
+
+[104784.482480] audit: type=1400 audit(1768472039.625:328): apparmor="DENIED" operation="mknod" class="file" profile="ubuntu_pro_esm_cache" name="/usr/lib/python3/dist-packages/uaclient/__pycache__/system.cpython-312.pyc.272307845210160" pid=16053 comm="python3" requested_mask="c" denied_mask="c" fsuid=0 ouid=0
+[104784.489433] audit: type=1400 audit(1768472039.632:329): apparmor="DENIED" operation="mknod" class="file" profile="ubuntu_pro_esm_cache" name="/usr/lib/python3/dist-packages/uaclient/__pycache__/exceptions.cpython-312.pyc.272307845656112" pid=16053 comm="python3" requested_mask="c" denied_mask="c" fsuid=0 ouid=0
+[104784.493151] audit: type=1400 audit(1768472039.636:330): apparmor="DENIED" operation="mknod" class="file" profile="ubuntu_pro_apt_news" name="/usr/lib/python3/dist-packages/uaclient/__pycache__/event_logger.cpython-312.pyc.270663641602096" pid=16052 comm="python3" requested_mask="c" denied_mask="c" fsuid=0 ouid=0
+[104784.494200] audit: type=1400 audit(1768472039.637:331): apparmor="DENIED" operation="mknod" class="file" profile="ubuntu_pro_apt_news" name="/usr/lib/python3/dist-packages/uaclient/__pycache__/yaml.cpython-312.pyc.270663629228208" pid=16052 comm="python3" requested_mask="c" denied_mask="c" fsuid=0 ouid=0
+[104787.974670] e1000e 0000:02:00.0 ens160: NIC Link is Down
+[105233.091097] e1000e 0000:02:00.0 ens160: NIC Link is Up 1000 Mbps Full Duplex, Flow Control: None
+[114151.319862] e1000e 0000:02:00.0 ens160: NIC Link is Down
+[114158.143352] e1000e 0000:02:00.0 ens160: NIC Link is Up 1000 Mbps Full Duplex, Flow Control: None
+[114988.972642] e1000e 0000:02:00.0 ens160: NIC Link is Down
+[114994.083391] e1000e 0000:02:00.0 ens160: NIC Link is Up 1000 Mbps Full Duplex, Flow Control: None
+
+
+
+# human-readable timestamps
+  
+dmesg -T 
+  
+[Thu Jan 15 19:49:19 2026] audit: type=1400 audit(1768472039.625:328): apparmor="DENIED" operation="mknod" class="file" profile="ubuntu_pro_esm_cache" name="/usr/lib/python3/dist-packages/uaclient/__pycache__/system.cpython-312.pyc.272307845210160" pid=16053 comm="python3" requested_mask="c" denied_mask="c" fsuid=0 ouid=0
+[Thu Jan 15 19:49:19 2026] audit: type=1400 audit(1768472039.632:329): apparmor="DENIED" operation="mknod" class="file" profile="ubuntu_pro_esm_cache" name="/usr/lib/python3/dist-packages/uaclient/__pycache__/exceptions.cpython-312.pyc.272307845656112" pid=16053 comm="python3" requested_mask="c" denied_mask="c" fsuid=0 ouid=0
+[Thu Jan 15 19:49:19 2026] audit: type=1400 audit(1768472039.636:330): apparmor="DENIED" operation="mknod" class="file" profile="ubuntu_pro_apt_news" name="/usr/lib/python3/dist-packages/uaclient/__pycache__/event_logger.cpython-312.pyc.270663641602096" pid=16052 comm="python3" requested_mask="c" denied_mask="c" fsuid=0 ouid=0
+[Thu Jan 15 19:49:19 2026] audit: type=1400 audit(1768472039.637:331): apparmor="DENIED" operation="mknod" class="file" profile="ubuntu_pro_apt_news" name="/usr/lib/python3/dist-packages/uaclient/__pycache__/yaml.cpython-312.pyc.270663629228208" pid=16052 comm="python3" requested_mask="c" denied_mask="c" fsuid=0 ouid=0
+[Thu Jan 15 19:49:22 2026] e1000e 0000:02:00.0 ens160: NIC Link is Down
+[Thu Jan 15 19:56:48 2026] e1000e 0000:02:00.0 ens160: NIC Link is Up 1000 Mbps Full Duplex, Flow Control: None
+[Thu Jan 15 22:25:26 2026] e1000e 0000:02:00.0 ens160: NIC Link is Down
+[Thu Jan 15 22:25:33 2026] e1000e 0000:02:00.0 ens160: NIC Link is Up 1000 Mbps Full Duplex, Flow Control: None
+[Thu Jan 15 22:39:23 2026] e1000e 0000:02:00.0 ens160: NIC Link is Down
+[Thu Jan 15 22:39:28 2026] e1000e 0000:02:00.0 ens160: NIC Link is Up 1000 Mbps Full Duplex, Flow Control: None
