@@ -57,7 +57,7 @@ keytool -importkeystore \
   -deststorepass changeit \
   -srckeystore server.p12 \
   -srcstoretype PKCS12 \
-  -srcstorepass <p12-password> \
+  -srcstorepass changeit \
   -alias server
 
 
@@ -128,10 +128,13 @@ Entry type: trustedCertEntry
 
 
 5️⃣ Typical Java SSL configuration
+
 Keystore (server side)
+
 -Djavax.net.ssl.keyStore=server.keystore.jks
 -Djavax.net.ssl.keyStorePassword=changeit
 
 Truststore (client side)
+
 -Djavax.net.ssl.trustStore=server.truststore.jks
 -Djavax.net.ssl.trustStorePassword=changeit
