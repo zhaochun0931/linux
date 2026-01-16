@@ -1,0 +1,14 @@
+server.key + server.crt
+        ↓
+     PKCS12 (.p12)
+        ↓
+     JKS keystore
+
+
+
+
+
+
+server.crt
+        ↓
+     JKS truststore
