@@ -24,6 +24,24 @@ then the server started successfully.
 
 
 
+
+
+or debug mode:
+
+openssl s_server \
+  -cert server.crt \
+  -key server.key \
+  -accept 8443 \
+  -www \
+  -debug
+
+
+
+
+
+
+
+
 openssl s_server \
   -cert server.crt \
   -key server.key \
