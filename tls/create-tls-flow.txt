@@ -250,4 +250,42 @@ DNS.2 = www.example.com
 
 
 
+Why this step matters
+
+CAs require a CSR
+
+SAN must be present (CN alone is ignored by modern browsers)
+
+Ensures the cert matches:
+
+hostname
+
+key usage
+
+TLS purpose
+
+
+
+
+
+
+🚀
+What happens next
+
+
+🚀 With a public CA (Let’s Encrypt, DigiCert, etc.)
+server.csr → CA → server.crt
+
+🚀 With a self-signed cert
+openssl x509 -req -in server.csr -signkey server.key -out server.crt
+
+
+
+
+CSR = “Here is my public key + identity info, signed with my private key.”
+
+
+
+
+
 
