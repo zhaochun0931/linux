@@ -1,22 +1,52 @@
-OpenSSL is a robust, commercial-grade, full-featured Open Source Toolkit for the TLS (formerly SSL), DTLS and QUIC protocols.
-
-
-The OpenSSL toolkit includes:
-
-libssl an implementation of all TLS protocol versions up to TLSv1.3 (RFC 8446), DTLS protocol versions up to DTLSv1.2 (RFC 6347) and the QUIC version 1 protocol (RFC 9000).
-
-libcrypto a full-strength general purpose cryptographic library. It constitutes the basis of the TLS implementation, but can also be used independently.
-
-openssl the OpenSSL command line tool, a swiss army knife for cryptographic tasks, testing and analyzing. It can be used for
-
-
-
-
-
-
 The OpenSSL configuration file is located at /etc/ssl/openssl.cnf and is used both by the library itself and the command-line tools included in the package.
 
 /etc/ssl/openssl.cnf
+
+
+
+openssl version
+
+openssl version -d
+
+
+
+# openssl version
+OpenSSL 3.0.13 30 Jan 2024 (Library: OpenSSL 3.0.13 30 Jan 2024)
+#
+#
+# openssl version -d
+OPENSSLDIR: "/usr/lib/ssl"
+#
+
+
+
+# pwd
+/usr/lib/ssl
+#
+# ls -al
+total 12
+drwxr-xr-x  3 root root 4096 Dec  2 03:28 .
+drwxr-xr-x 82 root root 4096 Jan 15 06:28 ..
+lrwxrwxrwx  1 root root   34 Sep 18 11:12 cert.pem -> /etc/ssl/certs/ca-certificates.crt
+lrwxrwxrwx  1 root root   14 Aug 20  2024 certs -> /etc/ssl/certs
+drwxr-xr-x  2 root root 4096 Dec  2 03:28 misc
+lrwxrwxrwx  1 root root   20 Sep 18 11:12 openssl.cnf -> /etc/ssl/openssl.cnf
+lrwxrwxrwx  1 root root   16 Aug 20  2024 private -> /etc/ssl/private
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
