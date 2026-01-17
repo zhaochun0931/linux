@@ -168,6 +168,22 @@ sign the CSR
 
 
 
+
+-config server.cnf
+
+Uses a configuration file instead of interactive prompts.
+
+This is where you define:
+
+Subject fields (CN, O, OU, C, …)
+
+SAN (Subject Alternative Names)
+
+Key usage extensions
+
+
+
+
 $ cat server.csr
 -----BEGIN CERTIFICATE REQUEST-----
 MIICijCCAXICAQAwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
@@ -186,6 +202,8 @@ xs3T1gLnnxM/2P1ekfpJ4SOZBG5c8ShqOk/5fTFbjkCob+enxdtfE8kAKDymZPjl
 aVkbKPdDyLFnT8gElW+ecpWSIXCiXH9ZEJFEHCdv
 -----END CERTIFICATE REQUEST-----
 $
+
+
 
 
 
