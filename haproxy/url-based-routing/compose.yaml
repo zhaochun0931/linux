@@ -1,0 +1,36 @@
+networks:
+  frontend_net:
+    driver: bridge
+
+
+services:
+  haproxy:
+    image: haproxy:2.9
+    container_name: haproxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - api
+      - web
+    networks:
+      - frontend_net
+
+
+  api:
+    image: nginx:alpine
+    container_name: api-service
+    volumes:
+      - ./api.html:/usr/share/nginx/html/index.html:ro
+    networks:
+      - frontend_net
+
+
+  web:
+    image: nginx:alpine
+    container_name: web-service
+    volumes:
+      - ./web.html:/usr/share/nginx/html/index.html:ro
+    networks:
+      - frontend_net

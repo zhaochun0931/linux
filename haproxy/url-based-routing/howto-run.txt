@@ -1,0 +1,32 @@
+docker compose up
+
+
+
+$ curl localhost
+<h1>WEB SERVICE</h1>
+<p>You are routed to /web</p>
+
+$
+$ curl localhost/api
+<h1>API SERVICE</h1>
+<p>You are routed to /api</p>
+
+$
+$
+$ curl localhost/web
+<h1>WEB SERVICE</h1>
+<p>You are routed to /web</p>
+
+$
+
+
+
+
+ Test in browser
+
+| URL                                          | Result                |
+| -------------------------------------------- | --------------------- |
+| [http://localhost/api](http://localhost/api) | API SERVICE           |
+| [http://localhost/web](http://localhost/web) | WEB SERVICE           |
+| [http://localhost/](http://localhost/)       | WEB SERVICE (default) |
+
