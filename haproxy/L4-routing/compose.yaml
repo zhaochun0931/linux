@@ -1,0 +1,36 @@
+networks:
+  l4_net:
+    driver: bridge
+
+services:
+  haproxy:
+    image: haproxy:2.9
+    container_name: haproxy-l4
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    networks:
+      - l4_net
+    depends_on:
+      - backend1
+      - backend2
+
+  backend1:
+    image: alpine
+    container_name: backend-1
+    command: >
+      sh -c "apk add --no-cache busybox-extras &&
+             nc -lk -p 9000 -e echo BACKEND_1"
+    networks:
+      - l4_net
+
+  backend2:
+    image: alpine
+    container_name: backend-2
+    command: >
+      sh -c "apk add --no-cache busybox-extras &&
+             nc -lk -p 9000 -e echo BACKEND_2"
+    networks:
+      - l4_net
+
