@@ -48,3 +48,17 @@ curl -v 'https://packages.broadcom.com/artifactory/gemfire' \
 curl -u guest:guest http://localhost:15672/api/overview
 
 
+
+
+
+
+curl -H "Host: app1.local" http://localhost:8080 --resolve app1.local:8080:127.0.0.1
+
+curl http://app1.local:8080 --resolve app1.local:8080:127.0.0.1
+
+--resolve HOST:PORT:IP
+
+overrides DNS resolution for the hostname you use in the URL
+
+Makes curl resolve HOST:PORT to IP without touching /etc/hosts
+
