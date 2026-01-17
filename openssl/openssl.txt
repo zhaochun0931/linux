@@ -89,6 +89,69 @@ subjectAltName = @alt_names
 
 
 
+✅
+What v3_ca usually means (IMPORTANT)
+
+Typical server.cnf snippet:
+
+[ v3_ca ]
+basicConstraints = CA:TRUE
+keyUsage = keyCertSign, cRLSign
+subjectAltName = @alt_names
+
+
+⚠️ This makes the certificate a CA certificate, not a normal TLS server cert.
+
+Is this good for HTTPS? ⚠️
+❌ Usually NO
+
+A proper TLS server cert should be:
+
+basicConstraints = CA:FALSE
+keyUsage = digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+
+
+Using v3_ca:
+
+Browsers may reject it
+
+Some TLS stacks fail
+
+Security issue (server acting as CA)
+
+
+
+
+
+Correct version for a self-signed server cert
+openssl x509 -req -days 365 \
+  -in server.csr \
+  -signkey server.key \
+  -out server.crt \
+  -extensions v3_req \
+  -extfile server.cnf
+
+
+Where:
+
+[ v3_req ]
+basicConstraints = CA:FALSE
+keyUsage = digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ✅ What basicConstraints means
