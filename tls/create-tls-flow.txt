@@ -1,0 +1,68 @@
+✅ generates a new RSA private key
+
+
+openssl genrsa -out server.key 2048
+
+
+
+✅
+Let’s break it down piece by piece.
+
+What each part means
+
+
+✅ openssl
+
+Runs the OpenSSL command-line tool.
+
+
+
+✅ genrsa
+
+Tells OpenSSL to generate an RSA private key.
+
+RSA = public-key (asymmetric) cryptography
+
+Produces a private key (the public key can be derived from it)
+
+
+
+✅-out server.key
+
+Specifies the output file where the private key is written.
+
+File: server.key
+
+
+✅ 2048
+
+Key size in bits.
+
+2048-bit RSA is:
+
+Secure (current minimum recommended)
+
+Widely compatible
+
+
+
+
+✅
+What file is created
+
+server.key will contain something like:
+
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA...
+...
+-----END RSA PRIVATE KEY-----
+
+
+This is:
+
+PEM format
+
+Base64-encoded
+
+Unencrypted by default
+
