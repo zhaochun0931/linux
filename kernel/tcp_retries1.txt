@@ -1,1 +1,50 @@
 In Linux TCP, tcp_retries1 and tcp_retries2 control different phases of retransmission on an established TCP connection. Think of them as “early warning” vs “final death sentence.”
+
+
+
+
+
+
+
+
+
+tcp_retries1 — early retransmission phase
+
+net.ipv4.tcp_retries1
+
+
+What it does
+
+Defines how many retransmissions happen before TCP assumes something is wrong
+
+After this threshold:
+
+TCP reduces congestion window
+
+May trigger route/path failure detection
+
+Enters more conservative behavior
+
+⚠️ Connection is NOT closed
+
+
+
+
+
+
+tcp_retries2 — final abort threshold
+net.ipv4.tcp_retries2
+
+What it does
+
+Maximum number of retransmissions before the socket is abandoned
+
+When exceeded:
+
+TCP closes the connection
+
+Application sees:
+
+ETIMEDOUT
+
+ECONNRESET (in some cases)
