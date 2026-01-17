@@ -37,6 +37,14 @@ lrwxrwxrwx  1 root root   16 Aug 20  2024 private -> /etc/ssl/private
 
 
 
+✅ How OpenSSL finds the config file
+
+If you specify -config <file> → uses that file
+
+
+else, OpenSSL uses the compiled default:
+
+OPENSSLDIR/openssl.cnf
 
 
 
