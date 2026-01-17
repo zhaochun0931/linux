@@ -1,0 +1,13 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-sni-demo
+    ports:
+      - "8443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/site1.crt:/etc/nginx/certs/site1.crt:ro
+      - ./nginx/site1.key:/etc/nginx/certs/site1.key:ro
+      - ./nginx/site2.crt:/etc/nginx/certs/site2.crt:ro
+      - ./nginx/site2.key:/etc/nginx/certs/site2.key:ro
+
