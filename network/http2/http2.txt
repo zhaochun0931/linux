@@ -1,0 +1,14 @@
+HTTP/2 is the second major version of the HTTP protocol
+
+
+
+HTTP/2 uses binary framing instead of plain text → faster parsing
+
+
+| Aspect           | HTTP/1.1                                           | HTTP/2                                        |
+| ---------------- | -------------------------------------------------- | --------------------------------------------- |
+| Protocol         | Text                                               | Binary                                        |
+| Connection usage | 1 request per TCP connection (pipelining optional) | Multiplex multiple streams per TCP connection |
+| Headers          | Sent plain each request                            | Compressed (HPACK)                            |
+| Latency          | Higher, multiple connections needed                | Lower, multiplexing reduces latency           |
+| Push             | N/A                                                | Server Push available                         |
