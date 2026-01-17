@@ -18,3 +18,18 @@
 
 |2026-01-17 11:43:54.660486|         Encrypted Alert               |TLSv1.2: Encrypted Alert
 |         |(53355)  <------------------  (8443)   |
+
+
+
+
+Handshake types reference
+
+| Value | Meaning            |
+| ----- | ------------------ |
+| 1     | ClientHello        |
+| 2     | ServerHello        |
+| 11    | Certificate        |
+| 13    | CertificateRequest |
+| 15    | CertificateVerify  |
+| 16    | ClientKeyExchange  |
+| 20    | Finished           |
