@@ -19,3 +19,29 @@ openssl x509 -req -days 365 -in site2.csr -signkey site2.key -out site2.crt -ext
 
 
   
+
+
+
+docker compose  up
+
+
+
+
+# Test site1
+openssl s_client -connect 127.0.0.1:8443 -servername site1.example.com
+
+# Test site2
+openssl s_client -connect 127.0.0.1:8443 -servername site2.example.com
+
+
+
+
+
+curl -vk https://site1.example.com:8443 --resolve site1.example.com:8443:127.0.0.1
+
+curl -vk https://site2.example.com:8443 --resolve site2.example.com:8443:127.0.0.1
+
+
+
+
+
