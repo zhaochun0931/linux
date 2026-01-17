@@ -48,3 +48,152 @@ Application sees:
 ETIMEDOUT
 
 ECONNRESET (in some cases)
+
+
+
+
+
+
+
+
+
+
+1️⃣ Entry point: TCP write timer
+
+net/ipv4/tcp_timer.c
+
+void tcp_write_timer_handler(struct sock *sk)
+
+
+This timer fires when:
+
+data was sent
+
+ACKs did not arrive
+
+retransmission is required
+
+This is where retry counting begins.
+
+
+
+
+
+
+2️⃣ Main retransmission handler
+
+static void tcp_write_timeout(struct sock *sk)
+
+
+
+
+
+
+3️⃣ Retry counter logic (core decision)
+
+Inside tcp_write_timeout():
+
+struct inet_connection_sock *icsk = inet_csk(sk);
+int retry_until = icsk->icsk_syn_retries ?
+                  icsk->icsk_syn_retries :
+                  sysctl_tcp_retries2;
+
+
+Here:
+
+For established connections, retry_until = tcp_retries2
+
+Retry count stored in:
+
+icsk->icsk_retransmits
+
+4️⃣ tcp_retries1: early threshold
+
+Still inside tcp_write_timeout():
+
+if (icsk->icsk_retransmits == sysctl_tcp_retries1) {
+    /* Enter loss recovery / reduce congestion */
+    tcp_enter_loss(sk);
+}
+
+What happens here
+
+TCP does NOT close
+
+Congestion window collapses
+
+Path MTU / routing failures may be triggered
+
+TCP becomes conservative
+
+➡️ This is where tcp_retries1 matters
+
+5️⃣ Exponential backoff
+
+Retry timeout is calculated in:
+
+net/ipv4/tcp_output.c
+
+unsigned long tcp_retransmit_timeout(struct sock *sk)
+
+
+Backoff logic:
+
+timeout = min(timeout << 1, TCP_RTO_MAX);
+
+
+Typical limits:
+
+#define TCP_RTO_MAX 120000  /* 120 seconds */
+
+
+So retries become:
+
+1s → 2s → 4s → 8s → 16s → 32s → 64s → 120s → 120s ...
+
+6️⃣ tcp_retries2: final abort
+
+Back to tcp_write_timeout():
+
+if (icsk->icsk_retransmits > retry_until) {
+    tcp_write_err(sk);
+    return;
+}
+
+
+This is the kill switch.
+
+7️⃣ Connection termination path
+Function
+static void tcp_write_err(struct sock *sk)
+
+
+Calls:
+
+tcp_done(sk);
+
+
+Which transitions state to:
+
+TCP_CLOSE
+
+
+And reports error to user space:
+
+ETIMEDOUT
+
+sometimes ECONNRESET
+
+
+
+
+
+8️⃣ Full call chain (simplified)
+tcp_write_timer_handler()
+  └── tcp_write_timeout()
+        ├── tcp_enter_loss()        ← tcp_retries1
+        ├── tcp_retransmit_timer()
+        └── tcp_write_err()         ← tcp_retries2
+              └── tcp_done()
+
+
