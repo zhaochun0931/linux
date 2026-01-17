@@ -1,0 +1,47 @@
+In Linux, tcp_retries2 is a kernel TCP parameter that controls how long the kernel keeps retransmitting data on an established TCP connection before giving up.
+
+
+net.ipv4.tcp_retries2
+
+It defines the maximum number of retransmissions for data packets on an already established TCP connection before the kernel considers the connection dead and closes it.
+
+This applies after the TCP handshake has succeeded (unlike tcp_syn_retries, which is for connection setup).
+
+
+
+How it works (conceptually)
+
+TCP sends data
+
+If ACKs are not received:
+
+TCP retransmits with exponential backoff
+
+Once the retransmission limit defined by tcp_retries2 is exceeded:
+
+TCP aborts the connection
+
+Application gets an error (usually ETIMEDOUT)
+
+So effectively, this parameter controls the maximum tolerated network outage for an established TCP connection.
+
+
+
+
+
+
+
+Default value
+
+sysctl net.ipv4.tcp_retries2
+
+
+Typical default:
+
+net.ipv4.tcp_retries2 = 15
+
+
+⚠️ Important:
+Although it’s a count, it translates to time, not just retries.
+
+With exponential backoff, 15 retries ≈ 13–30 minutes of retry time (depends on RTT and kernel version).
