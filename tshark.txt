@@ -14,3 +14,16 @@ TZ=UTC tshark -r XX.pcap -T fields -e frame.time -t ad
 
 
 TZ=UTC tshark -Y "tcp.flags.reset==1 or tcp.analysis.retransmission" -t ad -r *trc075
+
+
+
+
+# 
+
+tshark -r my-tcpdump-file.pcap 
+
+
+
+
+
+tshark -r mtls1.3.pcap -Y tls
