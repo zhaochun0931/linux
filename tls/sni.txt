@@ -1,0 +1,135 @@
+SNI in a certificate context means Server Name Indication.
+
+It’s a TLS (SSL) extension, not a field inside the certificate itself.
+
+
+
+SNI lets a client tell the server which hostname it wants before the TLS certificate is sent, so the server can choose the correct certificate.
+
+
+
+
+
+
+Why SNI exists
+Problem (old TLS)
+
+One IP address
+
+Multiple HTTPS domains
+
+TLS handshake happens before HTTP Host header
+
+Server doesn’t know which certificate to present
+
+➡️ Result: only one cert per IP
+
+
+
+
+Solution: SNI
+
+During the TLS handshake, the client says:
+
+“I'm connecting to: api.example.com”
+
+
+The server then selects:
+
+api.example.com certificate
+
+not www.example.com
+
+All on the same IP:port (443).
+
+
+
+
+
+
+Where SNI appears in TLS
+
+TLS handshake flow (simplified)
+
+
+ClientHello
+  ├── supported ciphers
+  ├── TLS version
+  └── SNI = "api.example.com"   ← HERE
+ServerHello
+Certificate (for api.example.com)
+
+
+SNI is inside ClientHello.
+
+
+
+
+Important clarification
+
+❌ SNI is NOT inside the certificate
+✅ SNI is used to select which certificate to send
+
+
+
+
+
+The certificate itself contains:
+
+CN (Common Name)
+
+SAN (Subject Alternative Name)
+
+
+
+
+
+
+
+How SNI relates to certificates
+
+| Item | Purpose                                                |
+| ---- | ------------------------------------------------------ |
+| SNI  | Chooses which cert the server sends                    |
+| SAN  | Tells the client which hostnames the cert is valid for |
+| CN   | Legacy hostname field                                  |
+
+
+
+Example:
+
+Client sends: SNI = db.example.com
+
+Server sends cert with:
+
+SAN: db.example.com
+
+
+
+
+Without SNI (what breaks)
+
+Server always sends default certificate
+
+Client sees:
+
+certificate does not match host
+
+
+
+
+
+
+How to test SNI
+OpenSSL
+openssl s_client -connect 1.2.3.4:443 -servername api.example.com
+
+Without -servername, no SNI is sent.
+
+
+
+curl
+curl https://api.example.com
+
+
+(curl sends SNI automatically)
