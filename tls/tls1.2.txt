@@ -21,6 +21,17 @@
 
 
 
+    9   0.000723          ::1 → ::1          TLSv1.2 367 Client Hello (SNI=localhost)
+   13   0.002063          ::1 → ::1          TLSv1.2 1319 Server Hello, Certificate, Server Key Exchange, Certificate Request, Server Hello Done
+   17   0.003445          ::1 → ::1          TLSv1.2 1217 Certificate, Client Key Exchange, Certificate Verify, Change Cipher Spec, Encrypted Handshake Message
+   21   0.003703          ::1 → ::1          TLSv1.2 127 Change Cipher Spec, Encrypted Handshake Message
+   25   0.004343          ::1 → ::1          TLSv1.2 200 Application Data
+   29   0.004477          ::1 → ::1          TLSv1.2 250 Application Data
+   37   0.005084          ::1 → ::1          TLSv1.2 107 Encrypted Alert
+
+
+
+
 
 Handshake types reference
 
