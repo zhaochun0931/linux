@@ -71,7 +71,42 @@ openssl pkeyutl -decrypt -inkey demo.key -in demo.txt.enc -out test.out.txt
 
 
 
-# check the crt
+
+✅ displays the contents of an X.509 certificate in a human-readable form
+
+openssl x509 -in server.crt -text -noout
+
+
+
+openssl x509
+
+Work with X.509 certificates.
+
+Can read, write, or display certs.
+
+
+-in server.crt
+
+Input file: your certificate.
+
+
+
+
+-text
+
+Prints a human-readable text version of the certificate.
+
+
+
+-noout
+
+Don’t print the raw encoded certificate.
+
+
+
+
+
+
 
 openssl x509 -in ca.crt -text -noout
 
