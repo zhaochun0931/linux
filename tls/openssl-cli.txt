@@ -101,6 +101,150 @@ Prints a human-readable text version of the certificate.
 -noout
 
 Don’t print the raw encoded certificate.
+Without this, OpenSSL outputs both the PEM and the human-readable text.
+
+
+openssl x509 -in server.crt --text --noout
+
+
+$ openssl x509 -in server.crt --text --noout
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            54:74:eb:2d:ce:1d:98:fb:71:5b:a4:2c:21:15:05:5c:7a:1a:5b:58
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=AU, ST=Some-State, O=Internet Widgits Pty Ltd
+        Validity
+            Not Before: Jan 17 09:05:44 2026 GMT
+            Not After : Jan 17 09:05:44 2027 GMT
+        Subject: C=AU, ST=Some-State, O=Internet Widgits Pty Ltd
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:ba:06:7d:ef:88:75:d7:e7:37:d7:d3:30:e6:d9:
+                    5d:b0:70:c3:b1:08:b5:94:de:2f:e2:b1:4c:5b:e7:
+                    8e:61:45:f5:30:41:fb:17:81:2d:96:a3:49:73:70:
+                    84:e8:08:04:ad:11:b4:3b:56:e9:4c:a1:d3:4c:78:
+                    d5:be:13:3f:f0:45:48:a0:f7:97:5d:17:fe:8e:03:
+                    0c:a8:59:b4:a8:7f:57:dc:cb:bd:f6:c3:2d:e7:eb:
+                    ff:d1:c0:d2:b3:d4:37:ae:e0:9b:5f:2c:71:24:27:
+                    e9:82:45:99:51:52:00:36:9a:24:ff:59:6a:6a:5c:
+                    c6:27:18:c6:8a:b7:1f:1b:c5:04:69:8e:53:c7:6a:
+                    1f:d9:23:64:4c:06:65:0c:97:e4:8d:06:4b:e9:09:
+                    b0:90:3b:9e:d9:4d:04:ca:bc:bd:34:22:fb:f5:06:
+                    02:66:05:32:87:7d:c0:f8:1d:e1:5e:18:60:de:03:
+                    4e:86:30:00:a8:ed:75:de:eb:81:1a:c5:a8:d3:43:
+                    1e:ad:69:85:0d:78:ef:8f:51:09:aa:32:4c:99:62:
+                    78:5b:8c:4f:5a:e1:88:3f:d4:f0:fc:8a:00:f5:da:
+                    81:03:9e:72:ac:24:5a:a2:cf:45:e9:9d:41:d3:0f:
+                    f2:29:bb:7d:c1:a7:29:83:e4:1a:15:54:e1:38:3d:
+                    84:91
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier:
+                5E:E9:95:97:A5:B5:87:4F:F9:C9:75:08:27:E4:08:24:EB:CC:F1:64
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        27:2b:fd:c9:2f:7a:e1:8a:55:5b:dc:ef:c7:e7:94:b6:16:35:
+        a8:80:44:e6:f5:66:6c:25:ff:38:0c:fa:60:49:46:3b:e9:3e:
+        43:a7:27:da:74:ca:c5:b0:db:59:9b:49:46:88:90:27:39:25:
+        f8:f3:bf:81:72:70:16:6c:e9:c7:18:f3:18:10:26:ec:f8:fd:
+        a6:24:32:f7:90:8d:75:71:40:a1:5b:1c:fd:40:c3:97:80:97:
+        fc:fc:b5:cf:17:a2:1e:3e:0f:61:2e:44:21:53:9f:12:78:18:
+        48:87:f4:a8:3d:6e:c6:5c:a0:73:00:ca:ce:c2:94:9b:b7:a9:
+        bd:95:2b:6a:b4:46:f6:12:57:db:4f:64:41:81:8f:6e:4d:1c:
+        0b:56:e0:73:52:9c:18:30:42:f2:bf:8d:d7:a8:0e:03:7a:b7:
+        9f:c9:2b:0c:3e:b1:5a:b0:4a:d6:c9:4f:6d:16:25:9c:fe:3c:
+        5b:ea:1b:fc:a0:48:58:db:95:db:8b:5a:38:9f:6a:2e:52:80:
+        4b:41:cd:7f:b6:58:f9:58:f9:f2:56:05:57:c7:3c:6d:8e:9a:
+        ce:98:2f:56:ac:ed:20:4e:7f:01:1d:61:da:9f:0f:5c:e5:81:
+        54:1c:70:b7:b6:90:7c:4f:6b:c8:c4:5a:f1:95:76:2d:22:ea:
+        fb:fd:ed:ae
+$
+
+
+
+openssl x509 -in server.crt --text
+
+
+$ openssl x509 -in server.crt --text
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            54:74:eb:2d:ce:1d:98:fb:71:5b:a4:2c:21:15:05:5c:7a:1a:5b:58
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=AU, ST=Some-State, O=Internet Widgits Pty Ltd
+        Validity
+            Not Before: Jan 17 09:05:44 2026 GMT
+            Not After : Jan 17 09:05:44 2027 GMT
+        Subject: C=AU, ST=Some-State, O=Internet Widgits Pty Ltd
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:ba:06:7d:ef:88:75:d7:e7:37:d7:d3:30:e6:d9:
+                    5d:b0:70:c3:b1:08:b5:94:de:2f:e2:b1:4c:5b:e7:
+                    8e:61:45:f5:30:41:fb:17:81:2d:96:a3:49:73:70:
+                    84:e8:08:04:ad:11:b4:3b:56:e9:4c:a1:d3:4c:78:
+                    d5:be:13:3f:f0:45:48:a0:f7:97:5d:17:fe:8e:03:
+                    0c:a8:59:b4:a8:7f:57:dc:cb:bd:f6:c3:2d:e7:eb:
+                    ff:d1:c0:d2:b3:d4:37:ae:e0:9b:5f:2c:71:24:27:
+                    e9:82:45:99:51:52:00:36:9a:24:ff:59:6a:6a:5c:
+                    c6:27:18:c6:8a:b7:1f:1b:c5:04:69:8e:53:c7:6a:
+                    1f:d9:23:64:4c:06:65:0c:97:e4:8d:06:4b:e9:09:
+                    b0:90:3b:9e:d9:4d:04:ca:bc:bd:34:22:fb:f5:06:
+                    02:66:05:32:87:7d:c0:f8:1d:e1:5e:18:60:de:03:
+                    4e:86:30:00:a8:ed:75:de:eb:81:1a:c5:a8:d3:43:
+                    1e:ad:69:85:0d:78:ef:8f:51:09:aa:32:4c:99:62:
+                    78:5b:8c:4f:5a:e1:88:3f:d4:f0:fc:8a:00:f5:da:
+                    81:03:9e:72:ac:24:5a:a2:cf:45:e9:9d:41:d3:0f:
+                    f2:29:bb:7d:c1:a7:29:83:e4:1a:15:54:e1:38:3d:
+                    84:91
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier:
+                5E:E9:95:97:A5:B5:87:4F:F9:C9:75:08:27:E4:08:24:EB:CC:F1:64
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        27:2b:fd:c9:2f:7a:e1:8a:55:5b:dc:ef:c7:e7:94:b6:16:35:
+        a8:80:44:e6:f5:66:6c:25:ff:38:0c:fa:60:49:46:3b:e9:3e:
+        43:a7:27:da:74:ca:c5:b0:db:59:9b:49:46:88:90:27:39:25:
+        f8:f3:bf:81:72:70:16:6c:e9:c7:18:f3:18:10:26:ec:f8:fd:
+        a6:24:32:f7:90:8d:75:71:40:a1:5b:1c:fd:40:c3:97:80:97:
+        fc:fc:b5:cf:17:a2:1e:3e:0f:61:2e:44:21:53:9f:12:78:18:
+        48:87:f4:a8:3d:6e:c6:5c:a0:73:00:ca:ce:c2:94:9b:b7:a9:
+        bd:95:2b:6a:b4:46:f6:12:57:db:4f:64:41:81:8f:6e:4d:1c:
+        0b:56:e0:73:52:9c:18:30:42:f2:bf:8d:d7:a8:0e:03:7a:b7:
+        9f:c9:2b:0c:3e:b1:5a:b0:4a:d6:c9:4f:6d:16:25:9c:fe:3c:
+        5b:ea:1b:fc:a0:48:58:db:95:db:8b:5a:38:9f:6a:2e:52:80:
+        4b:41:cd:7f:b6:58:f9:58:f9:f2:56:05:57:c7:3c:6d:8e:9a:
+        ce:98:2f:56:ac:ed:20:4e:7f:01:1d:61:da:9f:0f:5c:e5:81:
+        54:1c:70:b7:b6:90:7c:4f:6b:c8:c4:5a:f1:95:76:2d:22:ea:
+        fb:fd:ed:ae
+-----BEGIN CERTIFICATE-----
+MIIDOTCCAiGgAwIBAgIUVHTrLc4dmPtxW6QsIRUFXHoaW1gwDQYJKoZIhvcNAQEL
+BQAwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoM
+GEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDAeFw0yNjAxMTcwOTA1NDRaFw0yNzAx
+MTcwOTA1NDRaMEUxCzAJBgNVBAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEw
+HwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRzIFB0eSBMdGQwggEiMA0GCSqGSIb3DQEB
+AQUAA4IBDwAwggEKAoIBAQC6Bn3viHXX5zfX0zDm2V2wcMOxCLWU3i/isUxb545h
+RfUwQfsXgS2Wo0lzcIToCAStEbQ7VulModNMeNW+Ez/wRUig95ddF/6OAwyoWbSo
+f1fcy732wy3n6//RwNKz1Deu4JtfLHEkJ+mCRZlRUgA2miT/WWpqXMYnGMaKtx8b
+xQRpjlPHah/ZI2RMBmUMl+SNBkvpCbCQO57ZTQTKvL00Ivv1BgJmBTKHfcD4HeFe
+GGDeA06GMACo7XXe64EaxajTQx6taYUNeO+PUQmqMkyZYnhbjE9a4Yg/1PD8igD1
+2oEDnnKsJFqiz0XpnUHTD/Ipu33BpymD5BoVVOE4PYSRAgMBAAGjITAfMB0GA1Ud
+DgQWBBRe6ZWXpbWHT/nJdQgn5Agk68zxZDANBgkqhkiG9w0BAQsFAAOCAQEAJyv9
+yS964YpVW9zvx+eUthY1qIBE5vVmbCX/OAz6YElGO+k+Q6cn2nTKxbDbWZtJRoiQ
+Jzkl+PO/gXJwFmzpxxjzGBAm7Pj9piQy95CNdXFAoVsc/UDDl4CX/Py1zxeiHj4P
+YS5EIVOfEngYSIf0qD1uxlygcwDKzsKUm7epvZUrarRG9hJX209kQYGPbk0cC1bg
+c1KcGDBC8r+N16gOA3q3n8krDD6xWrBK1slPbRYlnP48W+ob/KBIWNuV24taOJ9q
+LlKAS0HNf7ZY+Vj58lYFV8c8bY6azpgvVqztIE5/AR1h2p8PXOWBVBxwt7aQfE9r
+yMRa8ZV2LSLq+/3trg==
+-----END CERTIFICATE-----
+$
 
 
 
@@ -108,7 +252,7 @@ Don’t print the raw encoded certificate.
 
 
 
-openssl x509 -in ca.crt -text -noout
+
 
 openssl pkcs12 -in keystore.p12 -info -nodes
 
