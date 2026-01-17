@@ -1,0 +1,9 @@
+WebSocket is a communication protocol that provides full-duplex, real-time communication over a single TCP connection.
+
+
+
+Works over TCP, usually initiated via HTTP/HTTPS (HTTP/1.1 or HTTP/2)
+
+Allows server ↔ client to send messages at any time, unlike HTTP which is request-response
+
+In short: HTTP = client asks, server responds; WebSocket = both sides can talk anytime.
