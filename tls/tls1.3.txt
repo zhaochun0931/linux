@@ -1,1 +1,14 @@
+    9   0.000908          ::1 → ::1          TLSv1.2 367 Client Hello (SNI=localhost)
+   13   0.002368          ::1 → ::1          TLSv1.3 1519 Server Hello, Change Cipher Spec, Application Data, Application Data, Application Data, Application Data, Application Data
+   17   0.003825          ::1 → ::1          TLSv1.3 1225 Change Cipher Spec, Application Data, Application Data, Application Data
+   21   0.003986          ::1 → ::1          TLSv1.3 193 Application Data
+   25   0.004222          ::1 → ::1          TLSv1.3 243 Application Data
+   33   0.004883          ::1 → ::1          TLSv1.3 100 Application Data
 
+
+
+
+| TLS version | Visibility                                            |
+| ----------- | ----------------------------------------------------- |
+| TLS 1.2     | Full handshake visible                                |
+| TLS 1.3     | Certificates visible, **encrypted after ServerHello** |
