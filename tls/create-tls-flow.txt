@@ -1,6 +1,15 @@
 ✅ generates a new RSA private key
-
 ✅ creates a Certificate Signing Request (CSR) using an existing private key and a configuration file
+✅ submit to CA to create the cert or create the self-signed cert
+
+
+
+
+
+
+
+
+
 
 
 
