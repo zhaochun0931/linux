@@ -52,10 +52,39 @@ What file is created
 
 server.key will contain something like:
 
------BEGIN RSA PRIVATE KEY-----
-MIIEpAIBAAKCAQEA...
-...
------END RSA PRIVATE KEY-----
+
+
+$ cat server.key
+-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCqybpsOGiyk6+C
+XW8i1CMx9N7ZKJP3T81z4gph7SIWc4ZXt3VXqEMqvSsdegPx14xx1b0o0V/k9b5d
+MwQRMRu0iumYUQbzbt5o2qlX386sBEhogSF9eaTq6Xfn3bvDhpj3Nzw4mPJ73JgE
+vH+4ZcosAPYUfOtcvmxnsHdSiaE+F51yzr/6iIJMQdqR+v5do+EIQr9EHOyGKo64
+tigQKhFUP79sLDyMbzFw7tC+E60AtAZRJFCScJvtczjc209JmktVSGEik/67TGzH
+2cgSomS57wwuUNM5ttLiznNx52nKtRczNBRA5eMy5Xtupls7wBHAB1PbmClRs94T
+2udZGtqzAgMBAAECggEAAIRs5qADHStaWDw9Nm9LDf8uX50CWbjpp+Sy4FoOBOBj
+s0dQeSv+zBXXmBbDBUwAVmXt1T5RGonuAi1B4WVzLohPLdFtAna/ALVM1wHMB/RZ
+XcuqVM12BOohHVgsFesF8pW9vnQkI+DmqvkBMAdK5fg4xpYcRmMjQ+siaWMWVHBP
+mvbm3s7gWpqm09jg5pIeg1nws0LHdsx1P5+Wwu+X+TamkgK2vHlUizJ0QFdVGymz
+8mrejKzkZ8wFt4AdiHTGa8S74OifhdkAm3eSQD+UPf0uXSjwFENwAMtJg5jyn+3f
+P4cSsquE8NUiXuXR7wGk/iqn5nOfkgC+0GKRXW7xBQKBgQDUlRepH1aXBU9dF5aQ
+4Mvz9ZaaZD7S2264AEVE+puCJuCfKbHEHYSXwPDrQzKZKcY5JzSEgkg6hDrhP0Rh
+SjwmTphRIpL3JjljIl0AcBd+gnoXQXR2RCNhgBjbPjKPXXPTi/dyEpLjsmkKL/lj
+kE0DHmsTHJVPh32uqvToMFIoXwKBgQDNq2ih3r7t4bNiZX3myEOBbF1oUqzNedOj
+B1IVWXOXzxC8GiHPPnfL8w66ij9KqBonSSAz0vk0B0xQfjWEJvNCoeS/2z8Fr3rq
+Fr+PxEsSn1/d6omECOZIdlMumP65DdLEv/iigymV8JdDa5F0/eNCdjbtbHEW4vQA
+0DmAxRV+LQKBgF7Dw9Npm/Egtdta64zUGTc8sJFMxNC8byPpQvfX+8DOUe3B6XPy
+cKwxn3RQ9Vpfy/SobHnxlf83+QN2b6YrMJsnCDGLBxbT3Fs781eBoIeN5J0/WYpr
+H5aUQwBhPqq4TyzrxTf93atRWg/niPYAWsRcKAFSCaF1VeqqXRiwib9jAoGBALHU
+lcHwcTIKRyq7CqNzYTsU0acUZSm9Psrl14lyMMqAVb3u8nDZWIfV/1Q3mQYaV5LE
+Xb2xm5vq+4dVuTws2YUxqjJhhhqKYkLprHTIiwjtGN0un/y0HTlmZgISc5zaYPWR
+74/EzT5CKug2qCx6IfgjctbTPu1FCylw4WeAAVd5AoGACI54Kmxp+UfFROuNZa4o
+hBXe66ZzKwB4jVI4VWtrmBDsbLZVHqU3UslaB9bP2YY7135nY2xxK4hVQlzelMmZ
+IWWCdU5UsNO/fTifm531pqXzFAqnuxEPpEwJVoEm/TB+EpOboadS+U+xKWBFOp4N
+gloIaYk9AN1+p4aJKpBLCys=
+-----END PRIVATE KEY-----
+$
+
 
 
 This is:
@@ -66,3 +95,13 @@ Base64-encoded
 
 Unencrypted by default
 
+
+
+
+✅ Modern alternative (recommended)
+
+genrsa is deprecated in newer OpenSSL versions.
+
+Preferred:
+
+openssl genpkey -algorithm RSA -out server.key -pkeyopt rsa_keygen_bits:2048
