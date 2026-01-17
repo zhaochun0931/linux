@@ -1,0 +1,65 @@
+1️⃣ A Record
+
+A (Address) record maps a domain name to an IPv4 address.
+
+IPv4 addresses look like: 192.0.2.123
+
+Example:
+
+example.com.   3600  IN  A   192.0.2.123
+
+
+
+
+Meaning:
+
+When someone queries example.com, DNS returns 192.0.2.123
+
+Client can then connect to that IP
+
+
+
+
+
+2️⃣ AAAA Record
+
+AAAA (Quad-A) record maps a domain name to an IPv6 address.
+
+IPv6 addresses look like: 2001:db8::1234
+
+Example:
+
+example.com.   3600  IN  AAAA   2001:db8::1234
+
+
+Meaning:
+
+When someone queries example.com over IPv6, DNS returns 2001:db8::1234
+
+Client connects to the IPv6 address
+
+
+
+
+
+
+| Feature        | A Record                          | AAAA Record                 |
+| -------------- | --------------------------------- | --------------------------- |
+| IP version     | IPv4                              | IPv6                        |
+| Address format | 32-bit (e.g., 192.0.2.1)          | 128-bit (e.g., 2001:db8::1) |
+| Usage          | Most common, legacy IPv4 networks | Modern IPv6 networks        |
+
+
+
+
+4️⃣ Example Setup
+; IPv4
+example.com.   3600 IN A    192.0.2.123
+
+; IPv6
+example.com.   3600 IN AAAA 2001:db8::1234
+
+
+Clients will use IPv6 if available, otherwise IPv4
+
+Together, A + AAAA records allow dual-stack connectivity
