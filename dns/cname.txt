@@ -1,0 +1,69 @@
+CNAME stands for Canonical Name record. It’s a type of DNS record used to alias one domain name to another.
+
+
+
+Useful when multiple domains need to resolve to the same host.
+
+The CNAME points to a canonical (real) domain, which then resolves to an IP via its A or AAAA record.
+
+
+  
+  
+2️⃣ Syntax
+
+Example DNS record:
+
+www.example.com.   IN   CNAME   example.com.
+
+
+www.example.com → alias
+
+example.com → canonical name (the real host)
+
+When someone accesses www.example.com, DNS looks up example.com and returns its IP
+
+
+
+
+
+
+DNS Lookup with CNAME
+
+Suppose we have this setup:
+
+www.example.com  → CNAME → example.com
+example.com      → A     → 192.0.2.123
+
+Step 1️⃣ Client requests www.example.com
+Client
+  |
+  |--- DNS query: www.example.com ---> DNS Resolver
+
+
+
+  
+Step 2️⃣ DNS resolver finds CNAME
+DNS Resolver
+  |
+  |--- sees: www.example.com is a CNAME to example.com
+  |--- performs new query for example.com
+
+
+
+  
+Step 3️⃣ DNS resolver finds A record
+DNS Resolver
+  |
+  |--- example.com has A record 192.0.2.123
+  |
+  |--- returns IP to Client
+
+
+
+
+Step 4️⃣ Client connects to IP
+Client
+  |
+  |--- Connects to 192.0.2.123 (example.com)
+  |
+  |--- Request succeeds
