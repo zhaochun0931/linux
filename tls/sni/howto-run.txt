@@ -3,6 +3,15 @@ openssl genrsa -out site1.key 2048
 openssl genrsa -out site2.key 2048
 
 
+openssl req -new -key site1.key -out site1.csr -config site1.cnf
+
+openssl req -new -key site2.key -out site2.csr -config site2.cnf
+
+
+
+
+
+
 openssl x509 -req -days 365 -in site1.csr -signkey site1.key -out site1.crt -extensions req_ext -extfile site1.cnf
 
 
