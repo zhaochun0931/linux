@@ -123,3 +123,70 @@ genrsa is deprecated in newer OpenSSL versions.
 Preferred:
 
 openssl genpkey -algorithm RSA -out server.key -pkeyopt rsa_keygen_bits:2048
+
+
+
+
+
+
+
+
+
+
+
+
+
+🚀
+openssl req -new -key server.key -out server.csr -config server.cnf
+
+
+
+It generates a CSR (server.csr) from the private key (server.key), using the certificate details defined in server.cnf
+
+
+req
+
+Works with X.509 certificate requests.
+
+
+
+-new
+
+Create a new CSR.
+
+
+
+-key server.key
+
+Use this existing private key to:
+
+prove ownership
+
+sign the CSR
+
+⚠️ The private key is not included in the CSR.
+
+
+
+$ cat server.csr
+-----BEGIN CERTIFICATE REQUEST-----
+MIICijCCAXICAQAwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
+ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAJbBdWmrQsWFldqcC7ig+MQ9NtSmhjEnQMIW8aHm
+AcBOUdAnjN67oKjmn9J4FaUbac+E/4ailCJJ2eT/8z0spHwEFZ76gq06dtAY8HmQ
+B+J4NdImqWsbpbtEsnviupqRyrgHMbkJjuJxzb4jRSA+ZPY23ih2TYZJqBCj/TuH
+6qdIaOkN2bXSwwScCB1ApVjeoO7uxRIKyNLSh4piRZKykqe0DAAbr4EqFrN+eZ9X
+nZihDCzXRI7S18eXOVToOAwkqgaeYwCYzHAs8Vg9P9PZMHPUJCRMILxlNklpN9wa
+t9KddpO97HtTAgDjNF/Qtm46vExcMLYNQd9g9LYk/saUhx8CAwEAAaAAMA0GCSqG
+SIb3DQEBCwUAA4IBAQAPU9oKMWK7j+KVR1jDEyjYJoXkDXbXMMQUFEB141oOGwN7
+5Qw6dSqHRO5ds1+qO3gWy73osZ+DRLpJMbcn20zAcPqBhGhSzIjq0QXqhn2fzuI/
+baH0lgyvm/s1xSxRcYjGCZT3kTL1rWkBH8clg2eGxP6LV7UrG8a525RHEr3TIee3
+hVV7fLt6j/Pdhk8+dqmbYg+3mychRQqmJPzqBgo9VTFX7kzBMNTDGdyckUsRbjYx
+xs3T1gLnnxM/2P1ekfpJ4SOZBG5c8ShqOk/5fTFbjkCob+enxdtfE8kAKDymZPjl
+aVkbKPdDyLFnT8gElW+ecpWSIXCiXH9ZEJFEHCdv
+-----END CERTIFICATE REQUEST-----
+$
+
+
+
+
