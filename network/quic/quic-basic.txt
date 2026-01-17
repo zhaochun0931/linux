@@ -1,0 +1,9 @@
+QUIC (Quick UDP Internet Connections) is a transport layer network protocol developed by Google and now standardized by the IETF.
+
+Works over UDP (not TCP)
+
+Designed to replace TCP + TLS for web traffic
+
+Optimized for speed, low latency, and reliability
+
+Used as the foundation for HTTP/3
