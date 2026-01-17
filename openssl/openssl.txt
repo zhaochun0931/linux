@@ -1,0 +1,439 @@
+The OpenSSL configuration file is located at /etc/ssl/openssl.cnf and is used both by the library itself and the command-line tools included in the package.
+
+/etc/ssl/openssl.cnf
+
+
+
+openssl version
+
+openssl version -a
+
+
+
+
+
+# pwd
+/usr/lib/ssl
+#
+# ls -al
+total 12
+drwxr-xr-x  3 root root 4096 Dec  2 03:28 .
+drwxr-xr-x 82 root root 4096 Jan 15 06:28 ..
+lrwxrwxrwx  1 root root   34 Sep 18 11:12 cert.pem -> /etc/ssl/certs/ca-certificates.crt
+lrwxrwxrwx  1 root root   14 Aug 20  2024 certs -> /etc/ssl/certs
+drwxr-xr-x  2 root root 4096 Dec  2 03:28 misc
+lrwxrwxrwx  1 root root   20 Sep 18 11:12 openssl.cnf -> /etc/ssl/openssl.cnf
+lrwxrwxrwx  1 root root   16 Aug 20  2024 private -> /etc/ssl/private
+#
+
+
+
+
+✅ How OpenSSL finds the config file
+
+If you specify -config <file> → uses that file
+
+
+else, OpenSSL uses the compiled default:
+
+OPENSSLDIR/openssl.cnf
+
+
+
+
+
+
+
+
+
+
+
+
+
+openssl ciphers -s -v DEFAULT:@SECLEVEL=2
+
+
+
+
+1. private key
+2. public key
+3. certificate
+
+
+
+
+
+the PEM (Privacy-Enhanced Mail) format uses Base64 encoding to represent binary data in an ASCII string format, making it easier to handle in text-based systems.
+
+
+
+Certificate PEM:
+typically contains an X.509 certificate.
+
+-----BEGIN CERTIFICATE-----
+xxx
+-----END CERTIFICATE-----
+
+
+
+
+
+
+Private Key PEM:
+
+different algorithms:
+--- RSA
+--- DSA
+--- ECDSA
+
+
+Contents: Contains a private key, which could be for RSA, DSA, or ECDSA.
+Header/Footer: Can start with -----BEGIN PRIVATE KEY----- or more specific headers like -----BEGIN RSA PRIVATE KEY-----.
+Purpose: Used to authenticate the owner of the certificate and to decrypt data encrypted with the corresponding public key.
+
+
+
+-----BEGIN RSA PRIVATE KEY-----
+xxx
+-----END RSA PRIVATE KEY-----
+
+
+
+
+
+Public Key PEM:
+
+Contents: Contains a public key corresponding to a private key.
+Header/Footer: Starts with -----BEGIN PUBLIC KEY----- and ends with -----END PUBLIC KEY-----.
+Purpose: Shared with others to enable encrypted communications or digital signatures.
+
+
+
+
+
+Certificate Signing Request (CSR) PEM:
+
+Contents: Contains a CSR that includes the public key and identifying information.
+Header/Footer: Begins with -----BEGIN CERTIFICATE REQUEST----- and ends with -----END CERTIFICATE REQUEST-----.
+
+
+
+
+
+
+*.pem: This is the most generic suffix and can be used for any type of PEM-encoded data, including certificates, private keys, and public keys.
+
+*.crt or .cert: These are commonly used for PEM-encoded certificates. The .crt suffix often denotes a certificate file, while .cert can also be used for certificates.
+
+*.key: This is typically used for PEM-encoded private keys.
+
+*.csr: This suffix is used for PEM-encoded Certificate Signing Requests (CSRs).
+
+*.pub: This is used for PEM-encoded public keys.
+
+
+
+
+
+
+
+
+
+openssl s_client -connect localhost:443 -help
+
+openssl list -cipher-algorithms
+
+
+openssl s_client -connect localhost:443 -tls1_1
+
+ -tls1                      Just use TLSv1
+ -tls1_1                    Just use TLSv1.1
+ -tls1_2                    Just use TLSv1.2
+ -tls1_3                    Just use TLSv1.3
+
+
+
+openssl ciphers
+openssl ciphers -s -tls1_3
+
+
+
+
+
+
+
+# generate private key and public key
+openssl genpkey -algorithm RSA -out mytls.key -outpubkey mytls.pem -outform PEM
+
+$ file *
+mycrt: ASCII text
+mykey: ASCII text
+$
+
+
+
+
+
+openssl genpkey -algorithm RSA -out mytls.key -outpubkey mytls.pem -outform DER
+$ file *
+mycrt: data
+mykey: DER Encoded Key Pair, 2048 bits
+$
+
+
+
+# generate csr
+openssl req -new -key mytls.key -out mytls.csr
+
+
+
+# generate x509 certificate
+openssl x509 -req -in mytls.csr -signkey mytls.key -out mytls.crt
+openssl x509 -in mytls.crt -noout -fingerprint
+
+
+
+
+
+$ file *
+mycrt: PEM certificate
+mycsr: PEM certificate request
+mykey: ASCII text
+mypub: ASCII text
+$
+
+
+Up till now, the self-signed certificate is successfully.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+openssl s_server -cert server.cert.pem -key server.key -CAfile ca.crt
+openssl s_client -connect localhost:8443 -CAfile ca.crt -cert client.cert.pem -key client.key
+
+
+
+
+
+
+openssl s_client -connect localhost:8443 -cert client-cert.pem -key client-key.pem -CAfile ca-cert.pem -debug -state -msg
+
+
+
+
+
+# validate the Certificate Chain
+openssl verify -CAfile your_ca_bundle.crt your_certificate.crt
+
+
+
+# extract the public key, the public key contained in a private key and a certificate must be the same
+
+openssl x509 -text -noout -in tls.crt 
+openssl x509 -noout -modulus -in tls.crt | openssl md5
+openssl x509 -noout -pubkey -in tls.crt 
+openssl x509 -in your_certificate.crt -text -noout
+
+
+
+
+
+
+
+
+
+
+# verify
+openssl s_server -cert server.crt -key server.key -accept 8443
+
+
+# open another terminal
+openssl s_client -connect localhost:8443
+openssl s_client -connect localhost:8443 -tls1_3
+openssl s_client -connect localhost:8443 -CAfile ca.crt
+
+
+
+
+
+
+
+
+
+
+
+
+openssl rsa -in server.key -check
+openssl rsa -in server.key -text
+openssl pkey -in server.key -check
+
+
+
+# verify private key
+openssl rsa -noout -modulus -in server.key | openssl md5
+
+# verify csr
+openssl req -noout -modulus -in server.csr | openssl md5
+
+# verify public cert
+openssl x509 -noout -modulus -in server.crt | openssl md5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# export to pfx
+openssl pkcs12 -export -in ca.crt -inkey ca.key -out ca.pfx
+
+
+
+# add the pfx to the trusted root certification authorities in windows
+
+
+# add the entry for the www.xiaoming.com in the /etc/hosts or windows hosts files
+10.211.55.11 xiaomingxzy
+
+
+# successfully visit https://xiaomingxyz from the browser
+
+
+
+
+
+
+
+
+
+
+
+
+# convert the public crt and the private key to pfx(pkcs12) format, you should set the export password for pfx file
+openssl pkcs12 -export -in server.crt -inkey server.key -out server.p12 -name aliasname
+
+
+
+
+
+
+
+
+# check pfx/p12 file
+openssl pkcs12 -info -in server.p12
+
+you must Enter PEM pass phrase, such as 'password'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public cert and private key pair
+|
+|
+|
+\/
+\/
+pfx
+|
+|
+|
+\/
+\/
+jks
+
+
+
+
+
+# convert public cert and key pair to pfx
+openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.p12
+openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.p12 -password pass:password
+
+
+# convert the pfx to java keystore
+keytool -importkeystore -srckeystore tls.p12 -srcstoretype pkcs12 -destkeystore tls.jks
+
+# import the certificate to java truststore
+keytool -import -alias tls -file tls.crt -storetype JKS -keystore tls-ts.jks -storepass password
+
+
+
+
+
+
+
+
+
+
+
+
+# list the alias or the entries in PKCS#12 file
+openssl pkcs12 -info -in keystore.p12 -legacy
+
+
+
+
+
+
+
+
+
+
+
+
+# generate the 3k size file
+openssl rand -out random_file.txt -hex 1536
