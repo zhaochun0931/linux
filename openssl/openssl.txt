@@ -37,3 +37,79 @@ If you specify -config <file> → uses that file
 else, OpenSSL uses the compiled default:
 
 OPENSSLDIR/openssl.cnf
+
+
+
+
+
+
+
+
+✅ What basicConstraints means
+
+The Basic Constraints extension tells a certificate:
+
+Whether it is allowed to act as a Certificate Authority (CA)
+
+
+2️⃣ basicConstraints = CA:TRUE
+
+Meaning
+
+This certificate can issue other certificates.
+
+Used for:
+
+Root CAs
+
+Intermediate CAs
+
+
+Key Usage (often combined)
+
+keyCertSign
+
+cRLSign
+
+
+
+
+3️⃣ basicConstraints = CA:FALSE
+
+Meaning
+
+This is a leaf / end-entity certificate
+
+Cannot issue other certificates
+
+
+
+Usually used for:
+
+HTTPS server certs
+
+Client certificates
+
+Email certificates
+
+
+
+Key Usage (often combined)
+
+digitalSignature
+
+keyEncipherment
+
+serverAuth or clientAuth in extendedKeyUsage
+
+
+
+
+
+Root CA (CA:TRUE)
+│
+├─ Intermediate CA (CA:TRUE)
+│   └─ Server cert (CA:FALSE)
+│
+└─ Another Intermediate (CA:TRUE)
+    └─ Client cert (CA:FALSE)
