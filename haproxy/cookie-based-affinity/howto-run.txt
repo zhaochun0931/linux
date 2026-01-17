@@ -1,0 +1,11 @@
+docker compose up
+
+
+curl -i http://localhost:8080/
+
+
+
+
+curl -i --cookie "SERVERID=web1" http://localhost:8080/
+
+
