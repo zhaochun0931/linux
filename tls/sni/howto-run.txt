@@ -1,0 +1,12 @@
+openssl genrsa -out site1.key 2048
+  
+openssl genrsa -out site2.key 2048
+
+
+openssl x509 -req -days 365 -in site1.csr -signkey site1.key -out site1.crt -extensions req_ext -extfile site1.cnf
+
+
+openssl x509 -req -days 365 -in site2.csr -signkey site2.key -out site2.crt -extensions req_ext -extfile site2.cnf
+
+
+  
