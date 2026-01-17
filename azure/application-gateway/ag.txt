@@ -1,0 +1,6 @@
+An application gateway is a dedicated deployment in your virtual network. Within your virtual network, a dedicated subnet is required for the application gateway. 
+
+
+Azure also reserves five IP addresses in each subnet for internal use. They're the first four addresses and the last IP addresses. 
+
+
