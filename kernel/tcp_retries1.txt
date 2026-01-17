@@ -1,0 +1,1 @@
+In Linux TCP, tcp_retries1 and tcp_retries2 control different phases of retransmission on an established TCP connection. Think of them as “early warning” vs “final death sentence.”
