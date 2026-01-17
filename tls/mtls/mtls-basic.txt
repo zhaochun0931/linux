@@ -39,6 +39,9 @@ client.crt
 
 Both certificates trust the same CA (or CA chain).
 
+
+
+
 2️⃣ Client → Server:
 
 Client sends ClientHello + supported TLS features.
@@ -58,6 +61,10 @@ Is the certificate signed by the CA?
 Does the hostname match the SAN?
 
 Is the certificate valid?
+
+
+
+
 
 4️⃣ Server requests client certificate:
 
