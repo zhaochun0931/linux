@@ -1,0 +1,13 @@
+$ curl -H "Host: app1.local" http://localhost:8080
+<h1>Web Server 1</h1><p>Host header received: web1.internal.local</p>
+
+
+
+
+
+
+
+$ curl -H "Host: app2.local" http://localhost:8080
+<h1>Web Server 2</h1><p>Host header received: web2.internal.local</p>
+
+
