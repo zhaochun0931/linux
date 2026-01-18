@@ -11,4 +11,5 @@ Regions provide certain types of resiliency options. Many regions provide availa
 
 Many Azure regions provide availability zones, which are separated groups of datacenters within a region. 
 
-Each availability zone has independent power, cooling, and networking infrastructure, so that if one zone experiences an outage, then regional services, capacity, and high availability are supported by the remaining zones.
+Each availability zone has independent power, cooling, and networking infrastructure, so that if one zone experiences an outage, 
+then regional services, capacity, and high availability are supported by the remaining zones.
