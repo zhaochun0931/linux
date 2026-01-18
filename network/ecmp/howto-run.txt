@@ -32,4 +32,4 @@ ip route show
 
 docker exec -it server bash
 
-apt-get update && apt-get install -y iputils-ping netcat
+apt-get update && apt-get install -y iproute2 iputils-ping netcat
