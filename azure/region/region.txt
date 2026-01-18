@@ -1,0 +1,14 @@
+Regions are located across many different geographies. 
+
+
+Each region is a set of physical facilities that include datacenters and networking infrastructure.
+
+Regions provide certain types of resiliency options. Many regions provide availability zones, and some have a paired region while other regions are nonpaired. 
+
+
+
+
+
+Many Azure regions provide availability zones, which are separated groups of datacenters within a region. 
+
+Each availability zone has independent power, cooling, and networking infrastructure, so that if one zone experiences an outage, then regional services, capacity, and high availability are supported by the remaining zones.
