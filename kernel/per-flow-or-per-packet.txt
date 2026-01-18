@@ -1,0 +1,59 @@
+Per-flow ECMP
+
+
+1️⃣ Per-flow ECMP (default)
+
+Linux normally does per-flow ECMP.
+
+A flow is defined by:
+
+src IP + dst IP + src port + dst port + protocol
+
+
+All packets in the same flow go through the same nexthop.
+
+✅ Advantages:
+
+Packets arrive in order → TCP works reliably
+
+
+
+
+
+
+2️⃣ Per-packet ECMP
+
+Linux can also do per-packet ECMP, meaning:
+
+Each individual packet can be sent to a different nexthop, even within the same flow.
+
+For example, 3 packets from client to server could go:
+
+Packet 1 → Router1
+Packet 2 → Router2
+Packet 3 → Router1
+
+
+✅ Pros:
+
+Very high load distribution, max bandwidth usage
+
+
+
+
+3️⃣ How to enable per-packet ECMP in Linux
+
+Linux kernel supports it, but it’s not the default:
+
+# Change hash policy to per-packet
+
+sysctl -w net.ipv4.fib_multipath_hash_policy=0
+
+
+0 = per-packet
+
+1 = per-flow (default)
+
+2 = per-flow + entropy on source port
+
+After this, the kernel may send packets on different nexthops even for the same flow.
