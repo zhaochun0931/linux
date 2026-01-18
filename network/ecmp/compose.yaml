@@ -1,0 +1,54 @@
+services:
+  client:
+    image: ubuntu:22.04
+    container_name: client
+    hostname: client
+    privileged: true
+    command: sleep infinity
+    networks:
+      net-client:
+        ipv4_address: 10.0.1.10
+
+  router1:
+    image: ubuntu:22.04
+    container_name: router1
+    privileged: true
+    command: sleep infinity
+    networks:
+      net-client:
+        ipv4_address: 10.0.1.2
+      net-server:
+        ipv4_address: 10.0.2.2
+
+  router2:
+    image: ubuntu:22.04
+    container_name: router2
+    privileged: true
+    command: sleep infinity
+    networks:
+      net-client:
+        ipv4_address: 10.0.1.3
+      net-server:
+        ipv4_address: 10.0.2.3
+
+  server:
+    image: ubuntu:22.04
+    container_name: server
+    hostname: server
+    command: sleep infinity
+    privileged: true
+    networks:
+      net-server:
+        ipv4_address: 10.0.2.10
+
+networks:
+  net-client:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.1.0/24
+  net-server:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.2.0/24
