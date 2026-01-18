@@ -30,6 +30,8 @@ show ip interface brief
 
 configure terminal 
 
+no ip domain-lookup
+
 
 interface gigabitEthernet 0/0
 
