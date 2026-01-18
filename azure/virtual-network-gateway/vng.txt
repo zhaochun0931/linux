@@ -1,0 +1,7 @@
+An Azure virtual network gateway provides secure connectivity between an Azure virtual network and other networks, either an on-premises network or another virtual network in Azure.
+
+Azure provides two types of virtual network gateways:
+
+Azure ExpressRoute gateways use private connections that don't traverse the public internet.
+
+Azure virtual private network (VPN) gateways use encrypted tunnels over the internet.
