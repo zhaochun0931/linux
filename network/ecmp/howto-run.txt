@@ -12,7 +12,7 @@ docker exec router1 sysctl net.ipv4.ip_forward
 ✅
 docker exec -it client bash
 
-apt-get update && apt-get install -y iproute2 iputils-ping traceroute
+apt-get update && apt-get install -y iproute2 iputils-ping traceroute net-tools
 
 
 ip route del default
@@ -32,7 +32,7 @@ ip route show
 ✅
 docker exec -it server bash
 
-apt-get update && apt-get install -y iproute2 iputils-ping traceroute netcat
+apt-get update && apt-get install -y iproute2 iputils-ping traceroute net-tools netcat
 
 ip route del default
 
