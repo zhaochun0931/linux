@@ -1,0 +1,3 @@
+ECMP = Equal-Cost Multi-Path routing
+
+It is a routing strategy used in IP networks where multiple paths to a destination have the same cost (metric), and the router can use all of them simultaneously to forward traffic
