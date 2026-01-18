@@ -1,0 +1,18 @@
+services:
+  ubuntu:
+    image: ubuntu:22.04
+    container_name: ubuntu-wrk
+    tty: true
+    stdin_open: true
+    networks:
+      - wrk-net
+    command: >
+      bash -c "
+      apt update &&
+      apt install -y wrk curl &&
+      echo 'wrk installed' &&
+      sleep infinity
+      "
+
+networks:
+  wrk-net:
