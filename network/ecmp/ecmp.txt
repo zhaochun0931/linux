@@ -11,3 +11,8 @@ Most Linux/modern routers do per-flow ECMP.
 Packets in the same flow (same source/dest IP & port) always follow the same path.
 
 This avoids out-of-order packets.
+
+
+
+
+Linux does per-flow ECMP by default
