@@ -1,1 +1,11 @@
 ab -k -c10 -n10000 -t1 -r 'http://127.0.0.1:8080/'
+
+
+
+ab -n 10000 -c 100 http://localhost:8080/api/test
+
+-n → total requests
+
+-c → concurrency
+
+⚠️ Weak for modern APIs (no JSON scripting, no auth logic).
