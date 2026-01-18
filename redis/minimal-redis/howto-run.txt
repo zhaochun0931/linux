@@ -28,6 +28,15 @@ PONG
 
 
 
+# redis-cli -a password
+Warning: Using a password with '-a' or '-u' option on the command line interface may not be safe.
+127.0.0.1:6379> ping
+PONG
+127.0.0.1:6379>
+
+
+
+
 
 config get *
 config get log*
@@ -56,3 +65,10 @@ auth password
 +OK
 ping
 +PONG
+
+
+
+
+
+
+
