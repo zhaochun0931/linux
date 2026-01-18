@@ -18,7 +18,7 @@
 
 
 
-
+✅
 
 show ip interface brief
 
@@ -26,7 +26,7 @@ show ip interface brief
 
 
 
-
+✅
 
 configure terminal 
 
@@ -48,8 +48,9 @@ no shutdown
 
 
 
+✅
 
-Router#ping 10.0.1.100
+Router# ping 10.0.1.100
 
 Type escape sequence to abort.
 Sending 5, 100-byte ICMP Echos to 10.0.1.100, timeout is 2 seconds:
@@ -57,8 +58,12 @@ Sending 5, 100-byte ICMP Echos to 10.0.1.100, timeout is 2 seconds:
 Success rate is 100 percent (5/5), round-trip min/avg/max = 6/8/14 ms
 
 Router#
-Router#
-Router#ping 10.0.2.100
+
+
+
+
+
+Router# ping 10.0.2.100
 
 Type escape sequence to abort.
 Sending 5, 100-byte ICMP Echos to 10.0.2.100, timeout is 2 seconds:
@@ -69,5 +74,69 @@ Router#
 
 
 
+Router# ping 10.0.2.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.0.2.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+
+Router#
 
 
+
+Router#
+Router# ping 10.0.1.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.0.1.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/2/14 ms
+
+Router#
+
+
+
+
+
+✅
+
+PC1:
+
+set the 10.0.1.100 as the default gateway
+
+
+you should ping the 10.0.1.100 and 10.0.2.100 at the same time
+
+but you cannot ping the pc2 ,since it cannot know the round trip path
+
+
+
+PC2:
+
+set the 10.0.2.100 as the default gateway
+
+both PC can ping each other
+
+
+
+✅
+
+Router#show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+C       10.0.1.0/24 is directly connected, GigabitEthernet0/0
+L       10.0.1.100/32 is directly connected, GigabitEthernet0/0
+C       10.0.2.0/24 is directly connected, GigabitEthernet0/1
+L       10.0.2.100/32 is directly connected, GigabitEthernet0/1
+
+Router#
