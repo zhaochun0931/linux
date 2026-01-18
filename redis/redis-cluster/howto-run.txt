@@ -1,3 +1,68 @@
+               +----------------+
+               |  Redis Cluster |
+               |    Network     |
+               +----------------+
+                       |
+        -------------------------------------
+        |                 |                 |
+  +-----------+     +-----------+     +-----------+
+  | Master 1  |     | Master 2  |     | Master 3  |
+  | Node 7000 |     | Node 7001 |     | Node 7002 |
+  +-----------+     +-----------+     +-----------+
+        |                 |                 |
+        |                 |                 |
+  +-----------+     +-----------+     +-----------+
+  | Replica 1 |     | Replica 2 |     | Replica 3 |
+  | Node 7003 |     | Node 7004 |     | Node 7005 |
+  +-----------+     +-----------+     +-----------+
+
+
+
+✅ Explanation
+
+Masters (7000–7002)
+
+Handle writes for their key slots
+
+Each master owns a portion of the 16,384 hash slots
+
+
+
+Replicas (7003–7005)
+
+Mirror a master node
+
+Provide failover if a master goes down
+
+Automatically promoted to master if the original fails
+
+
+
+
+Cluster connections
+
+All nodes talk to each other internally (cluster bus port = port + 10000, e.g., 7000 → 17000)
+
+Redis Cluster routes requests automatically using hash slots
+
+Clients use -c mode (redis-cli -c) to follow redirects
+
+
+
+Failover
+
+If a master fails, its replica is promoted automatically
+
+Other nodes update their cluster table
+
+
+
+
+
+
+✅
+
+
 docker compose up
 
 docker exec -it redis-node-7000 bash
@@ -74,3 +139,22 @@ S: 213ccb262c2710a8fd357fafe1bbe3c8e0e24d6d 172.19.0.6:7004
 
 
 
+
+
+
+# redis-cli -c -p 7000
+127.0.0.1:7000> ping
+PONG
+127.0.0.1:7000> set key1 "hello1"
+-> Redirected to slot [9189] located at 172.19.0.7:7001
+OK
+172.19.0.7:7001> get key1
+"hello1"
+172.19.0.7:7001>
+172.19.0.7:7001>
+172.19.0.7:7001> set key2 "hello2"
+-> Redirected to slot [4998] located at 172.19.0.5:7000
+OK
+172.19.0.5:7000> get key2
+"hello2"
+172.19.0.5:7000>
