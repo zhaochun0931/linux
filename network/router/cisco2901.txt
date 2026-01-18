@@ -33,4 +33,41 @@ configure terminal
 
 interface gigabitEthernet 0/0
 
+ip address 10.0.1.100 255.255.255.0
+
 no shutdown
+
+
+
+interface gigabitEthernet 0/1
+
+ip address 10.0.2.100 255.255.255.0
+
+no shutdown
+
+
+
+
+
+Router#ping 10.0.1.100
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.0.1.100, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 6/8/14 ms
+
+Router#
+Router#
+Router#ping 10.0.2.100
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.0.2.100, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 6/7/9 ms
+
+Router#
+
+
+
+
+
