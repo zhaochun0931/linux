@@ -1,0 +1,25 @@
+
+
++---------------+														+---------------+                    +-----------+  	               +---------------+             +---------------+  
+|     PC0       |			---------------			  |   Switch0     |     --------       |  Router2  |  	  --------     |   Switch1     |  --------   |     PC1       |  
+| 10.0.1.1/24   |														+---------------+       |             +-----------+  	     |         +---------------+             |   (PC1 IP)    |  
++---------------+                                   	              |           							         |                                       +---------------+  
+                   	                               									|						                       |                    														  	                
+                    														  	                 --------		|  Router1  |    ------
+                    														  	                						+-----------+
+
+
+
+
+
+
+
+Router#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     10.0.1.100      YES manual up                    up 
+GigabitEthernet0/1     10.0.2.100      YES manual up                    up 
+Vlan1                  unassigned      YES unset  administratively down down
+Router#
+
+
+
