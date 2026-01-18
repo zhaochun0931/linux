@@ -1,0 +1,48 @@
+BGSAVE
+
+172.19.0.4:7002> BGSAVE
+Background saving started
+172.19.0.4:7002>
+
+
+
+root@4c4359bbbd16:/data# ls -al *rdb
+-rw------- 1 root root 213 Jan 18 11:48 dump.rdb
+root@4c4359bbbd16:/data#
+
+  
+✅ You now have a portable Redis export file
+
+⚠️ For Redis Cluster:
+Each master node has its own RDB file → you must export all master nodes.
+
+
+docker cp redis-node-7005:/data/dump.rdb .
+
+
+
+
+
+
+✅ restore
+
+docker run --name restore-test -d \
+  -v $(pwd)/dump.rdb:/data/dump.rdb \
+  redis:7
+
+docker exec -it restore-test bash
+
+
+redis-cli  --scan
+
+# redis-cli  --scan
+"key1"
+"key5"
+# 
+
+
+
+for i in $(redis-cli --scan)
+do
+  redis-cli get $i
+done
