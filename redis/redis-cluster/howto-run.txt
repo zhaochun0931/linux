@@ -1,7 +1,8 @@
 docker compose up
 
+docker exec -it redis-node-7000 bash
 
-docker exec -it redis-node-7000 redis-cli --cluster create \
+redis-cli --cluster create \
   redis-node-7000:7000 \
   redis-node-7001:7001 \
   redis-node-7002:7002 \
@@ -9,3 +10,67 @@ docker exec -it redis-node-7000 redis-cli --cluster create \
   redis-node-7004:7004 \
   redis-node-7005:7005 \
   --cluster-replicas 1
+
+
+
+
+# redis-cli --cluster create \
+  redis-node-7000:7000 \
+  redis-node-7001:7001 \
+  redis-node-7002:7002 \
+  redis-node-7003:7003 \
+  redis-node-7004:7004 \
+  redis-node-7005:7005 \
+  --cluster-replicas 1
+>>> Performing hash slots allocation on 6 nodes...
+Master[0] -> Slots 0 - 5460
+Master[1] -> Slots 5461 - 10922
+Master[2] -> Slots 10923 - 16383
+Adding replica redis-node-7004:7004 to redis-node-7000:7000
+Adding replica redis-node-7005:7005 to redis-node-7001:7001
+Adding replica redis-node-7003:7003 to redis-node-7002:7002
+M: 42053f88f604d23dfb9ca882a1d9cf434b642421 redis-node-7000:7000
+   slots:[0-5460] (5461 slots) master
+M: 46c846b0ba56142ebb0bf8380756590edf240917 redis-node-7001:7001
+   slots:[5461-10922] (5462 slots) master
+M: 3b62a3b309af2248fada5c30484bd93b7765f881 redis-node-7002:7002
+   slots:[10923-16383] (5461 slots) master
+S: 6631abbb3e760e7e7c5392972bc0a05290c3bacf redis-node-7003:7003
+   replicates 3b62a3b309af2248fada5c30484bd93b7765f881
+S: 213ccb262c2710a8fd357fafe1bbe3c8e0e24d6d redis-node-7004:7004
+   replicates 42053f88f604d23dfb9ca882a1d9cf434b642421
+S: f7cfc907ceddcdb42d0f4aaa09178af187ab95fe redis-node-7005:7005
+   replicates 46c846b0ba56142ebb0bf8380756590edf240917
+Can I set the above configuration? (type 'yes' to accept): yes
+>>> Nodes configuration updated
+>>> Assign a different config epoch to each node
+>>> Sending CLUSTER MEET messages to join the cluster
+Waiting for the cluster to join
+.
+>>> Performing Cluster Check (using node redis-node-7000:7000)
+M: 42053f88f604d23dfb9ca882a1d9cf434b642421 redis-node-7000:7000
+   slots:[0-5460] (5461 slots) master
+   1 additional replica(s)
+M: 3b62a3b309af2248fada5c30484bd93b7765f881 172.19.0.4:7002
+   slots:[10923-16383] (5461 slots) master
+   1 additional replica(s)
+S: f7cfc907ceddcdb42d0f4aaa09178af187ab95fe 172.19.0.3:7005
+   slots: (0 slots) slave
+   replicates 46c846b0ba56142ebb0bf8380756590edf240917
+S: 6631abbb3e760e7e7c5392972bc0a05290c3bacf 172.19.0.2:7003
+   slots: (0 slots) slave
+   replicates 3b62a3b309af2248fada5c30484bd93b7765f881
+M: 46c846b0ba56142ebb0bf8380756590edf240917 172.19.0.7:7001
+   slots:[5461-10922] (5462 slots) master
+   1 additional replica(s)
+S: 213ccb262c2710a8fd357fafe1bbe3c8e0e24d6d 172.19.0.6:7004
+   slots: (0 slots) slave
+   replicates 42053f88f604d23dfb9ca882a1d9cf434b642421
+[OK] All nodes agree about slots configuration.
+>>> Check for open slots...
+>>> Check slots coverage...
+[OK] All 16384 slots covered.
+
+
+
+
