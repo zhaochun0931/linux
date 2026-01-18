@@ -1,3 +1,13 @@
 ECMP = Equal-Cost Multi-Path routing
 
 It is a routing strategy used in IP networks where multiple paths to a destination have the same cost (metric), and the router can use all of them simultaneously to forward traffic
+
+
+
+Per-flow hashing
+
+Most Linux/modern routers do per-flow ECMP.
+
+Packets in the same flow (same source/dest IP & port) always follow the same path.
+
+This avoids out-of-order packets.
