@@ -1,0 +1,14 @@
+show ip interface brief
+
+
+
+
+
+
+
+configure terminal 
+
+
+interface gigabitEthernet 0/0
+
+no shutdown
