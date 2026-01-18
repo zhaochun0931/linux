@@ -1,18 +1,31 @@
-docker exec -it myredis bash
+docker compose up
 
 
 
 # connec to Redis, Once Redis is running, you can test it by running redis-cli:
+
+
+docker exec -it my-redis bash
+
+
+
 redis-cli
 
 
 
 # redis-cli
+127.0.0.1:6379>
+127.0.0.1:6379>
+127.0.0.1:6379> auth password
+OK
 127.0.0.1:6379> ping
 PONG
+127.0.0.1:6379>
 127.0.0.1:6379> config get *
 127.0.0.1:6379> exit
-#
+
+
+
 
 
 
@@ -26,10 +39,17 @@ INFO
 
 
 
+nc -vz localhost 6379
+
+$ nc -vz localhost 6379
+Connection to localhost port 6379 [tcp/*] succeeded!
+$ 
 
 
 
 
+
+nc localhost 6379
 
 $ nc localhost 6379
 auth password
