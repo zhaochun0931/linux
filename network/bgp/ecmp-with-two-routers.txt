@@ -11,7 +11,21 @@
 
 
 
+configure terminal
 
+interface gigabitEthernet 0/0
+
+ip address 10.0.1.100 255.255.255.0
+
+no shutdown
+
+
+
+interface gigabitEthernet 0/1
+
+ip address 10.0.2.100 255.255.255.0
+
+no shutdown
 
 
 Router#show ip interface brief
@@ -23,3 +37,33 @@ Router#
 
 
 
+
+
+
+
+
+
+configure terminal
+
+interface gigabitEthernet 0/0
+
+ip address 10.0.1.101 255.255.255.0
+
+no shutdown
+
+
+
+interface gigabitEthernet 0/1
+
+ip address 10.0.2.101 255.255.255.0
+
+no shutdown
+
+
+
+Router# show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     10.0.1.101      YES manual up                    up 
+GigabitEthernet0/1     10.0.2.101      YES manual up                    up 
+Vlan1                  unassigned      YES unset  administratively down down
+Router#
