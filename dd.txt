@@ -14,6 +14,9 @@ options → block size, count, conversions, etc.
 
 
 
+
+
+
 dd if=/dev/zero of=largefile bs=1M count=5120
 
 
@@ -24,3 +27,9 @@ of=largefile: This specifies the output file. You can change largefile to the de
 bs=1M: This sets the block size to 1MB.
 
 count=5120: This specifies the number of blocks to copy. Since each block is 1MB, count=5120 will result in a 5GB file (5120 MB).
+
+
+
+dd if=/dev/zero of=testfile bs=1M count=1024
+
+Creates a 1 GB file filled with zeros.
