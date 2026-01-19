@@ -1,1 +1,61 @@
+In Linux, ARP stands for Address Resolution Protocol.
+It’s the mechanism that maps an IP address (Layer 3) to a MAC address (Layer 2) on a local network.
+
+
 arp -a
+
+
+
+
+
+Why ARP exists
+
+On Ethernet networks:
+
+Applications talk using IP addresses (e.g. 192.168.1.10)
+
+Network cards send frames using MAC addresses (e.g. aa:bb:cc:dd:ee:ff)
+
+👉 ARP bridges this gap.
+
+
+
+
+How ARP works (simple flow)
+
+✅ Host wants to send a packet to 192.168.1.20
+
+✅ It checks the ARP cache
+
+✅ If no entry exists, it broadcasts:
+
+Who has 192.168.1.20? Tell 192.168.1.10
+
+
+✅ The target replies:
+
+192.168.1.20 is at 52:54:00:ab:cd:ef
+
+
+✅ The sender stores this mapping in the ARP table
+
+
+
+
+
+
+
+ARP table in Linux
+View ARP entries
+
+Modern (recommended):
+
+ip neigh
+
+
+Legacy:
+
+arp -n
+
+
+
