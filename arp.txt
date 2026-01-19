@@ -66,3 +66,12 @@ arp -n
 172.16.204.1 dev ens160 lladdr 9a:dd:60:c7:26:64 REACHABLE
 172.16.204.2 dev ens160 lladdr 00:50:56:ff:3d:89 STALE
 #
+
+
+
+
+ARP vs routing
+
+Same subnet → ARP resolves destination MAC
+
+Different subnet → ARP resolves gateway’s MAC
