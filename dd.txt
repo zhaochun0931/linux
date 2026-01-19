@@ -1,3 +1,19 @@
+In Linux, dd is a low-level data copy and conversion tool. Its name comes from “data definition” (sometimes jokingly called “disk destroyer” 😅 because it’s powerful and unforgiving).
+
+It works by copying data byte-by-byte (or block-by-block) from an input to an output.
+
+
+
+
+dd if=<input> of=<output> [options]
+if → input file (or device)
+
+of → output file (or device)
+
+options → block size, count, conversions, etc.
+
+
+
 dd if=/dev/zero of=largefile bs=1M count=5120
 
 
