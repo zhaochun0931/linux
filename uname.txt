@@ -1,0 +1,15 @@
+In Linux, uname is a command that shows system and kernel information.
+
+The name comes from “Unix name”.
+
+
+
+uname -a
+
+
+
+uname shows kernel info, not distro version.
+
+To check distro:
+
+cat /etc/os-release
