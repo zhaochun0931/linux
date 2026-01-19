@@ -1,0 +1,20 @@
+In Linux, pgrep is a command used to find process IDs (PIDs) by process name or attributes.
+
+The name literally means “process grep”.
+
+Basic idea
+
+Instead of:
+
+ps aux | grep nginx | grep -v grep
+
+
+You can do:
+
+pgrep nginx
+
+
+👉 Cleaner, faster, script-friendly.
+
+Basic usage
+pgrep <pattern>
