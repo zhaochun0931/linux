@@ -1,0 +1,11 @@
+In Linux, pkill is a command used to send signals to processes by name or pattern.
+
+Think of it as:
+
+pgrep + kill combined
+
+Basic usage
+pkill <pattern>
+
+
+This sends SIGTERM (15) by default.
