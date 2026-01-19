@@ -59,3 +59,10 @@ arp -n
 
 
 
+
+
+# ip neigh
+172.16.204.254 dev ens160 lladdr 00:50:56:e9:47:1a STALE
+172.16.204.1 dev ens160 lladdr 9a:dd:60:c7:26:64 REACHABLE
+172.16.204.2 dev ens160 lladdr 00:50:56:ff:3d:89 STALE
+#
