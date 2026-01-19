@@ -1,0 +1,117 @@
+CIDR stands for Classless Inter-Domain Routing.
+It’s a way to represent IP address ranges and subnet sizes more flexibly than the old “class A/B/C” system.
+
+
+✅
+
+CIDR notation
+IP-address/prefix-length
+
+
+Example:
+
+192.168.1.0/24
+
+
+192.168.1.0 → network address
+
+/24 → number of network bits
+
+Remaining bits → host addresses
+
+
+
+
+What /24 means
+
+IPv4 has 32 bits total.
+
+/24 = 24 bits for network
+      8 bits for hosts
+
+
+Number of addresses:
+
+2^8 = 256
+
+
+Usable hosts:
+
+256 - 2 = 254
+
+
+(network + broadcast are reserved)
+
+
+
+
+✅
+CIDR vs subnet mask
+
+They mean the same thing:
+
+/24  ⇔  255.255.255.0
+/16  ⇔  255.255.0.0
+
+
+CIDR is shorter and clearer.
+
+
+
+
+
+
+  
+
+Trick 1️⃣: Host count from CIDR (instant)
+
+Formula (IPv4):
+
+Hosts = 2^(32 − prefix) − 2
+
+Memorize these anchors
+| CIDR | Hosts |
+| ---- | ----- |
+| /24  | 254   |
+| /25  | 126   |
+| /26  | 62    |
+| /27  | 30    |
+| /28  | 14    |
+| /29  | 6     |
+| /30  | 2     |
+| /32  | 1     |
+
+
+💡 Pattern: each /+1 → half the hosts
+
+
+
+
+
+Trick 2️⃣: Block size shortcut (subnet jumping)
+
+Block size = 256 − subnet mask octet
+
+Example:
+
+/26 → 255.255.255.192
+Block size = 256 − 192 = 64
+
+
+So networks start at:
+
+0, 64, 128, 192
+
+Example
+IP: 192.168.1.70/26
+
+
+Block size = 64
+
+70 falls in 64–127
+
+Network: 192.168.1.64
+
+Broadcast: 192.168.1.127
+
+Hosts: 65–126
