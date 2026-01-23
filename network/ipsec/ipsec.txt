@@ -1,1 +1,75 @@
+Phase 1: Preparation
+
+Before you touch the CLI, you need:
+
+1. Public IPs for both firewalls (Peer A and Peer B).
+
+2. Internal Subnets for both sites (e.g., Site A: 192.168.10.0/24, Site B: 192.168.20.0/24).
+
+3. A Pre-Shared Key (PSK): A complex password both sides share.
+
+
+
+Phase 2: Configuration Steps (Site A)
+
+1. Define the Traffic (ACL)
+Tell the firewall which traffic should go into the tunnel.
+
+
+access-list SITEA_TO_SITEB extended permit ip 192.168.10.0 255.255.255.0 192.168.20.0 255.255.255.0
+
+2. Configure IKEv2 Policy (Phase 1)
+This sets the "handshake" parameters.
+
+
+crypto ikev2 policy 10
+ encryption aes-256
+ integrity sha256
+ group 21
+ prf sha256
+ lifetime seconds 86400
+
+
+3. Configure IPsec Proposal (Phase 2)
+This defines how the actual data is encrypted.
+
+
+crypto ipsec ikev2 ipsec-proposal AES256-SHA256
+ protocol esp encryption aes-256
+ protocol esp integrity sha-256
+
+
+4. Define the Tunnel Group
+This links the Peer IP and the Pre-Shared Key.
+
+
+tunnel-group [PEER_B_PUBLIC_IP] type ipsec-l2l
+tunnel-group [PEER_B_PUBLIC_IP] ipsec-attributes
+ ikev2 remote-authentication pre-shared-key YOUR_STRONG_PSK
+ ikev2 local-authentication pre-shared-key YOUR_STRONG_PSK
+
+
+5. Create the Crypto Map
+This ties the ACL, Peer IP, and IPsec Proposal together.   
+
+
+crypto map CMAP 10 match address SITEA_TO_SITEB
+crypto map CMAP 10 set peer [PEER_B_PUBLIC_IP]
+crypto map CMAP 10 set ikev2 ipsec-proposal AES256-SHA256
+crypto map CMAP interface outside
+
+
+6. NAT Exemption (Crucial)
+You must tell the firewall not to perform NAT on traffic destined for the other site.
+
+
+nat (inside,outside) source static LOCAL_NET LOCAL_NET destination static REMOTE_NET REMOTE_NET
+Phase 3: Verification
+The tunnel usually won't come up until traffic is sent across it. Ping a host on the other side, then run:
+
+show crypto ikev2 sa: Checks if the Phase 1 handshake is successful.   
+
+show crypto ipsec sa: Checks if data packets (encaps/decaps) are actually moving.
+
+
 
