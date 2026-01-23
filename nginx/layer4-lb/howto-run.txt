@@ -1,6 +1,7 @@
 NGINX supports Layer 4 (L4) load balancing for both TCP and UDP traffic.   
 
-While NGINX is most famous for Layer 7 (HTTP) features, it handles Layer 4 via the stream module. This allows it to load balance traffic based on IP addresses and port numbers without decrypting or inspecting the actual content of the packets
+While NGINX is most famous for Layer 7 (HTTP) features, it handles Layer 4 via the stream module. 
+This allows it to load balance traffic based on IP addresses and port numbers without decrypting or inspecting the actual content of the packets
 
 
 
