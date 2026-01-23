@@ -1,0 +1,22 @@
+While MTU is the limit for the whole packet, MSS (Maximum Segment Size) is the limit for the data inside the packet.
+
+
+
+While MTU is the limit for the entire "envelope" (the packet), MSS (Maximum Segment Size) is the limit for the "letter" inside (the actual data).
+
+It is a TCP-specific parameter that defines the largest amount of data a device can receive in a single, unfragmented segment.
+
+1. The MathThe relationship between MTU and MSS is simple subtraction. 
+
+To get the MSS, you take the MTU and subtract the fixed headers required for TCP/IP:
+
+
+IP Header: 20 bytes
+TCP Header: 20 bytes
+
+
+MSS = MTU - 40
+
+
+
+On a standard Ethernet network with an MTU of 1500, the MSS is 1460.
