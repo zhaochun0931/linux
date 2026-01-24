@@ -1,0 +1,10 @@
+To set up a Site-to-Site VPN on a Cisco ASA (like the 5500 series), you need to configure two main components: 
+Phase 1 (IKE) for management and Phase 2 (IPsec) for data encryption.
+
+
+Step 1: Define the "Interesting Traffic" (ACL)
+You must tell the ASA which traffic should be sent through the tunnel.   
+
+Local Subnet: 192.168.10.0/24
+
+Remote Subnet: 192.168.20.0/24
