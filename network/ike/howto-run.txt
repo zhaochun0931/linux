@@ -1,10 +1,90 @@
+Setting up a Site-to-Site (S2S) VPN between two ASA 5505s involves creating a "tunnel" over the public internet so that the two private "Inside" networks can communicate securely.
+
+
+
+
 To set up a Site-to-Site VPN on a Cisco ASA (like the 5500 series), you need to configure two main components: 
+
 Phase 1 (IKE) for management and Phase 2 (IPsec) for data encryption.
+
+
+
 
 
 Step 1: Define the "Interesting Traffic" (ACL)
 You must tell the ASA which traffic should be sent through the tunnel.   
 
-Local Subnet: 192.168.10.0/24
 
-Remote Subnet: 192.168.20.0/24
+
+Site A: Public IP 1.1.1.1, Private Network 192.168.1.0/24
+
+Site B: Public IP 2.2.2.2, Private Network 192.168.2.0/24
+
+
+
+
+Step 1: Define Phase 1 (ISAKMP Policy)
+This defines how the two ASAs will talk to each other to establish the secure tunnel. Both sides must match.
+
+crypto ikev1 policy 10
+authentication pre-share
+encryption aes
+hash sha
+group 2
+lifetime 86400
+crypto ikev1 enable outside
+
+
+
+
+
+Step 2: Define Phase 2 (Transform Set)
+This defines how the actual data (your pings/files) will be encrypted.
+
+
+crypto ipsec ikev1 transform-set ESP-AES-SHA esp-aes esp-sha-hmac
+
+
+Step 3: Create the Access List (Interesting Traffic)
+This tells the ASA exactly which traffic should be sent through the VPN.
+
+On Site A:
+
+
+access-list VPN_ACL extended permit ip 192.168.1.0 255.255.255.0 192.168.2.0 255.255.255.0
+
+
+
+Step 4: Configure the Tunnel Group (The Secret Key)
+This is where you tell the ASA the IP address of the "Peer" (the other ASA) and the password they share.
+
+On Site A:
+
+
+tunnel-group 2.2.2.2 type ipsec-l2l
+tunnel-group 2.2.2.2 ipsec-attributes
+ikev1 pre-shared-key MySecretPassword123
+
+
+Step 5: Create and Map the Crypto Map
+This ties the ACL, the Peer IP, and the Transform Set together and applies them to the outside interface.
+
+
+crypto map CMAP 10 match address VPN_ACL
+crypto map CMAP 10 set peer 2.2.2.2
+crypto map CMAP 10 set ikev1 transform-set ESP-AES-SHA
+crypto map CMAP interface outside
+
+
+
+Step 6: NAT Exemption (Crucial Step!)
+By default, an ASA tries to hide internal IPs behind its public IP (PAT). We need to tell the ASA: "If the traffic is going to the other VPN site, do not NAT it."
+
+
+
+object network LOCAL_LAN
+ subnet 192.168.1.0 255.255.255.0
+object network REMOTE_LAN
+ subnet 192.168.2.0 255.255.255.0
+
+nat (inside,outside) source static LOCAL_LAN LOCAL_LAN destination static REMOTE_LAN REMOTE_LAN
