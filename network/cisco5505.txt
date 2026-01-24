@@ -1,0 +1,107 @@
+Configuring a Cisco ASA 5505 is unique because its physical ports (Ethernet 0/0 - 0/7) act as Layer 2 switchports. You cannot assign an IP address directly to the physical Ethernet0/0 interface; 
+instead, you must create a VLAN (Layer 3 interface) and assign the physical port to that VLAN.   
+
+By default, Ethernet 0/0 is the "Outside" interface.
+
+
+
+[ Public Internet ]
+               |
+               | (ISP Gateway)
+               |
+      +--------V----------------+
+      |  Cisco ASA 5505         |
+      |                         |
+      |  [Port 0/0] <-----------+-- (VLAN 2 / Outside)
+      |  [Port 0/1]             |
+      |  [Port 0/2] <-----------+-- (VLAN 1 / Inside)
+      |       ...               |
+      +--------|----------------+
+               |
+               | (Ethernet Cable)
+               |
+      +--------V----------------+
+      |       PC                |
+      |  (192.168.1.x)          |
+      +-------------------------+
+
+
+
+
+
+
+connect the PC host to the ASA5505 physical ethernet port 0/1
+
+
+
+
+
+enable
+
+configure terminal
+
+
+ciscoasa>enable
+Password: 
+
+
+ciscoasa#configure terminal 
+ciscoasa(config)#
+
+
+
+
+
+
+
+
+
+configure terminal
+
+interface vlan 1
+
+ip address 192.168.10.10 255.255.255.0
+
+no shutdown 
+
+
+
+
+configure terminal
+
+interface ethernet 0/1
+
+switchport access vlan 1
+
+no shutdown 
+
+
+
+show switch vlan
+
+
+
+
+
+
+configure the PC with ip 192.168.10.1/24
+
+
+
+ciscoasa#ping 192.168.10.10
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.10.10, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/7/16 ms
+
+ciscoasa#ping 192.168.10.2
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.10.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+
+ciscoasa#
+
+
