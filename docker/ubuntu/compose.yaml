@@ -1,0 +1,7 @@
+services:
+  ubuntu-jdk:
+    build: .
+    container_name: privileged_ubuntu_fast
+    privileged: true
+    stdin_open: true
+    tty: true
