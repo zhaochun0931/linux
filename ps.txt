@@ -79,6 +79,17 @@ The most common solution is to add the -w (wide) flag. Adding it twice (-ww) tel
 
 
 
+root@067a081a7cd4:/data# ps -efww
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 03:10 pts/0    00:00:00 bash
+root        40     0  0 03:19 pts/1    00:00:00 bash
+root      2619     1  9 03:37 pts/1    00:00:23 /usr/lib/jvm/java-17-openjdk-arm64/bin/java -server -classpath /data/vmware-gemfire-9.15.1/lib/geode-core-9.15.1.jar:/data/vmware-gemfire-9.15.1/lib/geode-server-all-9.15.1.jar --add-exports=java.management/com.sun.jmx.remote.security=ALL-UNNAMED --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED -Dgemfire.enable-cluster-configuration=true -Dgemfire.load-cluster-configuration-from-dir=false -Dgemfire.launcher.registerSignalHandlers=true -Djava.awt.headless=true -Dsun.rmi.dgc.server.gcInterval=9223372036854775806 org.apache.geode.distributed.LocatorLauncher start rinse-jolly-gamma --port=10334
+root      2834     1  3 03:38 pts/1    00:00:07 /usr/lib/jvm/java-17-openjdk-arm64/bin/java -server -classpath /data/vmware-gemfire-9.15.1/lib/geode-core-9.15.1.jar:/data/vmware-gemfire-9.15.1/lib/geode-server-all-9.15.1.jar --add-exports=java.management/com.sun.jmx.remote.security=ALL-UNNAMED --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED -Dgemfire.default.locators=172.23.0.2[10334] -Dgemfire.start-dev-rest-api=false -Dgemfire.use-cluster-configuration=true -Dgemfire.launcher.registerSignalHandlers=true -Djava.awt.headless=true -Dsun.rmi.dgc.server.gcInterval=9223372036854775806 org.apache.geode.distributed.ServerLauncher start fix-helpful-map --server-port=40404
+root      3000    40  0 03:41 pts/1    00:00:00 ps -efww
+root@067a081a7cd4:/data#
+
+
+
 
 
 
