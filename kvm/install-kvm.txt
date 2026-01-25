@@ -1,0 +1,46 @@
+KVM requires a CPU with virtualization extensions (Intel VT-x or AMD-V).
+
+
+
+✅ 1. Check if your hardware supports it
+
+
+egrep -c '(vmx|svm)' /proc/cpuinfo
+
+
+# egrep -c '(vmx|svm)' /proc/cpuinfo
+4
+#
+
+
+
+grep -E --color 'vmx|svm' /proc/cpuinfo
+
+
+# grep -E --color 'vmx|svm' /proc/cpuinfo
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch pti tpr_shadow ept vpid fsgsbase bmi1 hle avx2 smep bmi2 erms invpcid rtm avx512f avx512dq rdseed adx smap clflushopt avx512cd avx512bw avx512vl xsaveopt xsavec xsaves vnmi md_clear
+vmx flags	: vnmi invvpid tsc_offset vtpr ept vpid
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch pti tpr_shadow ept vpid fsgsbase bmi1 hle avx2 smep bmi2 erms invpcid rtm avx512f avx512dq rdseed adx smap clflushopt avx512cd avx512bw avx512vl xsaveopt xsavec xsaves vnmi md_clear
+vmx flags	: vnmi invvpid tsc_offset vtpr ept vpid
+#
+
+
+
+✅ 2. Quick Installation
+
+sudo apt update
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
+
+
+
+
+✅ 3. Verify the setup
+
+kvm-ok
+
+
+
+# kvm-ok
+INFO: /dev/kvm exists
+KVM acceleration can be used
+#
