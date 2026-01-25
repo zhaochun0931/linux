@@ -1,7 +1,15 @@
 services:
-  ubuntu-jdk:
+  host1:
     build: .
     container_name: privileged_ubuntu_fast
     privileged: true
     stdin_open: true
     tty: true
+    volumes:
+          - ./host1:/data
+    networks:
+          - app-network
+
+networks:
+  app-network:
+    driver: bridge
