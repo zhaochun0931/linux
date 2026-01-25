@@ -1,0 +1,23 @@
+In Linux, a .bundle file is typically a self-extracting shell script combined with binary data. It is most commonly used by software like VMware Workstation, VMware Player, or certain development tools.
+
+
+
+
+chmod +x filename.bundle
+
+
+sudo ./filename.bundle
+
+
+
+
+root@test:~# chmod +x VMware-Workstation-Full-25H2-24995812.x86_64.bundle
+root@test:~# ls
+VMware-Workstation-Full-25H2-24995812.x86_64.bundle
+root@test:~# ./VMware-Workstation-Full-25H2-24995812.x86_64.bundle
+Extracting VMware Installer...done.
+Installing VMware Workstation 25.0.0
+    Configuring...
+[######################################################################] 100%
+Installation was successful.
+root@test:~#
