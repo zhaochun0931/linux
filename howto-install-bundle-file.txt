@@ -21,3 +21,19 @@ Installing VMware Workstation 25.0.0
 [######################################################################] 100%
 Installation was successful.
 root@test:~#
+
+
+
+
+# ovftool  'GNS3-VM.ova' gns3/
+Opening OVA source: GNS3 VM.ova
+The manifest validates
+Opening VMX target: gns3/
+Writing VMX file: gns3/GNS3 VM/GNS3 VM.vmx
+Transfer Completed
+Completed successfully
+root@test:~#
+
+
+
+ vmrun start gns3/gns3-VM.vmx nogui
