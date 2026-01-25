@@ -64,8 +64,20 @@ Apart from the information provided by the ps ax command, ps aux displays the ef
 ps auxww
 
 
+a: Show processes for all users.
 
-ww = unlimited width
+u: Display the user/owner column.   
+
+x: Show processes not attached to a terminal (background daemons).
+
+ww: Unlimited width (shows the full path and all arguments).
+
+
+
+The most common solution is to add the -w (wide) flag. Adding it twice (-ww) tells ps to ignore the terminal width entirely and show everything.
+
+
+
 
 
 
