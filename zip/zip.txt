@@ -1,4 +1,8 @@
 apt install unzip
 
 
-unzip xxx.zip
+
+
+mkdir xxx
+
+unzip xxx.zip -d xxx
