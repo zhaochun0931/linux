@@ -1,7 +1,8 @@
 services:
   host1:
     build: .
-    container_name: privileged_ubuntu_fast
+    container_name: host1
+    hostname: host1
     privileged: true
     stdin_open: true
     tty: true
@@ -9,6 +10,10 @@ services:
           - ./host1:/data
     networks:
           - app-network
+    ports:
+      - "10334:10334" # Map host 10334 to container 10334 (Locator)
+      - "40404:40404" # Map host 40404 to container 40404 (Server)
+      - "8080:8080"   # Map host 8080 to container 8080 (Pulse GUI)
 
 networks:
   app-network:
