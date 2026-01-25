@@ -1,3 +1,21 @@
 apt update
 
 apt install wireguard -y
+
+
+
+
+# Move to the WireGuard directory
+cd /etc/wireguard
+
+# Generate private and public keys
+umask 077
+wg genkey | tee private.key | wg pubkey > public.key
+
+
+
+3. Create the Configuration File
+
+Create a file named /etc/wireguard/wg0.conf
+
+
