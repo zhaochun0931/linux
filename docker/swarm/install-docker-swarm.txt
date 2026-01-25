@@ -1,0 +1,101 @@
+#
+
+docker swarm init
+
+
+docker swarm leave --force
+
+
+
+
+
+
+# create the service
+
+
+docker service create --name helloworld --replicas 1  alpine ping docker.com
+
+docker service create --name myweb --replicas 3  -p 8080:8080 mynodejs
+
+docker service create --name myweb --replicas 3 -p 8080:8080 myrepo2025/myweb
+
+
+
+
+
+docker service ls
+
+
+docker service ps myweb
+
+
+
+
+$ docker service ls
+ID             NAME      MODE         REPLICAS   IMAGE                     PORTS
+yfy2b7ae1nss   myweb     replicated   3/3        myrepo2025/myweb:latest   *:8080->8080/tcp
+$
+$
+$ docker service ps myweb
+ID             NAME      IMAGE                     NODE             DESIRED STATE   CURRENT STATE           ERROR     PORTS
+qjojhd8f5fhr   myweb.1   myrepo2025/myweb:latest   docker-desktop   Running         Running 5 minutes ago
+d15yejtl89ch   myweb.2   myrepo2025/myweb:latest   docker-desktop   Running         Running 5 minutes ago
+utntenj7nz2f   myweb.3   myrepo2025/myweb:latest   docker-desktop   Running         Running 5 minutes ago
+$
+
+
+
+
+
+
+
+docker service inspect --pretty myweb
+
+
+$ docker service inspect --pretty myweb
+
+ID:		yfy2b7ae1nssi6f6d1to7op9h
+Name:		myweb
+Service Mode:	Replicated
+ Replicas:	3
+Placement:
+UpdateConfig:
+ Parallelism:	1
+ On failure:	pause
+ Monitoring Period: 5s
+ Max failure ratio: 0
+ Update order:      stop-first
+RollbackConfig:
+ Parallelism:	1
+ On failure:	pause
+ Monitoring Period: 5s
+ Max failure ratio: 0
+ Rollback order:    stop-first
+ContainerSpec:
+ Image:		myrepo2025/myweb:latest@sha256:9fdc30746a8df29bc46a0daab460444431cc766726e53b22cc7588951e6e5bae
+ Init:		false
+Resources:
+Endpoint Mode:	vip
+Ports:
+ PublishedPort = 8080
+  Protocol = tcp
+  TargetPort = 8080
+  PublishMode = ingress
+
+$
+
+
+
+
+
+
+docker service logs myweb -f
+
+
+
+
+
+
+# delete the service
+
+docker service rm myweb

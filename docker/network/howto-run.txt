@@ -1,0 +1,39 @@
+docker compose up
+
+
+
+
+docker exec -it app sh
+
+
+ping web
+
+
+
+/ # ping app -c 3
+PING app (172.31.0.3): 56 data bytes
+64 bytes from 172.31.0.3: seq=0 ttl=64 time=0.036 ms
+64 bytes from 172.31.0.3: seq=1 ttl=64 time=0.181 ms
+64 bytes from 172.31.0.3: seq=2 ttl=64 time=0.216 ms
+
+--- app ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.036/0.144/0.216 ms
+/ #
+/ #
+/ # ping web -c 3
+PING web (172.31.0.2): 56 data bytes
+64 bytes from 172.31.0.2: seq=0 ttl=64 time=0.207 ms
+64 bytes from 172.31.0.2: seq=1 ttl=64 time=0.260 ms
+64 bytes from 172.31.0.2: seq=2 ttl=64 time=0.102 ms
+
+--- web ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.102/0.189/0.260 ms
+/ #
+
+
+
+
+apk add --no-cache postgresql-client
+psql -h db -U user -d testdb

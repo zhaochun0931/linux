@@ -1,0 +1,13 @@
+services:
+  busybox:
+    image: busybox:latest
+    container_name: busybox
+    hostname: busybox
+    command: sh -c "while true; do sleep 3600; done"
+    networks:
+      - testnet
+    restart: unless-stopped
+
+networks:
+  testnet:
+    driver: bridge

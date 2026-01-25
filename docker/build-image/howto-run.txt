@@ -1,0 +1,67 @@
+# Replace 'yourusername' with your Docker Hub username
+
+✅
+docker login -u yourusername
+
+
+✅
+docker build -t myrepo2025/myweb:latest .
+
+
+✅
+docker push myrepo2025/myweb:latest
+
+
+
+
+
+
+
+
+$ docker login -u username
+
+i Info → A Personal Access Token (PAT) can be used instead.
+         To create a PAT, visit https://app.docker.com/settings
+
+
+Password:
+
+Login Succeeded
+$
+$
+$
+$ docker build -t myrepo2025/myweb:latest .
+[+] Building 2.2s (9/9) FINISHED                                       docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                   0.0s
+ => => transferring dockerfile: 104B                                                   0.0s
+ => [internal] load metadata for docker.io/library/node:alpine                         2.1s
+ => [auth] library/node:pull token for registry-1.docker.io                            0.0s
+ => [internal] load .dockerignore                                                      0.0s
+ => => transferring context: 2B                                                        0.0s
+ => [1/3] FROM docker.io/library/node:alpine@sha256:26ded7f450a0ad37241d2ae97ea521a59  0.0s
+ => [internal] load build context                                                      0.0s
+ => => transferring context: 28B                                                       0.0s
+ => CACHED [2/3] WORKDIR /app                                                          0.0s
+ => CACHED [3/3] COPY app.js .                                                         0.0s
+ => exporting to image                                                                 0.0s
+ => => exporting layers                                                                0.0s
+ => => writing image sha256:115a24674ec6046878066df7144359f8d218cbe5387a3b323274d0343  0.0s
+ => => naming to docker.io/myrepo2025/myweb:latest                                     0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/p9cefqaqae4hlo7mij9nf63qy
+
+What's next:
+    View a summary of image vulnerabilities and recommendations → docker scout quickview
+$
+$
+$
+$ docker push myrepo2025/myweb:latest
+The push refers to repository [docker.io/myrepo2025/myweb]
+09f262b303cc: Pushed
+b5966658862c: Pushed
+9e6476489f06: Mounted from library/node
+5a25894ae34b: Mounted from library/node
+ccabda7458e4: Mounted from library/node
+0e64f2360a44: Layer already exists
+latest: digest: sha256:ae1169422513863e13427d607c0e70c34980ebdb78bb79b68514d9b2bd3f9e97 size: 1571
+$

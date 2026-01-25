@@ -1,0 +1,55 @@
+A Dockerfile is a script (text file) that tells Docker how to build a custom image.
+
+Each line is a command for building the image
+
+Docker executes these commands layer by layer
+
+The result is a Docker image you can run as a container
+
+
+
+Dockerfile key instructions
+
+| Instruction                  | Description                                            |
+| ---------------------------- | ------------------------------------------------------ |
+| `FROM <image>`               | Base image, e.g., `ubuntu:22.04`                       |
+| `RUN <cmd>`                  | Execute commands during build (e.g., install packages) |
+| `COPY <src> <dst>`           | Copy files from your folder into the image             |
+| `WORKDIR <dir>`              | Set working directory inside container                 |
+| `CMD ["executable","param"]` | Default command when container starts                  |
+| `EXPOSE <port>`              | Document which port the container listens on           |
+
+
+
+
+
+# This line specifies the base image
+FROM arm64v8/alpine
+
+# The RUN instruction specifies commands to be run, and captured into the new container image
+RUN apk add curl
+
+
+
+# The COPY instruction copies files and directories to the container's file system. The files and directories must be in a path relative to the Dockerfile
+COPY 
+
+# The ADD instruction is like the COPY instruction, but with even more capabilities. 
+# In addition to copying files from the host into the container image, the ADD instruction can also copy files from a remote location with a URL specification
+ADD
+
+
+# The CMD instruction sets the default command to be run when deploying an instance of the container image
+CMD
+
+
+
+
+
+
+# copy the xxx.tgz to the tmp directory of the container and extract it
+ADD xxx.tgz /tmp
+
+
+# copy the xxx.tgz to the tmp directory of the container and do not extract it
+COPY xxx.tgz /tmp

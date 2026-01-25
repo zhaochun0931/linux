@@ -1,0 +1,15 @@
+Docker Swarm is a native container orchestration tool that is integrated directly into the Docker Engine.
+
+
+Key Concepts
+Nodes: Individual machines (physical or virtual) participating in the swarm.
+  
+Manager Nodes: The control plane of the swarm, responsible for orchestration, scheduling tasks, and maintaining the desired state of the cluster. They use the Raft consensus algorithm to ensure high availability and fault tolerance.
+
+Worker Nodes: Receive and execute tasks dispatched by manager nodes. They provide the capacity for running containerized services.
+
+Services: A high-level definition of the tasks to be executed across the swarm. When you create a service, you specify the container image to use, the number of replicas (instances) to run, network ports, and resource constraints.
+
+Tasks: The atomic unit of scheduling in a swarm. A task carries a Docker container and the commands to run inside it. Manager nodes assign tasks to worker nodes, and if a task fails, the orchestrator creates a new one to replace it.
+
+Load Balancing: Docker Swarm has built-in automatic load balancing, distributing incoming traffic across the running containers of a service to ensure efficient resource utilization and high performance.

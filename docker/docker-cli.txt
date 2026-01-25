@@ -1,0 +1,222 @@
+Docker has a client-server architecture. It has a single binary, docker, that can act as both client and server. 
+As a client, the docker binary passes requests to the Docker daemon, and then processes those requests when they are returned.
+
+
+The docker cp command allows you to copy files and directories from a container's file system to your local machine, whether the container is running or stopped.
+
+docker cp container:src_path dest_path 
+
+
+
+
+
+/etc/docker/daemon.json
+
+
+
+# docker registory mirror
+
+
+"registry-mirrors": ["https://docker.mirrors.sjtug.sjtu.edu.cn"]
+
+
+docker info
+docker version
+docker network list
+
+
+
+
+
+
+# first container
+docker run -i -t ubuntu /bin/bash
+
+The -i flag keeps STDIN open from the container, even if we're not attached to it.
+
+The -t flag is the other half and tells Docker to assign a pseudo-tty to the container we're about to create. This provides us with an interactive shell in the new container.
+
+
+We can see that our container's hostname is the container ID. Docker has also added a host entry for our container with its IP address.
+
+hostname
+
+/etc/hosts
+
+
+
+
+
+
+
+
+  
+
+docker ps
+  
+
+docker logs container_name
+
+
+docker inspect container_name
+
+
+docker exec -it container_name bash
+docker exec -it container_name sh
+
+
+
+
+
+docker run -it -d --rm --name container_name image_name
+docker stop container_name
+
+
+
+# pull the images from repository
+docker pull IMAGE_NAME
+
+
+# delete docker images
+docker images
+docker image list
+
+
+docker rmi IMAGE_NAME -f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# run the first docker container to test
+
+sudo docker run hello-world
+
+
+
+
+
+docker build
+
+
+This is the original and most commonly used command.
+
+It’s a shortcut for docker image build.
+
+
+
+
+
+
+
+
+
+
+
+
+/var/run/docker.sock
+
+The docker.sock file is a Unix socket that allows the Docker client to communicate with the Docker daemon. Located at /var/run/docker.sock, it facilitates various commands and API requests for managing containers, images, networks, and volumes.
+
+It acts as a communication endpoint between the Docker client and the Docker daemon.
+
+
+
+
+curl --unix-socket /var/run/docker.sock http://localhost/containers/json
+
+
+
+curl --unix-socket /var/run/docker.sock "http://localhost/containers/json?all=true" 
+
+
+
+
+image
+|
+|
+|
+container
+|
+|
+|
+
+
+
+
+
+Docker Hub is the public registry provided by Docker Inc
+
+
+
+/var/lib/docker/
+
+
+
+
+
+
+
+
+Container id:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/lib/systemd/system/docker.service
+
+ExecStart=/usr/bin/dockerd --containerd=/run/containerd/containerd.sock
+
+
+systemctl daemon-reload
+
+
+
+
+
+
+
+
+
+
+/etc/default/docker
+
+DOCKER_OPTS=""
+
+
+/etc/docker/daemon.json
+
+{
+"hosts": ["fd://","unix:///var/run/docker.sock","tcp://0.0.0.0:2376"]
+}
+
+
+
+
+
