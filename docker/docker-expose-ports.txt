@@ -1,0 +1,19 @@
+It is common to confuse expose with ports. Here is the difference:
+
+ports: Publishes the port to the outside world (host machine and external network).   
+
+expose: Only opens the port to other containers on the same Docker network. It does not map it to your host machine.
+
+
+
+
+services:
+  database:
+    image: postgres
+    expose:
+      - "5432" # Only the 'web-app' container can see this, not you.
+  
+  web-app:
+    image: my-app
+    ports:
+      - "80:8080" # You can access this at http://localhost:80
