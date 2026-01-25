@@ -1,0 +1,45 @@
+
+
+services:
+  host1:
+    image: ubuntu:24.04
+    container_name: host1
+    hostname: host1
+    privileged: true
+    tty: true
+    stdin_open: true
+    command: tail -f /dev/null
+    volumes:
+      - ./host1:/data
+    networks:
+      - ubuntu-net
+
+  host2:
+    image: ubuntu:24.04
+    container_name: host2
+    hostname: host2
+    privileged: true
+    tty: true
+    stdin_open: true
+    command: tail -f /dev/null
+    volumes:
+      - ./host2:/data
+    networks:
+      - ubuntu-net
+
+  host3:
+    image: ubuntu:24.04
+    container_name: host3
+    hostname: host3
+    privileged: true
+    tty: true
+    stdin_open: true
+    command: tail -f /dev/null
+    volumes:
+      - ./host3:/data
+    networks:
+      - ubuntu-net
+
+networks:
+  ubuntu-net:
+    driver: bridge
