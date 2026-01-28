@@ -1,0 +1,79 @@
+mkdir helloworld
+
+cd helloworld
+
+gradle init
+
+
+
+
+
+
+
+
+choose "Application"
+
+
+Select type of build to generate:
+  1: Application
+  2: Library
+  3: Gradle plugin
+  4: Basic (build structure only)
+Enter selection (default: Application) [1..4]
+
+
+
+
+✅
+
+tree
+
+
+$ tree -a .
+.
+├── .gitattributes
+├── .gitignore
+├── .gradle
+├── app
+│   ├── build.gradle.kts
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── gradle
+│       │   │       └── demo
+│       │   │           └── App.java
+│       │   └── resources
+│       └── test
+│           ├── java
+│           │   └── gradle
+│           │       └── demo
+│           │           └── AppTest.java
+│           └── resources
+├── gradle
+│   ├── libs.versions.toml
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── gradlew
+├── gradlew.bat
+└── settings.gradle.kts
+
+15 directories, 11 files
+$
+
+
+
+
+
+✅
+./gradlew build
+
+
+
+✅
+./gradlew run
+
+
+
+✅
+./gradlew clean
