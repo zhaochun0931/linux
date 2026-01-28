@@ -1,0 +1,24 @@
+javac *java
+
+
+
+root@host1:~/mysocket# ls -al
+total 36
+drwxr-xr-x  2 root root 4096 Jul  1 11:22 .
+drwx------ 13 root root 4096 Jul  1 11:14 ..
+-rw-r--r--  1 root root  865 Jul  1 11:16 cert.crt
+-rw-r--r--  1 root root 2216 Jul  1 11:16 keystore.jks
+-rw-r--r--  1 root root 2437 Jul  1 11:22 SSLSocketClient.class
+-rw-r--r--  1 root root  907 Jul  1 11:14 SSLSocketClient.java
+-rw-r--r--  1 root root 2604 Jul  1 11:22 SSLSocketServer.class
+-rw-r--r--  1 root root 1152 Jul  1 11:13 SSLSocketServer.java
+-rw-r--r--  1 root root  930 Jul  1 11:16 truststore.jks
+root@host1:~/mysocket#
+
+
+
+
+java SSLSocketServer
+
+
+java SSLSocketClient
