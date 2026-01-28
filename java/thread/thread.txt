@@ -1,0 +1,15 @@
+✅ 1. Classic Model: One Thread Per Connection (new thread per client)
+
+
+
+
+
+
+✅ 2. Thread Pool Model (reuses threads, does not create new for each)
+
+
+
+
+
+
+✅ 3. NIO / Netty Model (non-blocking, event-loop, usually single thread)
