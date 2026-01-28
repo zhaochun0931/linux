@@ -1,0 +1,5 @@
+docker run --rm -it amazoncorretto:latest
+
+
+docker run --rm -it amazoncorretto:25-jdk
+

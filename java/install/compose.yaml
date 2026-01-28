@@ -1,0 +1,8 @@
+services:
+  jdk:
+    image: amazoncorretto:21
+    container_name: corretto21
+    command: tail -f /dev/null      # keep container running
+    working_dir: /app               # working directory inside container
+    volumes:
+      - ./app:/app                  # mount local app folder into container
