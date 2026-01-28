@@ -14,6 +14,21 @@ top -H
 
 
 
+Why top -H is Critical for Java
+Java is a heavily multi-threaded environment. If your server's CPU is spiking to 100%, a standard top command will just show you one java process consuming all that power.
+
+But which thread inside that process is the culprit? Is it a Garbage Collection thread? A business logic thread? A rogue infinite loop?
+
+top -H reveals the "Lightweight Processes" (LWPs) so you can see exactly which thread ID is burning the CPU.
+
+
+
+
+
+
+
+
+
 
 
 
