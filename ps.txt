@@ -110,6 +110,20 @@ ps -L -p PID
 
 ps -L -p PID -o pid,tid,pcpu,stat,comm
 
+ps -L -p 40511 -o pid,tid,pcpu,comm | sort -k3 -rn
+
+
+
+
+
+
+1. The Flags (The "How")
+ps: The process status utility.
+
+-L: This is the most important flag here. It tells ps to show threads (Lightweight Processes). Without this, you would only see one line for the entire Java process.
+
+-p 40511: Filters the output to only look at process ID 40511 (your Java app).
+
 
 
 
