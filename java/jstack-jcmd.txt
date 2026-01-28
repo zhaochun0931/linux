@@ -1,0 +1,25 @@
+While both jstack and jcmd are essential tools in a Java developer’s kit for diagnosing performance issues or deadlocks, they represent different eras of Java management.
+
+Think of jstack as a specialized screwdriver and jcmd as a Swiss Army knife that happens to include a better screwdriver.
+
+1. jstack: The Legacy Specialist
+jstack is a JDK utility specifically designed to print Java stack traces of threads for a given Java process.
+
+Primary Function: Thread dumps only.
+
+Mechanism: It traditionally used the "Serviceability Agent" or attached to the target process to pull thread information.
+
+Current Status: As of recent JDK versions (9+), jstack is actually considered a legacy tool. In fact, if you run it, the JDK often suggests using jcmd instead.
+
+
+
+
+
+2. jcmd: The Modern Swiss Army Knife
+Introduced in JDK 7, jcmd is the recommended, all-in-one replacement for several older tools (jstack, jmap, jinfo).
+
+Primary Function: Multi-purpose. It can handle thread dumps, heap dumps, garbage collection stats, uptime, and more.
+
+Mechanism: It sends diagnostic commands to the JVM via the Attach API. Because it is built into the modern JVM architecture, it is generally more performant and reliable.
+
+The Command: To get a thread dump, you use: jcmd <pid> Thread.print
