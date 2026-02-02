@@ -109,7 +109,7 @@ ldapsearch -x -H ldap://127.0.0.1:389 -b "" -s base "(objectClass=*)"
 
 
 
-
+✅
 
 2. Initial Configuration (The Easy Way)
 On Debian-based systems, you can trigger a guided setup that handles the heavy lifting of the cn=config setup for you.
@@ -181,6 +181,78 @@ To see if your entries were added correctly, run a search:
 
 
 ldapsearch -x -b "dc=example,dc=com" "(objectClass=*)"
+
+
+
+
+
+
+
+✅
+
+To create a user account in OpenLDAP, you need to define it in an LDIF (LDAP Data Interchange Format) file. This file tells the server which "Object Classes" to use and which attributes (like name, UID, and password) to assign.
+
+1. Generate a Hashed Password
+For security, you should never store passwords in plain text. Use the slappasswd utility to generate a hashed version:
+
+
+slappasswd
+Input: Your desired user password.
+
+Output: Something like {SSHA}6jG+K0H... (Copy this string).
+
+
+# slappasswd
+New password:
+Re-enter new password:
+{SSHA}FlmpNy1U+3Es1+Zic6fysSsGCrQpI2pB
+#
+
+
+
+
+
+
+
+2. Create the LDIF File
+Create a file named newuser.ldif. We will use the inetOrgPerson object class, which is the standard for people, and posixAccount if you want the user to be able to log in to Linux systems.
+
+
+
+
+
+Key Attribute Breakdown:
+dn: The "Distinguished Name"—the unique address for this user.
+
+uid: The username (unique identifier).
+
+uidNumber / gidNumber: These must be unique on your system (typically start above 10000 to avoid system conflicts).
+
+homeDirectory: The path to the user's home folder.
+
+userPassword: The hash you generated in Step 1.
+
+3. Add the User to OpenLDAP
+Run the following command to inject the user into your directory. Replace the -D path with your actual admin DN.
+
+Bash
+ldapadd -x -D "cn=admin,dc=example,dc=com" -W -f newuser.ldif
+-x: Use simple authentication.
+
+-D: The Bind DN (the admin account authorized to add users).
+
+-W: Prompt for the admin password.
+
+-f: The path to your LDIF file.
+
+4. Verify the New User
+To ensure the user was created correctly, search for them by their UID:
+
+Bash
+ldapsearch -x -b "dc=example,dc=com" "uid=jdoe"
+
+
+
 
 
 
