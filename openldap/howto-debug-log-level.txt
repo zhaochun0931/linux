@@ -1,0 +1,9 @@
+sudo ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f loglevel.ldif
+
+
+
+Level	Keyword	Description
+256	stats	Most Useful: Logs basic stats for connections/searches.
+128	args	Logs the arguments (filters) used in searches.
+32	filter	Logs search filter processing.
+16384	sync	Essential for debugging LDAP replication issues.
