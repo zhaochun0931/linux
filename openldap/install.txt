@@ -1,6 +1,9 @@
-✅ install openladap
 apt update
+
 apt install slapd ldap-utils -y
+
+
+During installation, you will be prompted for an Administrator password. This sets the password for the admin account of your LDAP directory.
 
 
 
@@ -15,6 +18,9 @@ Administrator password:
 Please enter the admin password for your LDAP directory again to verify that you have typed it correctly.
 
 Confirm password:
+
+
+
 
 
 
@@ -56,6 +62,24 @@ slapd -V
 
 
 
+# slapd -V
+@(#) $OpenLDAP: slapd 2.6.7+dfsg-1~exp1ubuntu8.2 (Dec  9 2024 02:50:18) $
+	Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
 # the default config file
 
 /etc/default/slapd
@@ -74,8 +98,6 @@ ldapsearch -x -H ldap://127.0.0.1:389 -b "" -s base "(objectClass=*)"
 
 
 
-
-slapd -V
 
 
 
