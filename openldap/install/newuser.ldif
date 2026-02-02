@@ -1,0 +1,13 @@
+dn: uid=user01,ou=People,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: user01
+uid: user01
+loginShell: /bin/bash
+uidNumber: 10001
+gidNumber: 10001
+homeDirectory: /home/user01
+userPassword: {SSHA}your_hashed_password_here
+gecos: user01
