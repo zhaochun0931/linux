@@ -226,18 +226,119 @@ ldapsearch -x -b "dc=example,dc=com" "uid=user01"
 
 
 
-# the default config file
-
-/etc/default/slapd
-
-
-ls -al /etc/default/slapd
 
 
 
 
+✅
 
-ldapsearch -Y EXTERNAL -H ldapi://%2Fvar%2Frun%2Fslapd%2Fldapi -b olcDatabase={1}mdb,cn=config
+To test if your new LDAP user is actually working, you should verify two things: that the user is searchable and that the user can authenticate (bind) with their own password.
+
+1. The Search Test
+First, confirm the entry exists and is readable. You’ve likely already used a similar command, but this specifically targets the new user's UID to ensure the attributes are correct.
 
 
-ldapsearch -x -H ldap://127.0.0.1:389 -b "" -s base "(objectClass=*)"
+
+ldapsearch -x -b "dc=example,dc=com" "(uid=user01)"
+Success: You see the full LDIF output for user01.
+
+
+root@openldap:~# ldapsearch -x -b "dc=example,dc=com" "(uid=user01)"
+# extended LDIF
+#
+# LDAPv3
+# base <dc=example,dc=com> with scope subtree
+# filter: (uid=user01)
+# requesting: ALL
+#
+
+# user01, People, example.com
+dn: uid=user01,ou=People,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: user01
+uid: user01
+loginShell: /bin/bash
+uidNumber: 10001
+gidNumber: 10001
+homeDirectory: /home/user01
+gecos: user01
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+#
+
+
+
+
+Failure: You get numResponses: 1 (just the search result) but no data, or an error. This usually means your Base DN (-b) is wrong or the user wasn't added.
+
+2. The Authentication Test (The "Bind" Test)
+This is the most important test. It verifies that the password you hashed actually works. You will attempt to "bind" to the LDAP server as the user rather than as the admin.
+
+
+
+ldapwhoami -x -D "uid=user01,ou=People,dc=example,dc=com" -W
+
+
+# ldapwhoami -x -D "uid=user01,ou=People,dc=example,dc=com" -W
+Enter LDAP Password:
+dn:uid=user01,ou=People,dc=example,dc=com
+#
+
+
+-D: This is the "Bind DN"—the specific path to the user you are testing.
+
+-W: This will prompt you for John Doe's password (the plain text version of the hash you created).
+
+Expected Success Output: dn:uid=jdoe,ou=People,dc=example,dc=com
+
+If it fails: You will see ldap_bind: Invalid credentials (49). This means the password hash in your LDIF doesn't match what you're typing.
+
+
+
+3. Testing with ldapsearch (as the User)
+To be 100% sure the user has the right permissions to see the directory, try a search while logged in as that user:
+
+
+ldapsearch -x -D "uid=user01,ou=People,dc=example,dc=com" -W -b "dc=example,dc=com" "(cn=*)"
+
+
+# ldapsearch -x -D "uid=user01,ou=People,dc=example,dc=com" -W -b "dc=example,dc=com" "(cn=*)"
+Enter LDAP Password:
+# extended LDIF
+#
+# LDAPv3
+# base <dc=example,dc=com> with scope subtree
+# filter: (cn=*)
+# requesting: ALL
+#
+
+# user01, People, example.com
+dn: uid=user01,ou=People,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: user01
+uid: user01
+loginShell: /bin/bash
+uidNumber: 10001
+gidNumber: 10001
+homeDirectory: /home/user01
+userPassword:: e1NTSEF9RmxtcE55MVUrM0VzMStaaWM2ZnlzU3NHQ3JRcEkycEI=
+gecos: user01
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+root@openldap:~#
