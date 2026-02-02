@@ -1,3 +1,10 @@
+Configuring OpenLDAP can feel like a maze because the software has moved from a traditional "text file" configuration (slapd.conf) to a "live database" configuration known as OLC (Online Configuration) or cn=config.
+
+Here is a modern, step-by-step guide to getting it up and running on a Linux system (like Ubuntu or Debian).
+
+
+
+
 This configuration database consists of a collection of text-based LDIF files located under /etc/ldap/slapd.d
 
 
