@@ -71,39 +71,6 @@ slapd -V
 
 
 
-
-
-
-
-
-
-
-
-
-# the default config file
-
-/etc/default/slapd
-
-
-ls -al /etc/default/slapd
-
-
-
-
-
-ldapsearch -Y EXTERNAL -H ldapi://%2Fvar%2Frun%2Fslapd%2Fldapi -b olcDatabase={1}mdb,cn=config
-
-
-ldapsearch -x -H ldap://127.0.0.1:389 -b "" -s base "(objectClass=*)"
-
-
-
-
-
-
-
-
-
 ✅ install successfully
 
 
@@ -235,8 +202,10 @@ userPassword: The hash you generated in Step 1.
 3. Add the User to OpenLDAP
 Run the following command to inject the user into your directory. Replace the -D path with your actual admin DN.
 
-Bash
+
 ldapadd -x -D "cn=admin,dc=example,dc=com" -W -f newuser.ldif
+
+
 -x: Use simple authentication.
 
 -D: The Bind DN (the admin account authorized to add users).
@@ -248,11 +217,27 @@ ldapadd -x -D "cn=admin,dc=example,dc=com" -W -f newuser.ldif
 4. Verify the New User
 To ensure the user was created correctly, search for them by their UID:
 
-Bash
-ldapsearch -x -b "dc=example,dc=com" "uid=jdoe"
+
+ldapsearch -x -b "dc=example,dc=com" "uid=user01"
 
 
 
 
 
 
+
+# the default config file
+
+/etc/default/slapd
+
+
+ls -al /etc/default/slapd
+
+
+
+
+
+ldapsearch -Y EXTERNAL -H ldapi://%2Fvar%2Frun%2Fslapd%2Fldapi -b olcDatabase={1}mdb,cn=config
+
+
+ldapsearch -x -H ldap://127.0.0.1:389 -b "" -s base "(objectClass=*)"
