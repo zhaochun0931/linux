@@ -52,7 +52,7 @@ $ ./gradlew bootrun
 
 
 
-put the HelloController.java to the 
+put the HelloController.java to the src directory
 
 └── src
     ├── main
