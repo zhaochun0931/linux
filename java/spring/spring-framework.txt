@@ -13,3 +13,57 @@ The Spring Framework was created to make Java development easier by handling the
 
 2. Spring Boot: The Accelerator
 Spring Boot was built on top of the Spring Framework to solve the "configuration nightmare." It is opinionated, meaning it makes "sane" decisions for you so you can start coding immediately.
+
+
+
+
+
+
+
+
+
+spring-beans-5.3.46.jar
+spring-context-5.3.46.jar
+spring-core-5.3.46.jar
+spring-jcl-5.3.46.jar
+spring-shell-1.2.0.RELEASE.jar
+spring-web-5.3.46.jar
+
+
+
+The spring-beans-5.3.46.jar is a specific version of the Spring Beans module, which is the heart and soul of the entire Spring Framework ecosystem.
+
+If the Spring Framework is a car, the spring-beans module is the engine.
+
+
+
+
+If spring-beans is the engine of the Spring car, then spring-context-5.3.46.jar is the dashboard and steering wheel.
+
+While spring-beans provides the basic ability to create objects, Spring Context builds on top of it to turn those objects into a fully functioning, "aware" application.
+
+
+
+
+If spring-beans is the engine and spring-context is the dashboard, then spring-core-5.3.46.jar is the chassis and the electrical wiring.
+
+It is the lowest-level module of the Spring Framework. Every other Spring module (Web, Data, Security, Boot) depends on this JAR to function. If you remove this file, the entire framework collapses.
+
+
+
+
+The spring-jcl-5.3.46.jar is the "Logging Bridge" for the Spring Framework.
+
+While it is a tiny file compared to spring-core or spring-context, it plays a critical role in how your application talks to your computer's console and log files.
+
+
+
+
+
+The spring-web-5.3.46.jar is the core module for all web-related functionality in the Spring Framework. If you are building a REST API, a web application, or even just a microservice that needs to talk to another service over HTTP, this JAR is doing the heavy lifting.
+
+Think of it as the "Web Translator" of the Spring ecosystem. It translates raw HTTP requests into Java objects and vice versa.
+
+
+
+
