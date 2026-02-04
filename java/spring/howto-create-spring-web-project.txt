@@ -1,0 +1,40 @@
+spring init --dependencies=web --java-version=21 my-web-app
+
+cd my-web-app/
+
+./gradlew bootrun
+
+
+the port 8080 should be up
+
+
+but it will threw the 404 error message when you curl and it is expected because you did not add any other logic.
+
+curl localhost:8080
+
+
+
+
+$ ./gradlew bootrun
+
+> Task :bootRun
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.2)
+
+2026-02-04T20:47:08.544+08:00  INFO 25689 --- [demo] [           main] com.example.my_web_app.DemoApplication   : Starting DemoApplication using Java 21.0.8 with PID 25689 
+2026-02-04T20:47:08.545+08:00  INFO 25689 --- [demo] [           main] com.example.my_web_app.DemoApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-02-04T20:47:08.859+08:00  INFO 25689 --- [demo] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-02-04T20:47:08.867+08:00  INFO 25689 --- [demo] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-04T20:47:08.867+08:00  INFO 25689 --- [demo] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-04T20:47:08.890+08:00  INFO 25689 --- [demo] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 323 ms
+2026-02-04T20:47:09.038+08:00  INFO 25689 --- [demo] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-02-04T20:47:09.041+08:00  INFO 25689 --- [demo] [           main] com.example.my_web_app.DemoApplication   : Started DemoApplication in 0.675 seconds (process running for 0.867)
+<==========---> 80% EXECUTING [23s]
+> :bootRun
