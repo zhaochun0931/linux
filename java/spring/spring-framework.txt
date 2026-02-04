@@ -1,0 +1,15 @@
+In short: Spring Framework is the massive toolbox, and Spring Boot is the pre-configured workbench that has all the tools already laid out for you.
+
+You cannot have Spring Boot without the Spring Framework, but you can have the Spring Framework without Spring Boot
+
+
+
+
+
+1. Spring Framework: The Foundation
+The Spring Framework was created to make Java development easier by handling the "plumbing" of an application so you can focus on the business logic.
+
+
+
+2. Spring Boot: The Accelerator
+Spring Boot was built on top of the Spring Framework to solve the "configuration nightmare." It is opinionated, meaning it makes "sane" decisions for you so you can start coding immediately.
