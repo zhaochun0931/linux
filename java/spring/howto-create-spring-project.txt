@@ -1,0 +1,33 @@
+mkdir helloworld
+
+cd helloworld
+
+spring init
+
+unzip demo.zip
+
+./gradlew bootrun
+
+
+
+$ ./gradlew bootrun
+
+> Task :bootRun
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.2)
+
+2026-02-04T20:41:06.109+08:00  INFO 20798 --- [demo] [           main] com.example.demo.DemoApplication         : Starting DemoApplication using Java 21.0.8 with PID 20798 (/Users/zchun/Downloads/spring/0204/build/classes/java/main started by zchun in /Users/zchun/Downloads/spring/0204)
+2026-02-04T20:41:06.110+08:00  INFO 20798 --- [demo] [           main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-02-04T20:41:06.280+08:00  INFO 20798 --- [demo] [           main] com.example.demo.DemoApplication         : Started DemoApplication in 0.335 seconds (process running for 0.506)
+
+BUILD SUCCESSFUL in 1s
+4 actionable tasks: 1 executed, 3 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.3.0/userguide/configuration_cache_enabling.html
+$
