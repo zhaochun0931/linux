@@ -52,6 +52,29 @@ curl -u guest:guest http://localhost:15672/api/overview
 
 
 
+Option 1: The --resolve Flag (Recommended)
+
+The Syntax: curl --resolve [DOMAIN]:[PORT]:[IP] http://[DOMAIN]:port
+
+
+curl -v --resolve myapp.example.com:31762:127.0.0.1 http://myapp.example.com:31762
+
+
+
+
+
+Option 2: The Host Header
+
+curl -H "Host: myapp.example.com" http://10.106.135.244
+
+
+
+
+
+
+
+
+
 curl -H "Host: app1.local" http://localhost:8080 --resolve app1.local:8080:127.0.0.1
 
 curl http://app1.local:8080 --resolve app1.local:8080:127.0.0.1
