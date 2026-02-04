@@ -38,3 +38,44 @@ $ ./gradlew bootrun
 2026-02-04T20:47:09.041+08:00  INFO 25689 --- [demo] [           main] com.example.my_web_app.DemoApplication   : Started DemoApplication in 0.675 seconds (process running for 0.867)
 <==========---> 80% EXECUTING [23s]
 > :bootRun
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+put the HelloController.java to the 
+
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── com
+    │   │       └── example
+    │   │           └── my_web_app
+    │   │               ├── DemoApplication.java
+    │   │               └── HelloController.java
+
+
+
+
+./gradlew bootrun
+
+
+$ curl http://localhost:8080/hello
+Hello, World!
+$
+
+$ curl http://localhost:8080/hello?name=xiaoming
+Hello, xiaoming!
+$
+$
+
+The real web server is up and running.
