@@ -4,6 +4,7 @@ services:
     container_name: ubuntu-latest
     tty: true
     stdin_open: true
+    privileged: true
     command: /bin/bash
     volumes:
       - ./data:/data     # optional mount for persistence
