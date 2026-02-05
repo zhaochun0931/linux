@@ -1,0 +1,3 @@
+sysctl -a | egrep -i net.core
+
+sysctl -a | egrep -i ipv4
