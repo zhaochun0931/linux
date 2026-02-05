@@ -1,0 +1,53 @@
+In simple terms, ip_local_port_range defines the pool of "temporary" ports that the Linux kernel can use to establish outgoing connections.
+
+When your application (like a Node.js app or a web browser) initiates a connection to a server (like a database or an API), it needs its own port to "talk" from. These are called ephemeral ports.
+
+1. How it Works
+Every TCP connection is defined by a "tuple" of four values:
+
+Source IP
+
+Source Port (This comes from the ip_local_port_range)
+
+Destination IP
+
+Destination Port (e.g., 80 for HTTP, 443 for HTTPS)
+
+Because the Source IP, Destination IP, and Destination Port are usually fixed for a specific service, the only way to create multiple simultaneous connections is to use a unique Source Port.
+
+2. Default Values
+On most modern Linux distributions (including Ubuntu), the default range is:
+
+32768 to 60999
+
+This gives you roughly 28,231 available ports for outgoing connections.
+
+3. Why it matters for your "Error 99"
+You previously saw the error apr_socket_connect(): Cannot assign requested address (99). This happens because:
+
+Your application opened thousands of connections.
+
+Each connection took one port from the 32768-60999 range.
+
+The connections closed, but went into a TIME_WAIT state (lasting ~60 seconds).
+
+You tried to open a new connection, but all 28,231 ports were still busy waiting to expire.
+
+4. How to View and Change it
+To view your current range:
+
+
+cat /proc/sys/net/ipv4/ip_local_port_range
+# OR
+sysctl net.ipv4.ip_local_port_range
+To expand the range (Temporary): If you have a very high-traffic server, you might want to open the range from 1024 to 65535:
+
+
+sudo sysctl -w net.ipv4.ip_local_port_range="1024 65535"
+
+
+
+To make it permanent: Add this line to /etc/sysctl.conf:
+
+
+net.ipv4.ip_local_port_range = 1024 65535
