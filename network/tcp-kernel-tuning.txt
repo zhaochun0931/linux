@@ -1,3 +1,15 @@
 sysctl -a | egrep -i net.core
 
 sysctl -a | egrep -i ipv4
+
+
+
+
+sysctl net.ipv4.tcp_tw_reuse
+
+sysctl -w  net.ipv4.tcp_tw_reuse=0
+
+
+Timestamp Dependence: tcp_tw_reuse only works if net.ipv4.tcp_timestamps is also enabled (set to 1). 
+Without timestamps, the kernel cannot verify if a "reused" packet is old or new, so it won't allow the reuse.
+
