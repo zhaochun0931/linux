@@ -1,0 +1,42 @@
+Write-Ahead Log (WAL)
+
+
+
+
+
+
+checkpoints
+
+A checkpoint is a known safe starting point for recovery, since it guarantees that all the previous changes to the database have already been written to disk.
+
+
+
+
+
+
+
+archive
+
+In PostgreSQL, WAL archiving allows you to save the Write-Ahead Logs (WAL) to a specified location so that they can be used for point-in-time recovery (PITR) or replication.
+
+
+
+postgresql.conf
+
+
+
+
+archive_mode = always
+archive_command = 'cp /data1/pg_wal/%f /tmp/archive/%f'
+
+
+
+
+show archive_mode;
+show data_directory;
+select pg_switch_wal();
+
+
+
+
+

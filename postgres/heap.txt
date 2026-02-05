@@ -1,0 +1,197 @@
+In PostgreSQL, the term heap refers to a table's physical storage structure in the database.
+
+It's not a fixed-length structure like an array but instead a dynamically allocated structure, meaning that rows in a table are stored in the heap as individual records that can grow, shrink, or be modified over time.
+
+
+
+Structure of a Heap Table
+
+Tuple: Each row in the heap is called a tuple. A tuple is a data structure containing the values of the row's columns.
+
+Block: PostgreSQL stores tuples in pages or blocks. By default, each block is 8KB in size (configurable), and each block can hold multiple tuples. When a table grows, it can span multiple blocks.
+
+Visibility Map: PostgreSQL uses a visibility map that marks which tuples (rows) in a heap are visible to transactions.
+
+Heap Header: The header contains metadata, such as the tuple's transaction information, to indicate whether the tuple is live, deleted, or has been updated.
+
+
+
+
+
+create database testdb;
+create table t1 (id int);
+SELECT * FROM pg_stat_user_tables WHERE relname = 'your_table_name';
+
+testdb=# SELECT * FROM pg_stat_user_tables WHERE relname = 't1';
+-[ RECORD 1 ]-------+-------
+relid               | 16390
+schemaname          | public
+relname             | t1
+seq_scan            | 0
+last_seq_scan       |
+seq_tup_read        | 0
+idx_scan            |
+last_idx_scan       |
+idx_tup_fetch       |
+n_tup_ins           | 0
+n_tup_upd           | 0
+n_tup_del           | 0
+n_tup_hot_upd       | 0
+n_tup_newpage_upd   | 0
+n_live_tup          | 0
+n_dead_tup          | 0
+n_mod_since_analyze | 0
+n_ins_since_vacuum  | 0
+last_vacuum         |
+last_autovacuum     |
+last_analyze        |
+last_autoanalyze    |
+vacuum_count        | 0
+autovacuum_count    | 0
+analyze_count       | 0
+autoanalyze_count   | 0
+
+testdb=#
+
+
+
+insert into t1 select * from generate_series(1,10);
+
+testdb=# SELECT * FROM pg_stat_user_tables WHERE relname = 't1';
+-[ RECORD 1 ]-------+-------
+relid               | 16390
+schemaname          | public
+relname             | t1
+seq_scan            | 0
+last_seq_scan       |
+seq_tup_read        | 0
+idx_scan            |
+last_idx_scan       |
+idx_tup_fetch       |
+n_tup_ins           | 10
+n_tup_upd           | 0
+n_tup_del           | 0
+n_tup_hot_upd       | 0
+n_tup_newpage_upd   | 0
+n_live_tup          | 10
+n_dead_tup          | 0
+n_mod_since_analyze | 10
+n_ins_since_vacuum  | 10
+last_vacuum         |
+last_autovacuum     |
+last_analyze        |
+last_autoanalyze    |
+vacuum_count        | 0
+autovacuum_count    | 0
+analyze_count       | 0
+autoanalyze_count   | 0
+
+testdb=#
+
+
+
+update t1 set id = 100 where id = 10;
+
+testdb=# SELECT * FROM pg_stat_user_tables WHERE relname = 't1';
+-[ RECORD 1 ]-------+------------------------------
+relid               | 16390
+schemaname          | public
+relname             | t1
+seq_scan            | 2
+last_seq_scan       | 2025-04-12 22:52:29.929398+00
+seq_tup_read        | 20
+idx_scan            |
+last_idx_scan       |
+idx_tup_fetch       |
+n_tup_ins           | 10
+n_tup_upd           | 1
+n_tup_del           | 0
+n_tup_hot_upd       | 1
+n_tup_newpage_upd   | 0
+n_live_tup          | 10
+n_dead_tup          | 1
+n_mod_since_analyze | 11
+n_ins_since_vacuum  | 10
+last_vacuum         |
+last_autovacuum     |
+last_analyze        |
+last_autoanalyze    |
+vacuum_count        | 0
+autovacuum_count    | 0
+analyze_count       | 0
+autoanalyze_count   | 0
+
+testdb=#
+
+
+delete from t1 where id = 100;
+
+testdb=# SELECT * FROM pg_stat_user_tables WHERE relname = 't1';
+-[ RECORD 1 ]-------+------------------------------
+relid               | 16390
+schemaname          | public
+relname             | t1
+seq_scan            | 3
+last_seq_scan       | 2025-04-12 22:53:39.522973+00
+seq_tup_read        | 30
+idx_scan            |
+last_idx_scan       |
+idx_tup_fetch       |
+n_tup_ins           | 10
+n_tup_upd           | 1
+n_tup_del           | 1
+n_tup_hot_upd       | 1
+n_tup_newpage_upd   | 0
+n_live_tup          | 9
+n_dead_tup          | 2
+n_mod_since_analyze | 12
+n_ins_since_vacuum  | 10
+last_vacuum         |
+last_autovacuum     |
+last_analyze        |
+last_autoanalyze    |
+vacuum_count        | 0
+autovacuum_count    | 0
+analyze_count       | 0
+autoanalyze_count   | 0
+
+testdb=#
+
+
+
+VACUUM ANALYZE t1;
+
+testdb=# SELECT * FROM pg_stat_user_tables WHERE relname = 't1';
+-[ RECORD 1 ]-------+------------------------------
+relid               | 16390
+schemaname          | public
+relname             | t1
+seq_scan            | 3
+last_seq_scan       | 2025-04-12 22:53:39.522973+00
+seq_tup_read        | 30
+idx_scan            |
+last_idx_scan       |
+idx_tup_fetch       |
+n_tup_ins           | 10
+n_tup_upd           | 1
+n_tup_del           | 1
+n_tup_hot_upd       | 1
+n_tup_newpage_upd   | 0
+n_live_tup          | 9
+n_dead_tup          | 0
+n_mod_since_analyze | 0
+n_ins_since_vacuum  | 0
+last_vacuum         | 2025-04-12 22:55:59.45118+00
+last_autovacuum     |
+last_analyze        | 2025-04-12 22:55:59.452874+00
+last_autoanalyze    |
+vacuum_count        | 1
+autovacuum_count    | 0
+analyze_count       | 1
+autoanalyze_count   | 0
+
+testdb=#
+
+
+
+
