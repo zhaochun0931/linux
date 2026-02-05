@@ -7,6 +7,7 @@ services:
       ubuntu-net:
     tty: true
     stdin_open: true
+    privileged: true
 
   node2:
     build: .
@@ -16,6 +17,7 @@ services:
       ubuntu-net:
     tty: true
     stdin_open: true
+    privileged: true
 
   node3:
     build: .
@@ -25,6 +27,7 @@ services:
       ubuntu-net:
     tty: true
     stdin_open: true
+    privileged: true
 
   node4:
     build: .
@@ -34,6 +37,7 @@ services:
       ubuntu-net:
     tty: true
     stdin_open: true
+    privileged: true
 
   node5:
     build: .
@@ -43,6 +47,7 @@ services:
       ubuntu-net:
     tty: true
     stdin_open: true
+    privileged: true
 
 networks:
   ubuntu-net:
