@@ -15,3 +15,19 @@ sysctl net.core.somaxconn
 # sysctl net.core.somaxconn
 net.core.somaxconn = 4096
 #
+
+
+
+
+net.core.somaxconn is a kernel parameter that defines the maximum number of fully established connections that can wait in the "listen queue" before being accepted by your application.
+
+Think of it as the size of the "waiting room" for your server.
+
+1. How the Queue Works
+When a client connects to your server (e.g., Nginx, Node.js, or Java), the connection goes through a "Handshake." Once the handshake is finished, the connection is considered established, but your application hasn't technically "picked it up" yet using the accept() system call.
+
+If the application is fast: It picks up the connection immediately, and the queue stays empty.
+
+If the application is busy: Connections start piling up in this queue.
+
+If the queue is full: The kernel will reject new connection attempts, and the client will receive a "Connection Refused" error or a timeout.
