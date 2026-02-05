@@ -1,0 +1,17 @@
+Connection Backlog (somaxconn)
+
+When a new connection arrives, it waits in a "listen queue" before your application (like Nginx or Java) can accept() it. If this queue fills up, new connections are rejected.
+
+Parameter: net.core.somaxconn
+
+
+
+
+
+sysctl net.core.somaxconn
+
+
+
+# sysctl net.core.somaxconn
+net.core.somaxconn = 4096
+#
