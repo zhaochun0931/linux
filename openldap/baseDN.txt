@@ -1,4 +1,4 @@
-n OpenLDAP (and LDAP in general), the Base DN (Distinguished Name) is the "root" or starting point of your directory tree.
+In OpenLDAP (and LDAP in general), the Base DN (Distinguished Name) is the "root" or starting point of your directory tree.
 
 Think of it like the root folder (e.g., C:\ or /) in a file system. Every entry in your LDAP directory exists "underneath" this Base DN.
 
