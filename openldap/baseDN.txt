@@ -1,0 +1,35 @@
+n OpenLDAP (and LDAP in general), the Base DN (Distinguished Name) is the "root" or starting point of your directory tree.
+
+Think of it like the root folder (e.g., C:\ or /) in a file system. Every entry in your LDAP directory exists "underneath" this Base DN.
+
+1. How it is Structured
+The Base DN is usually derived from your organization's domain name to ensure it is unique. It is composed of Domain Components (DC).
+
+Example Domain: example.com
+
+Corresponding Base DN: dc=example,dc=com
+
+If your company is techcorp.org, your Base DN would be dc=techcorp,dc=org.
+
+2. Why is the Base DN Important?
+The Base DN serves two critical purposes:
+
+Search Scope: When an application (like Keycloak, Jenkins, or a Linux login) looks for a user, it needs to know where to start looking. Providing the Base DN tells the application: "Start at this point and search everything inside this branch."
+
+Unique Identity: Every object in LDAP has a "Full Path" called a DN. The Base DN forms the suffix of every single entry.
+
+User: uid=john
+
+Organizational Unit: ou=users
+
+Full Path (DN): uid=john,ou=users,dc=example,dc=com
+
+
+
+4. How to find your Base DN
+If you are logged into a server and unsure what the Base DN is, you can query the Root DSE (Directory Server Entry), which usually holds this information:
+
+
+ldapsearch -x -H ldap://localhost -s base -b "" namingContexts
+
+The output under namingContexts is your Base DN.
