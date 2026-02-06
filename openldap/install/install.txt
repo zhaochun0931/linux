@@ -280,11 +280,18 @@ result: 0 Success
 Failure: You get numResponses: 1 (just the search result) but no data, or an error. This usually means your Base DN (-b) is wrong or the user wasn't added.
 
 2. The Authentication Test (The "Bind" Test)
+
 This is the most important test. It verifies that the password you hashed actually works. You will attempt to "bind" to the LDAP server as the user rather than as the admin.
 
 
 
 ldapwhoami -x -D "uid=user01,ou=People,dc=example,dc=com" -W
+
+ldapwhoami -x -D "uid=user01,ou=People,dc=example,dc=com" -w 'password'
+
+ldapwhoami -x -H ldap://localhost:389 -D "uid=user01,ou=People,dc=example,dc=com" -w 'password'
+
+
 
 
 # ldapwhoami -x -D "uid=user01,ou=People,dc=example,dc=com" -W
@@ -342,3 +349,26 @@ result: 0 Success
 # numResponses: 2
 # numEntries: 1
 root@openldap:~#
+
+
+
+
+🚀 5. Test anonymous search (optional)
+✅ 1. List ALL entries in your LDAP (full tree)
+
+ldapsearch -x -H ldap://localhost:389 -b "dc=example,dc=com"
+
+ldapsearch -x -H ldap://localhost:389 -D "cn=admin,dc=example,dc=com" -b "dc=example,dc=com" -w 'password' 
+
+ldapsearch -x -H ldap://localhost:389 -D "cn=admin,dc=example,dc=com" -b "dc=example,dc=com" -W
+
+
+
+✅ 2. List only users (posixAccount)
+
+ldapsearch -x -H ldap://localhost:389 -D "cn=admin,dc=example,dc=com"  -b "dc=example,dc=com" "(objectClass=posixAccount)" uid cn dn -w 'password'
+
+ldapsearch -x -H ldap://localhost:389 -D "cn=admin,dc=example,dc=com"  -b "dc=example,dc=com" "(objectClass=posixAccount)" -w 'password'
+
+
+ldapsearch -x -H ldap://localhost:389 -D "cn=admin,dc=example,dc=com" -b "ou=people,dc=example,dc=com" "(objectClass=*)" -W
