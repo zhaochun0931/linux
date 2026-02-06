@@ -33,3 +33,25 @@ If you are logged into a server and unsure what the Base DN is, you can query th
 ldapsearch -x -H ldap://localhost -s base -b "" namingContexts
 
 The output under namingContexts is your Base DN.
+
+
+# ldapsearch -x -H ldap://localhost -s base -b "" namingContexts
+# extended LDIF
+#
+# LDAPv3
+# base <> with scope baseObject
+# filter: (objectclass=*)
+# requesting: namingContexts
+#
+
+#
+dn:
+namingContexts: dc=example,dc=com
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+root@openldap:~#
