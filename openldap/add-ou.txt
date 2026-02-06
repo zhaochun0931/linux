@@ -9,46 +9,29 @@ ldapadd -x -H ldap://localhost:389 -D "cn=admin,dc=example,dc=com" -w '<password
 
 
 
-✅ 1. List ALL entries in your LDAP (full tree)
-
-ldapsearch -x -H ldap://localhost:389 \
-  -D "cn=admin,dc=example,dc=com" \
-  -w 'password' \
-  -b "dc=example,dc=com"
 
 
 
 
-✅ 2. List only users (posixAccount)
 
-ldapsearch -x -H ldap://localhost:389 \
-  -D "cn=admin,dc=example,dc=com" \
-  -w 'password' \
-  -b "dc=example,dc=com" \
-  "(objectClass=posixAccount)" uid cn dn
+
+
+
+
 
 
 ✅ 3. List users under ou=people
 
-ldapsearch -x -H ldap://localhost:389 \
-  -D "cn=admin,dc=example,dc=com" \
-  -w 'password' \
-  -b "ou=people,dc=example,dc=com" \
-  "(objectClass=*)" dn
 
 
 
-✅ 4. Test user login (bind test)
-
-ldapwhoami -x -H ldap://localhost:389 \
-  -D "uid=john,ou=people,dc=example,dc=com" \
-  -w 'password'
 
 
 
-🚀 5. Test anonymous search (optional)
 
-ldapsearch -x -H ldap://localhost:389 -b "dc=example,dc=com"
+
+
+
 
 
 
