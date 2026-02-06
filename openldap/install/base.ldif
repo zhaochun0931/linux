@@ -5,3 +5,16 @@ ou: People
 dn: ou=Groups,dc=example,dc=com
 objectClass: organizationalUnit
 ou: Groups
+
+
+dn: dc=example,dc=com
+objectClass: domain
+dc: example
+
+dn: ou=dept1,dc=example,dc=com
+objectClass: organizationalUnit
+ou: dept1
+
+dn: ou=dept2,dc=example,dc=com
+objectClass: organizationalUnit
+ou: dept2
