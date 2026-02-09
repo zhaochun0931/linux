@@ -1,0 +1,17 @@
+kubectl get svc
+
+curl -H "Host: myapp2.example.com" http://localhost
+
+
+$ kubectl get svc
+NAME                 TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+helloapp1-service    ClusterIP      10.97.76.231     <none>        80/TCP                       4h5m
+helloapp2-service    ClusterIP      10.109.216.238   <none>        80/TCP                       4h3m
+kubernetes           ClusterIP      10.96.0.1        <none>        443/TCP                      6h39m
+traefik              LoadBalancer   10.109.61.137    localhost     80:30909/TCP,443:31291/TCP   125m
+web-server-service   ClusterIP      10.106.135.244   <none>        80/TCP                       6h14m
+$ curl -H "Host: myapp2.example.com" http://localhost
+Hello, world!
+Version: 2.0.0
+Hostname: helloapp2-78c59bffd9-c5lq4
+$
