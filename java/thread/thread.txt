@@ -13,3 +13,11 @@
 
 
 ✅ 3. NIO / Netty Model (non-blocking, event-loop, usually single thread)
+
+
+
+
+Every Java application has at least one thread: the main thread (which runs the main() method). 
+To do more at once, you create additional threads. These threads share the same memory space (the Heap), but each has its own private Stack.
+
+
