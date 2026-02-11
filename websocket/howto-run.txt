@@ -48,3 +48,13 @@ socket.onerror = (error) => console.log('WebSocket Error:', error);
 VM11:7 Connected to server!
 VM11:13 Message from server: Welcome to the WebSocket server!
 VM11:13 Message from server: Server received: Hello Server!
+
+
+
+5. Persistent Connections
+Once you run the code, the socket variable exists as long as that tab stays open. If you want to send another message later without re-running the whole script, you can just type:
+
+
+socket.send("Is anyone there?");
+
+and hit Enter.
