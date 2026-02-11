@@ -1,2 +1,50 @@
 apt update
 apt install npm -y
+
+
+node server.mjs
+
+
+# node server.mjs
+Server is running on ws://localhost:8080
+New client connected!
+Received: Hello Server!
+
+
+
+
+
+The best way to run your test is:
+
+Open a new tab.
+
+Type about:blank in the address bar and hit Enter.
+
+Open the Console there.
+
+Paste your code and hit Enter.
+
+
+
+
+// 1. Create the connection
+//const socket = new WebSocket('ws://localhost:8080');
+const socket = new WebSocket('ws://20.124.104.75:8080');
+
+// 2. Connection opened
+socket.addEventListener('open', (event) => {
+    console.log('Connected to server!');
+    socket.send('Hello Server!');
+});
+
+// 3. Listen for messages
+socket.addEventListener('message', (event) => {
+    console.log('Message from server:', event.data);
+});
+
+// 4. Handle errors/close
+socket.onerror = (error) => console.log('WebSocket Error:', error);
+(error) => console.log('WebSocket Error:', error)
+VM11:7 Connected to server!
+VM11:13 Message from server: Welcome to the WebSocket server!
+VM11:13 Message from server: Server received: Hello Server!
