@@ -38,9 +38,17 @@ tcp   LISTEN 0      2048              [::]:636          [::]:*    users:(("slapd
 
 
 
-openssl s_client -connect localhost:1636
+ldapmodify -Y EXTERNAL -H ldapi:/// -f add-certs.ldif
 
-$ openssl s_client -connect localhost:1636
+
+
+
+
+
+
+openssl s_client -connect localhost:636
+
+$ openssl s_client -connect localhost:636
 Connecting to ::1
 CONNECTED(00000005)
 Can't use SSL_get_servername
@@ -193,8 +201,3 @@ read R BLOCK
 export LDAPTLS_REQCERT=never
 ldapsearch -H ldaps://localhost:1636 -x -LLL -s base -b "" "(objectclass=*)"
 ldapsearch -H ldap://localhost:1389 -x -D "cn=admin,dc=example,dc=org" -w "adminpassword" -b "dc=example,dc=org" -ZZ
-
-
-
-
-
