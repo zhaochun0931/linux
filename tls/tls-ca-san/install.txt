@@ -1,10 +1,10 @@
 1️⃣ Create your CA
 
 # Generate CA private key
-openssl genrsa -out ca-key.pem 4096
+openssl genrsa -out myca.key 4096
 
 # Create self-signed CA certificate
-openssl req -x509 -new -nodes -key ca-key.pem -sha256 -days 3650 -out ca-crt.pem -subj "/C=US/ST=CA/L=SanFrancisco/O=MyOrg/OU=IT/CN=MyRootCA"
+openssl req -x509 -new -nodes -key myca.key -sha256 -days 3650 -out myca.crt -subj "/C=US/ST=CA/L=SanFrancisco/O=MyOrg/OU=IT/CN=MyRootCA"
 
 
 
@@ -21,14 +21,14 @@ openssl req -x509 -new -nodes -key ca-key.pem -sha256 -days 3650 -out ca-crt.pem
 
 First, create an OpenSSL config file (san.cnf):
 
-openssl genrsa -out server-key.pem
-openssl req -new -key server-key.pem -out server.csr -config san.cnf
+openssl genrsa -out myserver.key
+openssl req -new -key myserver.key -out myserver.csr -config san.cnf
 
 
 
 
 3️⃣ Sign Server CSR with CA
-openssl x509 -req -in server.csr -CA ca-crt.pem -CAkey ca-key.pem -CAcreateserial -out server.crt -days 825 -sha256 -extensions req_ext -extfile san.cnf
+openssl x509 -req -in myserver.csr -CA myca.crt -CAkey myca.key -CAcreateserial -out myserver.crt -days 825 -sha256 -extensions req_ext -extfile san.cnf
 
 
 You now have:
@@ -37,7 +37,7 @@ server.crt (signed by CA)
 ca.crt (trust anchor)
 
 4️⃣ Verify SANs
-openssl x509 -in server.crt -text -noout | grep -A1 "Subject Alternative Name"
+openssl x509 -in myserver.crt -text -noout | grep -A1 "Subject Alternative Name"
 
 
 You should see DNS:myserver.local, DNS:localhost, IP:127.0.0.1.
