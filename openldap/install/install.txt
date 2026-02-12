@@ -57,6 +57,18 @@ Nov 24 10:19:30 test systemd[1]: Started slapd.service - LSB: OpenLDAP standalon
 
 
 
+
+cat /etc/passwd | egrep -i openldap
+
+
+# cat /etc/passwd | egrep -i openldap
+openldap:x:110:114:OpenLDAP Server Account,,,:/var/lib/ldap:/bin/false
+#
+
+
+
+
+
 slapd -V
 
 
