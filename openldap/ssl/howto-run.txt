@@ -1,10 +1,13 @@
-/etc/default/slapd
-
+# add the following line to /etc/default/slapd
 
 SLAPD_SERVICES="ldap:/// ldapi:/// ldaps:///"
 
 
 
+
+systemctl restart slapd
+
+systemctl status slapd
 
 
 openssl s_client -connect <ldap_server_hostname>:636
@@ -15,6 +18,18 @@ Replace <ldap_server_hostname> with the LDAP server's fully qualified domain nam
 636 is the standard port for LDAPS.
 
 
+
+
+ss -antlup | egrep -i 'slapd|process'
+
+
+# ss -antlup | egrep -i 'slapd|process'
+Netid State  Recv-Q Send-Q   Local Address:Port Peer Address:PortProcess
+tcp   LISTEN 0      2048           0.0.0.0:389       0.0.0.0:*    users:(("slapd",pid=2899,fd=8))
+tcp   LISTEN 0      2048           0.0.0.0:636       0.0.0.0:*    users:(("slapd",pid=2899,fd=11))
+tcp   LISTEN 0      2048              [::]:389          [::]:*    users:(("slapd",pid=2899,fd=9))
+tcp   LISTEN 0      2048              [::]:636          [::]:*    users:(("slapd",pid=2899,fd=12))
+#
 
 
 
