@@ -1,0 +1,6 @@
+Important Distinction: OU vs. Group
+In LDAP, there is a big difference between "putting a user in an OU" and "adding a user to a group":
+
+Organizational Unit (OU): Think of this as a physical folder. A user "lives" in an OU (like ou=People). Their DN defines their location.
+
+Group (groupOfUniqueNames): This is a list. The user stays in their ou=People folder, but their name is written down on the group's "membership list."
