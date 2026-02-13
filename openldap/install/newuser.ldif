@@ -11,3 +11,18 @@ gidNumber: 10001
 homeDirectory: /home/user01
 userPassword: {SSHA}your_hashed_password_here
 gecos: user01
+
+
+dn: uid=user02,ou=People,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: user02
+uid: user02
+loginShell: /bin/bash
+uidNumber: 10002
+gidNumber: 10002
+homeDirectory: /home/user02
+userPassword: {SSHA}Q9JgYa8QAoJtJbkKkfANnOFy5ykS9oNa
+gecos: user02
