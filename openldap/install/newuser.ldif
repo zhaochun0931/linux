@@ -26,3 +26,18 @@ gidNumber: 10002
 homeDirectory: /home/user02
 userPassword: {SSHA}Q9JgYa8QAoJtJbkKkfANnOFy5ykS9oNa
 gecos: user02
+
+
+dn: cn=administrator,ou=dept1,dc=example,dc=com
+changetype: add
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: administrator
+uniqueMember: uid=user01,ou=People,dc=example,dc=com
+
+dn: cn=monitoring,ou=dept1,dc=example,dc=com
+changetype: add
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: monitoring
+uniqueMember: uid=user02,ou=People,dc=example,dc=com
