@@ -32,3 +32,33 @@ my-app/
 $
 
 
+
+
+mvn clean install
+
+mvn exec:java -Dexec.mainClass=com.mycompany.app.App
+
+
+$ tree my-app/
+my-app/
+├── logs
+│   └── app.log
+├── pom.xml
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── com
+    │   │       └── mycompany
+    │   │           └── app
+    │   │               └── App.java
+    │   └── resources
+    │       └── log4j2.xml
+    └── test
+        └── java
+            └── com
+                └── mycompany
+                    └── app
+                        └── AppTest.java
+
+13 directories, 5 files
+$
