@@ -7,11 +7,19 @@ SELinux confi gurations can only be set and modifi ed by the root user. Configur
 
 
 
-SELinux has three possible states
+SELinux States
 
-- enforcing
-- permissive
-- disabled
+SELinux has two possible states:
+  Enabled
+  Disabled
+
+
+
+SELinux Modes
+
+When SELinux is enabled, it can run in one of the following modes:
+  Enforcing
+  Permissive
 
 
 
