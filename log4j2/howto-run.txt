@@ -7,3 +7,28 @@ cd my-app/
 
 mkdir src/main/resources
 
+
+
+$ tree my-app/
+my-app/
+├── pom.xml
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── com
+    │   │       └── mycompany
+    │   │           └── app
+    │   │               └── App.java
+    │   └── resources
+    │       └── log4j2.xml
+    └── test
+        └── java
+            └── com
+                └── mycompany
+                    └── app
+                        └── AppTest.java
+
+12 directories, 4 files
+$
+
+
