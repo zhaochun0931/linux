@@ -2,3 +2,8 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
 
 
 
+cd my-app/
+
+
+mkdir src/main/resources
+
