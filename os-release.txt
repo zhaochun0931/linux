@@ -10,3 +10,27 @@ cat /etc/redhat-release
 hostnamectl
 
 rpm -q rocky-release
+
+
+3️⃣ Replacement for older methods
+
+Before /etc/os-release, people used:
+
+/etc/issue
+
+lsb_release -a
+
+/etc/redhat-release
+
+Now /etc/os-release is the standard defined by systemd.
+
+
+
+
+📦 Where It Comes From
+
+It is part of:
+
+systemd
+
+Even non-systemd distros often include it for compatibility.
