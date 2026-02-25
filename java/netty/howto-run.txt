@@ -1,0 +1,8 @@
+mvn clean install
+
+
+
+mvn exec:java -Dexec.mainClass="com.mycompany.app.EchoServer"
+
+
+mvn exec:java -Dexec.mainClass="com.mycompany.app.EchoClient"
