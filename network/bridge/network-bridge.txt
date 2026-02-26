@@ -56,3 +56,15 @@ docker0
 
 
 Kubernetes CNI plugins also rely on Linux bridges in some modes.
+
+
+
+
+🔄 Bridge vs Router
+
+| Bridge                | Router                      |
+| --------------------- | --------------------------- |
+| Layer 2               | Layer 3                     |
+| Uses MAC addresses    | Uses IP addresses           |
+| Same broadcast domain | Separates broadcast domains |
+| No IP routing         | Performs routing            |
