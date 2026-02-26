@@ -24,3 +24,23 @@ ip a
 
 bridge fdb show
 
+
+
+✅ What’s Happening Internally
+
+Docker creates:
+
+A Linux bridge (e.g., br-xxxx)
+
+A veth pair for each container
+
+Attaches one end to the bridge
+
+Other end inside the container
+
+
+So traffic path:
+
+c1 eth0 → veth → bridge → veth → c2 eth0
+
+Pure Layer 2 switching.
