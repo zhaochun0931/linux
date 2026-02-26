@@ -1,0 +1,26 @@
+docker network create my-bridge
+
+
+# docker network ls
+NETWORK ID     NAME        DRIVER    SCOPE
+f28a3eb9ea3c   bridge      bridge    local
+6703c522c6a5   host        host      local
+090e3e185085   my-bridge   bridge    local
+0029196f9e18   none        null      local
+#
+
+
+
+
+ip a
+
+4: br-090e3e185085: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether 7e:a5:cb:6b:7e:71 brd ff:ff:ff:ff:ff:ff
+    inet 172.18.0.1/16 brd 172.18.255.255 scope global br-090e3e185085
+       valid_lft forever preferred_lft forever
+    inet6 fe80::7ca5:cbff:fe6b:7e71/64 scope link
+       valid_lft forever preferred_lft forever
+
+
+bridge fdb show
+
