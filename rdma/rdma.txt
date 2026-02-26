@@ -1,0 +1,12 @@
+RDMA (Remote Direct Memory Access) is a networking technology that allows one computer to directly access the memory of another computer over a network — without involving the remote CPU, OS kernel, or extra data copies.
+
+
+
+Traditional networking:
+
+App → Kernel → NIC → Network → NIC → Kernel → App
+
+
+RDMA:
+
+App → NIC → Network → NIC → Memory
