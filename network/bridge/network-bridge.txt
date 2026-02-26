@@ -1,0 +1,58 @@
+A network bridge is a device (or software component) that connects two or more Layer-2 networks and forwards traffic between them based on MAC addresses.
+
+It operates at OSI Layer 2 (Data Link layer).
+
+
+🔎 How It Works
+
+Receives an Ethernet frame
+
+Looks at the source MAC
+
+Learns which port that MAC came from
+
+Checks destination MAC:
+
+Known → forward to correct port
+
+Unknown → flood to all ports (except incoming one)
+
+This learning table is called a MAC address table.
+
+
+
+
+
+
+📦 Bridge vs Switch
+
+| Bridge                              | Switch                      |
+| ----------------------------------- | --------------------------- |
+| Originally software or small device | Hardware-accelerated bridge |
+| Few ports                           | Many ports                  |
+| Same Layer (L2)                     | Same Layer (L2)             |
+
+
+
+
+🌉 Software Bridges (Linux Example)
+
+On Linux, a bridge is implemented using:
+
+brctl (older tool)
+
+ip link
+
+bridge command
+
+Or inside container runtimes
+
+
+
+Docker creates a default bridge called:
+
+docker0
+
+
+
+Kubernetes CNI plugins also rely on Linux bridges in some modes.
