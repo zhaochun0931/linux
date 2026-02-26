@@ -1,0 +1,58 @@
+A 64-bit JVM means the Java Virtual Machine is compiled to run in a 64-bit CPU architecture mode, allowing it to use 64-bit memory addresses and CPU registers.
+
+
+1️⃣ What does “64-bit” mean?
+
+It refers to the width of memory addresses and CPU registers.
+
+| JVM Type   | Address Width | Max Addressable Memory               |
+| ---------- | ------------- | ------------------------------------ |
+| 32-bit JVM | 32 bits       | ~4 GB                                |
+| 64-bit JVM | 64 bits       | Theoretical 16 exabytes (OS-limited) |
+
+
+In practice:
+
+32-bit JVM → typically max heap ≈ 1.5–3GB
+
+64-bit JVM → can use tens or hundreds of GB
+
+
+
+2️⃣ Why does it matter?
+🔹 Memory Capacity (Biggest Reason)
+
+If you run:
+
+java -Xmx32g
+
+It only works with a 64-bit JVM.
+
+
+
+
+
+5️⃣ How to Check If Your JVM Is 64-bit
+
+Run:
+
+java -version
+
+Example output:
+
+Java HotSpot(TM) 64-Bit Server VM
+
+If it says 64-Bit, you’re running 64-bit JVM.
+
+
+
+
+7️⃣ When Would You Ever Use 32-bit JVM?
+
+Almost never today.
+
+It might still exist in:
+
+Very old embedded systems
+
+Very old Windows machines
