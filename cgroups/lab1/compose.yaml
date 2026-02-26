@@ -1,7 +1,8 @@
 services:
-  cpu_tester:ker Desktop   o View Config   w Enable Watch
+  cpu-test:
     image: ubuntu:24.04
-    container_name: cpu_test
+    container_name: cpu-test
+    hostname: cpu-test
     command: ["bash", "-c", "apt update >/dev/null 2>&1 && apt install -y stress-ng >/dev/null 2>&1 && stress-ng --cpu 1 --timeout 60s"]
     deploy:
       resources:
