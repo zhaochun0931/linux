@@ -1,6 +1,6 @@
 docker compose up
 
-docker exec -it cpu_test bash
+docker exec -it cpu-test bash
 
 
 
@@ -34,7 +34,3 @@ root@f41f4913a6fa:/#
 
 
 That means: 30% of one CPU, with a weight of 100.
-
-
-
-
