@@ -1,3 +1,16 @@
 Dynamic Host Configuration Protocol (DHCP) is a network protocol that automatically assigns TCP/IP information to client machines. 
   
 Each DHCP client connects to the centrally located DHCP server, which returns the network configuration (including the IP address, gateway, and DNS servers) of that client.
+
+
+
+
+Ubuntu makes two DHCP servers available
+
+--- isc-dhcp-server
+This server installs dhcpd, the dynamic host configuration protocol daemon. Although Ubuntu still supports isc-dhcp-server, this software is no longer supported by its vendor.
+
+--- isc-kea
+Kea was created by ISC to replace isc-dhcp-server
+
+
