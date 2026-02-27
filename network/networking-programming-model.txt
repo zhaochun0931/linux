@@ -1,0 +1,11 @@
+Berkeley sockets API
+
+InfiniBand Verbs API
+
+| Feature     | **Berkeley Sockets**   | **InfiniBand Verbs**                      |
+| ----------- | ---------------------- | ----------------------------------------- |
+| Latency     | ~10s–100s μs (typical) | ~1–2 μs                                   |
+| Throughput  | Good                   | Very high, hardware-offloaded             |
+| CPU Usage   | Higher                 | Lower via RDMA (no CPU for data movement) |
+| OS overhead | Yes                    | Minimal (kernel bypass)                   |
+| Buffering   | OS-managed             | App-controlled                            |
