@@ -1,0 +1,16 @@
+mkdir certs
+cd certs
+
+openssl req -x509 -nodes -newkey rsa -keyout server.key -out server.crt
+
+openssl req -x509 -nodes -newkey rsa -keyout server.key -out server.crt -subj "/CN=localhost"
+
+
+
+docker compose up
+
+
+$ curl --cacert ./certs/server.crt https://localhost:443
+Hello, world! TLS
+$
+

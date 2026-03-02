@@ -1,0 +1,15 @@
+services:
+  node-app:
+    image: node:20-slim
+    container_name: my-nodejs-web
+    hostname: my-nodejs-web
+    working_dir: /app
+    volumes:
+      # Mount the current directory to the container to get app.js
+      - .:/app
+      # Explicitly mount the cert folder (Relative path : Container path)
+      - ./certs:/app/certs:ro
+    # Run app.js using node
+    command: ["node", "app.js"]
+    ports:
+      - "443:443"
