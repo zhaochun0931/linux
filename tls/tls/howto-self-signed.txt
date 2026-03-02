@@ -1,4 +1,4 @@
-# Creating a Self-Signed Certificate, A self-signed certificate is a certificate that's signed with its own private key. 
+# A self-signed certificate is a certificate that's signed with its own private key. 
 
 1. create private key
 2. create certificate signing request (CSR) from the private key, the important field is Common Name, which should be the exact Fully Qualified Domain Name (FQDN) of our domain
