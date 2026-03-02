@@ -83,5 +83,59 @@ curl http://app1.local:8080 --resolve app1.local:8080:127.0.0.1
 
 overrides DNS resolution for the hostname you use in the URL
 
+
+
+
+
+
+
+
+
+
 Makes curl resolve HOST:PORT to IP without touching /etc/hosts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. The Solution: Use --cacert
+To fix this, you must tell curl that your self-signed certificate (or the CA that created it) is a "Trusted Root."
+
+If you used a root CA to sign your server certificate, use that. If you just created a single self-signed server.crt, use the server cert itself as the CA:
+
+
+curl --cacert ./certs/server.crt https://localhost:443
+
+What is happening here?
+By passing --cacert, you are saying: "I know this certificate is self-signed, but I explicitly trust it for this connection."
+
+
+
+
+
+
+
+
+
+
+
+
 
