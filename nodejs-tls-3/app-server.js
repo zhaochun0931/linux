@@ -1,33 +1,46 @@
 'use strict';
-var tls = require('tls');
-var fs = require('fs');
+
+const tls = require('node:tls');
+const fs = require('node:fs');
+
 const PORT = 8443;
-const HOST = '127.0.0.1'
-var options = {
- key: fs.readFileSync('/tmp/server.key'),
- cert: fs.readFileSync('/tmp/server.crt')
+const HOST = '127.0.0.1';
+
+// Grouping options for better readability
+const options = {
+  key: fs.readFileSync('/tmp/server.key'),
+  cert: fs.readFileSync('/tmp/server.crt'),
+  // Consider adding rejectUnauthorized: true if using client certs
 };
-var server = tls.createServer(options, function(socket) {
- // Send a friendly message
- socket.write("I am the server sending you a message.");
- // Print the data that we received
- socket.on('data', function(data) {
-console.log('Received: %s [it is %d bytes long]',
- data.toString().replace(/(\n)/gm,""),
- data.length);
- });
- // Let us know when the transmission is over
- socket.on('end', function() {
- console.log('EOT (End Of Transmission)');
- });
+
+const server = tls.createServer(options, (socket) => {
+  console.log('Client connected:', socket.remoteAddress);
+
+  socket.setEncoding('utf8');
+  socket.write("I am the server sending you a message.\n");
+
+  // Handle incoming data
+  socket.on('data', (data) => {
+    const cleanData = data.toString().replace(/(\n|\r)/gm, "");
+    console.log(`Received: ${cleanData} [${data.length} bytes]`);
+  });
+
+  // Handle socket-specific errors (prevents server crash on client disconnect)
+  socket.on('error', (err) => {
+    console.error(`Socket error: ${err.message}`);
+  });
+
+  socket.on('end', () => {
+    console.log('EOT (End Of Transmission)');
+  });
 });
-// Start listening on a specific port and address
-server.listen(PORT, HOST, function() {
- console.log("I'm listening at %s, on port %s", HOST, PORT);
+
+// Server Lifecycle Events
+server.on('error', (err) => {
+  console.error('Server error:', err);
+  server.close(); // Graceful shutdown is better than destroy() in many cases
 });
-// When an error occurs, show it.
-server.on('error', function(error) {
- console.error(error);
- // Close the connection after the error occurred.
- server.destroy();
+
+server.listen(PORT, HOST, () => {
+  console.log(`Server listening at ${HOST}:${PORT}`);
 });
