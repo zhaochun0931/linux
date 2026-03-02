@@ -1,37 +1,49 @@
 'use strict';
-var tls = require('tls');
-var fs = require('fs');
+
+const tls = require('node:tls');
+const fs = require('node:fs');
+
 const PORT = 8443;
-const HOST = '127.0.0.1'
-// Pass the certs to the server and let it know to process even unauthorized certs.
-var options = {
- key: fs.readFileSync('/tmp/server.key'),
- cert: fs.readFileSync('/tmp/server.crt'),
- rejectUnauthorized: false
+const HOST = '127.0.0.1';
+
+const options = {
+  // If using self-signed certs, provide the CA or the cert itself here
+  // rather than just disabling security entirely.
+  ca: [ fs.readFileSync('/tmp/server.crt') ], 
+  checkServerIdentity: () => undefined, // Skip hostname verification for local testing
+  rejectUnauthorized: false // Keep false ONLY if you don't have a valid CA chain
 };
-var client = tls.connect(PORT, HOST, options, function() {
- // Check if the authorization worked
- if (client.authorized) {
- console.log("Connection authorized by a Certificate Authority.");
- } else {
- console.log("Connection not authorized: " + client.authorizationError)
- }
- // Send a friendly message
- client.write("I am the client sending you a message.");
+
+const client = tls.connect(PORT, HOST, options, () => {
+  console.log('Connected to server');
+
+  if (client.authorized) {
+    console.log("Status: Connection authorized by a Certificate Authority.");
+  } else {
+    // In many corporate environments, this is common for internal tools
+    console.warn("Status: Connection not authorized:", client.authorizationError);
+  }
+
+  client.write("I am the client sending you a message.\n");
 });
-client.on("data", function(data) {
- console.log('Received: %s [it is %d bytes long]',
- data.toString().replace(/(\n)/gm,""),
- data.length);
- // Close the connection after receiving the message
- client.end();
+
+
+
+// Handle incoming data
+client.on("data", (data) => {
+  const message = data.toString().replace(/(\n|\r)/gm, "");
+  console.log(`Received: ${message} [${data.length} bytes long]`);
+  
+  // Cleanly close the connection
+  client.end();
 });
-client.on('close', function() {
- console.log("Connection closed");
+
+// Resource management
+client.on('close', () => {
+  console.log("Connection closed");
 });
-// When an error ocoures, show it.
-client.on('error', function(error) {
- console.error(error);
- // Close the connection after the error occurred.
- client.destroy();
+
+client.on('error', (error) => {
+  console.error("Client Error:", error.message);
+  client.destroy(); 
 });
