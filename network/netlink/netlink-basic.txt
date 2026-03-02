@@ -1,0 +1,26 @@
+1. Why Netlink Exists
+
+Historically, Linux used ioctl system calls or the /proc filesystem to manage networking. However:
+
+ioctl is synchronous, inflexible, and hard to extend.
+
+/proc and /sys are text-based, which is slow for programs to parse.
+
+
+Netlink solved this by providing a socket-based, message-oriented bidirectional communication channel.
+
+
+
+
+
+
+
+
+2. How It Works
+Netlink uses the standard BSD socket API but introduces a new protocol family: AF_NETLINK.
+
+Socket-based: You open a socket just like a TCP connection, but instead of an IP address, you use a Protocol Type (e.g., NETLINK_ROUTE for networking or NETLINK_KOBJECT_UEVENT for hardware "plug-and-play" events).
+
+Asynchronous: The kernel can send "unsolicited" messages to user-space (multicasting). For example, if a network cable is unplugged, the kernel broadcasts a Netlink message, and your desktop's network manager reacts instantly.
+
+Message Format: Netlink uses a binary header followed by "Attributes" (TLVs - Type, Length, Value). This makes it very easy to add new features without breaking old software.
