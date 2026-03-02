@@ -1,3 +1,26 @@
+✅ What is sk_buff?
+
+sk_buff (socket buffer) is the core packet structure used inside the Linux kernel networking stack.
+
+Defined in:
+
+include/linux/skbuff.h
+
+It represents one packet in flight.
+
+
+
+
+
+sk_buff does NOT directly contain the packet bytes. It contains metadata + pointers to packet data.
+
+
+
+
+
+
+
+
 ✅ What Are Socket Send & Receive Buffers in Linux?
 
 Every TCP/UDP socket in Linux has two kernel-managed buffers:
