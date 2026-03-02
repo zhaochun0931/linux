@@ -158,6 +158,16 @@ The kernel uses the TX ring buffer to hold outgoing packets which should be sent
 
 
 
+Every packet goes through:
+
+NIC → Driver → Kernel Stack → Netfilter → Routing → Socket → Process
+
+
+
+
+
+
+
 
 
 
