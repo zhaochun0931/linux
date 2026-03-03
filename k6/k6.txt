@@ -1,0 +1,17 @@
+k6 (often referred to as Grafana k6) is an open-source load testing tool designed to make performance testing easy and productive for engineering teams.
+
+Think of it as a tool that simulates thousands of users visiting your website or using your API simultaneously to see if your servers crash or slow down under the pressure.
+
+
+
+
+
+How It Works
+
+A typical k6 workflow follows a simple cycle:
+
+Write: Create a .js file defining how many "Virtual Users" (VUs) you want and what actions they should take.
+
+Run: Execute the script from your terminal. k6 spins up the VUs and starts hammering your target URL.
+
+Analyze: k6 spits out metrics like request duration, error rate, and throughput.
