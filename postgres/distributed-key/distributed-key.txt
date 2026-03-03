@@ -1,0 +1,12 @@
+In PostgreSQL, the term "distributed key" (often called a distribution key or sharding key) isn't a feature of standard, standalone Postgres. Instead, it is a core concept used in distributed Postgres extensions like Citus or cloud versions like Azure Cosmos DB for PostgreSQL.
+
+When you move from a single Postgres server to a cluster of multiple servers (nodes), you have to decide how to split your data up. The column you choose to determine which row goes to which server is the Distribution Key.
+
+How It Works
+Imagine you have a users table with 100 million rows and a cluster of 4 worker nodes.
+
+The Hash: Postgres takes the value in your distribution key (e.g., user_id) and runs it through a hashing algorithm.
+
+The Assignment: Based on that hash, the row is sent to a specific "shard" on one of the worker nodes.
+
+The Result: All data for user_id = 500 will always live on the same physical node.
