@@ -1,0 +1,41 @@
+In Linux, the journey of a packet from a client machine to a server application is a complex "hand-off" between hardware and several layers of the kernel. This process is often traced using ftrace to see the exact function calls (like ip_rcv or tcp_v4_rcv) in real-time.
+
+Phase 1: Receiving the "Wire" (The Ingress Path)
+When a packet hits the Network Interface Card (NIC), it doesn't just jump into your app. It goes through a high-speed staging process:
+
+DMA & Ring Buffers: The NIC uses Direct Memory Access (DMA) to copy the packet directly into a pre-allocated area of RAM called a Ring Buffer. No CPU is used for this step.
+
+
+Hard IRQ: The NIC sends a hardware interrupt (IRQ) to the CPU. The CPU briefly pauses to acknowledge the arrival and then schedules a "Bottom Half" (SoftIRQ) to do the heavy lifting.
+
+
+SoftIRQ (NAPI): The kernel runs the NET_RX_SOFTIRQ. This is where the packet is wrapped into a kernel data structure called an sk_buff (Socket Buffer).
+
+Protocol Processing: The packet is sent up the stack.
+
+Link Layer: Handles Ethernet headers and VLAN tags.
+
+Network Layer: Calls ip_rcv(). It checks if the IP is meant for this machine and handles firewall rules (Netfilter/iptables).
+
+
+
+Phase 2: From Network to Transport (TCP/UDP)
+Once the IP layer determines the packet is "local," it hands it off to the transport layer.
+
+Transport Entry: For TCP, the function tcp_v4_rcv() is called.
+
+Socket Lookup: The kernel looks at the Source IP, Source Port, Destination IP, and Destination Port to find the specific Socket that is listening for this data.
+
+The Queue: If a match is found, the data is placed into the Socket Receive Queue. At this point, the kernel is done with its "active" processing.
+
+
+
+
+Phase 3: The Application Layer
+Now, your application (like your Node.js or Python server) finally gets involved.
+
+System Call: The application, which has been waiting (blocked) on a read() or recv() call, is woken up by the kernel.
+
+User Space Copy: The kernel copies the data from the sk_buff in kernel memory to the application's memory buffer in User Space.
+
+Processing: Your app finally "sees" the HTTP request, JSON body, or database query and starts its work.

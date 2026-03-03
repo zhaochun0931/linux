@@ -1,0 +1,44 @@
+In Linux, the egress path is the sequence of kernel operations that occur when an application sends data out to the network. It is effectively the "Ingress path in reverse," but with extra steps for routing and queuing.
+
+You can trace this entire flow using ftrace by looking for these specific kernel functions.
+
+Phase 1: The System Call (User Space to Kernel)
+The journey begins when your server application (e.g., your Node.js app) calls send(), write(), or sendto().
+
+sock_sendmsg: The generic entry point into the socket layer.
+
+tcp_sendmsg: For TCP connections, this function handles the data. It breaks the application's buffer into segments that fit the MTU (Maximum Transmission Unit) and places them into the Socket Send Queue.
+
+sk_buff Creation: Here, the kernel allocates the sk_buff (socket buffer) structure that will wrap your data for the rest of the trip.
+
+
+
+
+Phase 2: Transport & Network Layers (The Stack)
+Once the data is in segments, the kernel starts "wrapping" it in headers.
+
+Transport (TCP/UDP): Functions like tcp_transmit_skb() build the TCP header (source/dest ports, sequence numbers).
+
+Network (IP): The packet moves to the IP layer via ip_queue_xmit().
+
+Routing: The kernel performs a FIB (Forwarding Information Base) lookup to decide which network interface (like eth0) the packet should use.
+
+Netfilter (iptables/nftables): The packet hits the POSTROUTING chain. If you have a firewall or NAT configured, this is where it happens.
+
+ip_output(): The final IP layer function before the packet is handed to the device layer.
+
+
+
+
+Phase 3: The Traffic Control & Driver (The Exit)
+Before the packet hits the hardware, it enters the Traffic Control (tc) subsystem.
+
+__dev_queue_xmit(): The most important function for egress tracing. It manages the hand-off to the network device.
+
+QDisc (Queuing Discipline): The packet is placed in a queue (like fq_codel or fifo). If your network is congested, the packet waits here.
+
+dev_hard_start_xmit(): This is the "point of no return." The kernel calls the specific driver for your NIC (e.g., the Intel igb or ixgbe driver).
+
+DMA Transfer: The driver tells the NIC where the sk_buff is in RAM. The NIC uses Direct Memory Access (DMA) to pull the data onto its own hardware buffer and sends it over the wire.
+
+
