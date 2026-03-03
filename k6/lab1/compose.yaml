@@ -1,0 +1,44 @@
+services:
+  my-web:
+    image: node:20.19.6-alpine
+    container_name: my-web
+    hostname: my-web
+    working_dir: /app
+    volumes:
+      - ./app.js:/app/app.js
+    command: sh -c "node app.js"
+    networks:
+      - nodejs-net
+    ports:
+      - "8080:8080"
+
+  my-wrk:
+    image: ubuntu:22.04
+    container_name: my-wrk
+    hostname: my-wrk
+    tty: true
+    stdin_open: true
+    networks:
+      - nodejs-net
+    command: >
+      bash -c "
+      apt update &&
+      apt install -y wrk curl &&
+      echo 'wrk installed' &&
+      sleep infinity
+      "
+  k6:
+    image: grafana/k6
+    container_name: k6
+    hostname: k6
+    volumes:
+      - ./test.js:/app/test.js
+    working_dir: /app
+    entrypoint: /bin/sh -c "while true; do sleep 30; done"
+    networks:
+      - nodejs-net
+    depends_on:
+      - my-web
+
+networks:
+  nodejs-net:

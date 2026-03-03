@@ -1,0 +1,28 @@
+docker exec -it k6 sh
+
+
+k6 run test.js
+
+
+
+
+docker exec -it my-wrk bash
+
+wrk -t12 -c400 -d30s http://my-web:8080/
+
+
+
+
+
+
+The power of wrk comes from four simple flags:
+
+-t12: Use 12 threads. (Usually, you match this to the number of CPU cores you have).
+
+-c400: Keep 400 HTTP connections open.
+
+-d30s: Run the test for 30 seconds.
+
+--latency: (Highly recommended) Adds a detailed breakdown of response times (percentiles).
+
+
