@@ -1,0 +1,107 @@
+Log into the coordinator node. This is the only node you will ever talk to; it handles the distribution to the workers automatically.
+
+
+docker exec -it citus-coordinator-1 psql -U postgres -d citus_lab
+
+
+SELECT * FROM citus_add_node('worker-1', 5432);
+
+SELECT * FROM citus_add_node('worker-2', 5432);
+
+
+SELECT * FROM citus_get_active_worker_nodes();
+
+
+
+
+citus_lab=# SELECT * FROM citus_add_node('worker-1', 5432);
+ citus_add_node
+----------------
+              1
+(1 row)
+
+citus_lab=# SELECT * FROM citus_add_node('worker-2', 5432);
+ citus_add_node
+----------------
+              2
+(1 row)
+
+citus_lab=# SELECT * FROM citus_get_active_worker_nodes();
+ node_name | node_port
+-----------+-----------
+ worker-2  |      5432
+ worker-1  |      5432
+(2 rows)
+
+citus_lab=#
+
+
+
+
+
+
+
+4. Running the Distribution Test
+Now, let's create a table and see how the Distributed Key affects where data goes.
+
+Step A: Create a standard table
+
+
+CREATE TABLE sensor_data (
+    sensor_id int,
+    site_id int,
+    reading float,
+    recorded_at timestamp DEFAULT now()
+);
+
+
+
+Step B: Distribute by site_id
+This is the "Distributed Key." Citus will use this column to decide which worker gets which row.
+
+
+
+SELECT create_distributed_table('sensor_data', 'site_id');
+
+
+
+Step C: Insert test data
+
+
+INSERT INTO sensor_data (sensor_id, site_id, reading) VALUES (1, 1, 23.5); -- Should go to one worker
+INSERT INTO sensor_data (sensor_id, site_id, reading) VALUES (2, 10, 18.2); -- Should go to the other
+
+
+5. Verify the Distribution
+To see exactly how the rows are split across your Docker containers, run:
+
+SELECT site_id, count(*) 
+FROM sensor_data 
+GROUP BY site_id;
+
+
+If you chose a good key, you should see the row counts split between worker-1 and worker-2.
+
+
+
+
+
+
+
+
+
+citus_lab=# SELECT site_id, count(*)
+FROM sensor_data
+GROUP BY site_id;
+ site_id | count
+---------+-------
+       1 |     1
+      10 |     1
+(2 rows)
+
+citus_lab=#
+
+
+
+
+
