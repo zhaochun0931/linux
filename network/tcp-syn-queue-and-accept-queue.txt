@@ -10,6 +10,17 @@ ACK: Client confirms, and the connection is "Established."
 
 
 
+1. The Architecture
+When a TCP connection starts, it moves through two distinct kernelside queues:
+
+SYN Queue (Half-Open Connections): When a SYN packet arrives, the kernel stores the connection here and sends a SYN-ACK. It stays here until the final ACK is received.
+
+Accept Queue (Fully Established): Once the 3-way handshake is complete, the connection moves here. It stays here until the application calls accept().
+
+
+
+
+
 
 1. The SYN Queue (Incomplete Connection Queue)
 This is the first waiting room. When the server receives a SYN packet, it creates an entry in this queue and sends back a SYN-ACK.
