@@ -1,0 +1,39 @@
+ftrace (Function Tracer) is the official tracing framework built directly into the Linux kernel. It allows you to "see" exactly what the kernel is doing in real-time without having to modify your source code or restart your system.
+
+
+
+How It Worksftrace doesn't use a special app; its "user interface" is actually a set of files in your system's debugfs or tracefs (usually located at /sys/kernel/tracing).
+
+
+The Core Tracers
+
+function: The bread and butter. It records every time a kernel function is called.
+
+function_graph: The most "visual" tracer. It shows the entry and exit of functions, creating a C-code-like graph of the call stack.
+
+
+wakeup: Measures the maximum latency between a high-priority task waking up and actually being scheduled.
+
+
+
+
+Quick "Hello World" with ftrace
+
+
+You can try a basic trace right now if you have root access (be careful, as this can generate a lot of data):
+
+
+# 1. Enter the tracing directory
+cd /sys/kernel/tracing
+
+# 2. Select the function_graph tracer
+echo function_graph > current_tracer
+
+# 3. Enable tracing
+echo 1 > tracing_on
+
+# 4. Wait a few seconds, then stop
+echo 0 > tracing_on
+
+# 5. Read the results
+cat trace | head -n 20
