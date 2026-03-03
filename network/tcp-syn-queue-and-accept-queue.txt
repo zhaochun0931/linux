@@ -35,3 +35,18 @@ Purpose: It holds connections that are ready and waiting for your application (l
 Limit: Controlled by the backlog argument in the application's listen() call and the system-wide net.core.somaxconn.
 
 What happens if it's full? The server usually ignores the final ACK from the client. The client will think the connection is open, but the server won't respond to data, eventually leading to a "Connection timed out" or a "Connection refused" if configured that way.
+
+
+
+
+
+How to check your queues
+
+If you suspect your server is dropping connections because these queues are full, you can use the ss (socket statistics) command:
+
+Recv-Q: The number of connections currently in the Accept Queue waiting to be accepted by the app.
+
+Send-Q: The maximum size of the Accept Queue.
+
+Pro Tip: If Recv-Q is consistently equal to Send-Q, your application is likely "blocking" or too slow to process incoming users, and you're dropping connections!
+
