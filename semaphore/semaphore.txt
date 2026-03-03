@@ -1,0 +1,14 @@
+In a distributed database like VMware Tanzu GemFire, a Semaphore is a distributed data structure used to control access to a shared resource by multiple clients or processes across a cluster.
+
+While a standard Java Semaphore works within a single JVM (one application), a Distributed Semaphore works across the entire network, ensuring that if you have 10 separate application instances, they all respect the same "permit" count.
+
+1. How it Works (The "Ticket" Analogy)
+Think of a distributed semaphore as a bowl of physical tickets sitting on a central server.
+
+Permits: The number of tickets in the bowl (e.g., 5).
+
+Acquire: An application node asks, "Can I have a ticket?" If one is available, it takes it and starts working.
+
+Release: When the work is done, the node "puts the ticket back" into the bowl so someone else can use it.
+
+Blocking/TryAcquire: If the bowl is empty, the node must either wait (block) or move on (tryAcquire) with a failure.
