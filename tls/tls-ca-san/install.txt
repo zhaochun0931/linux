@@ -4,7 +4,8 @@
 openssl genrsa -out myca.key 4096
 
 # Create self-signed CA certificate
-openssl req -x509 -new -nodes -key myca.key -sha256 -days 3650 -out myca.crt -subj "/C=US/ST=CA/L=SanFrancisco/O=MyOrg/OU=IT/CN=MyRootCA"
+
+openssl req -x509 -new -nodes -key myca.key -sha256 -days 3650 -out myca.crt -subj "/C=US/ST=CA/L=SanFrancisco/O=MyOrg/OU=IT/CN=myca"
 
 
 
