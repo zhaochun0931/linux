@@ -1,0 +1,8 @@
+services:
+  socket-app:
+    image: python:3.11-slim
+    container_name: unix-socket-single-container
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: tail -f /dev/null

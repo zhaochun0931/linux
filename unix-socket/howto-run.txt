@@ -1,0 +1,10 @@
+docker exec -it unix-socket-single-container bash
+python server.py
+
+# ls -al /tmp/python_unix_socket
+srwxr-xr-x 1 root root 0 Mar  4 03:19 /tmp/python_unix_socket
+#
+
+
+docker exec -it unix-socket-single-container bash
+python client.py
