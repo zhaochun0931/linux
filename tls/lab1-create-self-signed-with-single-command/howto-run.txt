@@ -1,0 +1,84 @@
+# one single command to create a private key and a self-signed certificate, this command will create a temporary CSR
+
+openssl req -x509 -nodes -newkey rsa -keyout server.key -out server.crt
+
+
+
+
+
+
+# You can avoid the interactive prompts by using the -subj flag
+
+openssl req -x509 -nodes -newkey rsa -keyout server.key -out server.crt -subj "/C=US/ST=State/L=City/O=MyOrg/OU=IT/CN=www.example.com"
+
+openssl req -x509 -nodes -newkey rsa -keyout server.key -out server.crt -subj "/CN=localhost"
+
+
+
+
+openssl x509 -in server.crt -text -noout
+
+
+
+
+$ openssl x509 -in server.crt -text -noout
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            20:f8:16:57:95:c3:fe:d8:81:ea:f5:d6:56:4c:11:df:e0:59:b3:07
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: CN=localhost
+        Validity
+            Not Before: Mar  4 13:12:38 2026 GMT
+            Not After : Apr  3 13:12:38 2026 GMT
+        Subject: CN=localhost
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:a5:db:b3:d2:6c:97:b0:95:bc:eb:be:d6:08:75:
+                    56:77:b8:fc:52:0f:3f:a7:f8:0a:01:be:4c:63:93:
+                    33:5f:39:38:90:04:1e:be:e1:9c:1e:4b:1a:30:5e:
+                    20:c9:ba:01:fb:f1:28:f4:06:15:a8:ad:ec:98:16:
+                    5d:c1:ad:99:3c:30:af:fb:8c:7c:78:38:fb:7f:d5:
+                    06:05:5f:05:25:d1:5c:02:27:70:dd:d2:4c:98:1d:
+                    97:84:2a:c9:eb:ea:a0:f7:aa:b9:7f:1c:eb:a1:e4:
+                    63:4b:0b:21:8c:3c:83:75:66:b9:4c:87:47:b6:b6:
+                    6c:52:93:dc:de:74:ce:c2:94:2e:eb:f6:fb:73:89:
+                    c0:79:f2:b0:6b:b0:1a:bb:bc:e7:bd:05:10:af:02:
+                    a4:3f:08:6a:d2:dd:99:64:13:17:a0:f6:59:43:b4:
+                    56:f0:0c:15:3e:bb:fd:80:cc:17:2a:a5:15:df:a7:
+                    89:ba:a0:75:85:d6:31:db:c3:45:44:80:65:83:29:
+                    91:5a:bf:7b:ab:c5:4c:ca:74:41:23:5e:0b:cb:fa:
+                    db:ae:2f:87:c4:c5:75:b7:df:95:e9:42:65:21:0f:
+                    bb:d0:63:6f:8b:a1:aa:2b:d7:44:14:1a:52:73:24:
+                    e4:7d:93:ee:d3:18:d2:37:1d:2b:96:18:8c:9c:ac:
+                    08:7d
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier:
+                69:D4:7A:06:4F:F7:B4:9A:8B:F0:82:FF:90:8F:7D:10:AE:D8:47:F5
+            X509v3 Authority Key Identifier:
+                69:D4:7A:06:4F:F7:B4:9A:8B:F0:82:FF:90:8F:7D:10:AE:D8:47:F5
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        68:41:bd:6a:cf:e8:c4:c6:01:39:7b:6a:0c:5f:a2:72:aa:13:
+        a8:cf:96:cd:32:50:3d:a2:62:2f:ef:cf:6e:ac:df:02:3b:57:
+        03:aa:ba:2c:86:47:14:80:d0:39:0e:25:2c:b7:70:73:93:11:
+        3c:cf:58:bf:91:66:f1:76:af:c3:05:bd:22:f7:a6:ac:48:e2:
+        8e:20:eb:ed:b4:c6:e6:32:da:cb:c9:be:b7:3b:09:70:2d:43:
+        f7:5c:0d:cb:80:03:48:60:20:86:4a:27:20:cc:70:4f:e0:1b:
+        d9:9a:be:d6:5f:6c:c5:45:dc:c0:8a:f3:a0:6f:07:97:3f:3c:
+        30:f7:67:ab:58:6f:bf:9b:15:d6:8e:c4:8c:1d:32:a2:69:a6:
+        fc:cd:86:14:46:81:35:17:66:45:02:6e:90:3e:7a:a1:2d:21:
+        75:27:67:24:bb:33:f4:2b:92:1d:5f:c4:a7:a1:11:cd:34:8a:
+        5f:ec:2f:0e:49:36:82:e3:52:74:56:91:e8:37:3c:d5:a8:a9:
+        76:b1:bc:11:27:f1:49:49:1a:4a:41:4b:6b:b8:94:25:3f:b5:
+        0a:60:ae:59:aa:f3:ce:a1:44:d9:f2:52:11:f9:3a:65:8a:13:
+        c0:6f:14:c2:3b:18:9a:58:a8:4b:c0:09:3a:6c:ab:8f:91:43:
+        1f:75:bf:e2
+$
+
