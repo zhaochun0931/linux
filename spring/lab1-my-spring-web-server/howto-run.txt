@@ -1,0 +1,36 @@
+3. How the Request Flows
+Understanding how Spring Boot handles your request helps when you start adding databases or security.
+
+Request: A user hits http://localhost:8080/hello.
+
+DispatcherServlet: The "front controller" receives the request.
+
+Handler Mapping: It finds HelloController.
+
+Controller: The method executes and returns the String.
+
+Response: The user sees the text in their browser.
+
+
+
+
+
+4. Running the App
+Open your terminal in the project root.
+
+Run ./mvnw spring-boot:run.
+
+Visit http://localhost:8080/hello
+
+
+
+or
+
+curl localhost:8080/hello
+
+
+
+
+
+
+mvn spring-boot:run
