@@ -1,0 +1,14 @@
+docker compose build
+
+docker compose up
+
+
+
+
+curl localhost:8080
+
+
+
+http://localhost:8404/stats
+
+admin/password
