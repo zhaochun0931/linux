@@ -1,0 +1,32 @@
+services:
+  r1:
+    build: .
+    container_name: r1
+    hostname: r1
+    privileged: true
+    networks:
+      - bgp-lab
+
+  r2:
+    build: .
+    container_name: r2
+    hostname: r2
+    privileged: true
+    networks:
+      - bgp-lab
+    depends_on:
+      - r1
+
+  r3:
+    build: .
+    container_name: r3
+    hostname: r3
+    privileged: true
+    networks:
+      - bgp-lab
+    depends_on:
+      - r2
+
+networks:
+  bgp-lab:
+    driver: bridge
