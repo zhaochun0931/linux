@@ -1,34 +1,3 @@
-# add GPG key
-curl -s https://deb.frrouting.org/frr/keys.gpg | sudo tee /usr/share/keyrings/frrouting.gpg > /dev/null
-
-# possible values for FRRVER: 
-frr-6 frr-7 frr-8 frr-9 frr-9.0 frr-9.1 frr-10 frr10.0 frr10.1 frr-10.2 frr-10.3 frr-rc frr-stable
-
-# frr-stable will be the latest official stable release. frr-rc is the latest release candidate in beta testing
-FRRVER="frr-stable"
-echo deb '[signed-by=/usr/share/keyrings/frrouting.gpg]' https://deb.frrouting.org/frr \
-     $(lsb_release -s -c) $FRRVER | sudo tee -a /etc/apt/sources.list.d/frr.list
-
-# update and install FRR
-sudo apt update && sudo apt install frr frr-pythontools -y
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 After a fresh install, starting FRR will do nothing. This is because daemons must be explicitly enabled by editing a file in your configuration directory.
 
 
@@ -76,6 +45,3 @@ neighbor [neighbor_IP] remote-as [neighbor_AS_number]
 
 
 show running-config
-
-
-
