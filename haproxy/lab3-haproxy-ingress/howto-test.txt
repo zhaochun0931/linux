@@ -1,0 +1,43 @@
+# kubectl get service haproxy-kubernetes-ingress --namespace haproxy-controller
+NAME                         TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)                                                                  AGE
+haproxy-kubernetes-ingress   NodePort   10.103.161.102   <none>        80:32308/TCP,443:31717/TCP,443:31717/UDP,1024:32635/TCP,6060:31669/TCP   33m
+#
+
+# kubectl get ing
+NAME              CLASS     HOSTS               ADDRESS          PORTS   AGE
+example-ingress   haproxy   myapp.example.com   10.103.161.102   80      100s
+root@rabbitmq:~#
+
+
+curl -v -H "Host: myapp.example.com" http://10.103.161.102
+
+
+
+curl -H "Host: myapp.example.com" http://localhost:32308
+
+# curl -H "Host: myapp.example.com" http://localhost:32308
+You've hit my-kubia-7466dff68d-trqjr
+#
+
+
+
+# curl -v  -H "Host: myapp.example.com" http://localhost:32308
+* Host localhost:32308 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:32308...
+* connect to ::1 port 32308 from ::1 port 33888 failed: Connection refused
+*   Trying 127.0.0.1:32308...
+* Connected to localhost (127.0.0.1) port 32308
+> GET / HTTP/1.1
+> Host: myapp.example.com
+> User-Agent: curl/8.5.0
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< date: Thu, 12 Mar 2026 12:41:35 GMT
+< transfer-encoding: chunked
+<
+You've hit my-kubia-7466dff68d-8fjpj
+* Connection #0 to host localhost left intact
+#

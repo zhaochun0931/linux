@@ -1,0 +1,46 @@
+# Install with Helm
+
+helm repo add haproxytech https://haproxytech.github.io/helm-charts
+
+
+
+helm repo update
+
+
+helm install haproxy-kubernetes-ingress haproxytech/kubernetes-ingress \
+  --create-namespace \
+  --namespace haproxy-controller
+
+
+
+
+kubectl get service haproxy-kubernetes-ingress --namespace haproxy-controller
+
+
+
+
+
+
+# Check your installation
+
+
+
+kubectl get pods --namespace haproxy-controller
+
+
+# kubectl get pods --namespace haproxy-controller
+
+NAME                                          READY   STATUS    RESTARTS   AGE
+haproxy-kubernetes-ingress-5bb5989ffb-bzvtb   1/1     Running   0          2m48s
+haproxy-kubernetes-ingress-5bb5989ffb-fpb8c   1/1     Running   0          2m48s
+#
+
+
+
+kubectl get svc --namespace haproxy-controller
+
+
+# kubectl get svc --namespace haproxy-controller
+NAME                         TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)                                                                  AGE
+haproxy-kubernetes-ingress   NodePort   10.103.161.102   <none>        80:32308/TCP,443:31717/TCP,443:31717/UDP,1024:32635/TCP,6060:31669/TCP   3m15s
+#
