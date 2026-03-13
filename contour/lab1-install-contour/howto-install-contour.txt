@@ -1,0 +1,40 @@
+kubectl apply -f https://projectcontour.io/quickstart/contour.yaml
+
+
+kubectl get pods -n projectcontour -o wide
+
+
+
+$ kubectl get pods -n projectcontour -o wide
+NAME                            READY   STATUS      RESTARTS   AGE   IP          NODE             NOMINATED NODE   READINESS GATES
+contour-9f9bfd96c-pt94j         1/1     Running     0          37s   10.1.3.72   docker-desktop   <none>           <none>
+contour-9f9bfd96c-v4fn6         1/1     Running     0          37s   10.1.3.74   docker-desktop   <none>           <none>
+contour-certgen-v1-33-2-vqckf   0/1     Completed   0          37s   10.1.3.71   docker-desktop   <none>           <none>
+envoy-8ws4m                     2/2     Running     0          37s   10.1.3.73   docker-desktop   <none>           <none>
+$
+
+
+
+You should see the following:
+
+2 Contour pods each with status Running and 1/1 Ready
+1+ Envoy pod(s), each with the status Running and 2/2 Ready
+
+
+
+
+
+kubectl -n projectcontour get po,svc
+
+
+$ kubectl -n projectcontour get po,svc
+NAME                                READY   STATUS      RESTARTS   AGE
+pod/contour-9f9bfd96c-pt94j         1/1     Running     0          106s
+pod/contour-9f9bfd96c-v4fn6         1/1     Running     0          106s
+pod/contour-certgen-v1-33-2-vqckf   0/1     Completed   0          106s
+pod/envoy-8ws4m                     2/2     Running     0          106s
+
+NAME              TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+service/contour   ClusterIP      10.110.90.64    <none>        8001/TCP                     106s
+service/envoy     LoadBalancer   10.110.46.254   localhost     80:32228/TCP,443:31297/TCP   106s
+$

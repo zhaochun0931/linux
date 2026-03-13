@@ -1,0 +1,42 @@
+kubectl apply -f https://projectcontour.io/quickstart/contour-gateway-provisioner.yaml
+
+
+kubectl -n projectcontour get deployments
+
+
+
+install gateway class
+
+install gateway
+
+
+kubectl -n projectcontour get gateways
+
+kubectl -n projectcontour get pods
+
+
+
+$ kubectl -n projectcontour get gateways
+NAME      CLASS     ADDRESS     PROGRAMMED   AGE
+contour   contour   localhost   True         2m41s
+$
+
+
+$ kubectl -n projectcontour get pods
+NAME                                          READY   STATUS    RESTARTS   AGE
+contour-contour-5f9b4d8b8f-8rpl9              1/1     Running   0          2m4s
+contour-contour-5f9b4d8b8f-w9swg              1/1     Running   0          2m4s
+contour-gateway-provisioner-d8ddcb99d-4t5d9   1/1     Running   0          6m50s
+envoy-contour-8j562                           2/2     Running   0          2m3s
+$
+
+
+
+kubectl apply -f httpbin.yaml
+
+kubectl -n projectcontour port-forward service/envoy-contour 8888:80
+
+
+In a browser or via curl, make a request to http://local.projectcontour.io:8888
+
+

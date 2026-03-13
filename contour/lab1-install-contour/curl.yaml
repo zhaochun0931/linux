@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: curl-debug
+  labels:
+    app: curl-tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: curl-tools
+  template:
+    metadata:
+      labels:
+        app: curl-tools
+    spec:
+      containers:
+      - name: curl
+        image: curlimages/curl:latest
+        command: ["/bin/sh", "-c"]
+        args: ["sleep infinity"]

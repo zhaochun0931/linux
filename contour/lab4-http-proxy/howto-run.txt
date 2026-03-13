@@ -1,0 +1,7 @@
+$ kubectl get httpproxy
+NAME    FQDN                TLS SECRET   STATUS   STATUS DESCRIPTION
+basic   foo-basic.bar.com                valid    Valid HTTPProxy
+$
+
+curl -H "Host: foo-basic.bar.com" http://localhost
+
