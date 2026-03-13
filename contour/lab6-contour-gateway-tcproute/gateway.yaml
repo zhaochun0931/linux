@@ -1,0 +1,14 @@
+# gateway.yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: my-gateway
+spec:
+  gatewayClassName: contour
+  listeners:
+  - name: postgres-tcp
+    protocol: TCP       # <--- Crucial change
+    port: 9000
+    allowedRoutes:
+      kinds:
+      - kind: TCPRoute  # <--- Allow TCPRoute instead of TLSRoute

@@ -1,0 +1,7 @@
+kubectl get gatewayclass
+
+
+kubectl get gateway
+
+
+kubectl get tlsroute

@@ -1,0 +1,14 @@
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TLSRoute
+metadata:
+  name: postgres-tls-route
+  namespace: default
+spec:
+  parentRefs:
+  - name: my-gateway # Must match your Contour Gateway name
+  hostnames:
+  - "db.example.com"
+  rules:
+  - backendRefs:
+    - name: postgres-clusterip
+      port: 5432

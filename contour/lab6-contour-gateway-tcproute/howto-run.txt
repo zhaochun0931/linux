@@ -1,0 +1,5 @@
+kubectl apply -f gateway.yaml
+
+kubectl apply -f tcproute.yaml
+
+psql -h localhost -p 9000 -U postgres -d postgres
