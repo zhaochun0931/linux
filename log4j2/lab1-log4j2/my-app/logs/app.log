@@ -1,0 +1,16 @@
+2026-03-14 21:47:31 INFO  App:10 - Application 'LogMaster' version 1.0 is initializing.
+2026-03-14 21:47:31 DEBUG App:20 - Attempting division: 10 divided by 0
+2026-03-14 21:47:31 WARN  App:24 - Calculation warning: Division by zero is imminent!
+2026-03-14 21:47:31 ERROR App:32 - Calculation failed! A mathematical error occurred: / by zero
+2026-03-14 21:47:31 ERROR App:35 - Stack trace details:
+java.lang.ArithmeticException: / by zero
+	at com.mycompany.app.App.main(App.java:27)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.codehaus.mojo.exec.AbstractExecJavaBase.executeMainMethod(AbstractExecJavaBase.java:402)
+	at org.codehaus.mojo.exec.ExecJavaMojo.executeMainMethod(ExecJavaMojo.java:142)
+	at org.codehaus.mojo.exec.AbstractExecJavaBase.doExecClassLoader(AbstractExecJavaBase.java:377)
+	at org.codehaus.mojo.exec.AbstractExecJavaBase.lambda$execute$0(AbstractExecJavaBase.java:287)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-03-14 21:47:31 INFO  App:40 - Application processing complete.
+2026-03-14 21:47:31 DEBUG App:41 - Exiting main method. Cleanup successful.
