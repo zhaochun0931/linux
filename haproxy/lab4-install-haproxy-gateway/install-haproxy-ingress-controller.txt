@@ -1,0 +1,63 @@
+# To enable Gateway API, you must update your HAProxy Kubernetes Ingress Controller Deployment
+
+
+
+helm repo add haproxytech https://haproxytech.github.io/helm-charts
+
+helm repo update
+
+
+# install haproxy ingress controller
+
+helm install haproxy-kubernetes-ingress haproxytech/kubernetes-ingress \
+  --create-namespace \
+  --namespace haproxy-controller
+
+
+
+# verify
+
+kubectl get pods --namespace haproxy-controller
+
+
+kubectl get svc --namespace haproxy-controller
+
+
+
+
+
+
+
+
+
+# enable gateway
+
+# crd
+
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.5.1/experimental-install.yaml
+
+kubectl apply -f https://raw.githubusercontent.com/haproxytech/kubernetes-ingress/master/deploy/tests/config/experimental/gwapi-rbac.yaml
+
+
+
+helm upgrade haproxy-kubernetes-ingress haproxytech/kubernetes-ingress \
+  --namespace haproxy-controller \
+  -f values.yaml
+
+
+
+
+# Define a GatewayClass
+
+kubectl apply -f haproxy-ingress-gatewayclass.yaml
+
+
+kubectl get gatewayclass
+
+
+$ kubectl get gatewayclass
+NAME                           CONTROLLER                       ACCEPTED   AGE
+haproxy-ingress-gatewayclass   haproxy.org/gateway-controller   True       5s
+$
+
+
