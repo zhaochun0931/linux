@@ -10,3 +10,26 @@ App → Kernel → NIC → Network → NIC → Kernel → App
 RDMA:
 
 App → NIC → Network → NIC → Memory
+
+
+
+The most significant technical advantage of InfiniBand is RDMA (Remote Direct Memory Access).
+
+
+
+In a TCP network, when data arrives at a server:
+
+The Network Card (NIC) gets the data.
+
+The CPU is interrupted to process the TCP headers.
+
+The data is copied from the NIC to the Kernel memory, then to the Application memory.
+
+
+
+
+In an InfiniBand network with RDMA:
+
+Data moves directly from the memory of Server A to the memory of Server B.
+
+The CPU is completely bypassed.
