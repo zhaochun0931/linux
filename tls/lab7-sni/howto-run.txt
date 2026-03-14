@@ -1,0 +1,25 @@
+openssl req -x509 -newkey rsa:2048 -keyout alpha.key -out alpha.crt -days 365 -nodes -subj "/CN=site-alpha.com"
+
+openssl req -x509 -newkey rsa:2048 -keyout beta.key -out beta.crt -days 365 -nodes -subj "/CN=site-beta.com"
+
+
+
+python demo-server.py
+
+
+Test 1: Requesting Alpha
+
+
+openssl s_client -connect 127.0.0.1:8443 -servername site-alpha.com | grep "subject="
+
+Result: You will see subject=CN = site-alpha.com
+
+
+
+
+Test 2: Requesting Beta
+
+
+openssl s_client -connect 127.0.0.1:8443 -servername site-beta.com | grep "subject="
+
+Result: You will see subject=CN = site-beta.com
