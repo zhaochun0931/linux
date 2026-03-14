@@ -1,0 +1,13 @@
+docker compose up
+
+
+
+
+$ curl localhost
+You've hit e9587aed9bb8
+$
+
+
+$ curl localhost
+You've hit cf087a34c7e1
+$
