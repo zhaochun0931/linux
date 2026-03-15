@@ -1,8 +1,0 @@
-services:
-  jdk:
-    image: amazoncorretto:21
-    container_name: amazon-jdk
-    command: tail -f /dev/null      # keep container running
-    working_dir: /app               # working directory inside container
-    volumes:
-      - ./app:/app                  # mount local app folder into container
