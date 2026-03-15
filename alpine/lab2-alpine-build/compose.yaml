@@ -1,0 +1,13 @@
+services:
+  alpine:
+    build: .
+    container_name: alpine
+    tty: true
+    stdin_open: true
+    command: /bin/sh
+    networks:
+      - alpine-net
+
+networks:
+  alpine-net:
+    driver: bridge

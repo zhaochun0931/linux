@@ -1,0 +1,15 @@
+docker compose build
+
+
+docker compose up
+
+
+
+
+docker exec -it alpine sh
+
+id
+
+$ id
+uid=1000(myuser) gid=1000(myuser) groups=1000(myuser)
+$
