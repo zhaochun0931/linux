@@ -1,4 +1,0 @@
-docker compose up
-
-
-docker exec -it busybox sh
