@@ -1,0 +1,40 @@
+Step 1: Generate the Keystore
+The keystore holds your private key and the public certificate.
+
+
+keytool -genkeypair -alias myapp-key -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore keystore.p12 -validity 365
+
+
+
+keytool -genkeypair -alias myapp-key -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore keystore.p12 -validity 365 -dname "CN=localhost, OU=IT, O=MyCompany, L=Shanghai, ST=Shanghai, C=CN" -storepass password
+
+
+
+
+
+Step 2: Export the Public Certificate
+To create a truststore, you first need to extract the public certificate from the keystore you just created. The truststore needs this so it knows who to trust.
+
+
+keytool -exportcert -alias myapp-key -keystore keystore.p12 -storetype PKCS12 -file myapp-public.cer
+
+
+
+
+
+Step 3: Create the Truststore (and Import the Certificate)
+Now, take that exported public certificate and import it into a brand new truststore.
+
+
+keytool -importcert -alias myapp-key -keystore truststore.p12 -storetype PKCS12 -file myapp-public.cer
+
+
+
+
+
+Step 4: Verify
+
+keytool -list -v -keystore keystore.p12 -storetype PKCS12
+
+openssl pkcs12 -info -in keystore.p12 -noout
+
