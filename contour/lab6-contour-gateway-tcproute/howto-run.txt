@@ -1,0 +1,21 @@
+kubectl apply -f postgres.yaml
+
+kubectl apply -f clusterip-svc.yaml
+
+kubectl apply -f gateway.yaml
+
+kubectl apply -f tcproute.yaml
+
+
+
+
+export PGPASSWORD=password
+  
+psql -h localhost -p 9000 -U postgres -d postgres -c "\d"
+
+create table t1 (id int);
+
+create table t2 (id int);
+
+create table t3 (id int);
+
