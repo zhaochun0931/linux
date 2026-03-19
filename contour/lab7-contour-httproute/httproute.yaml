@@ -1,0 +1,27 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: my-demo-route
+  namespace: default
+spec:
+  parentRefs:
+  - name: contour
+  rules:
+  
+  # Rule 1: Route to Version 1
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /v1
+    backendRefs:
+    - name: app-v1-svc
+      port: 80
+      
+  # Rule 2: Route to Version 2
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /v2
+    backendRefs:
+    - name: app-v2-svc
+      port: 80
