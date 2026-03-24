@@ -1,0 +1,55 @@
+helm repo add traefik https://traefik.github.io/charts
+
+helm repo update
+
+
+
+
+
+helm install traefik traefik/traefik
+
+
+
+helm list
+
+
+$ helm list
+NAME   	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART         	APP VERSION
+traefik	default  	1       	2026-03-24 13:08:18.024279 +0800 CST	deployed	traefik-39.0.6	v3.6.11
+$
+
+
+
+kubectl get pods
+
+
+kubectl get svc
+
+
+
+$ kubectl get pods
+NAME                      READY   STATUS    RESTARTS   AGE
+traefik-88ff548c4-89zks   1/1     Running   0          98s
+$
+$ kubectl get svc
+NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+kubernetes   ClusterIP      10.96.0.1       <none>        443/TCP                      12m
+traefik      LoadBalancer   10.96.218.112   172.25.0.5    80:31718/TCP,443:31721/TCP   101s
+$
+
+
+
+
+
+
+
+
+kubectl apply -f rule.yaml
+
+
+$ kubectl get ing
+NAME                 CLASS     HOSTS             ADDRESS      PORTS   AGE
+my-traefik-ingress   traefik   api.example.com   172.25.0.5   80      27m
+$
+
+curl -H "Host: api.example.com" http://localhost
