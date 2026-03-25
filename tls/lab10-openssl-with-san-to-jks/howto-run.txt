@@ -1,0 +1,69 @@
+1. Generate the Certificate with SAN
+Run this command to create the private key and the certificate. We include the IP address in the subjectAltName field.
+
+# Replace with your actual IP
+IP_ADDR="172.16.204.139"
+
+openssl req -newkey rsa:2048 -nodes -keyout server.key -x509 -days 365 -out server.crt \
+    -subj "/C=US/ST=State/L=City/O=GemFire/OU=Dev/CN=$IP_ADDR" \
+    -addext "subjectAltName = IP:$IP_ADDR"
+
+2. Create the Keystore (server-keystore.jks)
+
+This file holds the Private Key and the Certificate. The server uses this to identify itself.
+
+Bash
+# Step A: Create PKCS12 bundle (Intermediate step)
+openssl pkcs12 -export -in server.crt -inkey server.key \
+               -out server.p12 -name "gemfire-server" \
+               -passout pass:password
+
+# Step B: Import into JKS Keystore
+keytool -importkeystore -srckeystore server.p12 -srcstoretype PKCS12 \
+        -destkeystore server-keystore.jks -deststoretype JKS \
+        -srcstorepass password -deststorepass password -noprompt
+
+3. Create the Truststore (server-truststore.jks)
+This file holds only the Public Certificate. It is used by the server to verify other members or clients that present this certificate.
+
+keytool -import -alias gemfire-ca -file server.crt \
+        -keystore server-truststore.jks -storetype JKS \
+        -storepass password -noprompt
+
+4. Verify the Files
+You can now compare the two files using keytool -list.
+
+Keystore: Will show PrivateKeyEntry.
+
+Truststore: Will show trustedCertEntry.
+
+
+
+
+1. How to check the Keystore
+The Keystore contains your private key. You are looking for a PrivateKeyEntry.
+
+keytool -list -v -keystore server-keystore.jks -storepass password
+
+What to look for in the output:
+
+Alias name: gemfire-server (or whatever you named it).
+
+Entry type: PrivateKeyEntry. This is the key detail. It means this file can be used to identify the server during a TLS handshake.
+
+Certificate chain length: Usually 1 for self-signed.
+
+Extensions: Look for SubjectAlternativeName to confirm your IP (172.16.204.139) is correctly embedded.
+
+2. How to check the Truststore
+The Truststore usually contains only public certificates. You are looking for a trustedCertEntry.
+
+keytool -list -v -keystore server-truststore.jks -storepass password
+
+What to look for in the output:
+
+Alias name: gemfire-ca.
+
+Entry type: trustedCertEntry. This confirms there is no private key in this file; it is strictly used to verify others.
+
+Owner/Issuer: These should match the details of the certificate you imported.
