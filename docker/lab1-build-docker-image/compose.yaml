@@ -1,0 +1,11 @@
+services:
+  web-app:
+    build: ./app
+    ports:
+      - "8080:8080"
+    networks:
+      - my-app-network
+
+networks:
+  my-app-network:
+    driver: bridge
