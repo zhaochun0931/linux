@@ -1,0 +1,22 @@
+# 1. Root CA
+openssl genrsa -out rootCA.key 4096
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 3650 -config openssl.cnf -extensions v3_ca -out rootCA.crt -subj "/CN=MyPrivateRoot"
+
+# 2. Intermediate CA
+openssl genrsa -out intermediate.key 4096
+openssl req -new -key intermediate.key -out intermediate.csr -subj "/CN=MyIntermediate"
+openssl x509 -req -in intermediate.csr -CA rootCA.crt -CAkey rootCA.key -CAcreateserial -out intermediate.crt -days 3650 -extfile openssl.cnf -extensions v3_intermediate
+
+# 3. Server Cert (The Entity)
+openssl genrsa -out localhost.key 2048
+openssl req -new -key localhost.key -out localhost.csr -subj "/CN=localhost"
+openssl x509 -req -in localhost.csr -CA intermediate.crt -CAkey intermediate.key -CAcreateserial -out localhost.crt -days 825 -extfile openssl.cnf -extensions v3_webapp
+
+# 4. The Bundle (Crucial for TLS Termination)
+cat localhost.crt intermediate.crt > fullchain.pem
+
+
+
+
+
+curl --cacert rootCA.crt https://localhost

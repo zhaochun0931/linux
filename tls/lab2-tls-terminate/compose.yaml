@@ -1,0 +1,19 @@
+services:
+  terminator:
+    image: nginx:alpine
+    ports:
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    networks:
+      - private-tier
+
+  backend-api:
+    build: ./app # Uses the Node.js Dockerfile from earlier
+    networks:
+      - private-tier
+
+networks:
+  private-tier:
+    driver: bridge
