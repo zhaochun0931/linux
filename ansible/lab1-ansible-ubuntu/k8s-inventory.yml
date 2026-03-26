@@ -1,0 +1,8 @@
+plugin: kubernetes.core.k8s
+connections:
+  - context: rancher-desktop
+hostnames:
+  - metadata.name
+keyed_groups:
+  - key: metadata.labels
+    separator: "_"

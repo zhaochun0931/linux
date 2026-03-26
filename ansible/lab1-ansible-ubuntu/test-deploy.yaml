@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ansible-targets
+  labels:
+    app: test
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+      - name: ubuntu-node
+        image: my-ansible-ubuntu:v1  # Your custom image!
+#        imagePullPolicy: IfNotPresent

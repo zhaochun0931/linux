@@ -1,0 +1,22 @@
+docker build -t my-ansible-ubuntu:v1 .
+
+
+
+
+
+ansible-inventory -i k8s-inventory.yml --graph
+
+
+
+ansible label_app_test -i k8s-inventory.yml -c community.kubernetes.kubectl -m ping
+
+ansible label_app_test -i k8s-inventory.yml -c community.kubernetes.kubectl -a 'uptime'
+
+ansible label_app_test -i k8s-inventory.yml -c community.kubernetes.kubectl -a 'free -h'
+
+
+
+ansible label_app_test -i k8s-inventory.yml -c community.kubernetes.kubectl -m shell -a 'echo hello > /tmp/xxx'
+
+
+ansible label_app_test -i k8s-inventory.yml -c community.kubernetes.kubectl -m shell -a 'cat /tmp/xxx'
