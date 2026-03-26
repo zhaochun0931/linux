@@ -1,0 +1,1 @@
+ansible label_app_test -i k8s-inventory.yml -c community.kubernetes.kubectl -m ping
