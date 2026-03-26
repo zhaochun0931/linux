@@ -1,0 +1,72 @@
+Step 1: The Root CA (The "Trust Anchor")
+The Root CA is the top of the pyramid. You only use this to sign the Intermediate.
+
+
+openssl genrsa -out rootCA.key 4096
+
+
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 3650 \
+  -config openssl.cnf -extensions v3_ca \
+  -out rootCA.crt -subj "/CN=MyPrivateRootCA"
+
+
+
+
+Step 2: The Intermediate CA (The "Issuer")
+Using an intermediate protects your Root Key.
+
+# 1. Generate Key
+openssl genrsa -out intermediate.key 4096
+
+
+# Generate CSR
+openssl req -new -key intermediate.key -out intermediate.csr -subj "/CN=MyIntermediateCA"
+
+# Sign with Root
+openssl x509 -req -in intermediate.csr -CA rootCA.crt -CAkey rootCA.key \
+  -CAcreateserial -out intermediate.crt -days 3650 -sha256 \
+  -extfile openssl.cnf -extensions v3_intermediate
+
+
+
+
+
+
+Step 3: The Entity Certificate (The "Website")
+This is the certificate Nginx will actually show to users.
+
+# 1. Generate Key
+openssl genrsa -out localhost.key 2048
+
+
+# Generate CSR
+openssl req -new -key localhost.key -out localhost.csr -subj "/CN=localhost"
+
+# Sign with Intermediate
+openssl x509 -req -in localhost.csr -CA intermediate.crt -CAkey intermediate.key \
+  -CAcreateserial -out localhost.crt -days 825 -sha256 \
+  -extfile openssl.cnf -extensions v3_webapp
+
+
+
+
+
+
+
+Step 4: The Bundle (The "Full Chain")
+Nginx needs the Entity + Intermediate in a single file so it can prove the path back to the Root.
+
+cat localhost.crt intermediate.crt > fullchain.pem
+
+
+
+
+
+
+openssl x509 -in fullchain.pem -text -noout
+
+
+
+
+
+curl --cacert rootCA.crt https://localhost
