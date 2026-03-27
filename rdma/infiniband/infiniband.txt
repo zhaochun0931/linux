@@ -1,0 +1,26 @@
+InfiniBand is often called a "lossless" fabric because, unlike Ethernet/TCP, it doesn't just "drop" packets when things get crowded. It handles traffic like a high-end railway system rather than a chaotic highway.
+
+Here are the three main reasons InfiniBand smokes traditional Ethernet in an HPC environment:
+
+1. Remote Direct Memory Access (RDMA)
+In a traditional TCP setup, data has to be copied multiple times: from the application to the OS kernel, then to the network card, then across the wire, and then the reverse on the other side. Each copy costs CPU cycles and time.
+
+InfiniBand uses Zero-Copy. Data moves directly from the memory of Server A to the memory of Server B. The CPU is never even interrupted. It’s like having a teleporter for data instead of a delivery truck.
+
+2. Cut-Through Switching
+Standard Ethernet switches usually use "Store-and-Forward." The switch waits to receive the entire packet, checks it for errors, and then sends it out.
+
+InfiniBand switches use Cut-Through switching. As soon as the switch sees the destination address in the packet header (the very first few bits), it starts forwarding the packet to the next hop—even before the rest of the packet has fully arrived. This reduces "hop latency" to near zero.
+
+3. Credit-Based Flow Control
+In TCP, if a receiver is overwhelmed, it drops the packet, and the sender has to wait for a timeout and try again. This "retry" logic is a performance killer.
+
+InfiniBand uses a Credit System:
+
+The receiving port tells the sender, "I have room for 5 packets (5 credits)."
+
+The sender only sends 5 packets and then stops.
+
+As the receiver processes data, it sends more credits back.
+
+Result: Buffers never overflow, packets are never dropped, and you never waste time on retransmissions.
