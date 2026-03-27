@@ -1,0 +1,19 @@
+RoCE (pronounced "rocky") stands for RDMA over Converged Ethernet.
+
+Think of it as a "hybrid" technology. It takes the super-fast, zero-copy capabilities of InfiniBand (the RDMA part) and runs them over standard Ethernet cables and switches.
+
+It was created because while InfiniBand is incredibly fast, it is also expensive and requires specialized hardware. RoCE allows companies to get "supercomputer-like" speeds using the Ethernet infrastructure they already own.
+
+How RoCE Works
+In a normal network, data has to travel through the "TCP/IP stack," which is like a series of slow checkpoints managed by the CPU. RoCE skips all of that.
+
+It encapsulates InfiniBand transport packets inside standard Ethernet frames. This allows the network card (NIC) to move data directly from one application's memory to another's across the network.
+
+The Two Versions of RoCE
+There are two types you’ll run into in a data center:
+
+RoCE v1: The original version. It only works if both computers are on the same local Ethernet segment (Layer 2). It cannot be routed across different subnets.
+
+RoCE v2: The modern standard. It wraps the data in UDP/IP packets. Because it uses IP, RoCE v2 can be routed across different parts of a large data center (Layer 3).
+
+
