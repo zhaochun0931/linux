@@ -1,0 +1,21 @@
+services:
+  caddy:
+    image: caddy:alpine
+    container_name: caddy_https_server
+    restart: unless-stopped
+    ports:
+      # Port 80 is required for Let's Encrypt HTTP challenges
+      - "80:80"
+      # Port 443 is the actual secure HTTPS port
+      - "443:443"
+      - "443:443/udp" # Optional but recommended for HTTP/3 performance
+    volumes:
+      # 1. Mount your Caddyfile config
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      
+      # 2. Mount your website files (if using file_server)
+      - ./my_website_files:/usr/share/caddy/html
+      
+      # 3. CRUCIAL: Persistent storage for SSL certs
+      - ./caddy-data:/data
+      - ./caddy-config:/config

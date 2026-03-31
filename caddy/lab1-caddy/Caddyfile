@@ -1,0 +1,4 @@
+localhost {
+    # This just prints a simple message so you know it's working
+    respond "Hello, secure localhost!"
+}
