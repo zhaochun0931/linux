@@ -1,0 +1,36 @@
+gRPC (Google Remote Procedure Call) is a modern, high-performance framework used to connect services in a distributed system.
+
+Think of it as a way for one program to call a function in another program—even if that program is on a different server or written in a different language—as if it were just a local function on your own computer.
+
+🛠️ How it Works
+gRPC is built on three core pillars that make it faster and more efficient than traditional REST APIs:
+
+
+
+
+Protocol Buffers (Protobuf): Instead of using JSON (which is text-based and bulky), gRPC uses Protobuf, a binary serialization format. It’s smaller, faster to process, and strictly typed.
+
+
+
+
+
+HTTP/2: Unlike standard REST which often uses HTTP/1.1, gRPC uses HTTP/2. This allows for:
+
+Multiplexing: Sending multiple requests over a single connection simultaneously.
+
+Server Push: The server can send data to the client without waiting for a request.
+
+Header Compression: Reducing the size of the "meta" data sent with every call.
+
+
+
+
+Streaming: gRPC supports four types of communication:
+
+Unary: One request, one response (like REST).
+
+Server Streaming: One request, many responses.
+
+Client Streaming: Many requests, one response.
+
+Bidirectional Streaming: Both sides send a stream of messages simultaneously.
