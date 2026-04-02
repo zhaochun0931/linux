@@ -1,0 +1,23 @@
+kubectl apply -f configmap.yaml
+
+kubectl apply -f job.yaml
+
+
+
+
+
+
+
+export REDIS_PASSWORD=$(kubectl get secret redis-ha -o jsonpath="{.data.redis-password}" | base64 -d)
+
+kubectl exec -it redis-ha-node-1 -c redis -- redis-cli -a $REDIS_PASSWORD DBSIZE
+
+
+
+kubectl logs -f job/redis-bulk-loader
+
+
+
+
+kubectl delete job redis-bulk-loader
+kubectl delete configmap redis-load-script

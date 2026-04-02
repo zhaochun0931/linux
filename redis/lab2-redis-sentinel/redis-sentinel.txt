@@ -1,0 +1,43 @@
+1. The Architecture
+A typical HA setup involves at least three nodes. Each pod usually runs two containers:
+
+Redis Container: The actual data store.
+
+Sentinel Container: The process that monitors Redis and handles failovers.
+
+
+
+
+2. Key Components
+To get this running, you need to define several Kubernetes objects:
+
+
+Headless Service
+You need a Headless Service (clusterIP: None) so that Sentinels can discover the individual pods via their stable DNS names (e.g., redis-0.redis-service).
+
+
+
+
+
+
+
+ConfigMaps
+You’ll need two separate configurations:
+
+Redis Config: Defines replication (pointing replicas to the master).
+
+Sentinel Config: Defines the quorum and the master's address.
+
+Note: These configs must be writable by the pod because Redis and Sentinel update their own config files during a failover. Many users use an initContainer to copy the "read-only" ConfigMap into a "writable" emptyDir volume.
+
+
+
+
+
+StatefulSet
+
+
+This manages the pods. Each pod will have a specific ordinal index ($0, 1, 2$).Node 0 is usually initialized as the Master.Nodes 1 & 2 are initialized as Replicas.
+
+
+

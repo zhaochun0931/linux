@@ -1,0 +1,59 @@
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+
+# Install with Sentinel enabled
+helm install redis-ha bitnami/redis \
+  --set sentinel.enabled=true \
+  --set replica.replicaCount=3
+
+
+
+
+2. Verify the Pod Structure
+Once deployed, check your pods. You will see a StatefulSet (e.g., redis-ha-node).
+
+Each pod contains:
+
+Redis container: Handles the data (Port 6379).
+
+Sentinel container: Monitors the nodes and handles quorum (Port 26379).
+
+
+
+
+
+kubectl get statefulsets
+
+
+
+kubectl get pods
+
+
+kubectl get svc
+
+
+
+
+
+$ kubectl get statefulsets
+NAME            READY   AGE
+redis-ha-node   3/3     2m3s
+$
+
+
+$ kubectl get pods
+NAME              READY   STATUS    RESTARTS   AGE
+redis-ha-node-0   2/2     Running   0          2m30s
+redis-ha-node-1   2/2     Running   0          105s
+redis-ha-node-2   2/2     Running   0          81s
+$
+
+
+
+
+$ kubectl get svc
+NAME                TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)              AGE
+kubernetes          ClusterIP   10.96.0.1      <none>        443/TCP              4m20s
+redis-ha            ClusterIP   10.96.132.45   <none>        6379/TCP,26379/TCP   3m9s
+redis-ha-headless   ClusterIP   None           <none>        6379/TCP,26379/TCP   3m9s
+$

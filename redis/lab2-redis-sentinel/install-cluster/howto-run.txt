@@ -1,0 +1,102 @@
+export REDIS_PASSWORD=$(kubectl get secret --namespace default redis-ha -o jsonpath="{.data.redis-password}" | base64 -d)
+
+
+kubectl exec -it redis-ha-node-0 -c sentinel -- redis-cli -p 26379 -a $REDIS_PASSWORD sentinel get-master-addr-by-name mymaster
+
+
+kubectl exec -it redis-ha-node-0 -c redis -- redis-cli -h redis-ha-node-0.redis-ha-headless.default.svc.cluster.local -p 6379 -a $REDIS_PASSWORD
+
+
+
+SET user:100 "John Doe"
+SET website:status "online"
+LPUSH tasks "task1" "task2"
+
+
+
+2. Verify Data on a Replica
+To prove the cluster is working, exit the master and connect to a different node (e.g., node-1) to see if the data replicated:
+
+
+kubectl exec -it redis-ha-node-1 -c redis -- redis-cli -a $REDIS_PASSWORD
+
+Run a GET command:
+
+GET user:100
+
+
+
+
+# how to failover
+
+
+export REDIS_PASSWORD=$(kubectl get secret redis-ha -o jsonpath="{.data.redis-password}" | base64 -d)
+
+
+
+kubectl exec -it redis-ha-node-1 -c sentinel -- redis-cli -p 26379 -a $REDIS_PASSWORD sentinel get-master-addr-by-name mymaster
+
+
+kubectl delete pod redis-ha-node-0
+
+
+
+
+
+
+
+kubectl exec -it redis-ha-node-1 -c redis -- redis-cli -a $REDIS_PASSWORD SET test "success"
+
+kubectl exec -it redis-ha-node-0 -c redis -- redis-cli -a $REDIS_PASSWORD GET test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Redis(R) can be accessed via port 6379 on the following DNS name from within your cluster:
+
+    redis-ha.default.svc.cluster.local for read only operations
+
+For read/write operations, first access the Redis(R) Sentinel cluster, which is available in port 26379 using the same domain name above.
+
+To get your password run:
+
+    export REDIS_PASSWORD=$(kubectl get secret --namespace default redis-ha -o jsonpath="{.data.redis-password}" | base64 -d)
+
+To connect to your Redis(R) server:
+
+1. Run a Redis(R) pod that you can use as a client:
+
+   kubectl run --namespace default redis-client --restart='Never'  --env REDIS_PASSWORD=$REDIS_PASSWORD  --image registry-1.docker.io/bitnami/redis:latest --command -- sleep infinity
+
+   Use the following command to attach to the pod:
+
+   kubectl exec --tty -i redis-client \
+   --namespace default -- bash
+
+2. Connect using the Redis(R) CLI:
+   REDISCLI_AUTH="$REDIS_PASSWORD" redis-cli -h redis-ha -p 6379 # Read only operations
+   REDISCLI_AUTH="$REDIS_PASSWORD" redis-cli -h redis-ha -p 26379 # Sentinel access
+
+To connect to your database from outside the cluster execute the following commands:
+
+    kubectl port-forward --namespace default svc/redis-ha 6379:6379 &
+    REDISCLI_AUTH="$REDIS_PASSWORD" redis-cli -h 127.0.0.1 -p 6379

@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: redis-bulk-loader
+spec:
+  template:
+    spec:
+      containers:
+      - name: loader
+        image: python:3.11-slim
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            pip install redis
+            python /scripts/bulk_load.py
+        env:
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: redis-ha
+                key: redis-password
+        volumeMounts:
+        - name: script-volume
+          mountPath: /scripts
+      volumes:
+      - name: script-volume
+        configMap:
+          name: redis-load-script
+      restartPolicy: Never
+  backoffLimit: 2
