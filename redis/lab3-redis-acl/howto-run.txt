@@ -1,0 +1,39 @@
+docker exec -it redis bash
+
+
+
+for i in {1..1000}; do echo "SET hello:$i value_$i"; done | redis-cli -a YOUR_PASSWORD --pipe
+
+
+for i in {1..1000}; do echo "SET nihao:$i value_$i"; done | redis-cli -a YOUR_PASSWORD --pipe
+
+
+
+# To see everything (as Admin)
+
+redis-cli -a YOUR_ADMIN_PASSWORD KEYS "*"
+
+
+
+redis-cli -a YOUR_ADMIN_PASSWORD SCAN 0 COUNT 100
+
+
+
+
+
+
+
+ACL SETUSER demo-user on >your_password_here resetchannels -@all +@all ~hello:*
+
+ACL WHOAMI
+
+
+AUTH demo-user your_password_here
+
+
+
+
+
+get nihao:1
+
+get hello:1
