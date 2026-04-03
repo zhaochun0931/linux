@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rocky-server
+  labels:
+    app: rocky-lab
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rocky-lab
+  template:
+    metadata:
+      labels:
+        app: rocky-lab
+    spec:
+      containers:
+      - name: rocky
+        image: rockylinux:9  # Official Rocky Linux 9 image
+        command: ["/bin/bash", "-c", "--"]
+        args: ["while true; do sleep 30; done;"] # Keeps the pod running

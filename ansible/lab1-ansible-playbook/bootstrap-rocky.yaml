@@ -1,0 +1,15 @@
+---
+- name: Bootstrap Rocky Linux Pods
+  # Use the group name from your 'ansible-inventory --graph' output
+  hosts: label_app_rocky-lab
+  gather_facts: false  # Must be false because Python isn't installed yet
+  
+  vars:
+    # Tell Ansible to use the kubectl exec tunnel
+    ansible_connection: kubernetes.core.kubectl
+    # Ensure it hits the correct container if you have multiple in a pod
+    ansible_kubernetes_container: rocky 
+
+  tasks:
+    - name: Install Python 3 using raw command
+      raw: dnf install -y python3

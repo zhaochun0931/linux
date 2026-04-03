@@ -1,0 +1,13 @@
+kubectl apply -f rocky-deployment.yaml
+
+
+ansible-inventory -i my-cluster.k8s.yaml --graph
+
+
+
+ansible-playbook -i my-cluster.k8s.yaml bootstrap-rocky.yaml
+
+
+ansible-playbook -i my-cluster.k8s.yaml check-status.yaml
+
+

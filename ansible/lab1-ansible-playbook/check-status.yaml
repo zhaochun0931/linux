@@ -1,0 +1,13 @@
+---
+- name: Verify Rocky Pods
+  # Using the specific hostnames from your output to be safe
+  hosts: all
+  gather_facts: true  # This now works because Python is present!
+  
+  vars:
+    ansible_connection: kubernetes.core.kubectl
+
+  tasks:
+    - name: Display OS Info
+      debug:
+        msg: "This is {{ ansible_distribution }} {{ ansible_distribution_version }} on pod {{ inventory_hostname }}"

@@ -1,0 +1,6 @@
+plugin: kubernetes.core.k8s
+connections:
+  - namespaces:
+      - default
+    labels:
+      app: rocky-lab  # It will only "find" pods with this label
