@@ -1,0 +1,30 @@
+1. Why the JVM (Java Virtual Machine)?
+
+
+The Java compiler doesn't create an executable file. It creates Bytecode. The JVM acts as a middleman that interprets this bytecode into the specific machine code of whatever device it’s sitting on.
+
+
+
+
+1. What do they have in common?
+
+Almost every GC algorithm follows a three-step cycle, often called Mark-Sweep-Compact.
+
+
+The "Mark" Phase: The GC starts from "Roots" (global variables or active threads) and follows every reference to see which objects are still in use. If an object is reachable, it’s "marked" as live.
+
+The "Sweep" Phase: Any object not marked as live is considered "garbage." The GC clears these from memory.
+
+
+The "Compact" Phase: Over time, deleting objects leaves "holes" in memory (fragmentation). Compacting slides all the remaining live objects together at one end of the memory, creating one big block of free space for new objects.
+
+
+
+
+
+The Generational Hypothesis: 
+
+Almost all Java GCs assume that "most objects die young." This is why they split memory into a Young Generation (cleaned frequently and quickly) and an Old Generation (cleaned less often).
+
+
+
