@@ -10,12 +10,6 @@ egrep -Ri hello *txt
 
 
 
-# highlight the matched result
-export GREP_OPTIONS='--color=always'
-
-or
-
-grep --color=always 'xxx' file
 
 
 
@@ -26,8 +20,7 @@ grep --color=always 'xxx' file
 
 
 
-# Case insensitive search : The -i option enables to search for a string case insensitively in the given file. It matches the words like “xxx”, “XXx”, “xxX”. 
-grep -i 'xxx' file
+
 
 
 
