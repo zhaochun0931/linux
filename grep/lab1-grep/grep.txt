@@ -1,0 +1,69 @@
+1. Basic Usage: The Essentials
+
+The basic syntax is: 
+
+grep [options] "pattern" [file]
+
+
+
+
+2. Simple Search
+Find every line where "Error" appears in your training log:
+
+grep "Error" training.log
+
+
+
+3. Case Insensitivity (-i)
+
+AI logs are inconsistent. This finds "loss", "Loss", or "LOSS":
+
+grep -i "loss" training.log
+
+
+
+
+4. Counting Matches (-c)
+How many times did the model checkpoint save?
+
+grep -c "Checkpoint saved" training.log
+
+
+
+5. Showing Context (-A, -B, -C)
+
+In AI, an error message is useless without the lines around it.
+
+-A 5: Show the match and 5 lines After.
+
+-B 5: Show the match and 5 lines Before.
+
+-C 5: Show the match and 5 lines on both sides.
+
+
+6. Inverting the Search (-v)
+
+Show me the logs, but hide all the "Status: OK" spam so I can see what’s actually happening:
+
+grep -v "Status: OK" server_logs.txt
+
+
+
+7. Searching Multiple Files & Directories (-r)
+
+Find which Python script in your entire project contains a specific hyperparameter:
+
+grep -r "learning_rate" ./src/
+
+
+
+
+
+8. highlight the matched result
+
+export GREP_OPTIONS='--color=always'
+
+or
+
+grep --color=always 'xxx' file
+
