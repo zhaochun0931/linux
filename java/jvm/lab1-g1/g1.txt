@@ -1,0 +1,40 @@
+The G1 (Garbage First) GC is designed for modern multi-processor machines with large memory. 
+
+Its name comes from its core strategy: it identifies regions with the most "garbage" (the least amount of live data) and collects those first to get the best "bang for its buck."
+
+
+
+
+1. The Layout: Regions over Contiguous Blocks
+Unlike older collectors that split memory into three large physical chunks (Eden, Survivor, Old), G1 breaks the entire heap into ~2,048 small, equal-sized Regions (typically 1MB to 32MB each).
+
+Flexible Roles: A region isn't permanently "Old" or "Young." It can be Eden today and Old tomorrow after it's been cleared and reused.
+
+Humongous Regions: If an object is larger than 50% of a region, G1 treats it as a "Humongous Object" and allocates it into a contiguous set of regions specifically marked for big data.
+
+
+
+2. The Secret Sauce: Remembered Sets (RSets)One big problem with regional collectors is: How do you know if an object in Region A is being pointed to by an object in Region B? Without a solution, the GC would have to scan the entire heap every time it wanted to clean just one region. G1 uses RSets—a "notebook" for each region that tracks all incoming references from other regions. This allows G1 to clean a single region independently and quickly.
+
+
+
+
+
+3. The Lifecycle: How G1 OperatesG1 moves through three main phases in a repeating cycle:
+
+
+
+
+A. Young GC (Stop-the-World)
+
+When the Eden regions fill up, G1 pauses the app and cleans them. Live objects are "evacuated" (copied) to Survivor regions or promoted to Old regions.
+
+
+B. Concurrent Marking Cycle
+
+When the heap reaches a certain fullness (usually 45% by default), G1 starts "marking" the whole heap while your app is still running. It uses an algorithm called SATB (Snapshot-At-The-Beginning), which takes a logical "photo" of the heap at the start so it knows what was live at that moment.
+
+
+C. Mixed GC (Stop-the-World)
+
+After marking, G1 knows which Old regions are the "dirtiest." It performs several "Mixed" collections where it cleans all Young regions plus the most garbage-heavy Old regions. This slowly reclaims Old generation space without needing a massive, long "Full GC" pause.

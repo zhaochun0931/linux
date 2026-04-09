@@ -1,0 +1,13 @@
+javac G1GC.java
+
+
+java -Xms256m -Xmx256m \
+     -XX:+UseG1GC \
+     -XX:MaxGCPauseMillis=50 \
+     -Xlog:gc*:file=gc.log \
+     G1GC
+
+
+
+
+
