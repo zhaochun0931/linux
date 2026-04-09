@@ -46,24 +46,7 @@ grep -n 'xxx' file
 grep -n xxx file
 
 
-# Inverting the pattern match : You can display the lines that are not matched with the specified search string pattern using the -v option. 
-grep -v 'xxx' file
 
-
-# Search recursively for a pattern in the directory: -R prints the searched pattern in the given directory recursively in all the files.
-grep -R xxx 
-grep -R xxx /
-
-
-# Print n specific lines from a file:  
-# -A prints the searched line and n lines after the result, 
-# -B prints the searched line and n lines before the result, and 
-# -C prints the searched line and n lines after and before the result. 
-grep -A 2 xxx file
-grep -B 2 xxx file
-grep -C 2 xxx file
-
-grep -A2 xxx file
 
 
 
