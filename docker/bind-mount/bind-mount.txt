@@ -1,0 +1,83 @@
+To use a local host directory inside a Docker container, you are specifically looking for a feature Docker calls a Bind Mount.
+
+Bind mounts directly map a specific file or directory on your host machine to a specific location inside the container.
+
+
+
+
+There are three primary methods to set up a bind mount using Docker.
+
+
+
+Method 1: The --mount Flag (Recommended)
+
+
+Docker officially recommends using the --mount flag because its syntax is explicit, verbose, and much easier to read, especially when you are passing multiple options.
+
+Syntax: --mount type=bind,source=<host_path>,target=<container_path>
+
+
+mkdir html
+
+cd html
+
+echo hello world > index.html
+
+docker run -d \
+  --name my-web-app \
+  --mount type=bind,source=$PWD/html,target=/usr/share/nginx/html \
+  nginx:latest
+
+
+To publish a port, you use the -p (or --publish) flag followed by the <host_port>:<container_port> mapping.
+
+docker run -d \
+  --name my-web-app \
+  -p 8080:80 \
+  --mount type=bind,source=$PWD/html,target=/usr/share/nginx/html \
+  nginx:latest
+
+
+
+
+
+What changed:
+
+-p 8080:80: This tells Docker to map port 8080 on your local machine (the host) to port 80 inside the container (the default port where Nginx serves traffic).
+
+
+Key Behavior: If the source directory does not exist on your local host, the --mount command will fail and throw an error. This is a helpful safeguard to prevent you from accidentally mounting empty, mistyped directories.
+
+
+
+
+
+
+
+
+
+Method 2: The -v or --volume Flag (Legacy / Most Common)
+
+This is the older, shorthand method. While --mount is recommended for clarity, -v is still massively popular and you will see it in most tutorials and documentation.
+
+Syntax: -v <host_path>:<container_path>:<options>
+
+docker run -d \
+  --name my-web-app \
+  -p 8080:80 \
+  -v $PWD/html:/usr/share/nginx/html \
+  nginx:latest
+
+
+
+Key Behavior: Unlike --mount, if the host directory does not exist, the -v flag will quietly create an empty directory on your host machine and mount that.
+
+
+
+
+
+
+
+Method 3: Docker Compose (docker-compose.yml)
+
+
