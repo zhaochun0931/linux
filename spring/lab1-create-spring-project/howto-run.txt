@@ -1,0 +1,29 @@
+spring init --dependencies=web,data-jpa,h2 --build=maven --java-version=17 my-project
+
+
+cd my-project/
+
+
+
+
+Method 1: Using the Maven Wrapper (Quickest & Recommended)
+
+./mvnw spring-boot:run
+
+
+Wait a few seconds, and you should see the Spring logo pop up in ASCII art, followed by some log messages. When you see a message like Started Application in X seconds, your server is running!
+
+To stop the server: Press Ctrl + C in your terminal.
+
+
+
+
+
+
+
+Method 2: Building and Running a JAR file
+
+./mvnw clean package
+
+
+java -jar target/my-project-0.0.1-SNAPSHOT.jar
