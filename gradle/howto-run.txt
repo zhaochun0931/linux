@@ -1,4 +1,7 @@
-gradle build
+mkdir my-gradle-project
 
+cd my-gradle-project/
 
-gradle run
+gradle init
+
+./gradlew run
