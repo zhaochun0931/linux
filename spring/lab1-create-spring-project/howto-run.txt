@@ -1,4 +1,4 @@
-spring init --dependencies=web,data-jpa,h2 --build=maven --java-version=17 my-project
+spring init --dependencies=web --build=maven --java-version=17 my-project
 
 
 cd my-project/
