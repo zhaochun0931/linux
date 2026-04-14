@@ -1,0 +1,24 @@
+It is very common to see a simple program showing 2 Gigabytes of VIRT but only 50 Megabytes of RES. To understand why, you have to look at how modern operating systems handle memory.
+
+Here is the straightforward breakdown of the difference:
+
+1. VIRT (Virtual Memory) = "The Promise"
+VIRT stands for Virtual Size. This is the total amount of memory that the program believes it has access to. It is the entire memory address space mapped by the process.
+
+What it includes: It includes absolutely everything associated with the program. It includes the physical RAM it is currently using, the files it has mapped from the hard drive (like shared .dll or .so libraries), memory that has been swapped to the disk, and—most importantly—memory it has asked for but hasn't used yet.
+
+Why it is often huge: If you run a Java program and tell the JVM it is allowed a maximum heap size of 4GB (using -Xmx4G), the operating system says, "Okay, I will reserve 4GB of virtual address space for you." The VIRT column will immediately jump to 4GB+, even if the Java program is currently sitting idle and only actually doing 30MB of work.
+
+2. RES (Resident Set Size) = "The Reality"
+RES stands for Resident Size. This is the actual, physical hardware RAM that the process is consuming right at this exact moment.
+
+What it includes: Only the memory that is currently occupying physical RAM chips on your motherboard. It does not include swapped memory, and it does not include memory the program asked for but hasn't touched yet.
+
+Why it matters: This is the number you actually care about. If you want to know if a program is a memory hog or if you are about to run out of RAM, you look at the RES column.
+
+
+
+
+SHR (Shared Memory)
+You will often see a third column next to them called SHR.
+This is the portion of the RES (physical memory) that is being shared with other processes. For example, if you have five different Python scripts running, they all need the core Python libraries. The operating system is smart; it only loads those libraries into physical RAM once, and all five scripts share it. SHR tells you how much of that program's physical RAM footprint is actually just shared community resources.
