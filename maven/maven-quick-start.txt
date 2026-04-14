@@ -9,3 +9,33 @@ mvn clean install
 
 
 mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
+
+
+
+
+
+
+
+
+
+In Maven, credentials should never be stored directly in your project's pom.xml file. Instead, you configure them in Maven's settings.xml file and link them to your pom.xml using a unique ID.
+
+Here is how to set up credentials (using the Broadcom/GemFire repository from your earlier example).
+
+Step 1: Locate or Create settings.xml
+
+Maven uses a settings.xml file to store environment-specific configurations like credentials.
+
+User-level (Recommended): ~/.m2/settings.xml (Mac/Linux) or C:\Users\YourUser\.m2\settings.xml (Windows).
+
+Global-level: <Maven_Install_Dir>/conf/settings.xml.
+
+If the .m2 folder or settings.xml file doesn't exist, you can create them.
+
+
+
+Step 2: Add Credentials to settings.xml
+
+Open settings.xml and add a <server> block inside the <servers> section.
+
+The most important part here is the <id>. This ID can be anything you want, but it must perfectly match the ID you will use in your pom.xml later.
