@@ -1,0 +1,1 @@
+gcc memory-demo.c -o memory-demo
