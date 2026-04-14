@@ -1,0 +1,44 @@
+mvn spring-boot:run
+
+
+mvn clean
+
+
+
+
+What this code means:
+
+
+
+1. The Engine (@SpringBootApplication & main method)
+
+When you hit run, the main method executes SpringApplication.run(...).
+
+This acts as the ignition switch for Spring Boot. It automatically starts up an embedded web server (Tomcat) in the background on port 8080 so your app can listen for internet traffic.
+
+2. The Web Listener (@RestController)
+
+This tells Spring, "Hey, this Java class is going to act as a web server endpoint. Any text I return from my methods should be sent directly back to the user's web browser."
+
+3. The Traffic Cop (@GetMapping("/hello"))
+
+This tells the web server exactly which URL to listen to. It says, "If a user types /hello into their browser and presses Enter (which is an HTTP GET request), route them to the sayHello method below."
+
+4. The Variable Extractor (@RequestParam)
+
+This allows your URL to accept dynamic input.
+
+It looks for a query parameter called myName in the URL. If it finds it, it grabs the text and passes it into your method as the name variable.
+
+If the user doesn't provide a name, it falls back to the defaultValue of "World".
+
+How it works in practice:
+If you start this application and open your web browser, here is what will happen:
+
+Scenario A (Using the default):
+If you visit http://localhost:8080/hello
+The browser will display: Hello World!
+
+Scenario B (Using the RequestParam):
+If you visit http://localhost:8080/hello?myName=SpringNinja
+The browser will display: Hello SpringNinja!
