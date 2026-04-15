@@ -1,0 +1,14 @@
+JNA stands for Java Native Access. It is a widely used, community-developed library that allows Java programs to call native code (typically C or C++ shared libraries like .dll files on Windows or .so files on Linux) directly from Java, without having to write any custom C/C++ "glue" code.
+
+To understand why JNA is so important, it helps to understand the traditional way Java talks to the underlying operating system: JNI (Java Native Interface).
+
+The Problem: JNI is Hard
+Historically, if you wanted Java to do something OS-specific (like reading native hardware stats, which is what your Geode server was trying to do in your first question), you had to use JNI. Using JNI is notoriously tedious. You have to:
+
+Write a Java class with native methods.
+
+Use a tool to generate C/C++ header files from that Java class.
+
+Write C/C++ code to translate Java data types (like Java String) into native C types (like char*).
+
+Compile that C/C++ code into a shared library specifically for your target OS and CPU architecture.
