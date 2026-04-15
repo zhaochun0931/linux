@@ -1,0 +1,14 @@
+sysctl -a | egrep -i vm.dirty.*ratio
+
+
+
+# sysctl -a | egrep -i vm.dirty.*ratio
+vm.dirty_background_ratio = 10
+vm.dirty_ratio = 20
+#
+
+
+
+
+sudo sysctl -w vm.dirty_background_ratio=1
+sudo sysctl -w vm.dirty_ratio=2
