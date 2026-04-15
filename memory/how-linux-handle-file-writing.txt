@@ -1,0 +1,24 @@
+When an application (like a text editor or a database) saves a file, Linux does not immediately write that data to your hard drive or SSD. Writing to a physical disk is incredibly slow compared to RAM. Instead, Linux writes the data directly into an area of your physical RAM called the Page Cache.
+
+Once the data is in the Page Cache, Linux marks those specific memory pages as "dirty" (meaning the data in RAM has been modified, but the changes haven't been washed down to the disk yet).
+
+vm.dirty_ratio is the ultimate safeguard that keeps this system from spiraling out of control.
+
+Here is the deep dive into how it works and how to tune it:
+
+The Two Limits: Soft vs. Hard
+You cannot talk about vm.dirty_ratio without its partner, vm.dirty_background_ratio. They work together as a two-tier warning system.
+
+1. The Soft Limit (vm.dirty_background_ratio)
+Default: Usually 10 (10% of total RAM).
+
+What it does: When your dirty pages reach 10% of your total RAM, the Linux kernel wakes up background threads (called pdflush or kworker). These threads quietly start sweeping the dirty data from RAM onto your disk in the background.
+
+The Impact: Your applications don't even notice. They keep writing to RAM at lightning speed while the kernel cleans up behind them.
+
+2. The Hard Limit (vm.dirty_ratio)
+Default: Usually 20 (20% of total RAM).
+
+What it does: If your applications are writing data faster than the background threads can save it to the disk, the dirty pages will continue to grow. When they hit this hard limit of 20%, Linux panics.
+
+The Impact: The kernel stops allowing background writes. Instead, it forces the application that is writing the data to stop what it is doing and write the data to the disk itself. This is called synchronous I/O blocking. To the user, the application will suddenly freeze or lag heavily until the data is flushed.
