@@ -1,0 +1,55 @@
+git clone https://github.com/rabbitmq/ra.git
+
+cd ra
+
+rebar3 compile
+
+
+
+
+terminal #1
+
+rebar3 shell --name ra1@127.0.0.1 --setcookie my_secret_password
+
+
+terminal #2
+
+rebar3 shell --name ra2@127.0.0.1 --setcookie my_secret_password
+
+
+terminal #3
+
+rebar3 shell --name ra3@127.0.0.1 --setcookie my_secret_password
+
+
+
+
+
+
+
+ra:stop().
+ra:start().
+node().
+nodes().
+
+
+
+
+# Define the cluster members
+Servers = [{demo_cluster, 'ra1@127.0.0.1'}, 
+           {demo_cluster, 'ra2@127.0.0.1'}, 
+           {demo_cluster, 'ra3@127.0.0.1'}].
+
+# Define the logic (A + B) starting at 0
+Machine = {simple, fun(A, B) -> A + B end, 0}.
+
+# Start the cluster
+ra:start_cluster(default, demo_cluster, Machine, Servers).
+
+
+
+
+
+# Check Cluster Members
+
+ra:members({demo_cluster, node()}).
