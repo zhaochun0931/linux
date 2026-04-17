@@ -1,0 +1,3 @@
+Raft is a consensus algorithm used to ensure multiple servers agree on a shared state.
+
+
