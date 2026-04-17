@@ -1,0 +1,5 @@
+# TargetNode is the node you WANT to become the leader
+TargetNode = {demo_cluster, 'ra2@127.0.0.1'}.
+
+# Force the current leader to hand over the crown
+ra:transfer_leadership({demo_cluster, 'ra1@127.0.0.1'}, TargetNode).
