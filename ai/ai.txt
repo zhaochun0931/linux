@@ -1,0 +1,12 @@
+🍰 The Layers of the AI Stack
+Layer 1: The Hardware (Foundations) 🏗️
+This is the physical layer, primarily consisting of GPUs (like NVIDIA H100s) or TPUs. These chips are designed for massive parallel processing—doing thousands of simple math problems at once.
+
+Layer 2: The Kernel & Drivers (The Bridge) 🌉
+The Linux Kernel manages the hardware. Specifically, drivers (like the NVIDIA proprietary driver) allow the OS to talk to the GPU. Without this, your AI software wouldn't even know a GPU is plugged in.
+
+Layer 3: Acceleration Libraries (The Translators) 📚
+Software like CUDA or ROCm sits on top of Linux. These libraries provide the specific "math shortcuts" that AI models use to run efficiently on the hardware.
+
+Layer 4: Frameworks (The Workbench) 🛠️
+This is where tools like PyTorch or TensorFlow live. They are almost always optimized for Linux first, allowing researchers to build neural networks using Python code.
