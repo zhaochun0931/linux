@@ -1,0 +1,55 @@
+The Concurrent Mark Sweep (CMS) collector was designed for applications that prefer shorter garbage collection pauses and can afford to share CPU resources with the garbage collector while the application is running. It specifically manages the Old Generation.
+
+Unlike other collectors that stop your application for the entire duration of a cleanup, CMS does most of its work "concurrently"—meaning your code and the garbage collector run at the same time.
+
+
+
+The 6 Phases of a CMS Cycle
+CMS breaks the collection process into six distinct steps. Two are "Stop-the-World" (STW) pauses, and four happen while your application stays alive.
+
+1. Initial Mark (STW Pause)
+The JVM stops all application threads. It identifies all objects in the Old Gen that are directly reachable from the "Roots" (like thread stacks or static variables).
+
+Duration: Very short, as it only looks at the "first layer" of objects.
+
+2. Concurrent Mark
+The collector traverses the object graph from the Initial Mark, finding all reachable objects.
+
+Duration: Can be long, but your application is running during this time.
+
+3. Concurrent Preclean
+The collector looks for objects that were modified while the "Concurrent Mark" was happening (using the Card Table we discussed). It tries to reduce the work for the next pause.
+
+4. Final Remark (STW Pause)
+This is the second and final pause. Because the application was running during the previous phases, the collector must stop everything one last time to finalize the marking of any objects that changed since the preclean.
+
+Tuning Tip: This is where -XX:+CMSParallelRemarkEnabled and -XX:+CMSScavengeBeforeRemark save you time.
+
+5. Concurrent Sweep
+The collector travels through the heap and reclaims the memory used by objects identified as "garbage." It adds this free space to "Free Lists."
+
+Status: Application is running.
+
+6. Concurrent Reset
+The collector clears its internal data structures and prepares for the next cycle.
+
+
+
+
+
+
+
+
+
+The "Catch" with CMS: No Compaction
+This is the most important thing to understand about how CMS works: It does not move objects. While a collector like G1 or Parallel will "compact" objects to the front of the heap to keep the free space in one big block, CMS just "sweeps." It leaves holes in the memory wherever it finds garbage.
+
+This leads to two major risks:
+Fragmentation: Over time, your 56 GB Old Gen becomes full of tiny holes. If you try to promote a large object from the Young Gen and there isn't a single hole big enough, it fails.
+
+Concurrent Mode Failure: If your application creates garbage faster than the CMS background threads can sweep it, the heap fills up completely.
+
+Why CMS is "Old School"
+Because CMS doesn't compact, it eventually will hit a wall. When it can't find space due to fragmentation, it gives up and performs a Full GC. This Full GC is single-threaded, stops your application, and compacts the entire 64 GB heap manually—which, as you saw in your logs, takes 18+ seconds.
+
+

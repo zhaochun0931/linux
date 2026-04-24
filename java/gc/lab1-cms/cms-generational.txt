@@ -1,0 +1,32 @@
+1. The Two-Part System
+In a generational JVM, the heap is split into different "rooms" based on the age of the objects. CMS only manages one of those rooms.
+
+Young Generation (Managed by ParNew): This is where new objects are born. Most objects die here quickly. When this space fills up, a "Minor GC" occurs.
+
+Old Generation (Managed by CMS): Objects that survive several rounds of Minor GCs are promoted ("tenured") to this space. This is where CMS does its "Concurrent Mark Sweep" work.
+
+
+
+3. How the Generations "Talk"
+Even though they are separate, they must coordinate. As we discussed earlier, they use a Card Table to track references between the generations.
+
+If a long-lived object in the CMS (Old Gen) refers to a new object in the ParNew (Young Gen), the JVM marks a "card" so that the Young Gen collector knows not to delete that new object.
+
+
+
+
+4. The Weakness of the Generational Split in CMS
+While being generational makes CMS fast, it creates the specific problem you saw in your logs: Promotion Failure.
+
+Because the Young and Old generations are strictly separated:
+
+ParNew cleans the 8 GB Young Gen and tries to push "survivors" into the Old Gen.
+
+CMS manages the 56 GB Old Gen but does not compact it.
+
+If the Old Gen is too fragmented (full of small holes), it can't accept the objects ParNew is trying to send over, even if there is "technically" enough total space.
+
+Summary
+Yes, CMS is generational. It relies on the Young Generation (ParNew) to filter out the "infant mortality" of objects so that it only has to manage the long-term residents of the heap.
+
+This is exactly why we use the flag -XX:+CMSScavengeBeforeRemark—it forces a "Young" collection to happen before the "Old" collection finishes, ensuring the two generations are perfectly in sync.

@@ -1,0 +1,30 @@
+CMSScavengeBeforeRemark
+
+This flag is a "clean-up" step that happens right before the most expensive part of the CMS cycle. To understand it, you have to look at how the Young Generation and Old Generation interact.
+
+The Problem: The "Remark" Pause
+The CMS Remark phase is a "Stop-the-World" (STW) pause where the JVM stops your application to finalize its list of "live" objects.
+
+One of the hardest jobs the JVM has during this pause is checking if any objects in your 8 GB Young Gen are holding a reference to (pointing at) objects in your 56 GB Old Gen. If the Young Gen is full of "garbage" that hasn't been collected yet, the JVM has to scan through all that data just to find those few important references.
+
+What -XX:+CMSScavengeBeforeRemark Does
+When you enable this, you are telling the JVM:
+
+"Before you start the 'Remark' pause, perform a quick Young Gen GC (Scavenge) to get rid of all the dead objects in the 8 GB space."
+
+Why this is a "Cheat Code" for Performance:
+Reduces Work: By clearing the 8 GB Young Gen first, the "Remark" phase only has to scan the tiny amount of surviving data instead of the full 8 GB.
+
+Shortens Pauses: Scanning a nearly empty Young Gen is much faster than scanning a full one. This significantly reduces the length of your "Stop-the-World" time.
+
+Prevents "Redundant" Marking: It ensures the CMS collector doesn't waste time keeping objects alive in the Old Gen just because a "dead" object in the Young Gen was still pointing to them.
+
+The "Cost"
+The Trade-off: You are technically adding a small extra Young GC pause right before the Remark pause.
+
+The Result: Two very short, predictable pauses are almost always better for application "smoothness" than one massive, unpredictable 19-second pause.
+
+Summary for your 64-core Server:
+Since you have 64 CPUs, your ParNew (Young GC) is already very fast. By adding -XX:+CMSScavengeBeforeRemark, you ensure that when the "Remark" phase hits, it finds a clean, empty Young Gen. This allows your parallel GC threads to finish the Old Gen marking in record time.
+
+Recommendation: In a 64 GB heap, this flag is considered mandatory for stability. Pair it with -XX:+CMSParallelRemarkEnabled for the best results.
