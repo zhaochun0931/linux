@@ -1,0 +1,29 @@
+docker compose up
+
+
+docker exec -it spark-master /opt/spark/bin/spark-shell --master spark://spark-master:7077
+
+
+
+cd my-data
+
+cat << done >> test.csv 
+helloworld
+helloworld2
+helloworld3
+done
+
+
+
+docker exec spark-master ls /opt/spark/data
+
+
+
+
+docker exec -it spark-master /opt/spark/bin/pyspark --master spark://spark-master:7077
+
+# Try to read the file
+df = spark.read.text("/opt/spark/data/test.csv")
+
+# Show the first 5 lines
+df.show(5)
