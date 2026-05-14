@@ -1,0 +1,27 @@
+This code is the bridge between the Java world (objects) and the Database world (tables). It uses JPA (Java Persistence API) annotations to tell Spring exactly how to map this class to a PostgreSQL table.
+
+Here is the breakdown of what each "decoration" (annotation) does:
+
+1. @Entity
+What it means: "This class is a database table."
+
+The Result: Spring Data JPA looks at this class and automatically creates a table named user in your Postgres database. Each instance of this class (an object) will represent one row in that table.
+
+2. @Id
+What it means: "This field is the Primary Key."
+
+The Result: Every table needs a unique way to identify a row. This tells Postgres that the id column is the unique identifier. You cannot have two users with the same ID.
+
+3. @GeneratedValue(strategy = GenerationType.IDENTITY)
+What it means: "I don't want to manually assign IDs; let the database handle it."
+
+The Result: When you save a new user, you don't set the ID. Postgres will use a SERIAL or IDENTITY column to automatically increment it (1, 2, 3...).
+
+Note for your 1M records task: As we discussed earlier, IDENTITY is slow for bulk inserts because Hibernate has to ask the database "What ID did you just give me?" after every single insert. For your 1 million rows, we switched this to SEQUENCE to allow batching.
+
+4. private Long id and private String name
+What it means: These are your table columns.
+
+The Result: * id becomes a column of type BIGINT.
+
+name becomes a column of type VARCHAR(255).
