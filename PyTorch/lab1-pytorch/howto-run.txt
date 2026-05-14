@@ -1,0 +1,13 @@
+Open Terminal 1 and run: 
+
+python distributed_mac.py 0
+
+(It will hang, waiting for its friend).
+
+
+
+
+Open Terminal 2 and run: 
+python distributed_mac.py 1
+
+Watch: Both terminals will instantly finish and show The total sum is: 1.0.
