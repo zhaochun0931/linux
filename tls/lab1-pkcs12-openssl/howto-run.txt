@@ -42,3 +42,23 @@ Part 2: Generate a Truststore
 
 
 keytool -list -keystore truststore.p12 -storetype PKCS12
+
+
+
+
+
+
+Optional: Converting to Legacy JKS format
+
+OpenSSL cannot natively generate a .jks file. If you are working with an older Java application (Java 8 or earlier) that strictly requires .jks, you can use the OpenSSL-generated PKCS12 file and convert it using Java's built-in keytool.
+
+Convert PKCS12 Keystore to JKS:
+
+    keytool -importkeystore -srckeystore keystore.p12 -srcstoretype PKCS12 -destkeystore keystore.jks -deststoretype JKS
+
+
+
+
+Convert PKCS12 Truststore to JKS:
+
+    keytool -importkeystore -srckeystore truststore.p12 -srcstoretype PKCS12 -destkeystore truststore.jks -deststoretype JKS
