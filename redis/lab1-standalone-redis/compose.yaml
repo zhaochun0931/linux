@@ -1,0 +1,15 @@
+services:
+  redis:
+    image: redis:8-alpine   # Using alpine for a smaller, more secure footprint
+    container_name: redis
+    ports:
+      - "6379:6379"         # Maps host port 6379 to container port 6379
+    volumes:
+      - ./redis-data:/data  # Persists Redis data to ./redis-data folder on your host
+    networks:
+      - redis-backend       # Attaches this service to the dedicated network
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "password"]
+
+networks:
+  redis-backend:
+    driver: bridge          # Creates an isolated network for your backend services

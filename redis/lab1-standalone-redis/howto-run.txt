@@ -1,0 +1,57 @@
+docker compose up
+
+
+
+docker exec -it redis bash
+redis-cli
+
+
+
+
+docker exec -it redis redis-cli
+
+auth password
+
+ping
+
+set mykey "hello redis"
+
+get mykey
+
+
+
+
+
+
+
+
+
+
+
+config get *
+config get log*
+
+info
+INFO
+
+
+
+
+
+nc -vz localhost 6379
+
+$ nc -vz localhost 6379
+Connection to localhost port 6379 [tcp/*] succeeded!
+$ 
+
+
+
+
+
+nc localhost 6379
+
+$ nc localhost 6379
+auth password
++OK
+ping
++PONG
