@@ -1,0 +1,5 @@
+docker exec -it redis redis-cli -a password
+
+dbsize
+
+RANDOMKEY
