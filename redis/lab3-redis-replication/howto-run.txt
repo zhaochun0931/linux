@@ -1,0 +1,20 @@
+docker exec -it redis-master redis-cli -a password info replication
+
+
+
+2. Write data to the Master
+Log into the Master and set a key:
+
+docker exec -it redis-master redis-cli -a password
+
+SET cluster_test "Replication works!"
+
+
+
+
+3. Read data from a Replica
+Now, let's log into redis-replica-1 (which uses replicapassword) and try to fetch that key:
+
+docker exec -it redis-replica-1 redis-cli -a password
+
+GET cluster_test
