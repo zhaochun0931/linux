@@ -1,0 +1,10 @@
+services:
+  openldap:
+    build: .
+    container_name: ubuntu-openldap
+    ports:
+      - "389:389"
+    volumes:
+      - ./bootstrap.ldif:/bootstrap.ldif
+    command: ["/bin/bash", "-c", "/init.sh"]
+
