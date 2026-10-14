@@ -1,13 +1,13 @@
 Step 1: Create the Virtual Environment
 
-python3 -m venv venv
+python3 -m venv tf_env
 
 
 
 
 Step 2: Activate the Virtual Environment
 
-source venv/bin/activate
+source tf_env/bin/activate
 
 
 
