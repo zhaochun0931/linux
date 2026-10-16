@@ -1,0 +1,43 @@
+mkdir -p /tmp/my-container/rootfs
+
+cd /tmp/my-container
+
+
+wget https://dl-cdn.alpinelinux.org/alpine/v3.19/releases/aarch64/alpine-minirootfs-3.19.1-aarch64.tar.gz
+
+tar -xvf alpine-minirootfs-3.19.1-aarch64.tar.gz -C rootfs/
+
+
+ls rootfs/bin/sh
+
+file rootfs/bin/busybox
+
+export ROOTFS=/tmp/my-container/rootfs
+
+
+# 在宿主机上执行：开启所有 Namespace 隔离并切入 rootfs
+sudo unshare -m -u -i -p -n -f chroot "$ROOTFS" /bin/sh
+
+
+# 1. 挂载容器内部的 proc (非常重要，否则 ps 命令无法正常工作)
+mount -t proc proc /proc
+
+# 2. 挂载容器内部的 sysfs 和 tmpfs
+mount -t sysfs none /sys
+mount -t tmpfs none /tmp
+
+# 3. 设置容器独立的主机名
+hostname my-mini-container
+
+# 4. 验证隔离效果
+
+# 应该只能看到 PID 为 1 的 /bin/sh
+ps aux
+
+# 应显示 my-mini-container
+hostname  
+
+
+exit
+
+
