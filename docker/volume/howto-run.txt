@@ -1,0 +1,107 @@
+Docker Volume（数据卷）是 Docker 官方推荐的用于**持久化 Docker 容器所产生数据**的标准机制。
+
+简单来说，容器本身是无状态且易失的（销毁容器后，内部产生的数据会随之丢失），而 Volume 就像是挂载在容器上的“外接硬盘”，可以让数据脱离容器生命周期独立存在。
+
+---
+
+### 一、 核心作用与对比
+
+在 Docker 中，常见的两种挂载持久化方式是 **Volume（数据卷）** 和 **Bind Mount（绑定挂载）**：
+
+
+| 特性 | Docker Volume（推荐） | Bind Mount |
+| --- | --- | --- |
+| **数据位置** | 由 Docker 统一管理（通常在 `/var/lib/docker/volumes/`） | 主机上的任意指定绝对路径（如 `/home/user/app`） |
+| **可移植性/安全性** | 高（不受主机目录结构限制，且避免误删除主机文件） | 低（依赖具体主机的文件系统路径） |
+| **创建与管理** | 使用 `docker volume` 命令行工具管理 | 直接指定宿主机路径，无专门管理命令 |
+| **对宿主机的影响** | Docker 隔离保护，非 root 用户不易误删 | 容器内的写操作可能会覆盖宿主机重要系统文件 |
+
+---
+
+### 二、 常用管理命令
+
+你可以使用 `docker volume` 子命令对数据卷进行生命周期管理：
+
+* **创建 Volume：**
+```bash
+docker volume create my-data
+
+```
+
+
+* **查看所有 Volume 列表：**
+```bash
+docker volume ls
+
+```
+
+
+* **查看指定 Volume 详细信息（如宿主机实际存储路径）：**
+```bash
+docker volume inspect my-data
+
+```
+
+
+* **删除无用的 Volume（未被任何容器关联的）：**
+```bash
+docker volume prune
+
+```
+
+
+* **删除指定 Volume：**
+```bash
+docker volume rm my-data
+
+```
+
+
+
+---
+
+### 三、 如何在容器中使用 Volume
+
+#### 1. 使用 `docker run -v` 命令（最常用）
+
+语法：`-v <volume_name>:<container_path>`
+
+```bash
+# 创建并运行一个 Nginx 容器，将 Volume "nginx-logs" 挂载到容器内的日志目录
+docker run -d \
+  --name my-nginx \
+  -v nginx-logs:/var/log/nginx \
+  -p 80:80 \
+  nginx
+
+```
+
+> **提示：** 如果指定的 `nginx-logs` Volume 不存在，Docker 会自动为你创建它。
+
+#### 2. 在 Docker Compose 中使用
+
+在 `docker-compose.yml` 中使用 Volume 需要在顶层声明它：
+
+```yaml
+version: '3.8'
+
+services:
+  web:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - html-data:/usr/share/nginx/html  # 使用命名卷
+
+volumes:
+  html-data: # 顶层声明命名卷
+
+```
+
+---
+
+### 四、 典型应用场景
+
+1. **多容器间共享数据：** 多个容器可以同时挂载同一个 Volume（例如：日志收集容器读取应用容器写入的日志）。
+2. **数据库持久化：** MySQL、PostgreSQL、Redis 等数据库数据目录必须挂载，防止容器重建或升级时数据丢失。
+3. **隔离主机环境：** 当你不想将容器的数据直接暴露在宿主机的特定目录下时。
