@@ -1,0 +1,50 @@
+二、 主要区别与修改说明
+服务内部挂载语法变动：
+
+Bind Mount (之前)： - ./pgdata:/var/lib/postgresql/data（以 ./ 或 / 开头的路径）
+
+Named Volume (现在)： - pg-data-volume:/var/lib/postgresql/data（使用卷的名称而不是本地绝对/相对路径）
+
+顶层 volumes: 块：
+
+必须在文件末尾定义 volumes: 声明 pg-data-volume，否则 Docker Compose 会报错提示未找到该卷。
+
+
+
+连接容器并创建数据：
+
+docker compose up -d
+
+
+
+docker exec -it pg-volume-test psql -U myuser -d mydb -c "CREATE TABLE items (id SERIAL, name TEXT); INSERT INTO items (name) VALUES ('Volume Test');"
+
+docker volume ls
+
+docker exec -it pg-volume-test psql -U myuser -d mydb -c "SELECT * FROM items;"
+
+
+
+
+
+彻底停止并删除容器：
+
+docker compose down
+
+随后重新拉起容器：
+docker compose up -d
+
+docker exec -it pg-volume-test psql -U myuser -d mydb -c "SELECT * FROM items;"
+
+
+
+
+
+提示：完全删除数据的方法
+使用 docker compose down 时，Docker 默认会保留命名卷。
+如果你想要彻底清除容器以及它关联的数据卷，必须加上 -v 参数：
+docker compose down -v
+
+
+
+

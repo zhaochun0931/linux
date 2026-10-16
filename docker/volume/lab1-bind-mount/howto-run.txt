@@ -1,0 +1,19 @@
+# 进入容器内的 psql 交互终端
+docker exec -it pg-bindmount-test psql -U myuser -d mydb
+
+
+
+在 mydb=# 提示符下，依次输入以下 SQL 语句：
+
+-- 1. 创建测试表
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. 插入测试数据
+INSERT INTO users (name) VALUES ('Alice'), ('Bob');
+
+-- 3. 查询验证数据
+SELECT * FROM users;
