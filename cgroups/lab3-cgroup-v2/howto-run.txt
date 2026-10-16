@@ -1,0 +1,93 @@
+在配置 Cgroups v2 之前，需要先确认宿主机操作系统已经启用 Cgroups v2（挂载在 `/sys/fs/cgroup`，且目录下能看到 `cgroup.controllers` 文件）。
+
+Cgroups v2 采用**单层树状结构（Unified Hierarchy）**。测试的基本逻辑是：在 `/sys/fs/cgroup` 下新建一个子目录（即新建一个 cgroup），配置该目录下的限制文件，然后将容器主进程的 PID 写入该目录下的 `cgroup.procs` 文件中。
+
+以下是针对刚才创建的 `mini-container` 进行 **内存限制** 和 **CPU 限制** 的常用测试方法。
+
+---
+
+### 测试 1：内存限制（Memory Limit）与 OOM Kill
+
+假设希望限制容器最多使用 **50MB** 内存。
+
+#### 1. 创建 Cgroup 并设置内存上限
+
+在宿主机上执行以下命令：
+
+# 1. 创建名为 mini_container 的 cgroup 子节点
+sudo mkdir -p /sys/fs/cgroup/mini_container
+
+# 2. 设置最大内存限制为 50MB (50 * 1024 * 1024 = 52428800 字节)
+echo "52428800" | sudo tee /sys/fs/cgroup/mini_container/memory.max
+
+
+#### 2. 将容器进程加入该 Cgroup
+
+在宿主机上找到容器进程（即刚才 `mini-container` 的 PID）：
+
+# 查看 mini-container 进程 PID
+pgrep mini-container
+# 假设返回的 PID 为 12345
+
+# 将容器进程 PID 写入 cgroup.procs
+echo 12345 | sudo tee /sys/fs/cgroup/mini_container/cgroup.procs
+
+
+> **注意**：把父进程写进去后，容器后续 fork 出来的子进程（如 `/bin/sh`）会自动继承并归属于该 Cgroup。
+
+#### 3. 在容器内验证内存超限触发 OOM
+
+
+cat /proc/self/cgroup
+
+
+在容器内部（`./mini-container` 终端中），使用工具或纯 Shell 申请超额内存：
+
+# 在容器内申请 100MB 内存（超过了 50MB 的限制）
+
+dd if=/dev/zero of=/dev/shm/test bs=1M count=100
+
+
+* **预期现象**：由于申请内存达到了 100MB，超过了 `memory.max` (50MB)，该进程会被 Cgroup 的 OOM Killer 杀掉，终端显示 `Killed`。
+* **宿主机验证**：在宿主机上运行 `cat /sys/fs/cgroup/mini_container/memory.events`，可以看到 `oom_kill` 的计数增加了。
+
+---
+
+### 测试 2：CPU 配额限制（CPU Quota）
+
+假设希望限制容器最多只能使用 **0.5 个 CPU 核心**（即 50% 单核 CPU 算力）。
+
+Cgroups v2 通过 `cpu.max` 文件来设置 CPU 配额，格式为：`<quota> <period>`（单位均为微秒 `us`）。
+默认 `period` 通常是 `100000`（100ms），如果 `quota` 设为 `50000`，即代表每 100ms 内最多只允许运行 50ms。
+
+#### 1. 配置 CPU 限制
+
+在宿主机上执行：
+
+# 设置 CPU 限额：50000 / 100000 = 0.5 CPU 核心
+echo "50000 100000" | sudo tee /sys/fs/cgroup/mini_container/cpu.max
+
+# 确认容器进程已在 cgroup 中（若测试 1 已写入可忽略）
+echo 12345 | sudo tee /sys/fs/cgroup/mini_container/cgroup.procs
+
+#### 2. 在容器内验证 CPU 占有率
+
+在容器内部，运行一个 CPU 死循环任务：
+
+# 在容器内部启动死循环
+sh -c 'while true; do :; done'
+
+
+#### 3. 宿主机观察 CPU 占用
+
+在宿主机上新开一个终端，运行 `top` 或 `htop` 命令：
+
+* **预期现象**：找到容器内对应的 CPU 进程，其 CPU 占用率会稳定限制在 **50%** 左右，无法吃满单核（100%）。
+
+---
+
+### 测试 3：Cgroup 资源的自动清理
+
+当容器退出后，该 cgroup 内没有活着的 PID 时，直接删掉对应的文件夹即可清理：
+
+sudo rmdir /sys/fs/cgroup/mini_container
