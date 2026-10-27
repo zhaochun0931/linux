@@ -1,0 +1,249 @@
+第一阶段：创建自签名根 CA 及其公钥证书
+
+1. 生成根 CA 密钥对与自签名证书
+keytool -genkeypair -alias root-ca -keyalg RSA -keysize 2048 \
+  -keystore ca-store.p12 -storetype PKCS12 -storepass password123 \
+  -validity 3650 -dname "CN=GemFire-CA, OU=Cluster, O=Enterprise, C=US" \
+  -ext BasicConstraints:critical=ca:true
+
+-genkeypair：生成一对密钥（私钥 + 公钥），同时自动生成一份关联公钥的初始自签名证书。
+
+-alias root-ca：为此条目指定一个别名 root-ca，方便后续引用。
+
+-keyalg RSA -keysize 2048：使用 RSA 加密算法，密钥长度为标准安全的 2048 位。
+
+-keystore ca-store.p12 -storetype PKCS12 -storepass password123：
+
+将密钥对存储在 ca-store.p12 文件中。
+
+存储格式指定为现代行业标准 PKCS12（可同时存私钥和证书）。
+
+访问密码为 password123。
+
+-validity 3650：证书有效期为 3650 天（约 10 年）。根 CA 作为基础设施，有效期通常设得比较长。
+
+-dname "CN=GemFire-CA, OU=Cluster, O=Enterprise, C=US"：证书的 X.500 身份信息（Distinguished Name）：
+
+CN（Common Name）：名称为 GemFire-CA。
+
+OU（组织单元）：Cluster。
+
+O（组织）：Enterprise。
+
+C（国家）：US。
+
+-ext BasicConstraints:critical=ca:true（关键参数）：
+
+向 X.509 v3 证书中注入扩展字段，明确标记 “当前证书是一个 CA（认证机构），具有签发下级证书的权利”。
+
+critical=ca:true 告诉验证端（JVM/OpenSSL）：如果此项未标记为 CA，则其签发的所有下级证书都会被安全策略判定为无效证书。
+
+
+
+
+2. 导出根 CA 的公钥证书
+
+keytool -exportcert -alias root-ca -file ca.pem \
+  -keystore ca-store.p12 -storetype PKCS12 -storepass password123
+
+-exportcert：仅提取公共证书（Public Certificate），不包含私钥。
+
+-file ca.pem：输出为标准二进制/Base64 证书文件 ca.pem。
+
+作用：公钥证书是公开的，后续签发下级证书时用于验证，同时也需要分发给各个节点作为受信任的依据。而包含私钥的 ca-store.p12 必须妥善保管或签发完后删除。
+
+
+
+
+
+第二阶段：构建公共 TrustStore（信任锚点）
+
+keytool -importcert -noprompt -alias cluster-ca -file ca.pem \
+  -keystore truststore.p12 -storetype PKCS12 -storepass password123
+
+-importcert：将一个现有的公钥证书导入到 KeyStore 文件中。
+
+-noprompt：静默导入，不询问“是否信任此证书（y/n）”，适合自动化脚本。
+
+-alias cluster-ca：在 TrustStore 中将该条证书命名为 cluster-ca。
+
+-file ca.pem：指定刚导出的根 CA 证书文件。
+
+-keystore truststore.p12 -storetype PKCS12 -storepass password123：将证书存入专门用来作为“信任库”的 truststore.p12 文件中。
+
+
+
+
+
+
+
+
+
+
+
+
+for NAME in locator server1 server2; do
+  keytool -genkeypair -alias ${NAME} -keyalg RSA -keysize 2048 \
+    -keystore ${NAME}-keystore.p12 -storetype PKCS12 -storepass password123 \
+    -validity 365 -dname "CN=${NAME}, OU=Cluster, O=Enterprise, C=US"
+
+  keytool -certreq -alias ${NAME} -keystore ${NAME}-keystore.p12 \
+    -storetype PKCS12 -storepass password123 -file ${NAME}.csr
+
+  keytool -gencert -alias root-ca -keystore ca-store.p12 \
+    -storetype PKCS12 -storepass password123 -infile ${NAME}.csr \
+    -outfile ${NAME}-cert.pem -validity 365
+
+  keytool -importcert -noprompt -alias root-ca -file ca.pem \
+    -keystore ${NAME}-keystore.p12 -storetype PKCS12 -storepass password123
+
+  keytool -importcert -noprompt -alias ${NAME} -file ${NAME}-cert.pem \
+    -keystore ${NAME}-keystore.p12 -storetype PKCS12 -storepass password123
+done
+
+
+
+
+
+第一步：节点生成自己的密钥对与临时自签名证书
+
+keytool -genkeypair -alias ${NAME} -keyalg RSA -keysize 2048 \
+  -keystore ${NAME}-keystore.p12 -storetype PKCS12 -storepass password123 \
+  -validity 365 -dname "CN=${NAME}, OU=Cluster, O=Enterprise, C=US"
+
+目的：在本地生成节点私有的私钥（如 server1 的私钥），并附带生成一个临时的、自己给自己签名的证书。
+
+安全性原则：这个私钥自始至终只留在 ${NAME}-keystore.p12 内部，从未向外泄露或发送给 CA。
+
+此时状态：证书是自签名的（Issuer 和 Subject 都是当前节点名），此时把它拿去握手会被其他节点拒收，因为没人信任它。
+
+第二步：导出 CSR（证书签名请求）
+
+
+keytool -certreq -alias ${NAME} -keystore ${NAME}-keystore.p12 \
+  -storetype PKCS12 -storepass password123 -file ${NAME}.csr
+-certreq：Certificate Request（证书请求）。
+
+CSR 文件里包含什么？
+
+节点的公钥。
+
+节点的身份标识（即 CN=${NAME}, OU=Cluster...）。
+
+节点私钥针对上述内容的数字签名（证明请求者确实拥有对应的私钥）。
+
+CSR 里绝对没有私钥。这个文件可以安全地通过网络传递给 CA 机构。
+
+第三步：keytool -gencert（根 CA 签发证书）
+这是整个流程的核心签发步骤：
+
+keytool -gencert -alias root-ca -keystore ca-store.p12 \
+  -storetype PKCS12 -storepass password123 -infile ${NAME}.csr \
+  -outfile ${NAME}-cert.pem -validity 365
+
+
+
+-gencert：Generate Certificate（生成/签署证书）。
+
+-alias root-ca -keystore ca-store.p12：指定由谁来做签署者。这里指定使用之前生成的 ca-store.p12 中名为 root-ca 的根 CA 私钥。
+
+-infile ${NAME}.csr：读取节点的申请文件，提取节点公钥和节点身份信息。
+
+-outfile ${NAME}-cert.pem：输出签署完成的正式证书文件。
+
+底层发生了什么？
+根 CA 会用自己的CA 私钥对节点公钥和身份做哈希签名。此时生成的 ${NAME}-cert.pem 已经是一个合法的由 CA 签发的证书：
+
+Subject（拥有者）：CN=${NAME}
+
+Issuer（颁发者）：CN=GemFire-CA
+
+
+
+第四步：在节点 KeyStore 中先导入根 CA 证书
+
+keytool -importcert -noprompt -alias root-ca -file ca.pem \
+  -keystore ${NAME}-keystore.p12 -storetype PKCS12 -storepass password123
+
+
+为什么要把 CA 证书导进节点的 KeyStore？
+Java 的 keytool 在组装证书链时有严格的上下级校验机制。它不允许将一张孤立的 CA 签署证书直接覆盖进私钥别名下。
+
+前置依赖：KeyStore 必须先在库里认识根 CA（别名为 root-ca），后续才能根据签发关系把节点证书挂到这棵信任树上。
+
+
+
+
+第五步：组装信任链（Chain of Trust）
+
+keytool -importcert -noprompt -alias ${NAME} -file ${NAME}-cert.pem \
+  -keystore ${NAME}-keystore.p12 -storetype PKCS12 -storepass password123
+
+注意这里的 -alias ${NAME}：
+导入的目标别名正好是第一步生成临时私钥的那个别名（如 locator 或 server1），而不是新建别名。
+
+底层质变：
+
+keytool 读取 ${NAME}-cert.pem。
+
+发现它的颁发者是 CN=GemFire-CA，而库里刚刚导入了 root-ca。
+
+keytool 将原有临时的自签名证书替换掉，把“私钥 + 节点证书 + 根 CA 证书”缝合在一起，形成一条完整的证书链：
+
+Plaintext
+[0] Subject: CN=server1, Issuer: CN=GemFire-CA (私钥绑定端)
+[1] Subject: CN=GemFire-CA, Issuer: CN=GemFire-CA (信任根)
+验证组装结果
+如果不组装证书链，证书长度只有 1；正常组装完成后，证书链长度为 2。可以通过以下命令查看：
+
+Bash
+keytool -list -v -keystore server1-keystore.p12 -storepass password123
+输出的条目信息会明确展示：
+
+Plaintext
+Alias name: server1
+Entry type: PrivateKeyEntry
+Certificate chain length: 2
+Certificate[1]:
+Owner: CN=server1, OU=Cluster, O=Enterprise, C=US
+Issuer: CN=GemFire-CA, OU=Cluster, O=Enterprise, C=US
+...
+Certificate[2]:
+Owner: CN=GemFire-CA, OU=Cluster, O=Enterprise, C=US
+Issuer: CN=GemFire-CA, OU=Cluster, O=Enterprise, C=US
+这样，当 server1 与 locator 握手时，server1 出示整条链条，对方拿本地的 truststore.p12 比对链条尾部的 GemFire-CA，瞬间完成双向认证。
+
+
+
+
+
+
+1. 验证 truststore.p12（确认包含信任锚点）
+keytool -list -v -keystore truststore.p12 -storepass password123
+
+
+检查点：
+
+Entry type：必须是 trustedCertEntry（绝不能是 PrivateKeyEntry）。
+
+Owner 与 Issuer：必须完全一致（即自签名根 CA CN=GemFire-CA）。
+
+2. 验证各个节点的 KeyStore（确认包含私钥且证书链完整）
+分别检查 locator、server1 和 server2 的 KeyStore（以 server1 为例）：
+
+
+keytool -list -v -keystore server1-keystore.p12 -storepass password123
+
+检查点：
+
+Alias name：匹配节点名称（如 server1）。
+
+Entry type：必须是 PrivateKeyEntry（代表节点拥有私钥）。
+
+Certificate chain length：必须为 2：
+
+Certificate[1]：Owner 为当前节点（CN=server1），Issuer 为 CA（CN=GemFire-CA）。
+
+Certificate[2]：Owner 和 Issuer 均为根 CA（CN=GemFire-CA）。
+
+
