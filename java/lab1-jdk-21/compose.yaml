@@ -1,0 +1,13 @@
+services:
+  java-app:
+    image: amazoncorretto:21-jdk
+    container_name: corretto-jdk-21
+    restart: unless-stopped
+    volumes:
+      # 将当前目录下的 ./app 挂载到容器内的 /workspace
+      - ./app:/workspace
+    working_dir: /workspace
+    # 保持容器在前台持续运行（由于 JDK 基础镜像没有默认前台守护进程）
+    stdin_open: true  # 对应 -i
+    tty: true         # 对应 -t
+    command: ["tail", "-f", "/dev/null"]
