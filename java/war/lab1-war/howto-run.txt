@@ -1,0 +1,90 @@
+方法一：纯手工制作极简 WAR（无需 Maven）
+WAR 本质就是一个遵循特定规范的 zip 压缩包，可以直接用命令打包验证。
+
+1. 创建本地目录结构
+在任意工作目录下创建文件夹结构：
+
+
+mkdir -p mini-war/WEB-INF
+cd mini-war
+
+
+2. 添加一个静态页面
+在 mini-war 根目录下创建 index.html：
+
+
+<!-- mini-war/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WAR Test</title>
+</head>
+<body>
+    <h1>Hello, Traditional WAR is working!</h1>
+</body>
+</html>
+
+3. 添加部署描述符 web.xml
+在 mini-war/WEB-INF/ 目录下创建 web.xml：
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <display-name>Mini WAR Test</display-name>
+</web-app>
+
+4. 打包为 .war 文件
+在 mini-war 目录下执行 JDK 自带的 jar 命令（或直接打成 zip 改后缀）：
+
+
+jar -cvf demo.war *
+
+
+此时当前目录下会生成一个 demo.war 文件。
+
+
+
+
+部署与测试
+获取到 .war 文件后，进行部署验证：
+
+准备 Tomcat 环境：
+
+本地已安装 Tomcat：直接将生成的 demo.war 复制到 Tomcat 的 webapps/ 目录下。
+
+或使用 Docker 一键启动 Tomcat：
+
+
+
+docker run -p 8080:8080 -v $(pwd)/demo.war:/usr/local/tomcat/webapps/demo.war tomcat:latest
+
+验证解压与访问：
+
+启动 Tomcat 后，观察 webapps/ 目录，Tomcat 会自动将 demo.war 解压为 demo 文件夹。
+
+浏览器访问：
+
+静态页面：http://localhost:8080/demo/index.html
+
+
+
+docker exec -it <container_id> bash
+
+3. 查看 webapps 目录
+进入容器后，默认工作目录通常就是 /usr/local/tomcat。
+
+进入目录：
+
+
+cd /usr/local/tomcat/webapps
+
+
+查看内容：
+ls -la
+
+你可以看到上传的 .war 文件以及 Tomcat 自动解压生成的同名目录。

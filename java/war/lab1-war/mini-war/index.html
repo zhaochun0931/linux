@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WAR Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .time-box {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #0066cc;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello, Traditional WAR is working!</h1>
+    
+    <div class="time-box">
+        当前时间：<span id="current-time">加载中...</span>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            // 格式化为：YYYY-MM-DD HH:mm:ss
+            const formatted = now.getFullYear() + '-' +
+                String(now.getMonth() + 1).padStart(2, '0') + '-' +
+                String(now.getDate()).padStart(2, '0') + ' ' +
+                String(now.getHours()).padStart(2, '0') + ':' +
+                String(now.getMinutes()).padStart(2, '0') + ':' +
+                String(now.getSeconds()).padStart(2, '0');
+            
+            document.getElementById('current-time').innerText = formatted;
+        }
+
+        // 立即执行一次并每秒更新
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
