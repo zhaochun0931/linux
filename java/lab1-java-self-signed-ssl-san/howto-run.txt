@@ -1,0 +1,83 @@
+最简测试方案（一条命令生成，免去 CA 流程）
+只需生成一个包含自签名证书的 Keystore：
+
+keytool -genkeypair -alias test-server -keyalg RSA -keysize 2048 \
+  -keystore test-keystore.p12 -storetype PKCS12 -storepass password123 \
+  -validity 365 -dname "CN=localhost" -ext "SAN=dns:localhost,ip:127.0.0.1"
+
+
+
+
+Server 端配置：直接加载 test-keystore.p12 作为 KeyStore。
+
+Client 端配置：直接把这个 test-keystore.p12 当作 Truststore 加载（因为它里面自带公钥证书，客户端读到并信任即可）。
+
+此时不需要生成 CSR、不需要 CA 签名，也不需要导入导出中间文件，就能完整跑通整个 TLS 握手与加解密测试。
+
+
+
+
+
+
+
+
+
+可以通过 `keytool -list -v` 命令直接“开箱验货”，查看它内部到底存了什么。
+
+执行以下命令：
+
+keytool -list -v -keystore test-keystore.p12 -storepass password123
+
+
+---
+
+### 查看输出中的两个核心指标
+
+只要看输出中的 **`条目类型 (Entry type)`** 和 **`证书链长度 (Certificate chain length)`**：
+
+```text
+别名: test-server
+创建日期: 2026年10月27日
+条目类型: PrivateKeyEntry                         <--- 1. 这里证明有【私钥】
+证书链长度: 1
+证书[1]:                                          <--- 2. 这里证明有【证书 (公钥 + 身份信息)】
+所有者: CN=localhost
+签发者: CN=localhost                              <--- 自签名：自己给自己盖章
+序列号: 4f1a2b3c
+有效期为: Tue Oct 27 22:30:00 CST 2026 至 ...
+证书指纹:
+	 SHA256: 8D:4B:92:...
+扩展: 
+  #1: ObjectId: 2.5.29.17 Criticality=false
+  SubjectAlternativeName [
+    DNSName: localhost
+    IPAddress: 127.0.0.1
+  ]
+
+```
+
+---
+
+### 为什么 `-genkeypair` 命令会自动把两者都存进去？
+
+1. **`-genkeypair` 原理**：顾名思义，它首先在内存中生成一对非对称密钥（Private Key 和 Public Key）。
+2. **打包成条目**：私钥不能裸露存放，Java 规定它必须以 `PrivateKeyEntry` 的类型存入。
+3. **绑定自签名证书**：私钥入库时，必须绑定一个证明该私钥身份的凭证。因为此时没有外部 CA，`keytool` 会自动拿刚才生成的**私钥**对包含对应**公钥**的信息进行签名，制作出一张“自签名证书”，和私钥紧紧捆绑在一起存入别名下。
+
+因此：
+
+* **服务端**拿它当 `KeyStore` 用时，程序读取里面的 `PrivateKeyEntry` 提取**私钥**来做解密或签名。
+* **客户端**拿它当 `TrustStore` 用时，程序只读取里面的 `证书[1]`（提取里面的**公钥和所有者信息**）加入信任列表，完全忽略私钥。
+
+
+
+
+
+
+
+java -Djavax.net.debug=ssl:handshake SimpleHttpsServer
+
+
+
+
+java -Djavax.net.debug=ssl:handshake SimpleHttpsClient
