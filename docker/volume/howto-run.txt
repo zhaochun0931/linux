@@ -243,3 +243,109 @@ volumes:
 1. **多容器间共享数据：** 多个容器可以同时挂载同一个 Volume（例如：日志收集容器读取应用容器写入的日志）。
 2. **数据库持久化：** MySQL、PostgreSQL、Redis 等数据库数据目录必须挂载，防止容器重建或升级时数据丢失。
 3. **隔离主机环境：** 当你不想将容器的数据直接暴露在宿主机的特定目录下时。
+
+
+
+
+
+在 **Docker Compose** 中，底层机制（数据存放位置、生命周期、隔离性）与单独使用 `docker run` 完全一致，但在 **Compose 编排层面**有非常具体的写法规范和行为差异。
+
+---
+
+### 一、语法格式的区别
+
+在 Compose 文件中，挂载可以通过简写语法（Short Syntax）**或**长语法（Long Syntax）来实现。
+
+#### 1. 简写语法（冒号 `:` 分隔）
+
+Compose 会**根据左侧路径的格式自动判断**是 Bind Mount 还是 Volume：
+
+```yaml
+services:
+  web:
+    image: nginx:alpine
+    volumes:
+      # 【Bind Mount】以相对路径（./ 或 ../）或绝对路径（/）开头
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./html:/usr/share/nginx/html
+
+      # 【Named Volume】以名称开头（没有路径前缀），必须在顶层 volumes 声明
+      - my_data:/var/lib/data
+
+# 顶层必须声明 named volume，否则启动会报错
+volumes:
+  my_data:
+
+```
+
+#### 2. 长语法（推荐，语义明确）
+
+长语法通过 `type: bind` 或 `type: volume` 显式区分：
+
+```yaml
+services:
+  web:
+    image: nginx:alpine
+    volumes:
+      # 【Bind Mount】
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+
+      # 【Named Volume】
+      - type: volume
+        source: my_data
+        target: /var/lib/data
+
+volumes:
+  my_data:
+
+```
+
+---
+
+### 二、生命周期与清理命令的区别（极易踩坑）
+
+在日常管理 Compose 项目时，两者受 `docker compose down` 影响的行为截然不同：
+
+* **清理命令 `docker compose down -v**`：
+* **Volume**：加上 `-v` 参数后，Docker 会**连同该 Volume 及里面的数据一同删除**。如果忘了备份，数据库数据会直接丢失。
+* **Bind Mount**：宿主机目录**完全不受 `-v` 参数影响**，宿主机上的文件原封不动。
+
+
+* **项目名前缀**：
+* 在 Compose 中定义的 Volume 默认会自动带上当前工程目录名前缀（例如项目目录叫 `myapp`，创建的卷名叫 `myapp_my_data`）。如果希望复用外部已经存在的卷，需要声明 `external: true`。
+
+
+
+---
+
+### 三、路径不存在时的行为差异
+
+* **简写格式下的 Bind Mount**：如果宿主机的源目录不存在（如写了 `- ./missing_dir:/app`），Docker 很多时候会自动在宿主机上帮你**新建一个由 root 拥有的空目录**，常常导致后续因为权限问题写入失败。
+* **长格式下的 Bind Mount**：使用 `type: bind` 时，若宿主机文件/目录不存在，Compose 启动时会**直接报错退出**，避免静默创建空目录导致隐藏 bug。
+* **Volume**：若 Volume 不存在，Docker 始终会自动创建卷并正常挂载。
+
+---
+
+### 四、综合配置模板对比
+
+```yaml
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: secret
+    volumes:
+      # 数据库生产数据：必须用 Volume（性能好、隔离性强）
+      - pg_data:/var/lib/postgresql/data
+      # 初始化 SQL 脚本：用 Bind Mount（方便本地直接编辑执行）
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+volumes:
+  pg_data: # 声明持久化卷
+
+```
