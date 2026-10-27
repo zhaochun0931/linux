@@ -1,0 +1,39 @@
+curl -G https://start.spring.io/starter.zip \
+  -d dependencies=web \
+  -d javaVersion=17 \
+  -d type=maven-project \
+  -d name=demo-fatjar \
+  -d artifactId=demo-fatjar \
+  -o demo-fatjar.zip
+
+
+参数说明
+-d dependencies=web：添加 spring-boot-starter-web 依赖（内置 Tomcat）。
+
+-d javaVersion=17：指定 JDK 17。
+
+-d type=maven-project：生成 Maven 工程（如果要 Gradle 可以填 gradle-project）。
+
+-d bootVersion=3.3.4：指定 Spring Boot 版本。
+
+-o demo-fatjar.zip：将返回的二进制流保存为 zip 文件。
+
+
+
+
+
+打包并启动：
+
+./mvnw clean package -DskipTests
+java -jar target/demo-fatjar-0.0.1-SNAPSHOT.jar
+
+
+下载的项目自带 Maven Wrapper（./mvnw），即使本地没配置 Maven 环境变量也能直接跑。
+
+
+
+
+
+
+
+http://localhost:8080/
