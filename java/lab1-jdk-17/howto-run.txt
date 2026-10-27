@@ -1,0 +1,38 @@
+JDK 17 不支持 CMS（Concurrent Mark Sweep）垃圾回收器。   CMS 早在 JDK 9 被标记为废弃（Deprecated），并在 JDK 14（通过 JEP 363）被正式彻底移除。因此在 JDK 17 中，如果尝试指定 -XX:+UseConcMarkSweepGC 参数，JVM 会直接报错拒绝启动。
+
+
+
+
+
+
+JDK 17 中的替代方案如果原项目依赖低延迟/并发回收，在 JDK 17 下可选用以下主流替代方案：
+G1 GC（默认）：-XX:+UseG1GC（兼顾吞吐量与低停顿，综合表现最均衡）   
+ZGC（超低延迟）：-XX:+UseZGC（停顿时间通常在 1ms 以下，适合大堆内存）
+Shenandoah GC（低延迟）：-XX:+UseShenandoahGC
+
+
+
+
+
+
+docker compose up -d
+
+docker exec -it corretto-jdk-17 bash
+
+java -version
+
+pwd
+
+javac CheckGC.java
+
+java CheckGC
+
+
+
+
+
+java -XX:+UseConcMarkSweepGC CheckGC
+
+
+
+java -XX:+UseShenandoahGC CheckGC
