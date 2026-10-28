@@ -1,0 +1,7 @@
+mvn clean install
+
+
+mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
+
+
+curl http://localhost:8080
