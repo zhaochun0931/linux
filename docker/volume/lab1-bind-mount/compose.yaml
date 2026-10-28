@@ -1,14 +1,16 @@
 services:
-  postgres:
-    image: postgres:15-alpine
-    container_name: pg-bindmount-test
-    restart: always
-    environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydb
+  web-compose-short:
+    image: nginx:latest
     ports:
-      - "5432:5432"
+      - "8083:80"
     volumes:
-      # 使用 Bind Mount：将宿主机当前目录下的 ./pgdata 映射到容器内的数据目录
-      - ./pgdata:/var/lib/postgresql/data
+      - ./test_web:/usr/share/nginx/html
+
+  web-compose-long:
+    image: nginx:latest
+    ports:
+      - "8084:80"
+    volumes:
+      - type: bind
+        source: ./test_web
+        target: /usr/share/nginx/html
