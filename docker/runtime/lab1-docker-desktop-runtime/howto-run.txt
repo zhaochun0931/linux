@@ -1,0 +1,6 @@
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
+
+runc --version
+
+
+uname -a

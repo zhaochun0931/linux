@@ -1,0 +1,297 @@
+一、Docker Runtime 的分层架构图
+
+当你敲下一行 docker run -d -p 80:80 nginx 时，调用链是自上而下逐层传递的：
+
+[ 用户命令层 ]       Docker CLI (docker run ...)
+                          │
+                          ▼ (REST API / Unix Socket)
+[ 守护进程层 ]       Docker Daemon (dockerd)
+                          │
+                          ▼ (gRPC 通信)
+[ 高级运行时 ]       containerd
+                          │
+                          ▼ (fork 独立守护进程)
+[ 垫片与隔离层 ]     containerd-shim
+                          │
+                          ▼ (调用系统指令，遵循 OCI 规范)
+[ 低级运行时 ]       runc (或 crun, Kata Containers 等)
+                          │
+                          ▼ (利用 Linux 内核特性)
+[ 宿主系统层 ]       Linux Kernel: Namespaces + cgroups v2 + OverlayFS
+                          │
+                          ▼ (生成真实容器进程)
+[ 最终运行目标 ]     [ Nginx 进程 ] (PID 12345)
+
+二、核心组件与两级 Runtime 划分
+现代容器规范将运行时清晰地划分为两层：高层运行时（High-level Runtime） 和 底层运行时（Low-level Runtime）。
+
+1. 高级容器运行时（High-level Runtime）：containerd
+负责宏观管理：它关注容器的整个生命周期管理。
+
+核心职责：
+
+网络与分发：从 Docker Hub 等镜像仓库拉取镜像并校验签名。
+
+存储与解压：解压多层只读镜像，挂载基于 OverlayFS 的可写快照层（Snapshot）。
+
+元数据管理：记录容器名字、状态、日志路径、挂载卷信息。
+
+对外 API：向上暴露标准 gRPC 接口供 dockerd（或 Kubernetes kubelet）调用。
+
+2. 低级容器运行时（Low-level Runtime / OCI Runtime）：runc
+负责微观创建：它完全遵循 OCI（Open Container Initiative）标准运行时规范。
+
+核心职责：
+
+它只负责非常机械但至关重要的一件事：利用 Linux 内核特性启动一个受限制的孤立进程。
+
+读取标准格式的容器配置文件（config.json）和根文件系统（rootfs）。
+
+调用 Linux 系统调用（如 clone、setns、unshare）创建命名空间（Namespaces）。
+
+创建并配置资源限制规则（cgroups）。
+
+执行 pivot_root / chroot 切换根目录。
+
+最后执行 execve 启动容器的目标业务命令（如 nginx）。
+
+关键特性：runc 在完成容器进程的创建启动后，自身会立即退出，绝不会常驻内存。
+
+3. 关键纽带：containerd-shim（垫片进程）
+既然 runc 创建完进程就退出了，那谁来持续照看这个容器呢？就是 shim：
+
+每一个运行中的容器都会配一个极轻量的守护进程 containerd-shim。
+
+收集 IO 与状态：它常驻在后台，捕获容器进程的标准输出/错误（stdout/stderr），并维持退出状态码。
+
+无守护进程重启（Daemonless restart）：即使你执行 systemctl restart docker 重启整个 Docker 服务，或者升级 Docker 版本，容器内的应用进程完全不受影响，因为容器由 shim 牢牢接管着。
+
+
+
+
+
+
+➜  runtime docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS     NAMES
+84a51089d990   nginx:alpine   "/docker-entrypoint.…"   4 minutes ago   Up 4 minutes   80/tcp    test-nginx
+➜  runtime
+➜  runtime
+➜  runtime docker run --rm --privileged --pid=host alpine pstree -p
+initd(1)-+-containerd-shim(758)-+-nginx(781)-+-nginx(819)
+         |                      |            |-nginx(820)
+         |                      |            |-nginx(821)
+         |                      |            |-nginx(822)
+         |                      |            |-nginx(823)
+         |                      |            |-nginx(824)
+         |                      |            |-nginx(825)
+         |                      |            |-nginx(826)
+         |                      |            |-nginx(827)
+         |                      |            |-nginx(828)
+         |                      |            |-nginx(829)
+         |                      |            |-nginx(830)
+         |                      |            |-nginx(831)
+         |                      |            |-nginx(832)
+         |                      |            |-nginx(833)
+         |                      |            |-nginx(834)
+         |                      |            |-nginx(835)
+         |                      |            `-nginx(836)
+         |                      |-{containerd-shim}(759)
+         |                      |-{containerd-shim}(760)
+         |                      |-{containerd-shim}(761)
+         |                      |-{containerd-shim}(762)
+         |                      |-{containerd-shim}(763)
+         |                      |-{containerd-shim}(764)
+         |                      |-{containerd-shim}(765)
+         |                      |-{containerd-shim}(766)
+         |                      |-{containerd-shim}(767)
+         |                      `-{containerd-shim}(1013)
+         |-containerd-shim(1096)-+-pstree(1119)
+         |                       |-{containerd-shim}(1097)
+         |                       |-{containerd-shim}(1098)
+         |                       |-{containerd-shim}(1099)
+         |                       |-{containerd-shim}(1100)
+         |                       |-{containerd-shim}(1101)
+         |                       |-{containerd-shim}(1102)
+         |                       |-{containerd-shim}(1103)
+         |                       |-{containerd-shim}(1104)
+         |                       `-{containerd-shim}(1105)
+         |-initd(198)-+-containerd(333)-+-{containerd}(334)
+         |            |                 |-{containerd}(335)
+         |            |                 |-{containerd}(336)
+         |            |                 |-{containerd}(337)
+         |            |                 |-{containerd}(338)
+         |            |                 |-{containerd}(344)
+         |            |                 |-{containerd}(346)
+         |            |                 |-{containerd}(347)
+         |            |                 |-{containerd}(348)
+         |            |                 |-{containerd}(359)
+         |            |                 |-{containerd}(360)
+         |            |                 |-{containerd}(670)
+         |            |                 |-{containerd}(679)
+         |            |                 |-{containerd}(680)
+         |            |                 |-{containerd}(681)
+         |            |                 |-{containerd}(748)
+         |            |                 |-{containerd}(749)
+         |            |                 `-{containerd}(914)
+         |            |-containerd-star(277)-+-{containerd-star}(295)
+         |            |                      |-{containerd-star}(296)
+         |            |                      |-{containerd-star}(297)
+         |            |                      |-{containerd-star}(298)
+         |            |                      |-{containerd-star}(312)
+         |            |                      |-{containerd-star}(313)
+         |            |                      |-{containerd-star}(314)
+         |            |                      |-{containerd-star}(315)
+         |            |                      |-{containerd-star}(323)
+         |            |                      |-{containerd-star}(324)
+         |            |                      |-{containerd-star}(325)
+         |            |                      |-{containerd-star}(326)
+         |            |                      `-{containerd-star}(331)
+         |            |-dockerd(362)-+-{dockerd}(363)
+         |            |              |-{dockerd}(364)
+         |            |              |-{dockerd}(365)
+         |            |              |-{dockerd}(366)
+         |            |              |-{dockerd}(367)
+         |            |              |-{dockerd}(368)
+         |            |              |-{dockerd}(369)
+         |            |              |-{dockerd}(370)
+         |            |              |-{dockerd}(371)
+         |            |              |-{dockerd}(372)
+         |            |              |-{dockerd}(386)
+         |            |              |-{dockerd}(387)
+         |            |              |-{dockerd}(388)
+         |            |              |-{dockerd}(391)
+         |            |              |-{dockerd}(392)
+         |            |              |-{dockerd}(393)
+         |            |              |-{dockerd}(394)
+         |            |              |-{dockerd}(395)
+         |            |              |-{dockerd}(396)
+         |            |              |-{dockerd}(399)
+         |            |              `-{dockerd}(869)
+         |            |-rpc.idmapd(283)
+         |            |-rpc.statd(284)
+         |            |-rpcbind(282)
+         |            |-{initd}(199)
+         |            |-{initd}(200)
+         |            |-{initd}(201)
+         |            |-{initd}(202)
+         |            |-{initd}(203)
+         |            |-{initd}(204)
+         |            |-{initd}(205)
+         |            |-{initd}(206)
+         |            |-{initd}(207)
+         |            |-{initd}(208)
+         |            |-{initd}(209)
+         |            |-{initd}(242)
+         |            |-{initd}(243)
+         |            |-{initd}(246)
+         |            |-{initd}(247)
+         |            |-{initd}(249)
+         |            |-{initd}(250)
+         |            |-{initd}(251)
+         |            |-{initd}(252)
+         |            |-{initd}(253)
+         |            |-{initd}(254)
+         |            |-{initd}(255)
+         |            |-{initd}(260)
+         |            |-{initd}(262)
+         |            |-{initd}(269)
+         |            |-{initd}(270)
+         |            |-{initd}(271)
+         |            |-{initd}(272)
+         |            |-{initd}(273)
+         |            |-{initd}(274)
+         |            |-{initd}(275)
+         |            |-{initd}(276)
+         |            |-{initd}(278)
+         |            |-{initd}(319)
+         |            |-{initd}(320)
+         |            |-{initd}(321)
+         |            `-{initd}(322)
+         |-rosetta-mount(354)-+-{fuse_worker}(355)
+         |                    |-{fuse_worker}(356)
+         |                    `-{fuse_worker}(358)
+         |-sh(221)---login(222)---bash(238)
+         |-{initd}(186)
+         |-{initd}(187)
+         |-{initd}(188)
+         |-{initd}(189)
+         |-{initd}(190)
+         |-{initd}(191)
+         |-{initd}(192)
+         |-{initd}(193)
+         |-{initd}(194)
+         |-{initd}(195)
+         `-{initd}(196)
+➜  runtime
+
+
+
+
+
+➜  runtime docker top test-nginx
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                781                 758                 0                   15:39               ?                   00:00:00            nginx: master process nginx -g daemon off;
+statd               819                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               820                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               821                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               822                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               823                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               824                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               825                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               826                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               827                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               828                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               829                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               830                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               831                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               832                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               833                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               834                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               835                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+statd               836                 781                 0                   15:39               ?                   00:00:00            nginx: worker process
+➜  runtime
+
+
+
+
+
+
+
+
+三、 深度实操：一行 docker run 底层发生了什么？
+以 docker run -d --name web -m 512m nginx:alpine 为例，运行时底层经历了如下严格步骤：
+
+API 接收：dockerd 收到客户端请求，校验参数。
+
+镜像准备：dockerd 委托 containerd：
+
+检查本地镜像缓存，若无则从远程镜像仓库下载各层 tar 包并解压。
+
+调用 snapshotter，使用 OverlayFS 将镜像的各个只读层加上一个空的可写层合并，生成容器的最终挂载点 /run/containerd/io.containerd.runtime.v2.task/moby/<id>/rootfs。
+
+生成 OCI Bundle：containerd 在临时目录下生成 config.json，把 -m 512m 翻译成 cgroups 限制，把环境变量、入口命令（nginx -g "daemon off;"）写进去。
+
+拉起 Shim：containerd 启动 containerd-shim-runc-v2 进程。
+
+调用 runc：
+
+Shim 执行命令：runc create --bundle <dir> <id>。
+
+runc 利用 clone() 配合 CLONE_NEWPID、CLONE_NEWNET、CLONE_NEWNS 等标志位创建孤立进程。
+
+进入配置阶段：设置宿主机网卡虚拟对（veth pair）、配置 /sys/fs/cgroup/memory 写入 536870912（512MB 限制）。
+
+执行 pivot_root，将当前进程的 / 切换为刚才生成的 rootfs，并切断与宿主机原目录树的一切关联。
+
+启动初始化代理并保持暂停。
+
+移交与启动：
+
+Shim 确认创建就绪，通知 runc start <id>。
+
+容器内的首个进程调用 execve，将自己的进程代码镜像完全替换为 Nginx 二进制文件。
+
+runc 进程功成身退，退出销毁。
+
+进入看护状态：containerd-shim 成为 Nginx Master 进程的直接父进程，等待事件。
+
