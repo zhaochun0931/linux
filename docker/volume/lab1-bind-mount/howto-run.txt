@@ -1,19 +1,114 @@
-# 进入容器内的 psql 交互终端
-docker exec -it pg-bindmount-test psql -U myuser -d mydb
+### 准备工作：创建测试页面
+
+在本地创建测试目录并写入一个简单的网页文件：
+
+mkdir -p $PWD/test_web
+echo "Hello from Host Bind Mount" > $PWD/test_web/index.html
+
+
+---
+
+### 1. 验证 `--mount` 方式（官方推荐命令）
+
+使用 `--mount` 运行容器并映射到本地 **8081** 端口：
+
+docker run -d \
+  --name web-mount \
+  -p 8081:80 \
+  --mount type=bind,source=$PWD/test_web,target=/usr/share/nginx/html \
+  nginx:latest
 
 
 
-在 mydb=# 提示符下，依次输入以下 SQL 语句：
+* **访问测试**：
 
--- 1. 创建测试表
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+curl http://localhost:8081
 
--- 2. 插入测试数据
-INSERT INTO users (name) VALUES ('Alice'), ('Bob');
 
--- 3. 查询验证数据
-SELECT * FROM users;
+
+
+输出：`Hello from Host Bind Mount`
+* **边界行为验证（安全拦截）**：
+尝试挂载一个不存在的目录：
+
+docker run -d --name test-fail --mount type=bind,source=$PWD/not_exist_dir,target=/usr/share/nginx/html nginx:latest
+
+
+
+
+结果会直接报错并终止，不会在本地随意新建空目录。
+
+---
+
+### 2. 验证 `-v` 方式（传统简写）
+
+使用 `-v` 运行容器并映射到本地 **8082** 端口：
+
+
+docker run -d \
+  --name web-v \
+  -p 8082:80 \
+  -v $PWD/test_web:/usr/share/nginx/html \
+  nginx:latest
+
+
+
+* **访问测试**：
+
+curl http://localhost:8082
+
+
+
+
+输出：`Hello from Host Bind Mount`
+* **边界行为验证（自动创建）**：
+尝试挂载不存在的目录：
+
+docker run -d --name test-auto-create -v $PWD/auto_created_dir:/usr/share/nginx/html nginx:latest
+ls -ld $PWD/auto_created_dir
+
+
+
+
+Docker 会悄悄在宿主机上自动创建 `auto_created_dir`。
+
+---
+
+### 3. 验证 Docker Compose 方式
+
+创建 `docker-compose.yml` 文件，同时测试短语法（**8083** 端口）与长语法（**8084** 端口）：
+
+
+
+启动并验证：
+
+
+# 启动服务
+docker compose up -d
+
+# 验证短语法服务
+curl http://localhost:8083
+
+# 验证长语法服务
+curl http://localhost:8084
+
+
+
+两个接口均会正确返回 `Hello from Host Bind Mount`。
+
+---
+
+### 清理环境
+
+测试结束后，执行以下命令即可清理所有容器及测试文件：
+
+
+# 停止并删除 Compose 容器
+docker compose down
+
+# 删除单容器
+docker rm -f web-mount web-v test-auto-create
+
+# 清理测试文件
+rm -rf $PWD/test_web $PWD/auto_created_dir docker-compose.yml
+
