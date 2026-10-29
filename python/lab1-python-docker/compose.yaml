@@ -1,0 +1,11 @@
+services:
+  python-app:
+    image: python:latest
+    container_name: my-python-container   # 指定 docker ps 中看到的容器名称
+    hostname: python-box                  # 指定容器系统内部的主机名 (可在 bash 提示符中显示)
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    stdin_open: true  # 对应 -i (保持标准输入打开)
+    tty: true         # 对应 -t (分配伪终端)
+    command: bash

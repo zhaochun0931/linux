@@ -1,0 +1,36 @@
+docker run -it --rm \
+  -v "$(pwd)":/app \
+  -w /app \
+  python:latest \
+  bash
+
+
+参数详解
+-it：分配伪终端并保持标准输入打开，方便交互。
+
+--rm：容器退出后自动清理并删除容器，避免残留无用容器占用磁盘。
+
+-v "$(pwd)":/app：将宿主机当前所在目录（$(pwd)）挂载到容器内的 /app 目录。
+
+如需挂载特定绝对路径，替换为真实路径即可（例如 -v /home/user/project:/app）。
+
+-w /app：将容器的工作目录设置为 /app，进入后即可直接操作挂载的代码和文件。
+
+python:latest：指定镜像及标签，会自动拉取最新版本的 Python 官方镜像
+
+
+
+
+
+
+
+
+
+
+docker compose up -d
+
+
+docker exec -it my-python-container bash
+
+
+pip install pypdf -i https://repo.huaweicloud.com/repository/pypi/simple/ --trusted-host repo.huaweicloud.com
